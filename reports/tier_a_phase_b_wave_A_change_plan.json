@@ -1,0 +1,493 @@
+[
+  {
+    "campaign_position": 2,
+    "company_id": 331,
+    "operating_brand": "Swanson Group",
+    "focus_facility_id": 418,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_A_PROMOTION",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 3,
+    "company_id": 395,
+    "operating_brand": "Peerless Steel Co.",
+    "focus_facility_id": 482,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_A_PROMOTION",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 5,
+    "company_id": 72,
+    "operating_brand": "Western Forest Products",
+    "focus_facility_id": 82,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 6,
+    "company_id": 73,
+    "operating_brand": "Sinclar Group Forest Products",
+    "focus_facility_id": 83,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 7,
+    "company_id": 74,
+    "operating_brand": "Dunkley Lumber",
+    "focus_facility_id": 84,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 8,
+    "company_id": 75,
+    "operating_brand": "Carrier Lumber",
+    "focus_facility_id": 85,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 9,
+    "company_id": 76,
+    "operating_brand": "Gorman Bros. Lumber",
+    "focus_facility_id": 237,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 10,
+    "company_id": 78,
+    "operating_brand": "GreenFirst Forest Products",
+    "focus_facility_id": 91,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 11,
+    "company_id": 79,
+    "operating_brand": "Resolute Forest Products",
+    "focus_facility_id": 94,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 12,
+    "company_id": 80,
+    "operating_brand": "McRae Lumber Company",
+    "focus_facility_id": 95,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 13,
+    "company_id": 81,
+    "operating_brand": "Chantiers Chibougamau",
+    "focus_facility_id": 96,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 14,
+    "company_id": 82,
+    "operating_brand": "Barrette-Chapais",
+    "focus_facility_id": 98,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 15,
+    "company_id": 83,
+    "operating_brand": "Bois Daaquam",
+    "focus_facility_id": 99,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 16,
+    "company_id": 84,
+    "operating_brand": "Scierie Dion & Fils",
+    "focus_facility_id": 100,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 17,
+    "company_id": 124,
+    "operating_brand": "JK Precast LLC",
+    "focus_facility_id": 153,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 18,
+    "company_id": 125,
+    "operating_brand": "O.K. Brugmann Jr. & Sons, Inc.",
+    "focus_facility_id": 154,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 19,
+    "company_id": 126,
+    "operating_brand": "Pepcon / Poeppelman Materials",
+    "focus_facility_id": 155,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 20,
+    "company_id": 127,
+    "operating_brand": "Milan Vault",
+    "focus_facility_id": 156,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 21,
+    "company_id": 128,
+    "operating_brand": "Bush Concrete Products, Inc.",
+    "focus_facility_id": 157,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [
+      {
+        "field": "commercial_carrier_use",
+        "claimed_value": "VERIFIED",
+        "verification_status": "VERIFIED",
+        "scope": "FACILITY",
+        "facility_id": 157,
+        "company_id": null,
+        "source_url": "https://bushconcreteproducts.com/delivery-trucking/",
+        "rationale": "shipped via common carrier should be checked immediately upon arrival for any visual or concealed damage."
+      }
+    ],
+    "expected_engine_effect": "TIER_A_PROMOTION",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 22,
+    "company_id": 129,
+    "operating_brand": "Grand Valley Concrete Products",
+    "focus_facility_id": 158,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 23,
+    "company_id": 130,
+    "operating_brand": "Stubbe's Precast",
+    "focus_facility_id": 159,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 24,
+    "company_id": 132,
+    "operating_brand": "Hy-Grade Precast Concrete",
+    "focus_facility_id": 161,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 25,
+    "company_id": 133,
+    "operating_brand": "Kerkstra Precast",
+    "focus_facility_id": 162,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 26,
+    "company_id": 135,
+    "operating_brand": "Precast Solutions, Inc.",
+    "focus_facility_id": 164,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 27,
+    "company_id": 136,
+    "operating_brand": "PennStress",
+    "focus_facility_id": 165,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 28,
+    "company_id": 137,
+    "operating_brand": "A.C. Miller Concrete Products, Inc.",
+    "focus_facility_id": 166,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 29,
+    "company_id": 138,
+    "operating_brand": "Surespan Structures Ltd.",
+    "focus_facility_id": 167,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 30,
+    "company_id": 139,
+    "operating_brand": "RES Precast",
+    "focus_facility_id": 168,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 31,
+    "company_id": 140,
+    "operating_brand": "Unit Step Co.",
+    "focus_facility_id": 169,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 32,
+    "company_id": 141,
+    "operating_brand": "Universal Concrete Products",
+    "focus_facility_id": 170,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 33,
+    "company_id": 148,
+    "operating_brand": "Special Tool & Engineering, Inc.",
+    "focus_facility_id": 177,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 34,
+    "company_id": 149,
+    "operating_brand": "JMA Manufacturing, Inc.",
+    "focus_facility_id": 178,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 35,
+    "company_id": 150,
+    "operating_brand": "Xcentric Mold & Engineering",
+    "focus_facility_id": 179,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 36,
+    "company_id": 151,
+    "operating_brand": "Vaupell Midwest",
+    "focus_facility_id": 180,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 37,
+    "company_id": 152,
+    "operating_brand": "Reko International Group Inc.",
+    "focus_facility_id": 181,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 38,
+    "company_id": 153,
+    "operating_brand": "Plasman",
+    "focus_facility_id": 182,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 39,
+    "company_id": 154,
+    "operating_brand": "Circle 5",
+    "focus_facility_id": 183,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 40,
+    "company_id": 156,
+    "operating_brand": "Arlen Tool Group",
+    "focus_facility_id": 185,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 41,
+    "company_id": 157,
+    "operating_brand": "Redoe Group",
+    "focus_facility_id": 186,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 42,
+    "company_id": 158,
+    "operating_brand": "Unique Tool & Gauge Inc.",
+    "focus_facility_id": 187,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 43,
+    "company_id": 159,
+    "operating_brand": "Weber Manufacturing Technologies Inc.",
+    "focus_facility_id": 188,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 44,
+    "company_id": 160,
+    "operating_brand": "Glider Guard Tool & Die Inc.",
+    "focus_facility_id": 189,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 45,
+    "company_id": 161,
+    "operating_brand": "Anchor Danly",
+    "focus_facility_id": 190,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 46,
+    "company_id": 162,
+    "operating_brand": "Summit Polymers, Inc.",
+    "focus_facility_id": 191,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 47,
+    "company_id": 163,
+    "operating_brand": "NYX LLC",
+    "focus_facility_id": 192,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 48,
+    "company_id": 164,
+    "operating_brand": "Mayco International LLC",
+    "focus_facility_id": 193,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 49,
+    "company_id": 165,
+    "operating_brand": "Core Molding Technologies, Inc.",
+    "focus_facility_id": 194,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 50,
+    "company_id": 166,
+    "operating_brand": "Revere Plastics Systems, LLC",
+    "focus_facility_id": 195,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  }
+]

@@ -1,0 +1,1361 @@
+[
+  {
+    "company_id": 219,
+    "operating_brand": "Steel Dynamics",
+    "batch_position": 76,
+    "wave": "D",
+    "research_focus_facility_id": 266,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 276,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "260-868-8000",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "VERIFIED",
+      "commercial_carrier_claim_level": "VERIFIED",
+      "broker_proposed": "VERIFIED_DIRECT_ONLY",
+      "broker_claim_level": "VERIFIED",
+      "contact_findings": "Preserved existing freight logistics route.",
+      "equipment_findings": "Heavy flatbed steel products across all divisions.",
+      "facility_scope": "COMPANY_AND_FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.steeldynamics.com/transportation/",
+          "source_title": "Steel Dynamics - Transportation",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official corporate transportation page explicitly states: 'ASSET FLATBED CARRIERS ONLY. WE DO NOT ONBOARD 3PL's or BROKERS.' and outlines carrier requirements for outside motor carriers."
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "commercial_carrier_use",
+          "subject_type": "facility",
+          "subject_id": 266,
+          "old_value": "UNKNOWN",
+          "proposed_value": "VERIFIED",
+          "verification_status": "VERIFIED",
+          "source_url": "https://www.steeldynamics.com/transportation/",
+          "source_title": "Steel Dynamics - Transportation",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Official transportation portal details requirements and appointment scheduling for outside motor carriers.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Primary corporate policy for motor carriers."
+        },
+        {
+          "field": "broker_friendly_status",
+          "subject_type": "facility",
+          "subject_id": 266,
+          "old_value": "UNKNOWN",
+          "proposed_value": "VERIFIED_DIRECT_ONLY",
+          "verification_status": "VERIFIED",
+          "source_url": "https://www.steeldynamics.com/transportation/",
+          "source_title": "Steel Dynamics - Transportation",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Official corporate policy explicitly states: 'ASSET FLATBED CARRIERS ONLY. WE DO NOT ONBOARD 3PL's or BROKERS.' across multiple divisions.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Unambiguous direct-only broker policy."
+        }
+      ]
+    }
+  },
+  {
+    "company_id": 289,
+    "operating_brand": "Kepley-Frank Hardwood Co.",
+    "batch_position": 77,
+    "wave": "D",
+    "research_focus_facility_id": 375,
+    "current_db_state": {
+      "lifecycle": "SHORTLISTED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 385,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(336) 746-5419",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "info@kepleyfrank.us",
+          "email_directness": "GENERAL",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Kepley-Frank Hardwood Co. Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 541,
+    "operating_brand": "Litco International",
+    "batch_position": 78,
+    "wave": "D",
+    "research_focus_facility_id": 628,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 639,
+          "person_name": "Gary Sharon",
+          "exact_published_title": "Executive Vice President",
+          "phone_number": "(330) 539-5433",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Discovered direct sales manager: Bob Caldwell (Sales Manager, Pressed Wood Products, phone: (330) 979-1545, email: bcaldwell@litco.com).",
+      "equipment_findings": "Engineered pressed wood pallets dry van freight.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.litco.com/about/",
+          "source_title": "Litco International - About & Leadership",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official corporate directory publishes direct phone and email for sales management personnel."
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "contacts",
+          "subject_type": "contact",
+          "subject_id": null,
+          "old_value": "NONE",
+          "proposed_value": "Bob Caldwell | Sales Manager, Pressed Wood Products | (330) 979-1545 [DIRECT_PERSON] | bcaldwell@litco.com [DIRECT_PERSON] | COMMERCIAL_SALES",
+          "verification_status": "VERIFIED",
+          "source_url": "https://www.litco.com/about/",
+          "source_title": "Litco International - About & Leadership",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Direct telephone and email for Sales Manager published on official corporate leadership directory.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Direct personal channel confirmed."
+        }
+      ]
+    }
+  },
+  {
+    "company_id": 546,
+    "operating_brand": "Stephens Pipe & Steel",
+    "batch_position": 79,
+    "wave": "D",
+    "research_focus_facility_id": 633,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 644,
+          "person_name": "Terry Stephens",
+          "exact_published_title": "Founder & CEO",
+          "phone_number": "(270) 866-3331",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Stephens Pipe & Steel Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 545,
+    "operating_brand": "Diamond Plastics",
+    "batch_position": 80,
+    "wave": "D",
+    "research_focus_facility_id": 632,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 643,
+          "person_name": "John Britton",
+          "exact_published_title": "President & CEO",
+          "phone_number": "(308) 384-4400",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Diamond Plastics Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 151,
+    "operating_brand": "Vaupell Midwest",
+    "batch_position": 81,
+    "wave": "D",
+    "research_focus_facility_id": 180,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 190,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "269-433-7100",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "OPERATIONS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Vaupell Midwest Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 547,
+    "operating_brand": "Ideal Roofing",
+    "batch_position": 82,
+    "wave": "D",
+    "research_focus_facility_id": 634,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 645,
+          "person_name": "Claude Laplante",
+          "exact_published_title": "Chief Executive Officer",
+          "phone_number": "(613) 746-3206",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Ideal Roofing Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 554,
+    "operating_brand": "Greenheck Group",
+    "batch_position": 83,
+    "wave": "D",
+    "research_focus_facility_id": 641,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 652,
+          "person_name": null,
+          "exact_published_title": "Shipping & Traffic Desk",
+          "phone_number": "715-359-6171",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Greenheck Group Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 560,
+    "operating_brand": "Jamestown Container Companies",
+    "batch_position": 84,
+    "wave": "D",
+    "research_focus_facility_id": 647,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 658,
+          "person_name": null,
+          "exact_published_title": "Logistics & Shipping Desk",
+          "phone_number": "(716) 665-4623",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Jamestown Container Companies Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 540,
+    "operating_brand": "Challenger Pallet & Supply",
+    "batch_position": 85,
+    "wave": "D",
+    "research_focus_facility_id": 627,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 638,
+          "person_name": "Justin Hegsted",
+          "exact_published_title": "President",
+          "phone_number": "(208) 523-1969",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "VERIFIED",
+      "commercial_carrier_claim_level": "VERIFIED",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contact.",
+      "equipment_findings": "Semi-trucks and trailers, vans for drop-trailer deliveries.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://challengerpallet.com",
+          "source_title": "Challenger Pallet & Supply - Delivery",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official corporate website explicitly states: 'Through our outside carrier network, delivery service is available in most of the Western states and in other areas.'"
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "commercial_carrier_use",
+          "subject_type": "facility",
+          "subject_id": 627,
+          "old_value": "UNKNOWN",
+          "proposed_value": "VERIFIED",
+          "verification_status": "VERIFIED",
+          "source_url": "https://challengerpallet.com",
+          "source_title": "Challenger Pallet & Supply - Delivery",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Official website confirms outside carrier network for pallet transportation and delivery across Western states.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Explicit outside carrier network confirmation."
+        }
+      ]
+    }
+  },
+  {
+    "company_id": 543,
+    "operating_brand": "Stark Truss Company",
+    "batch_position": 86,
+    "wave": "D",
+    "research_focus_facility_id": 630,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 641,
+          "person_name": "Todd Pallotta",
+          "exact_published_title": "President",
+          "phone_number": "(330) 478-2100",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Stark Truss Company Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 550,
+    "operating_brand": "Kinze Manufacturing",
+    "batch_position": 87,
+    "wave": "D",
+    "research_focus_facility_id": 637,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 648,
+          "person_name": null,
+          "exact_published_title": "Logistics & Outbound Shipping Desk",
+          "phone_number": "319-668-1300",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Kinze Manufacturing Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 447,
+    "operating_brand": "Team Tube of Canada",
+    "batch_position": 88,
+    "wave": "D",
+    "research_focus_facility_id": 534,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 544,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(905) 564-9666",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "torontosales@teamtube.net",
+          "email_directness": "DEPARTMENT",
+          "role_category": "COMMERCIAL_SALES"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Team Tube of Canada Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 549,
+    "operating_brand": "Unverferth Manufacturing",
+    "batch_position": 89,
+    "wave": "D",
+    "research_focus_facility_id": 636,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 647,
+          "person_name": null,
+          "exact_published_title": "Shipping & Logistics Desk",
+          "phone_number": "419-532-3121",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Unverferth Manufacturing Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 558,
+    "operating_brand": "Unirac",
+    "batch_position": 90,
+    "wave": "D",
+    "research_focus_facility_id": 645,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 656,
+          "person_name": null,
+          "exact_published_title": "Shipping & Warehouse Desk",
+          "phone_number": "505-242-6411",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Unirac Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 39,
+    "operating_brand": "Omega Tool Corp.",
+    "batch_position": 91,
+    "wave": "D",
+    "research_focus_facility_id": 38,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 48,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(519) 737-1201",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "info@omegatoolcorp.com",
+          "email_directness": "GENERAL",
+          "role_category": "UNKNOWN"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Omega Tool Corp. Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 445,
+    "operating_brand": "Salit Steel",
+    "batch_position": 92,
+    "wave": "D",
+    "research_focus_facility_id": 532,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 542,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(905) 354-5691",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "info@salitsteel.com",
+          "email_directness": "GENERAL",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Salit Steel Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 474,
+    "operating_brand": "Armour Alloys",
+    "batch_position": 93,
+    "wave": "D",
+    "research_focus_facility_id": 561,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 571,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(519) 650-2525",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@armouralloys.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "COMMERCIAL_SALES"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Armour Alloys Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 552,
+    "operating_brand": "Kempler Industries",
+    "batch_position": 94,
+    "wave": "D",
+    "research_focus_facility_id": 639,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 650,
+          "person_name": null,
+          "exact_published_title": "Shipping & Machinery Logistics Desk",
+          "phone_number": "847-640-8600",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Kempler Industries Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 553,
+    "operating_brand": "EVAPCO",
+    "batch_position": 95,
+    "wave": "D",
+    "research_focus_facility_id": 640,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 651,
+          "person_name": null,
+          "exact_published_title": "Logistics & Traffic Coordinator",
+          "phone_number": "410-756-2600",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "EVAPCO Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 387,
+    "operating_brand": "Infra-Metals Co.",
+    "batch_position": 96,
+    "wave": "D",
+    "research_focus_facility_id": 474,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 484,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(215) 295-8888",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "salespa@infra-metals.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "COMMERCIAL_SALES"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Infra-Metals Co. Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 432,
+    "operating_brand": "Bralco Metals",
+    "batch_position": 97,
+    "wave": "D",
+    "research_focus_facility_id": 519,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 529,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(714) 736-4800",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@bralco.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "COMMERCIAL_SALES"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Bralco Metals Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 525,
+    "operating_brand": "American Concrete Products",
+    "batch_position": 98,
+    "wave": "D",
+    "research_focus_facility_id": 612,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 622,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(402) 331-5000",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "info@amconco.com",
+          "email_directness": "GENERAL",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "American Concrete Products Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 138,
+    "operating_brand": "Surespan Structures Ltd.",
+    "batch_position": 99,
+    "wave": "D",
+    "research_focus_facility_id": 167,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 177,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(250) 748-8888",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "info@surespanstructures.com",
+          "email_directness": "GENERAL",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Surespan Structures Ltd. Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website. Insufficient explicit primary documentation to alter carrier or fleet status from UNKNOWN."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 395,
+    "operating_brand": "Peerless Steel Co.",
+    "batch_position": 100,
+    "wave": "D",
+    "research_focus_facility_id": 482,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 492,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(248) 528-3200",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@peerlesssteel.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "COMMERCIAL_SALES"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "VERIFIED_PRESENT",
+      "private_fleet_claim_level": "VERIFIED",
+      "fleet_relationship_proposed": "IN_HOUSE_OWNED",
+      "fleet_relationship_claim_level": "VERIFIED",
+      "commercial_carrier_proposed": "VERIFIED",
+      "commercial_carrier_claim_level": "VERIFIED",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved commercial sales contact.",
+      "equipment_findings": "Fleet of trucks delivering tool steel and alloy plate across MI, IN, OH, and ON; common carrier for North America.",
+      "facility_scope": "COMPANY_AND_FACILITY",
+      "sources": [
+        {
+          "source_url": "https://peerlesssteel.com",
+          "source_title": "Peerless Steel - Homepage",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official corporate website explicitly states: 'With our fleet of trucks, we deliver to Michigan, Indiana, Ohio, and Ontario with next day service... Deliveries can be made to anywhere in North America via common carrier.'"
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "private_fleet_present",
+          "subject_type": "facility",
+          "subject_id": 482,
+          "old_value": "UNKNOWN",
+          "proposed_value": "VERIFIED_PRESENT",
+          "verification_status": "VERIFIED",
+          "source_url": "https://peerlesssteel.com",
+          "source_title": "Peerless Steel - Homepage",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Official corporate website confirms in-house fleet of trucks servicing four states and provinces.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Explicit company fleet statement."
+        },
+        {
+          "field": "fleet_relationship_type",
+          "subject_type": "facility",
+          "subject_id": 482,
+          "old_value": "UNKNOWN",
+          "proposed_value": "IN_HOUSE_OWNED",
+          "verification_status": "VERIFIED",
+          "source_url": "https://peerlesssteel.com",
+          "source_title": "Peerless Steel - Homepage",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Company owns and operates its internal delivery fleet.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Primary corporate confirmation."
+        },
+        {
+          "field": "commercial_carrier_use",
+          "subject_type": "facility",
+          "subject_id": 482,
+          "old_value": "UNKNOWN",
+          "proposed_value": "VERIFIED",
+          "verification_status": "VERIFIED",
+          "source_url": "https://peerlesssteel.com",
+          "source_title": "Peerless Steel - Homepage",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Official website confirms deliveries made anywhere in North America via common carrier.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Explicit common carrier utilization."
+        }
+      ]
+    }
+  }
+]

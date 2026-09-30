@@ -1,0 +1,12 @@
+# FreightProspecting V1 - Pinned Python Dependencies
+# Target Python Version: 3.13.7
+# Audited & Verified Stable Set (No AI SDKs, No Paid Search SDKs)
+# SQLite3 is provided via Python Standard Library
+
+fastapi==0.141.1
+uvicorn[standard]==0.54.0
+pydantic==2.13.5
+jinja2==3.1.6
+python-multipart==0.0.32
+httpx==0.28.1
+pytest==9.1.1

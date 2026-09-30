@@ -1,0 +1,1129 @@
+[
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 51,
+    "company_id": 70,
+    "operating_brand": "Triple J Tie & Timber",
+    "research_focus_facility_id": 75,
+    "research_focus_facility_name": "Weir Mill & Mat Complex",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 8
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 52,
+    "company_id": 71,
+    "operating_brand": "Tolko Industries",
+    "research_focus_facility_id": 81,
+    "research_focus_facility_name": "Armstrong Division",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 31,
+      "successful_200": 16,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 31 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://tolko.com/",
+          "source_title": "Tolko | Lumber and Sustainable Wood Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://tolko.com/careers/leadership-and-other-professional-careers/",
+          "source_title": "Leadership &amp; Other Professional Careers - Tolko Industries",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://tolko.com/company/contact-us/",
+          "source_title": "Tolko Contact Information | Corporate Office &amp; Departments",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 53,
+    "company_id": 77,
+    "operating_brand": "Vanderwell Contractors",
+    "research_focus_facility_id": 90,
+    "research_focus_facility_name": "Mitsue Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 23,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 23 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.vanderwell.com",
+          "source_title": "Vanderwell Contractors (1971) Ltd. &#8211; Wholesale Manufacturers of Alberta Softwood Lumber",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.vanderwell.com/home/contact/",
+          "source_title": "Contact &#8211; Vanderwell Contractors (1971) Ltd.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.vanderwell.com/home/ppe__shipping/",
+          "source_title": "PPE &#038; Shipping &#8211; Vanderwell Contractors (1971) Ltd.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 54,
+    "company_id": 85,
+    "operating_brand": "Metal Master / Performance Master",
+    "research_focus_facility_id": 101,
+    "research_focus_facility_name": "Performance Master Coil Processing",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 25,
+      "successful_200": 11,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 25 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://metalmaster.com",
+          "source_title": "Metal Master \u2014 Flat-Rolled Steel Supply &amp; Processing",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://metalmaster.com/contact",
+          "source_title": "Contact Metal Master \u2014 Glendale Heights, IL",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://metalmaster.com/mill-relationships",
+          "source_title": "Mill Relationships \u2014 Multi-Mill Sourcing for Flat-Rolled Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 55,
+    "company_id": 86,
+    "operating_brand": "Scott Steel",
+    "research_focus_facility_id": 102,
+    "research_focus_facility_name": "Scott Steel - Piqua Processing Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 56,
+    "company_id": 87,
+    "operating_brand": "Harbor Steel & Supply",
+    "research_focus_facility_id": 103,
+    "research_focus_facility_name": "Harbor Steel & Supply - Muskegon Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 6,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 23 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://harborsteel.com/",
+          "source_title": "Harbor Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://harborsteel.com/contact-us",
+          "source_title": "Contact Us",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://harborsteel.com/locations",
+          "source_title": "Locations",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 57,
+    "company_id": 88,
+    "operating_brand": "Griggs Steel",
+    "research_focus_facility_id": 106,
+    "research_focus_facility_name": "Griggs Steel Company",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 58,
+    "company_id": 89,
+    "operating_brand": "H&H Metal Source",
+    "research_focus_facility_id": 107,
+    "research_focus_facility_name": "H&H Metal Source - Grand Rapids Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 2,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.hhmetalsource.com",
+          "source_title": "H&amp;H Metal Source - Grand Rapids, Michigan",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.hhmetalsource.com/about/",
+          "source_title": "About H&amp;H Metal Source | Grand Rapids Steel Service Center",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 59,
+    "company_id": 90,
+    "operating_brand": "Olympic Steel",
+    "research_focus_facility_id": 108,
+    "research_focus_facility_name": "Olympic Steel - Gary Division",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 60,
+    "company_id": 91,
+    "operating_brand": "Worthington Steel",
+    "research_focus_facility_id": 111,
+    "research_focus_facility_name": "Worthington Steel - Delta Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 30,
+      "successful_200": 30,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "carrier_evidence": "Official Carrier Information page explicitly invites and onboards outside carriers: 'We appreciate your interest in hauling freight for Worthington Steel. We work with carriers big and small, from large fleet companies to single owner operators, who can provide excellent service at fair market rates.'",
+      "broker_evidence": "Official Carrier Information Form explicitly onboards freight brokers: 'Company Type: -- Select One -- Asset-based Broker Both'.",
+      "equipment_evidence": "Carrier form specifically requests Dry Van and Flatbed trailer capacity for hauling steel.",
+      "sources": [
+        {
+          "source_url": "https://www.worthingtonsteel.com/company/working-with-us/carrier-information",
+          "source_title": "Carrier Information - Working With Us - Worthington Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "is_primary": true
+        }
+      ]
+    },
+    "evaluation_decision": "PROMOTE_TO_TIER_A",
+    "proposed_changes": [
+      {
+        "company_id": 91,
+        "operating_brand": "Worthington Steel",
+        "facility_id": 111,
+        "field": "commercial_carrier_use",
+        "subject_type": "facility",
+        "action": "ACCEPT",
+        "old_value": "UNKNOWN",
+        "proposed_value": "VERIFIED",
+        "verification_status": "VERIFIED",
+        "source_url": "https://www.worthingtonsteel.com/company/working-with-us/carrier-information",
+        "source_title": "Carrier Information - Working With Us - Worthington Steel",
+        "source_type": "COMPANY_WEBSITE",
+        "rationale": "Official website explicitly onboards outside commercial carriers big and small across dry van and flatbed modes."
+      },
+      {
+        "company_id": 91,
+        "operating_brand": "Worthington Steel",
+        "facility_id": 111,
+        "field": "broker_friendly_status",
+        "subject_type": "facility",
+        "action": "ACCEPT",
+        "old_value": "UNKNOWN",
+        "proposed_value": "VERIFIED_ACCEPTS",
+        "verification_status": "VERIFIED",
+        "source_url": "https://www.worthingtonsteel.com/company/working-with-us/carrier-information",
+        "source_title": "Carrier Information - Working With Us - Worthington Steel",
+        "source_type": "COMPANY_WEBSITE",
+        "rationale": "Official carrier onboarding form explicitly provides 'Broker' option under Company Type."
+      }
+    ]
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 61,
+    "company_id": 92,
+    "operating_brand": "Ratner Steel Supply",
+    "research_focus_facility_id": 114,
+    "research_focus_facility_name": "Ratner Steel - Portage Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 24,
+      "successful_200": 6,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 24 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://ratnersteel.com",
+          "source_title": "Top Steel Supplier In The USA - Ratner Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "http://ratnersteel.com/contact/",
+          "source_title": "Contact Us And Get A Good Deal On Steel - Ratner Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://ratnersteel.com/contact/",
+          "source_title": "Contact Us And Get A Good Deal On Steel - Ratner Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 62,
+    "company_id": 93,
+    "operating_brand": "Lapham-Hickey Steel",
+    "research_focus_facility_id": 115,
+    "research_focus_facility_name": "Lapham-Hickey Steel - Bedford Park Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 63,
+    "company_id": 94,
+    "operating_brand": "Feralloy Corporation",
+    "research_focus_facility_id": 117,
+    "research_focus_facility_name": "Feralloy Corporation - Midwest Division Plant 1",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 26,
+      "successful_200": 13,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 26 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://feralloy.com/",
+          "source_title": "Welcome to Our Home page - Feralloy Corporation",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://feralloy.com/leadership/",
+          "source_title": "Feralloy Corporation Leadership - Intentional Excellence",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://feralloy.com/locations-where-you-need-us/",
+          "source_title": "Feralloy Corporation Locations - Where You Need Us",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 64,
+    "company_id": 95,
+    "operating_brand": "Steel Warehouse",
+    "research_focus_facility_id": 118,
+    "research_focus_facility_name": "Steel Warehouse Company - South Bend Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 65,
+    "company_id": 96,
+    "operating_brand": "Mill Steel Co.",
+    "research_focus_facility_id": 119,
+    "research_focus_facility_name": "Mill Steel Co. - Grand Rapids Processing",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 5,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 22 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.millsteel.com",
+          "source_title": "Flat Rolled Metal Distributor | Mill Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.millsteel.com/contact",
+          "source_title": "Contact Mill Steel | Steel Distributor Locations &amp; Quotes",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.millsteel.com/contact",
+          "source_title": "Contact Mill Steel | Steel Distributor Locations &amp; Quotes",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 66,
+    "company_id": 97,
+    "operating_brand": "Alro Steel",
+    "research_focus_facility_id": 121,
+    "research_focus_facility_name": "Alro Steel - Jackson Plate Processing Center",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 27,
+      "successful_200": 8,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 27 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.alro.com",
+          "source_title": "Premium Metals & Plastics Distributor | Next-Day Delivery",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.alro.com/locations/locationsmain.aspx",
+          "source_title": "Metal Supplier | Locations | Alro Steel Locations",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.alro.com/contact/",
+          "source_title": "Contact Us | Alro Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 67,
+    "company_id": 98,
+    "operating_brand": "Russel Metals",
+    "research_focus_facility_id": 123,
+    "research_focus_facility_name": "Russel Metals - London Service Centre",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 68,
+    "company_id": 99,
+    "operating_brand": "Samuel, Son & Co.",
+    "research_focus_facility_id": 124,
+    "research_focus_facility_name": "Samuel, Son & Co. - Mississauga Service Centre",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 24,
+      "successful_200": 6,
+      "inaccessible_or_blocked": 1
+    },
+    "findings": {
+      "summary": "Public website inspected across 24 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.samuel.com",
+          "source_title": "Home | Samuel, Son &amp; Co.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.samuel.com/en/contact-us",
+          "source_title": "Contact us | Samuel, Son &amp; Co",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.samuel.com/en/locations",
+          "source_title": "Locations | Samuel, Son &amp; Co.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 69,
+    "company_id": 100,
+    "operating_brand": "Ryerson",
+    "research_focus_facility_id": 126,
+    "research_focus_facility_name": "Ryerson - Columbus Service Center",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 21,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.ryerson.com",
+          "source_title": "Ryerson",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.ryerson.com/shipping",
+          "source_title": "Ryerson",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.ryerson.com/shipping-receiving",
+          "source_title": "Ryerson",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 70,
+    "company_id": 101,
+    "operating_brand": "Leeco Steel",
+    "research_focus_facility_id": 129,
+    "research_focus_facility_name": "Leeco Steel - Portage Processing & Distribution",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 71,
+    "company_id": 102,
+    "operating_brand": "FerrouSouth",
+    "research_focus_facility_id": 131,
+    "research_focus_facility_name": "FerrouSouth - Iuka Processing Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 2
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 5,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "fleet_evidence": "Official logistics page explicitly states: 'With easy access to major highways our own trucks give you yet another shipping option.'",
+      "carrier_evidence": "Outside commercial carrier use unmentioned; preserved UNKNOWN.",
+      "broker_evidence": "Broker acceptance unmentioned; preserved UNKNOWN.",
+      "sources": [
+        {
+          "source_url": "https://ferrousouth.com/logistics/",
+          "source_title": "Logistics - FerrouSouth",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "is_primary": true
+        }
+      ]
+    },
+    "evaluation_decision": "MOVE_TO_TIER_C",
+    "proposed_changes": [
+      {
+        "company_id": 102,
+        "operating_brand": "FerrouSouth",
+        "facility_id": 131,
+        "field": "private_fleet_present",
+        "subject_type": "facility",
+        "action": "ACCEPT",
+        "old_value": "UNKNOWN",
+        "proposed_value": "VERIFIED_PRESENT",
+        "verification_status": "VERIFIED",
+        "source_url": "https://ferrousouth.com/logistics/",
+        "source_title": "Logistics - FerrouSouth",
+        "source_type": "COMPANY_WEBSITE",
+        "rationale": "Official website explicitly documents 'our own trucks give you yet another shipping option.'"
+      },
+      {
+        "company_id": 102,
+        "operating_brand": "FerrouSouth",
+        "facility_id": 131,
+        "field": "fleet_relationship_type",
+        "subject_type": "facility",
+        "action": "ACCEPT",
+        "old_value": "UNKNOWN",
+        "proposed_value": "IN_HOUSE_OWNED",
+        "verification_status": "VERIFIED",
+        "source_url": "https://ferrousouth.com/logistics/",
+        "source_title": "Logistics - FerrouSouth",
+        "source_type": "COMPANY_WEBSITE",
+        "rationale": "Explicit statement of company-owned trucking fleet ('our own trucks')."
+      }
+    ]
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 72,
+    "company_id": 103,
+    "operating_brand": "Kloeckner Metals",
+    "research_focus_facility_id": 132,
+    "research_focus_facility_name": "Kloeckner Metals - Cincinnati Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 28,
+      "successful_200": 10,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 28 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.kloecknermetals.com",
+          "source_title": "Building North America",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.kloecknermetals.com/careers/internship-program/",
+          "source_title": "Internship Program - Kloeckner Metals Corporation",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.kloecknermetals.com/contact/",
+          "source_title": "Contact - Kloeckner Metals Corporation",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 73,
+    "company_id": 104,
+    "operating_brand": "Target Steel",
+    "research_focus_facility_id": 133,
+    "research_focus_facility_name": "Target Steel - Flat Rock Processing",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "AFFILIATED_CARRIER_ENTITY",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 31,
+      "successful_200": 12,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "fleet_evidence": "Official headquarters page explicitly confirms: 'Coils are transferred from the adjacent Flat Rock Distribution Center building to ours using our own trucks, maximizing efficiency.' and 'Transportation : Company-owned trucks ensure reliable delivery, with truck appointments required (contact traffic@targetsteel.net ).'",
+      "carrier_evidence": "Outside commercial carrier contracts unmentioned; preserved UNKNOWN.",
+      "broker_evidence": "Broker acceptance unmentioned; preserved UNKNOWN.",
+      "contact_evidence": "Official traffic desk email: traffic@targetsteel.net.",
+      "sources": [
+        {
+          "source_url": "https://www.targetsteel.net/locations/target-steel-inc-hq-flat-rock-mi",
+          "source_title": "Target Steel Inc. HQ - Flat Rock, MI",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "is_primary": true
+        }
+      ]
+    },
+    "evaluation_decision": "MOVE_TO_TIER_C",
+    "proposed_changes": [
+      {
+        "company_id": 104,
+        "operating_brand": "Target Steel",
+        "facility_id": 133,
+        "field": "private_fleet_present",
+        "subject_type": "facility",
+        "action": "ACCEPT",
+        "old_value": "UNKNOWN",
+        "proposed_value": "VERIFIED_PRESENT",
+        "verification_status": "VERIFIED",
+        "source_url": "https://www.targetsteel.net/locations/target-steel-inc-hq-flat-rock-mi",
+        "source_title": "Target Steel Inc. HQ - Flat Rock, MI",
+        "source_type": "COMPANY_WEBSITE",
+        "rationale": "Official corporate site explicitly documents 'our own trucks' and 'Company-owned trucks ensure reliable delivery'."
+      },
+      {
+        "company_id": 104,
+        "operating_brand": "Target Steel",
+        "facility_id": 133,
+        "field": "fleet_relationship_type",
+        "subject_type": "facility",
+        "action": "ACCEPT",
+        "old_value": "AFFILIATED_CARRIER_ENTITY",
+        "proposed_value": "IN_HOUSE_OWNED",
+        "verification_status": "VERIFIED",
+        "source_url": "https://www.targetsteel.net/locations/target-steel-inc-hq-flat-rock-mi",
+        "source_title": "Target Steel Inc. HQ - Flat Rock, MI",
+        "source_type": "COMPANY_WEBSITE",
+        "rationale": "Explicit company-owned fleet statement."
+      },
+      {
+        "company_id": 104,
+        "operating_brand": "Target Steel",
+        "facility_id": 133,
+        "field": "contact",
+        "subject_type": "contact",
+        "action": "ACCEPT",
+        "old_value": "NONE",
+        "proposed_value": "Traffic Department | traffic@targetsteel.net [GENERAL_DESK] | (734) 789-9700 [GENERAL_SWITCHBOARD]",
+        "verification_status": "VERIFIED",
+        "source_url": "https://www.targetsteel.net/locations/target-steel-inc-hq-flat-rock-mi",
+        "source_title": "Target Steel Inc. HQ - Flat Rock, MI",
+        "source_type": "COMPANY_WEBSITE",
+        "contact_payload": {
+          "facility_id": 133,
+          "contact_identity": "DEPARTMENT",
+          "person_name": null,
+          "department": "Traffic & Logistics",
+          "exact_published_title": "Traffic Department (Truck Appointments)",
+          "phone_number": "(734) 789-9700",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "traffic@targetsteel.net",
+          "email_directness": "DEPARTMENT",
+          "role_category": "FREIGHT_LOGISTICS",
+          "outbound_shipping_procurement_relevance": "VERIFIED",
+          "broker_procurement_relevance": "UNKNOWN",
+          "is_primary_contact": 1
+        },
+        "rationale": "Directly published logistics/truck appointment contact email on official facility page."
+      }
+    ]
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 74,
+    "company_id": 106,
+    "operating_brand": "Acier Leroux",
+    "research_focus_facility_id": 135,
+    "research_focus_facility_name": "Acier Leroux - Boucherville Service Centre",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "C",
+    "campaign_position": 75,
+    "company_id": 107,
+    "operating_brand": "Advanced Precast Inc.",
+    "research_focus_facility_id": 136,
+    "research_focus_facility_name": "Bolton Architectural Precast Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  }
+]

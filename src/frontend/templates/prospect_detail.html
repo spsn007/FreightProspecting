@@ -1,0 +1,1246 @@
+{% extends "base.html" %}
+
+{% block title %}{{ prospect.operating_brand }} — FreightProspecting V1{% endblock %}
+
+{% block breadcrumb %}
+<a href="/prospects" style="color:var(--color-primary); text-decoration:none;">Master Directory</a>
+<span style="color:#cbd5e1">/</span>
+<span>{{ prospect.operating_brand }}</span>
+<span style="color:#cbd5e1">/</span>
+<span style="font-weight:400; color:var(--color-text-muted);">Facility Profile</span>
+{% endblock %}
+
+{% block content %}
+<div x-data="{
+  claimsDrawerOpen: false,
+  techOpen: false,
+  copiedPrompt: false,
+  copyPrompt() {
+    navigator.clipboard.writeText('{{ prospect.research_urls.gemini_prompt }}');
+    this.copiedPrompt = true;
+    setTimeout(() => this.copiedPrompt = false, 2500);
+  }
+}"
+@outreach-logged.window="window.location.reload()">
+
+  <!-- 1. Header Section: Identity, Badges & Quick Action Toolbar -->
+  <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1.25rem; flex-wrap:wrap; gap:1rem;">
+    <div>
+      <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+        <h1 style="font-size:1.625rem; font-weight:800; color:var(--color-text-main); letter-spacing:-0.02em; margin:0;">
+          {{ prospect.operating_brand }}
+        </h1>
+
+        <!-- Broker-Friendly Lifecycle Status Badge -->
+        <span class="badge {% if prospect.lifecycle_stage == 'SHORTLISTED' %}badge-prospect{% elif prospect.lifecycle_stage == 'QUALIFIED' %}badge-verified{% elif prospect.lifecycle_stage == 'DISCOVERY' %}badge-discovery{% else %}badge-unknown{% endif %}" style="font-size:0.8125rem; font-weight:700;">
+          {% if prospect.lifecycle_stage == 'SHORTLISTED' %}⭐ Priority Prospect
+          {% elif prospect.lifecycle_stage == 'QUALIFIED' %}✓ Ready to Contact
+          {% elif prospect.lifecycle_stage == 'DISCOVERY' %}🔍 Still Being Researched
+          {% else %}{{ prospect.lifecycle_stage }}{% endif %}
+        </span>
+        <span class="sr-only">{{ prospect.lifecycle_stage }}</span>
+
+        <!-- Freight State Badge -->
+        <span class="badge badge-prospect" style="font-size:0.75rem;">
+          {{ prospect.freight_state }}
+        </span>
+
+        <!-- Outreach Status Badge -->
+        {% set cur_outreach = prospect.engagement_state.current_outreach_status if prospect.engagement_state else 'UNCONTACTED' %}
+        <span class="badge {% if cur_outreach == 'INTERESTED' %}badge-interested{% elif cur_outreach == 'CALL_BACK' %}badge-callback{% elif cur_outreach == 'NO_ANSWER' %}badge-no-answer{% elif cur_outreach == 'NOT_INTERESTED' %}badge-not-interested{% else %}badge-uncontacted{% endif %}" style="font-size:0.75rem;">
+          {% if cur_outreach == 'INTERESTED' %}🔥 Interested
+          {% elif cur_outreach == 'CALL_BACK' %}📞 Call Back
+          {% elif cur_outreach == 'NO_ANSWER' %}⏳ No Answer
+          {% elif cur_outreach == 'NOT_INTERESTED' %}⛔ Not Interested
+          {% else %}⚪ Uncontacted{% endif %}
+        </span>
+
+        <!-- Reviewed Badge -->
+        {% if prospect.engagement_state and prospect.engagement_state.is_viewed %}
+        <span class="badge badge-viewed" style="font-size:0.75rem;">👁 Reviewed</span>
+        {% endif %}
+
+        <!-- Own Fleet Status (Layman Phrased) -->
+        {% if prospect.private_fleet_present == 'VERIFIED_PRESENT' %}
+        <span class="badge badge-fleet" title="Private fleet verified. Operating a fleet is an operational attribute and does NOT mean they never use outside brokers.">
+          🚚 Own Trucks Confirmed
+        </span>
+        {% endif %}
+      </div>
+
+      <p style="color:var(--color-text-muted); font-size:0.875rem; margin-top:0.35rem;">
+        {{ prospect.facility_name }} • 📍 {{ prospect.location_str }}
+      </p>
+    </div>
+
+    <!-- Quick Action Toolbar -->
+    <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+      {% set top_callable = prospect.best_contact if (prospect.best_contact and prospect.best_contact.phone_number and prospect.best_contact.phone_number != 'UNKNOWN') else (prospect.contacts[0] if (prospect.contacts and prospect.contacts[0].phone_number and prospect.contacts[0].phone_number != 'UNKNOWN') else None) %}
+      {% if top_callable %}
+      {% set clean_phone = top_callable.phone_number | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') | replace('.', '') %}
+      <a href="tel:{{ clean_phone }}" class="btn btn-call">
+        📞 Call Now
+      </a>
+      {% endif %}
+
+      <button type="button" class="btn btn-primary"
+              @click="$dispatch('open-log-call', {
+                companyId: {{ prospect.company_id }},
+                companyName: '{{ prospect.operating_brand }}',
+                facilityId: {{ prospect.facility_id }},
+                facilityName: '{{ prospect.facility_name }}',
+                childFacilities: [{
+                  id: {{ prospect.facility_id }},
+                  name: '{{ prospect.facility_name }}',
+                  city: '{{ prospect.city }}',
+                  state: '{{ prospect.state_prov }}',
+                  phone: '{{ top_callable.phone_number if top_callable else '' }}',
+                  contact: '{{ top_callable.person_name if (top_callable and top_callable.person_name) else (top_callable.exact_published_title if top_callable else '') }}'
+                }],
+                contactName: '{{ top_callable.person_name if (top_callable and top_callable.person_name) else (top_callable.exact_published_title if top_callable else '') }}',
+                phoneNumber: '{{ top_callable.phone_number if top_callable else '' }}',
+                originStateProv: '{{ prospect.state_prov }}',
+                defaultDisposition: '{{ prospect.engagement_state.current_outreach_status if (prospect.engagement_state and prospect.engagement_state.current_outreach_status != 'UNCONTACTED') else 'NO_ANSWER' }}'
+              })">
+        📝 Log Outreach Call
+      </button>
+
+      {% if top_callable and top_callable.email_address and top_callable.email_address != 'UNKNOWN' %}
+      <a href="mailto:{{ top_callable.email_address }}" class="btn btn-secondary">
+        ✉️ Email
+      </a>
+      {% endif %}
+
+      {% if prospect.website_url %}
+      <a href="{{ prospect.website_url | safe_url }}" target="_blank" rel="noopener" class="btn btn-secondary">
+        🌐 Official Website ↗
+      </a>
+      {% endif %}
+
+      <button type="button" class="btn btn-secondary" @click="claimsDrawerOpen = true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;display:inline-block;vertical-align:-2px;margin-right:3px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+        Evidence Ledger ({{ prospect.claims|length }})
+      </button>
+    </div>
+  </div>
+
+  <!-- 2. Top Summary Briefing Card (10-Second Scan) -->
+  <div class="prospect-hero-briefing">
+    <!-- Left: What They Do & Likely Freight Fit -->
+    <div>
+      <div class="briefing-brand">{{ prospect.operating_brand }}</div>
+      <div class="briefing-loc-row">
+        <span>📍 {{ prospect.city }}, {{ prospect.state_prov }}</span>
+        <span>•</span>
+        <span>{{ prospect.commodity_family_name or 'Industrial Manufacturing' }}</span>
+        {% if prospect.commodity_category_name and prospect.commodity_category_name != prospect.commodity_family_name %}
+        <span>•</span>
+        <span style="color:var(--color-primary); font-weight:600;">{{ prospect.commodity_category_name }}</span>
+        {% endif %}
+      </div>
+
+      <!-- What They Do & Products Box -->
+      <div class="briefing-do-box">
+        <div class="briefing-do-label">What they do & products:</div>
+        <div class="briefing-do-val">
+          {{ prospect.primary_commodity.specific_products if prospect.primary_commodity else (prospect.commodities[0].specific_products if prospect.commodities else (prospect.commodity_category_name or 'Manufactured & industrial products')) }}
+        </div>
+        <div style="margin-top:0.5rem; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.04em;">Likely Freight Fit:</span>
+          {% set main_eq = prospect.commodities[0].equipment_category if prospect.commodities else (prospect.category_typical_equipment or 'FLATBED') %}
+          <span class="badge badge-equipment" style="font-size:0.8125rem; font-weight:700;">{{ main_eq }}</span>
+          {% if prospect.commodities and prospect.commodities[0].equipment_usage_status == 'VERIFIED' %}
+          <span class="badge badge-verified" style="font-size:0.75rem;">✓ Confirmed Usage</span>
+          {% elif prospect.commodities and prospect.commodities[0].equipment_usage_status == 'INFERRED' %}
+          <span class="badge badge-inferred" style="font-size:0.75rem;">◇ Likely Equipment</span>
+          {% else %}
+          <span class="badge badge-unknown" style="font-size:0.75rem;">? Not confirmed yet</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Best Contact Asset (Phone-First) -->
+    <div>
+      <div class="broker-phone-card">
+        {% if top_callable %}
+          <div class="broker-phone-label">
+            {% if top_callable.phone_directness == 'DIRECT_PERSON' %}
+              Direct: {{ top_callable.person_name or top_callable.exact_published_title or 'Logistics Desk' }}
+            {% elif top_callable.person_name %}
+              {{ top_callable.person_name }} ({{ top_callable.exact_published_title or 'Contact' }})
+            {% else %}
+              Facility Desk ({{ top_callable.exact_published_title or top_callable.department or 'Switchboard' }})
+            {% endif %}
+          </div>
+          {% if top_callable.phone_number and top_callable.phone_number != 'UNKNOWN' %}
+            {% set clean_phone = top_callable.phone_number | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') | replace('.', '') %}
+            <div class="broker-phone-val">
+              <a href="tel:{{ clean_phone }}" class="broker-phone-link">
+                📞 {{ top_callable.phone_number }}{% if top_callable.phone_extension %} ext. {{ top_callable.phone_extension }}{% endif %}
+              </a>
+            </div>
+          {% else %}
+            <div style="font-size:0.8125rem; color:var(--color-text-muted); font-style:italic;">
+              Phone line researching
+            </div>
+          {% endif %}
+          {% if top_callable.exact_published_title or top_callable.department %}
+          <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top:0.25rem;">
+            {{ top_callable.exact_published_title or '' }}{% if top_callable.exact_published_title and top_callable.department %} • {% endif %}{{ top_callable.department or '' }}
+          </div>
+          {% endif %}
+        {% else %}
+          <div class="broker-phone-label">Facility Contact</div>
+          <div style="font-size:0.8125rem; color:var(--color-text-muted); font-style:italic;">
+            Researching contact line
+          </div>
+        {% endif %}
+      </div>
+
+      {% if top_callable and top_callable.email_address and top_callable.email_address != 'UNKNOWN' %}
+      <div class="broker-email-row" style="margin-top:0.5rem;">
+        <a href="mailto:{{ top_callable.email_address }}" class="broker-email-link">
+          ✉️ {{ top_callable.email_address }}
+        </a>
+      </div>
+      {% endif %}
+
+      <div style="margin-top:0.75rem; display:flex; gap:0.4rem; flex-wrap:wrap;">
+        {% if top_callable and top_callable.phone_number and top_callable.phone_number != 'UNKNOWN' %}
+        {% set clean_phone = top_callable.phone_number | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') | replace('.', '') %}
+        <a href="tel:{{ clean_phone }}" class="btn btn-call btn-sm" style="flex:1; justify-content:center; font-weight:700;">
+          📞 Call Now
+        </a>
+        {% endif %}
+        <button type="button" class="btn btn-primary btn-sm" style="flex:1; justify-content:center;"
+                @click="$dispatch('open-log-call', {
+                  companyId: {{ prospect.company_id }},
+                  companyName: '{{ prospect.operating_brand }}',
+                  facilityId: {{ prospect.facility_id }},
+                  facilityName: '{{ prospect.facility_name }}',
+                  childFacilities: [{
+                    id: {{ prospect.facility_id }},
+                    name: '{{ prospect.facility_name }}',
+                    city: '{{ prospect.city }}',
+                    state: '{{ prospect.state_prov }}',
+                    phone: '{{ top_callable.phone_number if top_callable else '' }}',
+                    contact: '{{ top_callable.person_name if (top_callable and top_callable.person_name) else (top_callable.exact_published_title if top_callable else '') }}'
+                  }],
+                  contactName: '{{ top_callable.person_name if (top_callable and top_callable.person_name) else (top_callable.exact_published_title if top_callable else '') }}',
+                  phoneNumber: '{{ top_callable.phone_number if top_callable else '' }}',
+                  originStateProv: '{{ prospect.state_prov }}',
+                  defaultDisposition: '{{ prospect.engagement_state.current_outreach_status if (prospect.engagement_state and prospect.engagement_state.current_outreach_status != 'UNCONTACTED') else 'NO_ANSWER' }}'
+                })">
+          📝 Log Call
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Two-Column Broker Insights: Why Contact vs What Is Still Not Confirmed -->
+  <div class="broker-insights-grid">
+    <!-- Column A: Why it may be worth contacting -->
+    <div class="insights-col insights-col-why">
+      <div class="insights-col-header">
+        <h3 class="insights-col-title">
+          <span style="color:#10b981;">✓</span>
+          <span>Why it may be worth contacting</span>
+        </h3>
+        <span class="badge badge-verified" style="font-size:0.6875rem;">Factual Basis</span>
+      </div>
+
+      <ul class="insights-list">
+        <!-- 1. Equipment Fit -->
+        <li>
+          <span class="insights-why-check">✓</span>
+          <span>Their products fit the freight types we handle (FTL {{ prospect.commodities[0].equipment_category if prospect.commodities else 'Flatbed' }})</span>
+        </li>
+
+        <!-- 2. Operating Facility -->
+        <li>
+          <span class="insights-why-check">✓</span>
+          <span>Operating shipping facility confirmed in {{ prospect.city }}, {{ prospect.state_prov }}</span>
+        </li>
+
+        <!-- 3. Outreach Route -->
+        {% if top_callable and top_callable.phone_number and top_callable.phone_number != 'UNKNOWN' %}
+        <li>
+          <span class="insights-why-check">✓</span>
+          <span>Public phone route available: {{ top_callable.phone_number }}</span>
+        </li>
+        {% else %}
+        <li>
+          <span class="insights-why-check">✓</span>
+          <span>Public operating facility address confirmed</span>
+        </li>
+        {% endif %}
+
+        <!-- 4. Contact or Scale Context -->
+        {% if top_callable and top_callable.phone_directness == 'DIRECT_PERSON' %}
+        <li>
+          <span class="insights-why-check">✓</span>
+          <span>Shipping/logistics contact available: {{ top_callable.person_name or top_callable.exact_published_title }}</span>
+        </li>
+        {% elif prospect.commercial_carrier_use == 'VERIFIED' %}
+        <li>
+          <span class="insights-why-check">✓</span>
+          <span>Commercial carrier use confirmed</span>
+        </li>
+        {% elif prospect.company_footprint_status == 'SINGLE_SITE_VERIFIED' %}
+        <li>
+          <span class="insights-why-check">✓</span>
+          <span>Single-site manufacturer (local plant decision making)</span>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <!-- Column B: What is still not confirmed -->
+    <div class="insights-col insights-col-unconfirmed">
+      <div class="insights-col-header">
+        <h3 class="insights-col-title">
+          <span style="color:#f59e0b;">ℹ️</span>
+          <span>What is still not confirmed</span>
+        </h3>
+        <span class="badge badge-unknown" style="font-size:0.6875rem;">Honest Neutrality</span>
+      </div>
+
+      <ul class="insights-list">
+        <!-- Broker Acceptance -->
+        {% if prospect.broker_friendly_status == 'UNKNOWN' %}
+        <li>
+          <span class="insights-unconfirmed-dot">•</span>
+          <span>Whether they currently use freight brokers is not confirmed yet (defaults to neutral, 0 points)</span>
+        </li>
+        {% elif prospect.broker_friendly_status == 'VERIFIED_DIRECT_ONLY' %}
+        <li>
+          <span class="insights-unconfirmed-dot">•</span>
+          <span>Verified direct-only carrier policy (operational policy note; not a blacklist suppression)</span>
+        </li>
+        {% else %}
+        <li>
+          <span class="insights-why-check">✓</span>
+          <span>Broker policy: {{ prospect.broker_friendly_status }}</span>
+        </li>
+        {% endif %}
+
+        <!-- Private Fleet Status -->
+        {% if prospect.private_fleet_present == 'UNKNOWN' %}
+        <li>
+          <span class="insights-unconfirmed-dot">•</span>
+          <span>Own fleet status not confirmed (neutral, 0 penalty points)</span>
+        </li>
+        {% elif prospect.private_fleet_present == 'VERIFIED_PRESENT' %}
+        <li>
+          <span class="insights-unconfirmed-dot">•</span>
+          <span>Operates own trucks (competing asset capacity; outside carrier use evaluated separately)</span>
+        </li>
+        {% endif %}
+
+        <!-- Commercial Carrier Use -->
+        {% if prospect.commercial_carrier_use == 'UNKNOWN' %}
+        <li>
+          <span class="insights-unconfirmed-dot">•</span>
+          <span>Use of outside commercial carriers not confirmed yet</span>
+        </li>
+        {% endif %}
+
+        <!-- Current Freight Demand -->
+        <li>
+          <span class="insights-unconfirmed-dot">•</span>
+          <span>Current active freight demand / live bookable loads not confirmed yet (0 signals, 0 loads)</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 4. "At a Glance" Operational Profile (Clean Card Grid) -->
+  <div class="broker-glance-grid">
+    <!-- 1. What They Make -->
+    <div class="glance-card">
+      <div class="glance-label">Goods & Products</div>
+      <div class="glance-val">
+        {{ prospect.primary_commodity.commodity_category if prospect.primary_commodity else (prospect.commodity_category_name or 'Industrial Freight') }}
+      </div>
+      <div class="glance-sub">
+        {{ prospect.primary_commodity.specific_products if prospect.primary_commodity else (prospect.commodities[0].specific_products if prospect.commodities else 'Product profile verified') }}
+      </div>
+    </div>
+
+    <!-- 2. Facility Location -->
+    <div class="glance-card">
+      <div class="glance-label">Facility Location</div>
+      <div class="glance-val">
+        📍 {{ prospect.city }}, {{ prospect.state_prov }}
+      </div>
+      <div class="glance-sub">
+        {{ prospect.physical_address }}
+      </div>
+    </div>
+
+    <!-- 3. Likely Equipment -->
+    <div class="glance-card">
+      <div class="glance-label">Likely Equipment</div>
+      <div class="glance-val" style="display:flex; align-items:center; gap:0.35rem;">
+        <span>{{ prospect.commodities[0].equipment_category if prospect.commodities else (prospect.category_typical_equipment or 'FLATBED') }}</span>
+      </div>
+      <div class="glance-sub">
+        {% if prospect.commodities and prospect.commodities[0].equipment_usage_status == 'VERIFIED' %}
+        ✓ Confirmed Usage
+        {% elif prospect.commodities and prospect.commodities[0].equipment_usage_status == 'INFERRED' %}
+        ◇ Likely Equipment
+        {% else %}
+        Not confirmed yet
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- 4. Public Contact Route -->
+    <div class="glance-card">
+      <div class="glance-label">Public Contact Route</div>
+      <div class="glance-val">
+        {{ top_callable.phone_number if (top_callable and top_callable.phone_number and top_callable.phone_number != 'UNKNOWN') else 'Desk route researching' }}
+      </div>
+      <div class="glance-sub">
+        {% if top_callable and top_callable.phone_directness == 'DIRECT_PERSON' %}
+        Direct Person Line
+        {% elif top_callable and top_callable.phone_directness == 'DEPARTMENT_LINE' %}
+        Department Line
+        {% else %}
+        Main Reception Switchboard
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- 5. Company Structure -->
+    <div class="glance-card">
+      <div class="glance-label">Company Structure</div>
+      <div class="glance-val">
+        {% if prospect.company_footprint_status == 'SINGLE_SITE_VERIFIED' %}
+        Single Site (Confirmed)
+        {% elif prospect.company_footprint_status == 'MULTI_SITE_VERIFIED' %}
+        Multi-Plant Network
+        {% else %}
+        Footprint: UNKNOWN
+        {% endif %}
+      </div>
+      <div class="glance-sub">
+        {% if prospect.company_footprint_status == 'MULTI_SITE_VERIFIED' and prospect.verified_operating_location_count %}
+        {{ prospect.verified_operating_location_count }} operating locations verified
+        {% else %}
+        1 facility in database
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- 6. Broker Policy -->
+    <div class="glance-card">
+      <div class="glance-label">Broker Policy</div>
+      <div class="glance-val">
+        {% if prospect.broker_friendly_status == 'VERIFIED_ACCEPTS' %}
+        Confirmed Broker Acceptance
+        {% elif prospect.broker_friendly_status == 'VERIFIED_DIRECT_ONLY' %}
+        Direct-Only Carrier Policy
+        {% else %}
+        Not Confirmed Yet
+        {% endif %}
+      </div>
+      <div class="glance-sub">
+        Neutral (0 points)
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Simplified Qualification Readiness Section -->
+  {% if prospect.qualification_readiness %}
+  {% set q_checks = prospect.qualification_readiness.checks %}
+  <div class="readiness-simple-container">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.875rem; flex-wrap:wrap; gap:0.5rem;">
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <div style="width:24px; height:24px; border-radius:50%; background:#0284c7; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.75rem;">✓</div>
+        <h2 style="font-size:1rem; font-weight:700; color:var(--color-text-main); margin:0;">
+          Qualification Readiness
+        </h2>
+      </div>
+      <span class="badge {% if prospect.qualification_readiness.is_ready %}badge-verified{% else %}badge-unknown{% endif %}" style="font-size:0.8125rem; font-weight:700;">
+        {{ prospect.qualification_readiness.status }} ({{ prospect.qualification_readiness.passed_count }}/5 checks passed)
+      </span>
+    </div>
+
+    <!-- 5 Layman English Rows -->
+    <!-- Row 1: Operating Facility -->
+    <div class="readiness-simple-row">
+      <div class="readiness-item-left">
+        <span class="readiness-check-icon {% if q_checks.facility_identity_verified.passed %}readiness-check-pass{% else %}readiness-check-fail{% endif %}">
+          {{ '✓' if q_checks.facility_identity_verified.passed else '✕' }}
+        </span>
+        <div>
+          <div class="readiness-item-title">Operating facility confirmed</div>
+          <div class="readiness-item-desc">Physical facility confirmed at {{ prospect.physical_address }}, {{ prospect.city }}, {{ prospect.state_prov }} (backed by verified evidence source)</div>
+        </div>
+      </div>
+      <span class="badge {% if q_checks.facility_identity_verified.passed %}badge-verified{% else %}badge-unknown{% endif %}" style="font-size:0.6875rem;">
+        {{ 'PASS' if q_checks.facility_identity_verified.passed else 'FAIL' }}
+      </span>
+    </div>
+
+    <!-- Row 2: Equipment Fit -->
+    <div class="readiness-simple-row">
+      <div class="readiness-item-left">
+        <span class="readiness-check-icon {% if q_checks.commodity_equipment_fit.passed %}readiness-check-pass{% else %}readiness-check-fail{% endif %}">
+          {{ '✓' if q_checks.commodity_equipment_fit.passed else '✕' }}
+        </span>
+        <div>
+          <div class="readiness-item-title">Their products fit the freight types we handle</div>
+          <div class="readiness-item-desc">Commodity profile with approved FTL equipment ({{ prospect.commodities[0].equipment_category if prospect.commodities else 'Flatbed' }}) backed by documented evidence</div>
+        </div>
+      </div>
+      <span class="badge {% if q_checks.commodity_equipment_fit.passed %}badge-verified{% else %}badge-unknown{% endif %}" style="font-size:0.6875rem;">
+        {{ 'PASS' if q_checks.commodity_equipment_fit.passed else 'FAIL' }}
+      </span>
+    </div>
+
+    <!-- Row 3: Geography -->
+    <div class="readiness-simple-row">
+      <div class="readiness-item-left">
+        <span class="readiness-check-icon {% if q_checks.geography_eligible.passed %}readiness-check-pass{% else %}readiness-check-fail{% endif %}">
+          {{ '✓' if q_checks.geography_eligible.passed else '✕' }}
+        </span>
+        <div>
+          <div class="readiness-item-title">Eligible location</div>
+          <div class="readiness-item-desc">Eligible domestic Lower 48 / Canada freight territory ({{ prospect.state_prov }}, {{ prospect.country }})</div>
+        </div>
+      </div>
+      <span class="badge {% if q_checks.geography_eligible.passed %}badge-verified{% else %}badge-unknown{% endif %}" style="font-size:0.6875rem;">
+        {{ 'PASS' if q_checks.geography_eligible.passed else 'FAIL' }}
+      </span>
+    </div>
+
+    <!-- Row 4: Outreach Route -->
+    <div class="readiness-simple-row">
+      <div class="readiness-item-left">
+        <span class="readiness-check-icon {% if q_checks.usable_outreach_route.passed %}readiness-check-pass{% else %}readiness-check-fail{% endif %}">
+          {{ '✓' if q_checks.usable_outreach_route.passed else '✕' }}
+        </span>
+        <div>
+          <div class="readiness-item-title">Usable phone or email available</div>
+          <div class="readiness-item-desc">Verified callable phone route or usable email address available (evidence backed)</div>
+        </div>
+      </div>
+      <span class="badge {% if q_checks.usable_outreach_route.passed %}badge-verified{% else %}badge-unknown{% endif %}" style="font-size:0.6875rem;">
+        {{ 'PASS' if q_checks.usable_outreach_route.passed else 'FAIL' }}
+      </span>
+    </div>
+
+    <!-- Row 5: Supporting Evidence -->
+    <div class="readiness-simple-row">
+      <div class="readiness-item-left">
+        <span class="readiness-check-icon {% if q_checks.supporting_evidence_provenance.passed %}readiness-check-pass{% else %}readiness-check-fail{% endif %}">
+          {{ '✓' if q_checks.supporting_evidence_provenance.passed else '✕' }}
+        </span>
+        <div>
+          <div class="readiness-item-title">Key details are backed by reliable sources</div>
+          <div class="readiness-item-desc">Evidence provenance verified ({{ prospect.claims|length }} accepted claims backed by documented primary/secondary sources)</div>
+        </div>
+      </div>
+      <span class="badge {% if q_checks.supporting_evidence_provenance.passed %}badge-verified{% else %}badge-unknown{% endif %}" style="font-size:0.6875rem;">
+        {{ 'PASS' if q_checks.supporting_evidence_provenance.passed else 'FAIL' }}
+      </span>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- 6. Two-Column Contact Roster & Next Action / Call History Grid -->
+  <div style="display:grid; grid-template-columns: minmax(0, 1.4fr) minmax(300px, 1fr); gap:1.25rem; margin-bottom:1.5rem;">
+    <!-- Left Column: Contact Roster & Call Log History -->
+    <div>
+      <!-- Contacts List -->
+      <div class="detail-section-card" style="margin-bottom:1.25rem;">
+        <div class="detail-section-header">
+          <div class="section-num-badge">4</div>
+          <h2 class="detail-section-title">Who Should I Contact? (Phone-First)</h2>
+        </div>
+
+        {% for contact in prospect.contacts %}
+        <div class="contact-box" style="margin-bottom:0.75rem;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem;">
+            <div>
+              <div class="contact-name">
+                {{ contact.person_name if contact.person_name else (contact.exact_published_title or 'Facility Contact') }}
+              </div>
+              <div class="contact-title">
+                {{ contact.exact_published_title or '' }}{% if contact.exact_published_title and contact.department %} • {% endif %}{{ contact.department or '' }}
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.25rem;">
+              {% if contact.phone_directness == 'DIRECT_PERSON' %}
+              <span class="badge badge-direct">Direct Line</span>
+              {% elif contact.phone_directness == 'DEPARTMENT_LINE' %}
+              <span class="badge badge-dept">Dept Line</span>
+              {% elif contact.phone_directness in ['GENERAL_SWITCHBOARD', 'RECEPTION', 'TOLL_FREE'] %}
+              <span class="badge badge-switchboard">{{ contact.phone_directness|replace('_', ' ')|title }}</span>
+              {% else %}
+              <span class="badge badge-unknown">{{ contact.phone_directness or 'Unknown' }}</span>
+              {% endif %}
+              {% if contact.role_category and contact.role_category != 'UNKNOWN' %}
+              <span class="badge {% if contact.role_category == 'FREIGHT_LOGISTICS' %}badge-logistics{% elif contact.role_category == 'COMMERCIAL_SALES' %}badge-sales{% elif contact.role_category == 'OPERATIONS' %}badge-operations{% else %}badge-unknown{% endif %}" style="font-size:0.6875rem;">
+                {{ contact.role_category|replace('_', ' ')|title }}
+              </span>
+              {% endif %}
+            </div>
+          </div>
+
+          {% if contact.phone_number and contact.phone_number != 'UNKNOWN' %}
+          {% set clean_phone = contact.phone_number | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') | replace('.', '') %}
+          <div class="phone-line" style="margin-top:0.4rem;">
+            <span>📞</span>
+            <a href="tel:{{ clean_phone }}" class="phone-link">
+              {{ contact.phone_number }}{% if contact.phone_extension %} ext. {{ contact.phone_extension }}{% endif %}
+            </a>
+          </div>
+          {% else %}
+          <div class="phone-line" style="margin-top:0.4rem; color:var(--color-text-muted); font-style:italic; font-size:0.8125rem;">
+            <span>📞</span> Personal direct phone: UNKNOWN
+          </div>
+          {% endif %}
+
+          {% if contact.fax_number %}
+          <div class="fax-line" style="margin-top:0.25rem; font-size:0.75rem; color:var(--color-text-muted);">
+            <span>📠</span> Fax: {{ contact.fax_number }} <span style="font-style:italic;">(Non-callable document route)</span>
+          </div>
+          {% endif %}
+
+          <div class="email-line">
+            {% if contact.email_address and contact.email_address != 'UNKNOWN' %}
+            <a href="mailto:{{ contact.email_address }}" style="color:var(--color-primary); text-decoration:none;">
+              ✉️ {{ contact.email_address }}
+            </a>
+            {% else %}
+            <span style="color:var(--color-text-muted); font-style:italic;">✉️ Email not verified</span>
+            {% endif %}
+          </div>
+
+          <div style="margin-top:0.65rem; display:flex; gap:0.4rem; flex-wrap:wrap;">
+            {% if contact.phone_number and contact.phone_number != 'UNKNOWN' %}
+            {% set clean_phone = contact.phone_number | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') | replace('.', '') %}
+            <a href="tel:{{ clean_phone }}" class="btn btn-call btn-sm" style="flex:1; justify-content:center;">
+              📞 Call Now
+            </a>
+            {% endif %}
+            <button type="button" class="btn btn-secondary btn-sm" style="flex:1; justify-content:center;"
+                    @click="$dispatch('open-log-call', {
+                      companyId: {{ prospect.company_id }},
+                      companyName: '{{ prospect.operating_brand }}',
+                      facilityId: {{ prospect.facility_id }},
+                      facilityName: '{{ prospect.facility_name }}',
+                      childFacilities: [{
+                        id: {{ prospect.facility_id }},
+                        name: '{{ prospect.facility_name }}',
+                        city: '{{ prospect.city }}',
+                        state: '{{ prospect.state_prov }}',
+                        phone: '{{ contact.phone_number if (contact.phone_number and contact.phone_number != 'UNKNOWN') else '' }}',
+                        contact: '{{ contact.person_name if (contact.person_name and contact.person_name != 'UNKNOWN') else (contact.exact_published_title if contact.exact_published_title else '') }}'
+                      }],
+                      contactName: '{{ contact.person_name if (contact.person_name and contact.person_name != 'UNKNOWN') else (contact.exact_published_title if contact.exact_published_title else '') }}',
+                      phoneNumber: '{{ contact.phone_number if (contact.phone_number and contact.phone_number != 'UNKNOWN') else '' }}',
+                      originStateProv: '{{ prospect.state_prov }}',
+                      defaultDisposition: '{{ prospect.engagement_state.current_outreach_status if (prospect.engagement_state and prospect.engagement_state.current_outreach_status != 'UNCONTACTED') else 'NO_ANSWER' }}'
+                    })">
+              📝 Log Call
+            </button>
+            {% if contact.email_address and contact.email_address != 'UNKNOWN' %}
+            <a href="mailto:{{ contact.email_address }}" class="btn btn-secondary btn-sm">
+              ✉️ Email
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Outreach Call Log History -->
+      <div class="detail-section-card">
+        <div class="detail-section-header" style="justify-content:space-between; display:flex; align-items:center;">
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <div class="section-num-badge" style="background:#0284c7;">📞</div>
+            <h2 class="detail-section-title">Outreach & Call Log History</h2>
+          </div>
+          <button type="button" class="btn btn-call btn-sm"
+                  @click="$dispatch('open-log-call', {
+                    companyId: {{ prospect.company_id }},
+                    companyName: '{{ prospect.operating_brand }}',
+                    facilityId: {{ prospect.facility_id }},
+                    facilityName: '{{ prospect.facility_name }}',
+                    childFacilities: [{
+                      id: {{ prospect.facility_id }},
+                      name: '{{ prospect.facility_name }}',
+                      city: '{{ prospect.city }}',
+                      state: '{{ prospect.state_prov }}',
+                      phone: '{{ top_callable.phone_number if top_callable else '' }}',
+                      contact: '{{ top_callable.person_name if (top_callable and top_callable.person_name) else (top_callable.exact_published_title if top_callable else '') }}'
+                    }],
+                    contactName: '{{ top_callable.person_name if (top_callable and top_callable.person_name) else (top_callable.exact_published_title if top_callable else '') }}',
+                    phoneNumber: '{{ top_callable.phone_number if top_callable else '' }}',
+                    originStateProv: '{{ prospect.state_prov }}',
+                    defaultDisposition: '{{ prospect.engagement_state.current_outreach_status if (prospect.engagement_state and prospect.engagement_state.current_outreach_status != 'UNCONTACTED') else 'NO_ANSWER' }}'
+                  })">
+            + Log Call
+          </button>
+        </div>
+
+        <!-- Current Engagement State Summary -->
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1rem; padding:0.6rem 0.8rem; background:var(--color-surface-inset); border:1px solid var(--color-border); border-radius:6px; align-items:center;">
+          <div>
+            <span style="font-size:0.75rem; color:var(--color-text-muted); font-weight:600;">Status:</span>
+            <span class="badge {% if cur_outreach == 'INTERESTED' %}badge-interested{% elif cur_outreach == 'CALL_BACK' %}badge-callback{% elif cur_outreach == 'NO_ANSWER' %}badge-no-answer{% elif cur_outreach == 'NOT_INTERESTED' %}badge-not-interested{% else %}badge-uncontacted{% endif %}">
+              {{ cur_outreach|replace('_', ' ') }}
+            </span>
+          </div>
+          <div>
+            <span style="font-size:0.75rem; color:var(--color-text-muted); font-weight:600;">Attempts:</span>
+            <span style="font-size:0.8125rem; font-weight:700; color:var(--color-text-main);">{{ prospect.engagement_state.attempt_count if prospect.engagement_state else 0 }}</span>
+          </div>
+          {% if prospect.engagement_state and prospect.engagement_state.next_follow_up_at %}
+          <div>
+            <span style="font-size:0.75rem; color:var(--color-text-muted); font-weight:600;">Follow-Up:</span>
+            <span class="badge badge-callback">{{ prospect.engagement_state.next_follow_up_at[:10] }}</span>
+          </div>
+          {% endif %}
+        </div>
+
+        {% if prospect.outreach_history %}
+        <div style="display:flex; flex-direction:column; gap:0.65rem;">
+          {% for log in prospect.outreach_history %}
+          <div style="border-left:3px solid {% if log.disposition == 'INTERESTED' %}#16a34a{% elif log.disposition == 'CALL_BACK' %}#d97706{% elif log.disposition == 'NO_ANSWER' %}#f59e0b{% elif log.disposition == 'NOT_INTERESTED' %}#dc2626{% else %}#94a3b8{% endif %}; padding:0.5rem 0.75rem; background:var(--color-surface-inset); border:1px solid var(--color-border); border-left-width:3px; border-radius:0 6px 6px 0;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+              <div style="display:flex; align-items:center; gap:0.4rem;">
+                <span class="badge {% if log.disposition == 'INTERESTED' %}badge-interested{% elif log.disposition == 'CALL_BACK' %}badge-callback{% elif log.disposition == 'NO_ANSWER' %}badge-no-answer{% elif log.disposition == 'NOT_INTERESTED' %}badge-not-interested{% else %}badge-uncontacted{% endif %}" style="font-size:0.6875rem;">
+                  {{ log.disposition|replace('_', ' ') }}
+                </span>
+                <span style="font-size:0.75rem; font-weight:600; color:var(--color-text-main);">
+                  {{ log.contact_name or 'General Line' }}
+                </span>
+              </div>
+              <span style="font-size:0.6875rem; color:var(--color-text-muted);">
+                {{ log.contacted_at[:16]|replace('T', ' ') }}
+              </span>
+            </div>
+            {% if log.feedback_notes %}
+            <div style="font-size:0.8125rem; color:var(--color-text-main); margin-top:0.25rem; font-style:italic;">
+              "{{ log.feedback_notes }}"
+            </div>
+            {% endif %}
+            {% if log.follow_up_at %}
+            <div style="font-size:0.6875rem; color:#d97706; margin-top:0.25rem; font-weight:600;">
+              ⏰ Scheduled follow-up: {{ log.follow_up_at[:10] }}
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div style="text-align:center; padding:1.25rem; color:var(--color-text-muted); font-size:0.8125rem; background:var(--color-surface-inset); border-radius:6px; border:1px dashed var(--color-border);">
+          No outreach calls logged yet. Click <strong>+ Log Call</strong> to document phone conversations and schedule follow-ups.
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Right Column: Suggested Next Action & Browser Research Launchers -->
+    <div>
+      <!-- Suggested Next Action -->
+      <div class="detail-section-card" style="margin-bottom:1.25rem;">
+        <div class="detail-section-header">
+          <div class="section-num-badge">7</div>
+          <h2 class="detail-section-title">What Should I Do Next? (Suggested Next Action)</h2>
+        </div>
+
+        <div class="next-action-box" style="margin-bottom:1rem;">
+          <div class="next-action-title">Suggested Next Action (Workflow Guidance)</div>
+          <div class="next-action-text" style="font-size:0.875rem;">
+            {% if top_callable and top_callable.phone_directness == 'DIRECT_PERSON' %}
+            Call {{ top_callable.person_name or top_callable.exact_published_title }} directly at {{ top_callable.phone_number }} to introduce FTL flatbed availability for upcoming regional outbound lanes.
+            {% elif top_callable and top_callable.phone_number and top_callable.phone_number != 'UNKNOWN' %}
+            Call the main reception switchboard at {{ top_callable.phone_number }}. Request the outbound logistics desk or shipping coordinator.
+            {% else %}
+            Research primary shipping desk phone line to initiate FTL freight outreach.
+            {% endif %}
+          </div>
+          <div style="margin-top:0.5rem; font-size:0.6875rem; color:var(--color-text-muted);">
+            Note: Suggested Next Action represents procedural outreach guidance for the broker, not a verified factual claim.
+          </div>
+        </div>
+
+        <!-- External Browser Research Assistance (No Paid API) -->
+        <div class="research-actions-box">
+          <div class="research-actions-title">
+            <span>🌐 Browser Research Launchers</span>
+          </div>
+          <p style="font-size:0.75rem; color:var(--color-text-muted); margin-bottom:0.75rem;">
+            Execute targeted queries directly in your normal web browser (zero API tokens consumed):
+          </p>
+
+          <div class="research-links-list">
+            <a href="{{ prospect.research_urls.google_company | safe_url }}" target="_blank" rel="noopener" class="research-link-item">
+              <span>Google: Shipping & Logistics ↗</span>
+            </a>
+            <a href="{{ prospect.research_urls.google_contacts | safe_url }}" target="_blank" rel="noopener" class="research-link-item">
+              <span>Google: Shipping & Logistics Contacts ↗</span>
+            </a>
+            <a href="{{ prospect.research_urls.google_plant | safe_url }}" target="_blank" rel="noopener" class="research-link-item">
+              <span>Google: Plant Docks & Entrances ↗</span>
+            </a>
+            <a href="{{ prospect.research_urls.gemini_url | safe_url }}" target="_blank" rel="noopener" class="research-link-item">
+              <span>Consumer Gemini (Web Browser) ↗</span>
+            </a>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <div style="font-size:0.75rem; font-weight:700; color:var(--color-text-main); margin-bottom:0.35rem;">
+              Prepared Prompt for External Analysis:
+            </div>
+            <div class="prompt-copy-container">
+              <div class="prompt-copy-text">{{ prospect.research_urls.gemini_prompt }}</div>
+              <button type="button" class="btn btn-secondary btn-sm" @click="copyPrompt()">
+                <span x-show="!copiedPrompt">📋 Copy Prompt to Clipboard</span>
+                <span x-show="copiedPrompt" style="color:#15803d; font-weight:700;">✓ Copied to Clipboard!</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Collapsible Secondary Section: Technical Research & Evidence Ledger -->
+  <div class="tech-research-card">
+    <button type="button" @click="techOpen = !techOpen" class="tech-accordion-btn">
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-size:1.125rem;">🔬</span>
+        <span>Research & Evidence Ledger (Technical Details & Audit Provenance • {{ prospect.claims|length }} Claims)</span>
+      </div>
+      <span x-text="techOpen ? 'Hide Technical Details ▲' : 'View Technical Details ▼'" style="font-size:0.8125rem; color:var(--color-primary); font-weight:600;"></span>
+    </button>
+
+    <div x-show="techOpen" x-transition style="padding:1.25rem;">
+      <div style="display:grid; grid-template-columns: 1fr; gap:1.25rem;">
+        <!-- Technical Section 1: WHO IS THIS? -->
+        <div class="detail-section-card">
+          <div class="detail-section-header">
+            <div class="section-num-badge">1</div>
+            <h2 class="detail-section-title">Who Is This? (Corporate Legal & Facility Profile)</h2>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Operating Brand</span>
+            <span class="kv-val">{{ prospect.operating_brand }}</span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Legal Entity Name</span>
+            <span class="kv-val">{{ prospect.legal_name if (prospect.legal_name and prospect.legal_name != 'None') else 'Not specified' }}</span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Operating Facility</span>
+            <span class="kv-val">{{ prospect.facility_name }} ({{ prospect.facility_type }})</span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Physical Shipping Address</span>
+            <span class="kv-val">{{ prospect.physical_address }}, {{ prospect.city }}, {{ prospect.state_prov }} {{ prospect.postal_code if prospect.postal_code else '' }} {{ prospect.country }}</span>
+          </div>
+          {% if prospect.corporate_address %}
+          <div class="kv-row">
+            <span class="kv-key">Corporate Headquarters</span>
+            <span class="kv-val">{{ prospect.corporate_address }}</span>
+          </div>
+          {% endif %}
+          <div class="kv-row">
+            <span class="kv-key">Company Operating Footprint</span>
+            <span class="kv-val">
+              {% if prospect.company_footprint_status == 'SINGLE_SITE_VERIFIED' %}
+              <span class="badge badge-verified">Single-site — VERIFIED</span>
+              {% elif prospect.company_footprint_status == 'MULTI_SITE_VERIFIED' %}
+              <span class="badge badge-inferred">Multi-site — VERIFIED{% if prospect.verified_operating_location_count %} ({{ prospect.verified_operating_location_count }} locations){% endif %}</span>
+              {% else %}
+              <span class="badge badge-unknown">Company footprint — UNKNOWN</span>
+              {% endif %}
+              {% if prospect.footprint_source_notes %}
+              <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top:0.25rem;">{{ prospect.footprint_source_notes }}</div>
+              {% endif %}
+            </span>
+          </div>
+          {% if prospect.relationships %}
+          {% for rel in prospect.relationships %}
+          <div class="relationship-panel">
+            <div class="relationship-title">
+              Corporate Group & Historical Acquisition
+            </div>
+            <div class="relationship-body">
+              <strong>Corporate Group:</strong> TI Automotive (commercial rebrand) • <strong>Historical Acquisition:</strong> {{ rel.parent_brand }} acquired WMG on {{ rel.valid_from }}
+            </div>
+            <div class="relationship-sub">
+              <strong>Operating Brand:</strong> {{ prospect.operating_brand }} (Active Canadian contracting legal entity: {{ prospect.legal_name if (prospect.legal_name and prospect.legal_name != 'None') else 'Not specified' }} • Predecessor: Windsor Mold Inc.)
+            </div>
+            <div style="font-size:0.75rem; color:var(--color-text-muted); font-style:italic;">
+              Exact present-day intermediate legal hierarchy within TI Automotive: <span class="badge badge-unknown" style="font-size:0.6875rem;">UNKNOWN</span>
+            </div>
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+
+        <!-- Technical Section 2: WHAT DO THEY MOVE / MAKE? -->
+        <div class="detail-section-card">
+          <div class="detail-section-header">
+            <div class="section-num-badge">2</div>
+            <h2 class="detail-section-title">What Do They Move / Make? (Commodity & Equipment Specifications)</h2>
+          </div>
+
+          <!-- Taxonomy & Seasonality Profile Card -->
+          <div style="background:var(--color-surface-inset); border:1px solid var(--color-border); border-radius:6px; padding:1rem; margin-bottom:1rem; box-shadow:var(--shadow-sm);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <span style="font-size:0.75rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.04em;">Commodity Taxonomy Classification</span>
+                <div style="font-size:1.05rem; font-weight:700; color:var(--color-text-main); margin-top:0.15rem;">
+                  {{ prospect.commodity_family_name or 'General Freight' }}
+                  {% if prospect.commodity_category_name and prospect.commodity_category_name != prospect.commodity_family_name %}
+                  <span style="color:var(--color-text-muted); font-weight:400;">&bull;</span>
+                  <span style="color:var(--color-primary);">{{ prospect.commodity_category_name }}</span>
+                  {% endif %}
+                </div>
+              </div>
+              <div style="display:flex; gap:0.4rem; align-items:center; flex-wrap:wrap;">
+                {% if prospect.category_seasonality %}
+                <span class="badge badge-season">
+                  📅 Typical Season: {{ prospect.category_seasonality.replace('_', ' ') }}
+                </span>
+                {% endif %}
+                {% if prospect.category_peak_months %}
+                <span class="badge badge-dept" style="font-size:0.75rem; padding:0.2rem 0.5rem;">
+                  Peak Months: {{ prospect.category_peak_months }}
+                </span>
+                {% endif %}
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:0.75rem; font-size:0.8125rem;">
+              <div class="kv-row" style="margin:0; padding:0.35rem 0; border:none;">
+                <span class="kv-key" style="min-width:150px;">Typical Category Fit</span>
+                <span class="kv-val" style="font-weight:600; color:var(--color-text-main);">
+                  <span class="badge badge-equipment" style="font-size:0.75rem;">{{ prospect.category_typical_equipment or 'FLATBED' }}</span>
+                  <span style="font-size:0.6875rem; color:var(--color-text-muted); font-weight:400; margin-left:0.35rem;">(Category Guidance)</span>
+                </span>
+              </div>
+              <div class="kv-row" style="margin:0; padding:0.35rem 0; border:none;">
+                <span class="kv-key" style="min-width:150px;">Facility Evidenced Usage</span>
+                <span class="kv-val">
+                  {% if prospect.commodities and prospect.commodities[0].equipment_usage_status == 'VERIFIED' %}
+                  <span class="badge badge-equipment" style="font-size:0.75rem; font-weight:700;">{{ prospect.commodities[0].equipment_category }}</span>
+                  <span class="badge badge-verified" style="font-size:0.75rem; margin-left:0.35rem;">✓ Verified Usage</span>
+                  {% elif prospect.commodities and prospect.commodities[0].equipment_usage_status == 'INFERRED' %}
+                  <span class="badge badge-equipment" style="font-size:0.75rem; font-weight:700;">{{ prospect.commodities[0].equipment_category }}</span>
+                  <span class="badge badge-inferred" style="font-size:0.75rem; margin-left:0.35rem;">◇ Inferred Suitability</span>
+                  {% else %}
+                  <span class="badge badge-unknown" style="font-size:0.75rem;">? Unknown</span>
+                  {% endif %}
+                </span>
+              </div>
+            </div>
+
+            {% if prospect.taxonomy_mappings and prospect.taxonomy_mappings|length > 1 %}
+            <div style="margin-top:0.75rem; padding-top:0.6rem; border-top:1px solid var(--color-border); font-size:0.75rem;">
+              <span style="font-weight:700; color:var(--color-text-muted);">Additional Category Associations:</span>
+              <div style="display:flex; gap:0.35rem; flex-wrap:wrap; margin-top:0.3rem;">
+                {% for m in prospect.taxonomy_mappings %}
+                {% if not m.is_primary %}
+                <span class="badge badge-secondary-cat" title="{{ m.source_evidence_notes }}">
+                  + {{ m.category_name }} ({{ m.cat_seasonality.replace('_', ' ') }})
+                </span>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+
+            <div style="margin-top:0.6rem; font-size:0.6875rem; color:var(--color-text-muted); line-height:1.4; border-top:1px dashed var(--color-border); padding-top:0.4rem;">
+              ℹ️ <strong>Truth Principles:</strong> Typical Equipment Fit is non-binding category guidance and does not constitute facility-level verified equipment usage. Typical Season is reference seasonal guidance and does not represent live freight availability.
+            </div>
+          </div>
+
+          {% for c in prospect.commodities %}
+          <div class="commodity-card">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.5rem;">
+              <div>
+                <div class="commodity-card-title">{{ c.commodity_category }}</div>
+                <div class="commodity-card-desc">{{ c.specific_products }}</div>
+              </div>
+              <div style="display:flex; gap:0.35rem;">
+                <span class="badge badge-equipment">{{ c.equipment_category }}</span>
+                {% if c.equipment_usage_status == 'VERIFIED' %}
+                <span class="badge badge-verified" title="Equipment suitability verified from audited evidence">✓ Verified Usage</span>
+                {% elif c.equipment_usage_status == 'INFERRED' %}
+                <span class="badge badge-inferred" title="Inferred logically from operational requirements; not yet verified on BOL/shipping instructions">◇ Inferred Suitability</span>
+                {% else %}
+                <span class="badge badge-unknown">? Unknown</span>
+                {% endif %}
+              </div>
+            </div>
+            {% if c.trailer_specs_notes %}
+            <div class="kv-row">
+              <span class="kv-key">Trailer Specifications</span>
+              <span class="kv-val">{{ c.trailer_specs_notes }}</span>
+            </div>
+            {% endif %}
+            {% if c.securement_tarp_notes %}
+            <div class="kv-row">
+              <span class="kv-key">Securement & Weatherproofing</span>
+              <span class="kv-val">{{ c.securement_tarp_notes }}</span>
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Technical Section 3: WHY DO I CARE? -->
+        <div class="detail-section-card">
+          <div class="detail-section-header">
+            <div class="section-num-badge">3</div>
+            <h2 class="detail-section-title">Why Do I Care? (Operational Relevance & Broker Policy)</h2>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Target Equipment Fit</span>
+            <span class="kv-val" style="color:#15803d; font-weight:700;">
+              {% if prospect.commodities %}
+              Full Truckload (FTL) {{ prospect.commodities[0].equipment_category }}
+              {% if prospect.commodities[0].equipment_usage_status == 'VERIFIED' %}
+              <span class="badge badge-verified" style="font-size:0.6875rem; margin-left:0.35rem;">✓ Verified Usage</span>
+              {% elif prospect.commodities[0].equipment_usage_status == 'INFERRED' %}
+              <span class="badge badge-inferred" style="font-size:0.6875rem; margin-left:0.35rem;">◇ Inferred Suitability</span>
+              {% else %}
+              <span class="badge badge-unknown" style="font-size:0.6875rem; margin-left:0.35rem;">? Unknown</span>
+              {% endif %}
+              {% else %}
+              Full Truckload (FTL) Flatbed / Step Deck Compatible
+              {% endif %}
+            </span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Broker Access Friction</span>
+            <span class="kv-val">
+              {% if prospect.friction_level == 'LOW' %}
+              <span class="badge badge-friction-low">🟢 Low Broker Access Friction</span>
+              {% elif prospect.friction_level == 'MEDIUM' %}
+              <span class="badge badge-friction-medium">🟡 Medium Broker Access Friction</span>
+              {% elif prospect.friction_level == 'HIGH' %}
+              <span class="badge badge-friction-high">🔴 High Broker Access Friction</span>
+              {% else %}
+              <span class="badge badge-friction-unknown">⚪ Unknown Friction</span>
+              {% endif %}
+              {% if prospect.broker_access_friction and prospect.broker_access_friction.reasons %}
+              <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top:0.25rem;">
+                {% for r in prospect.broker_access_friction.reasons %}
+                <div style="line-height:1.35;">• {{ r }}</div>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Broker Acceptance Policy</span>
+            <span class="kv-val">
+              {% if prospect.broker_friendly_status == 'VERIFIED_ACCEPTS' %}
+              <span class="badge badge-verified">Verified Broker Acceptance</span>
+              {% elif prospect.broker_friendly_status == 'VERIFIED_DIRECT_ONLY' %}
+              <span class="badge badge-unknown" title="Operational policy note only; does not mean DO_NOT_CONTACT suppression">Verified Direct-Only Carrier Policy</span>
+              {% else %}
+              <span class="badge badge-unknown">UNKNOWN (Not verified — Neutral, 0 points)</span>
+              <div style="font-size:0.6875rem; color:var(--color-text-muted); font-weight:normal; margin-top:0.2rem;">
+                Absence of verified broker acceptance policy does not imply refusal; defaults to neutral 0 points.
+              </div>
+              {% endif %}
+            </span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Private Fleet Status</span>
+            <span class="kv-val">
+              {% if prospect.private_fleet_present == 'VERIFIED_PRESENT' %}
+              <span class="badge badge-fleet">Verified Private Fleet Present</span>
+              <div style="font-size:0.6875rem; color:var(--color-text-muted); font-weight:normal; margin-top:0.2rem;">
+                Operational attribute: Shippers with private fleets may also use outside carriers for supplemental or specialized freight.
+              </div>
+              {% else %}
+              <span class="badge badge-unknown">Fleet Status: UNKNOWN (Neutral, 0 points)</span>
+              <div style="font-size:0.6875rem; color:var(--color-text-muted); font-weight:normal; margin-top:0.2rem;">
+                Driver recruitment or absence of public listing does not prove fleet asset ownership; defaults to neutral UNKNOWN (0 points).
+              </div>
+              {% endif %}
+            </span>
+          </div>
+        </div>
+
+        <!-- Technical Section 6: DO I HAVE FREIGHT? -->
+        <div class="detail-section-card">
+          <div class="detail-section-header">
+            <div class="section-num-badge">6</div>
+            <h2 class="detail-section-title">Do I Have Freight? (Demand Signals vs Discrete Loads)</h2>
+          </div>
+          <div class="demand-signals-panel">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <div style="font-weight:700; color:var(--color-text-main);">Current Freight Opportunity State</div>
+              <span class="badge badge-prospect" style="font-size:0.8125rem;">PROSPECT ONLY (0 Signals, 0 Loads)</span>
+            </div>
+            <p style="font-size:0.8125rem; color:var(--color-text-muted); margin-bottom:0.75rem;">
+              <strong>Core Real-World Distinction:</strong> Shipper Prospect ≠ Freight-Demand Signal ≠ Discrete Load.
+              A facility prospect exists independently of active demand. In accordance with zero-hallucination standards, no fake or placeholder loads exist for this facility.
+            </p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; font-size:0.75rem;">
+              <div class="demand-signals-subcard">
+                <span class="subcard-label">Freight Demand Signals:</span> 0 Active
+              </div>
+              <div class="demand-signals-subcard">
+                <span class="subcard-label">Bookable FTL Loads:</span> 0 Confirmed
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical Section 5: WHAT DO I KNOW? (Claims Summary) -->
+        <div class="detail-section-card">
+          <div class="detail-section-header" style="justify-content:space-between;">
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <div class="section-num-badge">5</div>
+              <h2 class="detail-section-title">What Do I Know? (Claims & Evidence Ledger)</h2>
+            </div>
+            <button class="btn btn-secondary btn-sm" @click="claimsDrawerOpen = true">
+              Expand All {{ prospect.claims|length }} Claims →
+            </button>
+          </div>
+          <p style="font-size:0.75rem; color:var(--color-text-muted); margin-bottom:0.75rem;">
+            Every business assertion is tracked as an accepted claim backed by documented evidence sources.
+          </p>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Claimed Fact</th>
+                <th>Confidence</th>
+                <th>Supporting Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for cl in prospect.claims %}
+              <tr>
+                <td style="font-family:var(--font-mono); font-size:0.75rem; font-weight:600; color:var(--color-text-main);">
+                  {{ cl.claim_field }}
+                </td>
+                <td style="font-weight:600; color:var(--color-text-main);">
+                  {{ cl.claimed_value }}
+                </td>
+                <td>
+                  {% if cl.verification_status == 'VERIFIED' %}
+                  <span class="badge badge-verified">✓ Confirmed</span>
+                  {% elif cl.verification_status == 'INFERRED' %}
+                  <span class="badge badge-inferred">◇ Likely</span>
+                  {% else %}
+                  <span class="badge badge-unknown">? Not confirmed yet</span>
+                  {% endif %}
+                </td>
+                <td style="font-size:0.75rem; color:var(--color-text-muted);">
+                  {% if cl.sources %}
+                    {% if cl.sources[0].source_url and (cl.sources[0].source_url | safe_url) %}
+                    <a href="{{ cl.sources[0].source_url | safe_url }}" target="_blank" rel="noopener" style="color:var(--color-primary); text-decoration:none;">
+                      {{ cl.sources[0].source_title_publisher }} ↗
+                    </a>
+                    {% else %}
+                    <span>{{ cl.sources[0].source_title_publisher }}</span>
+                    {% endif %}
+                  {% else %}
+                  <span style="color:#94a3b8;">No source record</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Claims & Evidence Drawer Modal -->
+  <div class="modal-backdrop" x-show="claimsDrawerOpen" x-cloak
+       @click.self="claimsDrawerOpen = false"
+       @keydown.escape.window="claimsDrawerOpen = false">
+    <div class="modal-dialog" x-show="claimsDrawerOpen" style="max-width:800px;">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          Evidence Ledger: {{ prospect.operating_brand }}
+        </h3>
+        <button class="modal-close-btn" @click="claimsDrawerOpen = false">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p style="color:var(--color-text-muted); margin-bottom:1rem;">
+          Field-level provenance and claims ledger. In accordance with zero-hallucination rules, every fact is recorded with exact verification status, timestamps, and supporting evidence sources.
+        </p>
+
+        {% for cl in prospect.claims %}
+        <div class="claim-card-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+            <span style="font-family:var(--font-mono); font-weight:700; color:var(--color-text-main); font-size:0.8125rem;">
+              {{ cl.claim_field }}
+            </span>
+            <div>
+              {% if cl.verification_status == 'VERIFIED' %}
+              <span class="badge badge-verified">✓ Confirmed</span>
+              {% elif cl.verification_status == 'INFERRED' %}
+              <span class="badge badge-inferred">◇ Likely</span>
+              {% else %}
+              <span class="badge badge-unknown">? Not confirmed yet (0 pts)</span>
+              {% endif %}
+            </div>
+          </div>
+
+          <div style="font-size:0.875rem; font-weight:600; color:var(--color-text-main); margin-bottom:0.35rem;">
+            {{ cl.claimed_value }}
+          </div>
+
+          {% if cl.claim_notes %}
+          <div style="font-size:0.75rem; color:var(--color-text-muted); margin-bottom:0.5rem;">
+            Note: {{ cl.claim_notes }}
+          </div>
+          {% endif %}
+
+          {% if cl.sources %}
+          <div class="evidence-divider">
+            <span class="evidence-header">Supporting Evidence:</span>
+            {% for s in cl.sources %}
+            <div style="margin-top:0.25rem;">
+              • <strong>{{ s.source_title_publisher }}</strong>
+              {% if s.is_primary_source %}
+              <span class="badge badge-verified" style="font-size:0.625rem; padding:0.15rem 0.35rem; margin-left:0.25rem;">Primary Source</span>
+              {% else %}
+              <span class="badge badge-unknown" style="font-size:0.625rem; padding:0.15rem 0.35rem; margin-left:0.25rem;">Secondary ({{ s.source_type }})</span>
+              {% endif %}
+              {% if s.source_url and (s.source_url | safe_url) %}
+              (<a href="{{ s.source_url | safe_url }}" target="_blank" rel="noopener" style="color:var(--color-primary);">{{ s.source_url }}</a>)
+              {% endif %}
+              <div style="color:var(--color-text-muted); font-size:0.6875rem;">
+                Observed: {{ s.observed_at }} {% if s.event_at %}• Event at: {{ s.event_at }}{% endif %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" @click="claimsDrawerOpen = false">Close</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

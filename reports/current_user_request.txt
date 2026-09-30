@@ -1,0 +1,216 @@
+<USER_REQUEST>
+/teamwork-preview
+
+FREIGHTPROSPECTING — TIER A ACCELERATION CAMPAIGN
+PHASE B — DISCOVERY → QUALIFIED + TIER A EVIDENCE
+AUTONOMOUS MASTER EXECUTION
+
+WORKSPACE:
+D:\FreightProspecting
+
+==========================================================
+CAMPAIGN GOAL
+==========================================================
+
+The highest-priority project objective remains:
+
+AUTHORITATIVE TIER A >= 100 COMPANIES
+
+Current independently frozen production state:
+
+Tier A = 14
+Tier B = 99
+Tier C = 7
+Tier D = 445
+Restricted = 0
+Total operating companies = 565
+
+Required additional Tier A companies:
+
+86
+
+Current frozen production SHA-256:
+
+FE73DC3F051A7AEE7FC83ED7E0D7DF2CA05EFEE9C9C2629001327B551AF104DF
+
+Phase A:
+CLOSED / INDEPENDENTLY AUDITED / FROZEN
+
+Phase B may now begin.
+
+==========================================================
+PHASE B OBJECTIVE
+==========================================================
+
+Use the current 445 Tier D companies as the research universe.
+
+The objective is NOT:
+
+"promote 86 companies."
+
+The objective is:
+
+research enough current Tier D companies so that truthful lifecycle
+qualification + truthful carrier/broker evidence causes the AUTHORITATIVE
+ENGINE to reach Tier A >= 100.
+
+Tier A must always remain an OUTPUT.
+
+Never assign Tier A manually.
+
+Never weaken Qualification rules.
+
+Never weaken evidence standards.
+
+Never make a company Qualified merely because Tier A needs to grow.
+
+==========================================================
+STOP CONDITIONS
+==========================================================
+
+STOP CONDITION 1:
+
+After a safely committed wave, authoritative Tier A >= 100.
+
+If reached:
+
+STOP Phase B immediately.
+
+Do not research remaining companies merely to exceed 100.
+
+
+STOP CONDITION 2:
+
+All frozen Phase B Tier D companies exhausted and Tier A < 100.
+
+If reached:
+
+finish Phase B and report exact remaining gap.
+
+Do NOT automatically start new-company discovery / Phase C.
+
+=
+<truncated 22825 bytes>
+QUALIFIED BUT NOT A:
+count
+
+COMPANY-SCOPE CARRIER FINDINGS:
+count
+
+FACILITY-SCOPE CARRIER FINDINGS:
+count
+
+BROKER ACCEPTS FINDINGS:
+count
+
+DIRECT_ONLY FINDINGS:
+count
+
+PRIVATE FLEET FINDINGS:
+count
+
+EXCLUDED:
+count
+
+NO-NEW-EVIDENCE:
+count
+
+ACCESS BLOCKED:
+count
+
+WAVE A through Wave I:
+researched
+qualified
+new A
+new B
+new C
+hash before
+hash after
+status
+
+FINAL ENGINE DISTRIBUTION
+
+FINAL METADATA DISTRIBUTION
+
+FINAL DIRECTORY DISTRIBUTION
+
+ENGINE == METADATA == DIRECTORY:
+YES / NO
+
+OVERLAP:
+count
+
+LIFECYCLE LEDGER PATH
+
+PROMOTION LEDGER PATH
+
+OUTSIDE-SCOPE MUTATIONS
+
+SAFER-ONLY CLAIMS
+
+ORPHANS
+
+DUPLICATE CURRENT CLAIMS
+
+OPERATIONAL TABLE COUNTS
+
+PYTEST
+
+PRAGMA
+
+ALL BACKUP PATHS
+
+FINAL CANDIDATE SHA-256
+
+If target not reached:
+
+PHASE C GAP ANALYSIS PATH
+
+==========================================================
+FINAL CONFIRMATIONS
+==========================================================
+
+Confirm:
+
+Tier A was never manually assigned.
+
+Qualification rules were not weakened.
+
+No automatic Shortlisting occurred.
+
+Carrier did not imply broker.
+
+Company evidence was not narrowed to facility scope.
+
+Sibling facility truth remained separate.
+
+Every lifecycle transition passed the frozen Qualification gate.
+
+No new companies were added.
+
+Stage 3H was not started.
+
+Phase C was not started.
+
+No fake operational data was created.
+
+Opportunity-engine semantics were not changed.
+
+OpenCode audit was NOT performed.
+
+Then answer:
+
+1. How many Tier A companies exist now?
+2. How many net new Tier A companies did Phase B create?
+3. Was Tier A >= 100 reached?
+4. If not, what exact gap remains?
+5. How many Discovery companies became Qualified?
+6. Is the candidate ready for independent OpenCode audit?
+7. What exact SHA-256 should OpenCode audit?
+8. Should Phase C remain blocked until OpenCode passes?
+
+STOP.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-29T12:56:08+05:30.
+</ADDITIONAL_METADATA>

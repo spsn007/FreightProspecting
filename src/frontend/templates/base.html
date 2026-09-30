@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}FreightProspecting V1{% endblock %}</title>
+  <!-- Theme Initializer (prevents flash of light theme if dark is stored) -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('fp_theme');
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <!-- Local Offline CSS (Zero CDN / Zero External Network Calls) -->
+  <link rel="stylesheet" href="/static/css/app.css">
+  <link rel="stylesheet" href="/static/css/components.css">
+  <!-- Local Vendored Alpine.js v3.14.8 -->
+  <script defer src="/static/js/vendor/alpine.min.js"></script>
+</head>
+<body>
+  <div class="app-layout" x-data="{ globalSearch: '' }">
+    <!-- Left Navigation Sidebar (Dark Slate Shell) -->
+    <aside class="app-sidebar">
+      <div>
+        <div class="sidebar-header">
+          <a href="/" class="brand-badge">
+            <div class="brand-icon">FP</div>
+            <div>
+              <div class="brand-name">FreightProspecting</div>
+              <div class="brand-tagline">V1 Local Evidence CRM</div>
+            </div>
+          </a>
+        </div>
+
+        <nav class="sidebar-nav">
+          <!-- Prospecting Section -->
+          <div class="nav-section-title">Prospecting</div>
+          <ul class="sidebar-menu">
+            <li>
+              <a href="/" class="sidebar-link {% if active_nav == 'cockpit' %}active{% endif %}">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                <span>Shortlist Cockpit</span>
+                <span class="pill-counter">{{ counts.shortlisted_count if counts else 32 }}</span>
+              </a>
+            </li>
+            <li>
+              <a href="/prospects" class="sidebar-link {% if active_nav == 'prospects' %}active{% endif %}">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                <span>Master Directory</span>
+              </a>
+            </li>
+            <li>
+              <a href="/crm/interested" class="sidebar-link {% if active_nav == 'crm_interested' %}active{% endif %}">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span>Interested</span>
+                {% if counts and counts.get('crm_interested', 0) > 0 %}
+                <span class="pill-counter" style="background:#10b981; color:#fff;">{{ counts.get('crm_interested') }}</span>
+                {% endif %}
+              </a>
+            </li>
+            <li>
+              <a href="/crm/follow-ups" class="sidebar-link {% if active_nav == 'crm_follow_ups' %}active{% endif %}">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span>Follow-Ups</span>
+                {% if counts and counts.get('crm_follow_ups', 0) > 0 %}
+                <span class="pill-counter" style="background:#0ea5e9; color:#fff;">{{ counts.get('crm_follow_ups') }}</span>
+                {% endif %}
+              </a>
+            </li>
+            <li>
+              <a href="/crm/no-answer" class="sidebar-link {% if active_nav == 'crm_no_answer' %}active{% endif %}">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                <span>No Answer</span>
+                {% if counts and counts.get('crm_no_answer', 0) > 0 %}
+                <span class="pill-counter" style="background:#f59e0b; color:#fff;">{{ counts.get('crm_no_answer') }}</span>
+                {% endif %}
+              </a>
+            </li>
+            <li>
+              <a href="/crm/not-interested" class="sidebar-link {% if active_nav == 'crm_not_interested' %}active{% endif %}">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+                <span>Not Interested</span>
+                {% if counts and counts.get('crm_not_interested', 0) > 0 %}
+                <span class="pill-counter" style="background:#64748b; color:#fff;">{{ counts.get('crm_not_interested') }}</span>
+                {% endif %}
+              </a>
+            </li>
+          </ul>
+
+          <!-- Freight & Operations Collapsible Section (Collapsed by Default) -->
+          <div x-data="{ open: (localStorage.getItem('nav_ops_open') === 'true') || (['loads', 'carriers'].includes('{{ active_nav }}')) }">
+            <button type="button" @click="open = !open; localStorage.setItem('nav_ops_open', open)"
+              class="sidebar-accordion-header" title="Toggle Freight & Operations Navigation">
+              <span class="nav-section-title">Freight & Operations</span>
+              <svg class="sidebar-chevron" :class="open ? 'is-open' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+            <ul class="sidebar-menu sub-menu" x-show="open" style="display: none;" x-transition>
+              <li>
+                <a href="/loads" class="sidebar-link {% if active_nav == 'loads' %}active{% endif %}">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                  <span>Loads & Margins</span>
+                  <span class="pill-counter" style="background:#475569">0</span>
+                </a>
+              </li>
+              <li>
+                <a href="/carriers" class="sidebar-link {% if active_nav == 'carriers' %}active{% endif %}">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+                  <span>Carriers & Capacity</span>
+                  <span class="pill-counter" style="background:#475569">0</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Research & Data Collapsible Section (Collapsed by Default) -->
+          <div x-data="{ open: (localStorage.getItem('nav_research_open') === 'true') || ('{{ active_nav }}' === 'research') }">
+            <button type="button" @click="open = !open; localStorage.setItem('nav_research_open', open)"
+              class="sidebar-accordion-header" title="Toggle Research & Data Navigation">
+              <span class="nav-section-title">Research & Data</span>
+              <svg class="sidebar-chevron" :class="open ? 'is-open' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+            <ul class="sidebar-menu sub-menu" x-show="open" style="display: none;" x-transition>
+              <li>
+                <a href="/research" class="sidebar-link {% if active_nav == 'research' %}active{% endif %}">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                  <span>Evidence Ledger</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Secondary Utility Navigation & System Status -->
+      <div class="sidebar-bottom">
+        <div class="sidebar-utility" style="padding:0.75rem 1rem 0.25rem 1rem; border-top:1px solid var(--sidebar-border);">
+          <div style="font-size:0.6875rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.25rem; padding-left:0.5rem;">
+            Configuration
+          </div>
+          <ul class="sidebar-menu">
+            <li>
+              <a href="/settings" class="sidebar-link {% if active_nav == 'settings' %}active{% endif %}" style="padding:0.4rem 0.6rem; font-size:0.8125rem;">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px; height:16px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <span>Settings & Controls</span>
+              </a>
+            </li>
+          </ul>
+          <div style="padding: 0.4rem 0.5rem 0.1rem 0.5rem;">
+            <button id="themeToggleBtn" type="button" onclick="toggleTheme()" class="theme-toggle-btn" title="Toggle Light / Dark Theme">
+              <span class="theme-toggle-left">
+                <svg id="themeIconSun" class="theme-svg sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <svg id="themeIconMoon" class="theme-svg moon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                <span id="themeToggleLabel">Theme</span>
+              </span>
+              <span id="themeBadge" class="theme-badge">Light</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="system-status-indicator">
+            <div class="status-dot"></div>
+            <div>
+              <div style="font-weight:600; color:#f8fafc;">Local Core Application</div>
+              <div style="font-size:0.6875rem; color:#94a3b8;">No Paid AI/API Required • Web for Research Only</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace Content -->
+    <div class="app-main">
+      <!-- Top Application Header Bar -->
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <div class="page-breadcrumb">
+            {% block breadcrumb %}
+            <span>Dashboard</span>
+            {% endblock %}
+          </div>
+        </div>
+
+        <div class="top-bar-right">
+          <div class="top-badge top-badge-accent">
+            <span>✓</span> Database Ready
+          </div>
+          <div class="top-badge">
+            <span>FTL Flatbed / Step Deck</span>
+          </div>
+          <a href="/settings" class="btn btn-secondary btn-sm" title="System Settings">
+            ⚙ Settings
+          </a>
+        </div>
+      </header>
+
+      <!-- Page Body Area -->
+      <main class="workspace-content">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </div>
+
+  <!-- Reusable Stage 3C Log Call Modal -->
+  {% include "partials/log_call_modal.html" %}
+
+  {% block scripts %}{% endblock %}
+  <!-- Dark Mode UI sync script -->
+  <script>
+    function updateThemeUI() {
+      var current = document.documentElement.getAttribute('data-theme') || 'light';
+      var sun = document.getElementById('themeIconSun');
+      var moon = document.getElementById('themeIconMoon');
+      var label = document.getElementById('themeToggleLabel');
+      var badge = document.getElementById('themeBadge');
+      if (!sun || !moon || !label || !badge) return;
+      if (current === 'dark') {
+        sun.style.display = 'inline-block';
+        moon.style.display = 'none';
+        label.textContent = 'Theme';
+        badge.textContent = 'Dark';
+        badge.className = 'theme-badge dark';
+      } else {
+        sun.style.display = 'none';
+        moon.style.display = 'inline-block';
+        label.textContent = 'Theme';
+        badge.textContent = 'Light';
+        badge.className = 'theme-badge light';
+      }
+    }
+    function toggleTheme() {
+      var current = document.documentElement.getAttribute('data-theme') || 'light';
+      var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('fp_theme', next);
+      updateThemeUI();
+    }
+    document.addEventListener('DOMContentLoaded', updateThemeUI);
+  </script>
+</body>
+</html>

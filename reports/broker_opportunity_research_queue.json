@@ -1,0 +1,359 @@
+{
+  "metadata": {
+    "total_operating_companies": 565,
+    "tier_counts": {
+      "TIER_A_PRIORITY": 9,
+      "TIER_B_WORTH_CALLING": 103,
+      "TIER_C_SECONDARY": 8,
+      "TIER_D_RESEARCH_NEEDED": 445,
+      "RESTRICTED": 0
+    },
+    "tier_d_strong_opportunity_signals_count": 1
+  },
+  "tier_a_priority_prospects": [
+    {
+      "company_id": 6,
+      "operating_brand": "Battle Lumber Company",
+      "lifecycle_stage": "SHORTLISTED",
+      "best_location": "Wadley, GA",
+      "best_phone": "(478) 252-5210",
+      "best_phone_label": "General Sales Desk Line",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "UNKNOWN",
+      "commercial_carrier_use": "VERIFIED",
+      "broker_friendly_status": "UNKNOWN",
+      "broker_why_bullets": [
+        "Outside carrier use confirmed (VERIFIED)",
+        "Target FLATBED equipment fit (Lumber & Forest Products)",
+        "Callable facility line verified ((478) 252-5210)"
+      ]
+    },
+    {
+      "company_id": 16,
+      "operating_brand": "Miami Valley Steel Service, Inc.",
+      "lifecycle_stage": "SHORTLISTED",
+      "best_location": "Piqua, OH",
+      "best_phone": "(937) 773-7127",
+      "best_phone_label": "Traffic / Shipping Department Line",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "commercial_carrier_use": "VERIFIED",
+      "broker_friendly_status": "UNKNOWN",
+      "broker_why_bullets": [
+        "Outside carrier use confirmed (VERIFIED)",
+        "Own trucks confirmed \u2022 Outside carriers also confirmed",
+        "Callable facility line verified ((937) 773-7127)"
+      ]
+    },
+    {
+      "company_id": 17,
+      "operating_brand": "MidWest Materials, Inc.",
+      "lifecycle_stage": "SHORTLISTED",
+      "best_location": "Perry, OH",
+      "best_phone": "(440) 259-5200",
+      "best_phone_label": "General Sales Desk Line",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "UNKNOWN",
+      "commercial_carrier_use": "VERIFIED",
+      "broker_friendly_status": "UNKNOWN",
+      "broker_why_bullets": [
+        "Outside carrier use confirmed (VERIFIED)",
+        "Target FLATBED equipment fit (Steel & Metal Products)",
+        "Callable facility line verified ((440) 259-5200)"
+      ]
+    },
+    {
+      "company_id": 18,
+      "operating_brand": "Liberty Steel Products, Inc.",
+      "lifecycle_stage": "SHORTLISTED",
+      "best_location": "Hubbard, OH",
+      "best_phone": "(330) 534-7998",
+      "best_phone_label": "Main Switchboard Line",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "commercial_carrier_use": "VERIFIED",
+      "broker_friendly_status": "UNKNOWN",
+      "broker_why_bullets": [
+        "Outside carrier use confirmed (VERIFIED)",
+        "Own trucks confirmed \u2022 Outside carriers also confirmed",
+        "Callable facility line verified ((330) 534-7998)"
+      ]
+    },
+    {
+      "company_id": 19,
+      "operating_brand": "Coil Steel Processing (CSP)",
+      "lifecycle_stage": "SHORTLISTED",
+      "best_location": "Toledo, OH",
+      "best_phone": "(419) 269-9706",
+      "best_phone_label": "Desk: Shipping & Receiving Desk",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "UNKNOWN",
+      "commercial_carrier_use": "VERIFIED",
+      "broker_friendly_status": "UNKNOWN",
+      "broker_why_bullets": [
+        "Outside carrier use confirmed (VERIFIED)",
+        "Target FLATBED equipment fit (Steel & Metal Products)",
+        "Callable facility line verified ((419) 269-9706)"
+      ]
+    },
+    {
+      "company_id": 21,
+      "operating_brand": "Taylor Steel Inc.",
+      "lifecycle_stage": "SHORTLISTED",
+      "best_location": "Stoney Creek, ON",
+      "best_phone": "(905) 662-4925",
+      "best_phone_label": "General Sales Desk Line",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "commercial_carrier_use": "VERIFIED",
+      "broker_friendly_status": "UNKNOWN",
+      "broker_why_bullets": [
+        "Outside carrier use confirmed (VERIFIED)",
+        "Own trucks confirmed \u2022 Outside carriers also confirmed",
+        "Callable facility line verified ((905) 662-4925)"
+      ]
+    },
+    {
+      "company_id": 25,
+      "operating_brand": "Majestic Steel USA",
+      "lifecycle_stage": "QUALIFIED",
+      "best_location": "Bedford Heights, OH",
+      "best_phone": "(440) 786-2666",
+      "best_phone_label": "Transportation Scheduling / Sales Desk Line",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "UNKNOWN",
+      "commercial_carrier_use": "VERIFIED",
+      "broker_friendly_status": "UNKNOWN",
+      "broker_why_bullets": [
+        "Outside carrier use confirmed (VERIFIED)",
+        "Target FLATBED equipment fit (Steel & Metal Products)",
+        "Callable facility line verified ((440) 786-2666)"
+      ]
+    },
+    {
+      "company_id": 26,
+      "operating_brand": "Heidtman Steel Products, Inc.",
+      "lifecycle_stage": "QUALIFIED",
+      "best_location": "Toledo, OH",
+      "best_phone": "(419) 691-4646",
+      "best_phone_label": "Sales Desk Line",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "UNKNOWN",
+      "commercial_carrier_use": "VERIFIED",
+      "broker_friendly_status": "UNKNOWN",
+      "broker_why_bullets": [
+        "Outside carrier use confirmed (VERIFIED)",
+        "Target FLATBED equipment fit (Steel & Metal Products)",
+        "Callable facility line verified ((419) 691-4646)"
+      ]
+    },
+    {
+      "company_id": 42,
+      "operating_brand": "Bemis Manufacturing Company",
+      "lifecycle_stage": "QUALIFIED",
+      "best_location": "Sheboygan Falls, WI",
+      "best_phone": "(920) 467-4621",
+      "best_phone_label": "Corporate Inquiries Desk Line",
+      "equipment_categories": [
+        "DRY_VAN"
+      ],
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "commercial_carrier_use": "VERIFIED",
+      "broker_friendly_status": "UNKNOWN",
+      "broker_why_bullets": [
+        "Outside carrier use confirmed (VERIFIED)",
+        "Own trucks confirmed \u2022 Outside carriers also confirmed",
+        "Callable facility line verified ((920) 467-4621)"
+      ]
+    }
+  ],
+  "tier_c_secondary_prospects": [
+    {
+      "company_id": 1,
+      "operating_brand": "Beasley Forest Products",
+      "lifecycle_stage": "SHORTLISTED",
+      "best_location": "Hazlehurst, GA",
+      "best_phone": "(912) 347-5930",
+      "best_phone_label": "Direct: Mark Joiner (Logistics Manager)",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "commercial_carrier_use": "UNKNOWN",
+      "counter_factor": "Private fleet verified, outside carrier usage not confirmed yet",
+      "broker_why_bullets": [
+        "Target FLATBED equipment fit (Lumber & Forest Products)",
+        "Verified direct contact: Mark Joiner (Logistics Manager)",
+        "Own trucks confirmed \u2022 Outside carrier use not confirmed"
+      ]
+    },
+    {
+      "company_id": 14,
+      "operating_brand": "Edwards Wood Products, Inc.",
+      "lifecycle_stage": "QUALIFIED",
+      "best_location": "Marshville, NC",
+      "best_phone": "(704) 624-3270",
+      "best_phone_label": "General Logistics Desk Line",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "commercial_carrier_use": "UNKNOWN",
+      "counter_factor": "Private fleet verified, outside carrier usage not confirmed yet",
+      "broker_why_bullets": [
+        "Target FLATBED equipment fit (Lumber & Forest Products)",
+        "Callable phone route ((704) 624-3270)",
+        "Own trucks confirmed \u2022 Outside carrier use not confirmed"
+      ]
+    },
+    {
+      "company_id": 20,
+      "operating_brand": "H&D Steel Service Center, Inc.",
+      "lifecycle_stage": "QUALIFIED",
+      "best_location": "North Royalton, OH",
+      "best_phone": "(440) 237-3390",
+      "best_phone_label": "Sales Desk Line",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "commercial_carrier_use": "UNKNOWN",
+      "counter_factor": "Private fleet verified, outside carrier usage not confirmed yet",
+      "broker_why_bullets": [
+        "Target FLATBED equipment fit (Steel & Metal Products)",
+        "Callable phone route ((440) 237-3390)",
+        "Own trucks confirmed \u2022 Outside carrier use not confirmed"
+      ]
+    },
+    {
+      "company_id": 27,
+      "operating_brand": "Mack Industries, Inc.",
+      "lifecycle_stage": "QUALIFIED",
+      "best_location": "Valley City, OH",
+      "best_phone": "(330) 460-7005",
+      "best_phone_label": "General Information Desk Line",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "commercial_carrier_use": "UNKNOWN",
+      "counter_factor": "Private fleet verified, outside carrier usage not confirmed yet",
+      "broker_why_bullets": [
+        "Target FLATBED equipment fit (Concrete & Precast Products)",
+        "Callable phone route ((330) 460-7005)",
+        "Own trucks confirmed \u2022 Outside carrier use not confirmed"
+      ]
+    },
+    {
+      "company_id": 33,
+      "operating_brand": "Norwalk Concrete Industries",
+      "lifecycle_stage": "SHORTLISTED",
+      "best_location": "Norwalk, OH",
+      "best_phone": "(419) 668-8167",
+      "best_phone_label": "General Office Desk Line",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "commercial_carrier_use": "UNKNOWN",
+      "counter_factor": "Private fleet verified, outside carrier usage not confirmed yet",
+      "broker_why_bullets": [
+        "Target FLATBED equipment fit (Concrete & Precast Products)",
+        "Callable phone route ((419) 668-8167)",
+        "Own trucks confirmed \u2022 Outside carrier use not confirmed"
+      ]
+    },
+    {
+      "company_id": 34,
+      "operating_brand": "E.C. Babbert, Inc.",
+      "lifecycle_stage": "SHORTLISTED",
+      "best_location": "Canal Winchester, OH",
+      "best_phone": "(614) 837-8444",
+      "best_phone_label": "Sales Desk Line",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "commercial_carrier_use": "UNKNOWN",
+      "counter_factor": "Private fleet verified, outside carrier usage not confirmed yet",
+      "broker_why_bullets": [
+        "Target FLATBED equipment fit (Concrete & Precast Products)",
+        "Callable phone route ((614) 837-8444)",
+        "Own trucks confirmed \u2022 Outside carrier use not confirmed"
+      ]
+    },
+    {
+      "company_id": 300,
+      "operating_brand": "Cole Hardwood Inc.",
+      "lifecycle_stage": "SHORTLISTED",
+      "best_location": "Logansport, IN",
+      "best_phone": "(574) 753-3151",
+      "best_phone_label": "Desk: Sales & Shipping Switchboard",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "commercial_carrier_use": "UNKNOWN",
+      "counter_factor": "Private fleet verified, outside carrier usage not confirmed yet",
+      "broker_why_bullets": [
+        "Target FLATBED equipment fit (Lumber & Forest Products)",
+        "Callable phone route ((574) 753-3151)",
+        "Own trucks confirmed \u2022 Outside carrier use not confirmed"
+      ]
+    },
+    {
+      "company_id": 321,
+      "operating_brand": "Yoder Lumber Co.",
+      "lifecycle_stage": "SHORTLISTED",
+      "best_location": "Millersburg, OH",
+      "best_phone": "(800) 531-1704",
+      "best_phone_label": "Desk: Berlin Facility Main & Toll-Free Desk",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "commercial_carrier_use": "UNKNOWN",
+      "counter_factor": "Private fleet verified, outside carrier usage not confirmed yet",
+      "broker_why_bullets": [
+        "Target FLATBED equipment fit (Lumber & Forest Products)",
+        "Callable phone route ((800) 531-1704)",
+        "Own trucks confirmed \u2022 Outside carrier use not confirmed"
+      ]
+    }
+  ],
+  "tier_d_strong_opportunity_signals": [
+    {
+      "company_id": 40,
+      "operating_brand": "Cascade Engineering",
+      "lifecycle_stage": "DISCOVERY",
+      "commercial_carrier_use": "VERIFIED",
+      "best_location": "Grand Rapids, MI",
+      "best_phone": "574-304-0625",
+      "reason": "Commercial carrier use verified, but blocked in Discovery pool pending Stage 1 remediation/qualification review"
+    }
+  ],
+  "tier_d_research_queue_summary": {
+    "total_discovery": 445,
+    "missing_callable_phone": 0,
+    "missing_equipment_fit": 0,
+    "strong_opportunity_candidates": [
+      "Cascade Engineering"
+    ]
+  }
+}

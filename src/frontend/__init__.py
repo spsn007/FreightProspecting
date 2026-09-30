@@ -1,0 +1,3 @@
+"""
+FreightProspecting Frontend Package
+"""

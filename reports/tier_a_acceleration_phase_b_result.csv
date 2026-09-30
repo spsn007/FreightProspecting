@@ -1,0 +1,8 @@
+metric,baseline_value,final_value,net_delta,notes
+TIER_A_PRIORITY,14,19,5,5 net new verified outside carrier promotions
+TIER_B_WORTH_CALLING,99,489,390,"390 net new qualified prospects (Gate 1 passed, outside carrier UNKNOWN)"
+TIER_C_SECONDARY,7,10,3,3 net new verified private fleet movements
+TIER_D_RESEARCH_NEEDED,445,47,-398,"398 qualified, 47 maintained with qualification gaps"
+RESTRICTED,0,0,0,No restrictions
+TOTAL_OPERATING_COMPANIES,565,565,0,Total universe preserved
+GAP_TO_100_TIER_A,86,81,-5,Remaining gap for Phase C

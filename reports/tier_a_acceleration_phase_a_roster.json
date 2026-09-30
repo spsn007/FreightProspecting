@@ -1,0 +1,3397 @@
+[
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 1,
+    "wave": "A",
+    "company_id": 20,
+    "operating_brand": "H&D Steel Service Center, Inc.",
+    "current_tier": "TIER_C_SECONDARY",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      19
+    ],
+    "candidate_focus_facility_ids": [
+      19
+    ],
+    "commodity_categories": [
+      "Coated Carbon Steel & Non-Ferrous"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "VERIFIED_PRESENT",
+    "fleet_relationship_current": "IN_HOUSE_OWNED",
+    "usable_contact_route": "Sales Desk: (440) 237-3390 [GENERAL_SWITCHBOARD]",
+    "official_website": "http://www.hdsteel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier C candidate with verified private fleet; resolving outside carrier use can trigger immediate Tier A promotion."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 2,
+    "wave": "A",
+    "company_id": 27,
+    "operating_brand": "Mack Industries, Inc.",
+    "current_tier": "TIER_C_SECONDARY",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      26
+    ],
+    "candidate_focus_facility_ids": [
+      26
+    ],
+    "commodity_categories": [
+      "Precast & Prestressed Concrete"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "VERIFIED_PRESENT",
+    "fleet_relationship_current": "IN_HOUSE_OWNED",
+    "usable_contact_route": "Valley City Precast Plant Line: (330) 483-3111 [DEPARTMENT_LINE]",
+    "official_website": "http://www.mackconcrete.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier C candidate with verified private fleet; resolving outside carrier use can trigger immediate Tier A promotion."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 3,
+    "wave": "A",
+    "company_id": 33,
+    "operating_brand": "Norwalk Concrete Industries",
+    "current_tier": "TIER_C_SECONDARY",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      32
+    ],
+    "candidate_focus_facility_ids": [
+      32
+    ],
+    "commodity_categories": [
+      "Precast Concrete Infrastructure"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "VERIFIED_PRESENT",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Office Desk: (419) 668-8167 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://nciprecast.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier C candidate with verified private fleet; resolving outside carrier use can trigger immediate Tier A promotion."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 4,
+    "wave": "A",
+    "company_id": 105,
+    "operating_brand": "Precision Strip",
+    "current_tier": "TIER_C_SECONDARY",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      134
+    ],
+    "candidate_focus_facility_ids": [
+      134
+    ],
+    "commodity_categories": [
+      "Toll Coil Processing & Slitting"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "VERIFIED_PRESENT",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Outbound Logistics Desk: 419-628-2343 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.precision-strip.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier C candidate with verified private fleet; resolving outside carrier use can trigger immediate Tier A promotion."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 5,
+    "wave": "A",
+    "company_id": 300,
+    "operating_brand": "Cole Hardwood Inc.",
+    "current_tier": "TIER_C_SECONDARY",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      386
+    ],
+    "candidate_focus_facility_ids": [
+      386
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "VERIFIED_PRESENT",
+    "fleet_relationship_current": "IN_HOUSE_OWNED",
+    "usable_contact_route": "General main line: (574) 753-3151 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://colehardwood.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier C candidate with verified private fleet; resolving outside carrier use can trigger immediate Tier A promotion."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 6,
+    "wave": "A",
+    "company_id": 2,
+    "operating_brand": "Kenwal Steel Corp.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      2
+    ],
+    "candidate_focus_facility_ids": [
+      2
+    ],
+    "commodity_categories": [
+      "Steel Processing"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Main Switchboard: (313) 739-1000 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.kenwal.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 7,
+    "wave": "A",
+    "company_id": 3,
+    "operating_brand": "DECAST Ltd.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      3
+    ],
+    "candidate_focus_facility_ids": [
+      3
+    ],
+    "commodity_categories": [
+      "Precast Concrete Products"
+    ],
+    "equipment_categories": [
+      "STEP_DECK"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Toll-Free Customer Line: (800) 461-5632 [TOLL_FREE]",
+    "official_website": "https://decastltd.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 8,
+    "wave": "A",
+    "company_id": 9,
+    "operating_brand": "Shearouse Lumber Company",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      8
+    ],
+    "candidate_focus_facility_ids": [
+      8
+    ],
+    "commodity_categories": [
+      "Lumber & Pressure-Treated Wood"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Main Office Desk: (912) 748-7244 [GENERAL_SWITCHBOARD]",
+    "official_website": "http://www.shearouselumber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 9,
+    "wave": "A",
+    "company_id": 10,
+    "operating_brand": "Leslie Forest Products Ltd.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      9
+    ],
+    "candidate_focus_facility_ids": [
+      9
+    ],
+    "commodity_categories": [
+      "Specialty Softwood Lumber"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Department: (604) 952-4537 [GENERAL_SWITCHBOARD]",
+    "official_website": "http://www.leslieforest.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 10,
+    "wave": "A",
+    "company_id": 11,
+    "operating_brand": "Andersen Pacific Forest Products Ltd.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      10
+    ],
+    "candidate_focus_facility_ids": [
+      10
+    ],
+    "commodity_categories": [
+      "Specialty Construction Timbers"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Sales Desk: (604) 462-7316 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://andersenpacific.ca",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 11,
+    "wave": "A",
+    "company_id": 12,
+    "operating_brand": "Mill & Timber Products Ltd. / AP Group",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      11
+    ],
+    "candidate_focus_facility_ids": [
+      11
+    ],
+    "commodity_categories": [
+      "Cedar Timbers & Lumber"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Cedar Sales Desk: (604) 580-2781 [GENERAL_SWITCHBOARD]",
+    "official_website": "http://www.millandtimber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 12,
+    "wave": "A",
+    "company_id": 13,
+    "operating_brand": "Jordan Forest Products, LLC",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      12
+    ],
+    "candidate_focus_facility_ids": [
+      12
+    ],
+    "commodity_categories": [
+      "Softwood Dimension Lumber"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Larry Spillers: (770) 358-5931 [GENERAL_SWITCHBOARD]",
+    "official_website": "http://www.jordanlumber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 13,
+    "wave": "A",
+    "company_id": 15,
+    "operating_brand": "The Universal Steel Company",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      14
+    ],
+    "candidate_focus_facility_ids": [
+      14
+    ],
+    "commodity_categories": [
+      "Flat-Rolled Carbon Steel"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Customer Service Desk: (216) 883-4972 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.univsteel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 14,
+    "wave": "A",
+    "company_id": 22,
+    "operating_brand": "Janco Steel Ltd.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      21
+    ],
+    "candidate_focus_facility_ids": [
+      21
+    ],
+    "commodity_categories": [
+      "Flat-Rolled Carbon Steel"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "AFFILIATED_CARRIER_ENTITY",
+    "usable_contact_route": "Commercial Sales Desk: (905) 643-3535 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://jancosteel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 15,
+    "wave": "A",
+    "company_id": 24,
+    "operating_brand": "AmeriSteel",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      23
+    ],
+    "candidate_focus_facility_ids": [
+      23
+    ],
+    "commodity_categories": [
+      "Steel Processing & Fabrication"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Commercial Sales Desk: (586) 585-5250 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.ameristeel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 16,
+    "wave": "A",
+    "company_id": 28,
+    "operating_brand": "Lindsay Precast",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      27
+    ],
+    "candidate_focus_facility_ids": [
+      27
+    ],
+    "commodity_categories": [
+      "Precast Utility & Infrastructure"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Corporate Office Desk: (330) 854-6282 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://lindsayprecast.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 17,
+    "wave": "A",
+    "company_id": 29,
+    "operating_brand": "Tindall Corporation",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      28
+    ],
+    "candidate_focus_facility_ids": [
+      28
+    ],
+    "commodity_categories": [
+      "Structural Precast & Prestressed Concrete"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Switchboard Desk: (864) 576-3230 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://tindallcorp.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 18,
+    "wave": "A",
+    "company_id": 30,
+    "operating_brand": "High Concrete Group LLC",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      29
+    ],
+    "candidate_focus_facility_ids": [
+      29
+    ],
+    "commodity_categories": [
+      "Architectural & Structural Precast"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "AFFILIATED_CARRIER_ENTITY",
+    "usable_contact_route": "Jamie Sweigart: (717) 824-1542 [DIRECT_PERSON]",
+    "official_website": "https://www.highconcrete.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 19,
+    "wave": "A",
+    "company_id": 31,
+    "operating_brand": "Concast Pipe Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      30
+    ],
+    "candidate_focus_facility_ids": [
+      30
+    ],
+    "commodity_categories": [
+      "Precast Concrete Infrastructure"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Sales Desk: (519) 763-8655 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.concastpipe.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 20,
+    "wave": "A",
+    "company_id": 32,
+    "operating_brand": "Coreslab Structures (ONT) Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      31
+    ],
+    "candidate_focus_facility_ids": [
+      31
+    ],
+    "commodity_categories": [
+      "Prestressed & Precast Concrete"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Sales Ontario Desk: (905) 689-3993 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://coreslab.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 21,
+    "wave": "A",
+    "company_id": 34,
+    "operating_brand": "E.C. Babbert, Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      33
+    ],
+    "candidate_focus_facility_ids": [
+      33
+    ],
+    "commodity_categories": [
+      "Precast Concrete Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Sales Desk: (614) 837-8444 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.ecbabbert.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 22,
+    "wave": "A",
+    "company_id": 35,
+    "operating_brand": "Precon Precast Limited",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      34
+    ],
+    "candidate_focus_facility_ids": [
+      34
+    ],
+    "commodity_categories": [
+      "Engineered Precast Concrete"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Sales & Project Inquiries Desk: (519) 537-6288 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://pre-con.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 23,
+    "wave": "A",
+    "company_id": 38,
+    "operating_brand": "Integrity Tool & Mold, Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      37
+    ],
+    "candidate_focus_facility_ids": [
+      37
+    ],
+    "commodity_categories": [
+      "Automotive Plastic Injection Molds"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Canadian Headquarters General Line: (519) 737-2650 [GENERAL_SWITCHBOARD]",
+    "official_website": "http://www.teamintegrity.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 24,
+    "wave": "A",
+    "company_id": 41,
+    "operating_brand": "PTI Engineered Plastics",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      40
+    ],
+    "candidate_focus_facility_ids": [
+      40
+    ],
+    "commodity_categories": [
+      "Precision Engineered Plastics"
+    ],
+    "equipment_categories": [
+      "DRY_VAN"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Information Desk: (586) 263-5100 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://teampti.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 25,
+    "wave": "A",
+    "company_id": 43,
+    "operating_brand": "Jones Plastic & Engineering Company, LLC",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      42
+    ],
+    "candidate_focus_facility_ids": [
+      42
+    ],
+    "commodity_categories": [
+      "High-Volume Injection Molding"
+    ],
+    "equipment_categories": [
+      "DRY_VAN"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Commercial Sales Desk: (502) 491-3785 [GENERAL_SWITCHBOARD]",
+    "official_website": "http://www.jonesplastic.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 26,
+    "wave": "B",
+    "company_id": 44,
+    "operating_brand": "SyBridge Technologies",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      43
+    ],
+    "candidate_focus_facility_ids": [
+      43
+    ],
+    "commodity_categories": [
+      "Advanced Tooling & Injection Mold Manufacturing"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Company-Wide Inquiries: +1 (833) 824-1116 [TOLL_FREE]",
+    "official_website": "https://sybridge.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 27,
+    "wave": "B",
+    "company_id": 45,
+    "operating_brand": "Canfor",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      44,
+      45,
+      76,
+      87,
+      243
+    ],
+    "candidate_focus_facility_ids": [
+      44,
+      45,
+      76,
+      87,
+      243
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products",
+      "Softwood Dimension Lumber"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Office: 780-538-7700 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.canfor.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 28,
+    "wave": "B",
+    "company_id": 46,
+    "operating_brand": "Georgia-Pacific",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      46,
+      47,
+      48,
+      49
+    ],
+    "candidate_focus_facility_ids": [
+      46,
+      47,
+      48,
+      49
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Desk: 706-465-3236 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.gp.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 29,
+    "wave": "B",
+    "company_id": 47,
+    "operating_brand": "Huber Engineered Woods",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      50
+    ],
+    "candidate_focus_facility_ids": [
+      50
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Logistics Department: 706-335-7661 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.huberwood.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 30,
+    "wave": "B",
+    "company_id": 49,
+    "operating_brand": "Langdale Forest Products",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      52
+    ],
+    "candidate_focus_facility_ids": [
+      52
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Paul McRae: (229) 333-2577 [DIRECT_PERSON]",
+    "official_website": "https://langdaleforest.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 31,
+    "wave": "B",
+    "company_id": 50,
+    "operating_brand": "South Georgia Sawmill & Timber Frames",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      53
+    ],
+    "candidate_focus_facility_ids": [
+      53
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Mill Office: 912-823-3223 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://southgeorgiasawmill.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 32,
+    "wave": "B",
+    "company_id": 51,
+    "operating_brand": "Sparks Lumber Company",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      54
+    ],
+    "candidate_focus_facility_ids": [
+      54
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Office Manager: 706-635-4047 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://gatrees.org",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 33,
+    "wave": "B",
+    "company_id": 52,
+    "operating_brand": "Varn Wood Products",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      55
+    ],
+    "candidate_focus_facility_ids": [
+      55
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Mill Office Desk: 912-458-2187 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://varnwood.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 34,
+    "wave": "B",
+    "company_id": 53,
+    "operating_brand": "Woodstar Timber Products",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      56
+    ],
+    "candidate_focus_facility_ids": [
+      56
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Mill Operations: 706-768-5025 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://woodstartimber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 35,
+    "wave": "B",
+    "company_id": 54,
+    "operating_brand": "H.V. & T.G. Thompson Lumber Co.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      57
+    ],
+    "candidate_focus_facility_ids": [
+      57
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Mill Office: 912-583-2236 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://pineandcypress.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 36,
+    "wave": "B",
+    "company_id": 55,
+    "operating_brand": "Burt Lumber Company",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      58
+    ],
+    "candidate_focus_facility_ids": [
+      58
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Sales & Shipping Desk: 706-678-1531 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://burtlumbercompany.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 37,
+    "wave": "B",
+    "company_id": 56,
+    "operating_brand": "T&S Hardwoods",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      59
+    ],
+    "candidate_focus_facility_ids": [
+      59
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Desk: 478-454-3400 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://tshardwoods.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 38,
+    "wave": "B",
+    "company_id": 57,
+    "operating_brand": "Oakcrest Lumber",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      60
+    ],
+    "candidate_focus_facility_ids": [
+      60
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Mill Office: 229-649-9328 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://oakcrestlumber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 39,
+    "wave": "B",
+    "company_id": 58,
+    "operating_brand": "Pollard Lumber Company",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      61
+    ],
+    "candidate_focus_facility_ids": [
+      61
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Department: 706-541-1343 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://gatrees.org",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 40,
+    "wave": "B",
+    "company_id": 59,
+    "operating_brand": "West Fraser",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      62,
+      63,
+      77,
+      78,
+      88,
+      241,
+      242
+    ],
+    "candidate_focus_facility_ids": [
+      62,
+      63,
+      77,
+      78,
+      88,
+      241,
+      242
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products",
+      "Softwood Dimension Lumber"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Department: 403-638-3580 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.westfraser.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 41,
+    "wave": "B",
+    "company_id": 60,
+    "operating_brand": "Rex Lumber",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      65
+    ],
+    "candidate_focus_facility_ids": [
+      65
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "AFFILIATED_CARRIER_ENTITY",
+    "usable_contact_route": "Chris Brown: 334.405.2036 [DIRECT_PERSON]",
+    "official_website": "https://www.rex-lumber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 42,
+    "wave": "B",
+    "company_id": 61,
+    "operating_brand": "Boise Cascade",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      66
+    ],
+    "candidate_focus_facility_ids": [
+      66
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping & Logistics: 850-539-6432 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.bc.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 43,
+    "wave": "B",
+    "company_id": 62,
+    "operating_brand": "The Westervelt Company",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      67
+    ],
+    "candidate_focus_facility_ids": [
+      67
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Office: 205-562-5800 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://westerveltlumber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 44,
+    "wave": "B",
+    "company_id": 63,
+    "operating_brand": "Scotch Plywood Company",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      68
+    ],
+    "candidate_focus_facility_ids": [
+      68
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping & Reception Desk: 334-636-2731 [DEPARTMENT_LINE]",
+    "official_website": "https://scotchplywood.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 45,
+    "wave": "B",
+    "company_id": 64,
+    "operating_brand": "Two Rivers Lumber Co.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      69
+    ],
+    "candidate_focus_facility_ids": [
+      69
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Jody King: 334-654-8077 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://tworiverslumber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 46,
+    "wave": "B",
+    "company_id": 65,
+    "operating_brand": "Charles Ingram Lumber Co.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      70
+    ],
+    "candidate_focus_facility_ids": [
+      70
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Desk: 843-662-1483 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://cilumber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 47,
+    "wave": "B",
+    "company_id": 66,
+    "operating_brand": "Collum's Lumber Products",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      71
+    ],
+    "candidate_focus_facility_ids": [
+      71
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Operations Desk: 803-584-3451 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://collumlumber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 48,
+    "wave": "B",
+    "company_id": 67,
+    "operating_brand": "Jordan Lumber & Supply Co.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      72
+    ],
+    "candidate_focus_facility_ids": [
+      72
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Department: 910-439-8116 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://jordanlumber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 49,
+    "wave": "B",
+    "company_id": 68,
+    "operating_brand": "Troy Lumber Company",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      73
+    ],
+    "candidate_focus_facility_ids": [
+      73
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Desk: 910-576-4489 [DEPARTMENT_LINE]",
+    "official_website": "https://troy-lumber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 50,
+    "wave": "B",
+    "company_id": 69,
+    "operating_brand": "Morgan Lumber Company",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      74
+    ],
+    "candidate_focus_facility_ids": [
+      74
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Mill Office: 434-735-8151 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://morganlumber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 51,
+    "wave": "C",
+    "company_id": 70,
+    "operating_brand": "Triple J Tie & Timber",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      75
+    ],
+    "candidate_focus_facility_ids": [
+      75
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Logistics & Shipping: 662-547-6600 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://triplejtimber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 52,
+    "wave": "C",
+    "company_id": 71,
+    "operating_brand": "Tolko Industries",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      81,
+      89
+    ],
+    "candidate_focus_facility_ids": [
+      81,
+      89
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products",
+      "Softwood Dimension Lumber"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "High Level Shipping Desk: 780-926-3781 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.tolko.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 53,
+    "wave": "C",
+    "company_id": 77,
+    "operating_brand": "Vanderwell Contractors",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      90
+    ],
+    "candidate_focus_facility_ids": [
+      90
+    ],
+    "commodity_categories": [
+      "Softwood Dimension Lumber"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Lumber & Shipping Desk: 780-805-3050 [DEPARTMENT_LINE]",
+    "official_website": "https://www.vanderwell.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 54,
+    "wave": "C",
+    "company_id": 85,
+    "operating_brand": "Metal Master / Performance Master",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      101
+    ],
+    "candidate_focus_facility_ids": [
+      101
+    ],
+    "commodity_categories": [
+      "Flat-Rolled Steel Coils & Sheet"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping & Receiving Desk: 765-364-1300 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://metalmaster.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 55,
+    "wave": "C",
+    "company_id": 86,
+    "operating_brand": "Scott Steel",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      102
+    ],
+    "candidate_focus_facility_ids": [
+      102
+    ],
+    "commodity_categories": [
+      "Flat-Rolled Carbon Steel"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Traffic & Shipping Desk: 937-606-2805 [DEPARTMENT_LINE]",
+    "official_website": "https://www.scottsteelllc.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 56,
+    "wave": "C",
+    "company_id": 87,
+    "operating_brand": "Harbor Steel & Supply",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      103,
+      104,
+      105
+    ],
+    "candidate_focus_facility_ids": [
+      103,
+      104,
+      105
+    ],
+    "commodity_categories": [
+      "Steel Plate & Bar Processing",
+      "Steel Plate, Structural & Bar",
+      "Steel Plate, Structural & Tubing"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Desk: 231-723-2597 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.harborsteel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 57,
+    "wave": "C",
+    "company_id": 88,
+    "operating_brand": "Griggs Steel",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      106
+    ],
+    "candidate_focus_facility_ids": [
+      106
+    ],
+    "commodity_categories": [
+      "Specialty Tool Steel & High-Speed Steel Plate"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Sales & Dispatch: 248-298-0540 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.griggssteel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 58,
+    "wave": "C",
+    "company_id": 89,
+    "operating_brand": "H&H Metal Source",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      107
+    ],
+    "candidate_focus_facility_ids": [
+      107
+    ],
+    "commodity_categories": [
+      "Flat-Rolled Carbon Steel Coils & Sheet"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Traffic / Shipping Desk: 616-364-0113 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.hhmetalsource.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 59,
+    "wave": "C",
+    "company_id": 90,
+    "operating_brand": "Olympic Steel",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      108,
+      109,
+      110
+    ],
+    "candidate_focus_facility_ids": [
+      108,
+      109,
+      110
+    ],
+    "commodity_categories": [
+      "Carbon & Alloy Steel Plate Processing",
+      "Carbon Steel Sheet & Coil",
+      "Flat-Rolled Steel & Strip Mill Plate"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping & Receiving: 330-602-6279 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://olysteel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 60,
+    "wave": "C",
+    "company_id": 91,
+    "operating_brand": "Worthington Steel",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      111,
+      112,
+      113
+    ],
+    "candidate_focus_facility_ids": [
+      111,
+      112,
+      113
+    ],
+    "commodity_categories": [
+      "Cold-Rolled & Galvanized Steel Coils",
+      "Flat-Rolled Carbon Coils",
+      "Flat-Rolled Steel Coils & Strip"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Monroe Shipping & Receiving: 513-539-9291 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://worthingtonsteel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 61,
+    "wave": "C",
+    "company_id": 92,
+    "operating_brand": "Ratner Steel Supply",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      114
+    ],
+    "candidate_focus_facility_ids": [
+      114
+    ],
+    "commodity_categories": [
+      "Hot-Rolled & HRPO Sheet & Plate"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping & Logistics Desk: 219-787-6700 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://ratnersteel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 62,
+    "wave": "C",
+    "company_id": 93,
+    "operating_brand": "Lapham-Hickey Steel",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      115,
+      116
+    ],
+    "candidate_focus_facility_ids": [
+      115,
+      116
+    ],
+    "commodity_categories": [
+      "Carbon Steel Sheet, Plate & Tubing",
+      "Strip Steel, Flat-Rolled & Spring Steel"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Columbus Shipping Desk: 614-443-4881 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://lapham-hickey.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 63,
+    "wave": "C",
+    "company_id": 94,
+    "operating_brand": "Feralloy Corporation",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      117
+    ],
+    "candidate_focus_facility_ids": [
+      117
+    ],
+    "commodity_categories": [
+      "Flat-Rolled Carbon Steel Coils"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Portage Shipping Office: 219-787-9698 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.feralloy.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 64,
+    "wave": "C",
+    "company_id": 95,
+    "operating_brand": "Steel Warehouse",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      118
+    ],
+    "candidate_focus_facility_ids": [
+      118
+    ],
+    "commodity_categories": [
+      "Flat-Rolled Hot-Rolled & Cold-Rolled Steel"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Outbound Logistics Desk: 574-236-5100 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.steelwarehouse.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 65,
+    "wave": "C",
+    "company_id": 96,
+    "operating_brand": "Mill Steel Co.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      119,
+      120
+    ],
+    "candidate_focus_facility_ids": [
+      119,
+      120
+    ],
+    "commodity_categories": [
+      "Flat-Rolled Carbon & Stainless Steel",
+      "Flat-Rolled Coils & Sheet"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Logistics Desk: 800-247-6455 [TOLL_FREE]",
+    "official_website": "https://www.millsteel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 66,
+    "wave": "C",
+    "company_id": 97,
+    "operating_brand": "Alro Steel",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      121,
+      122
+    ],
+    "candidate_focus_facility_ids": [
+      121,
+      122
+    ],
+    "commodity_categories": [
+      "Carbon & Alloy Steel Plate",
+      "Structural Steel, Bar & Tubing"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Desk: 517-645-9900 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.alro.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 67,
+    "wave": "C",
+    "company_id": 98,
+    "operating_brand": "Russel Metals",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      123
+    ],
+    "candidate_focus_facility_ids": [
+      123
+    ],
+    "commodity_categories": [
+      "Plate, Sheet, Structural & Hollow Sections"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Desk: 519-451-1140 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.russelmetals.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 68,
+    "wave": "C",
+    "company_id": 99,
+    "operating_brand": "Samuel, Son & Co.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      124,
+      125
+    ],
+    "candidate_focus_facility_ids": [
+      124,
+      125
+    ],
+    "commodity_categories": [
+      "Flat-Rolled Automotive Steel",
+      "Flat-Rolled Carbon & Stainless Steel"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Traffic Desk: 419-470-7070 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.samuel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 69,
+    "wave": "C",
+    "company_id": 100,
+    "operating_brand": "Ryerson",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      126,
+      127,
+      128
+    ],
+    "candidate_focus_facility_ids": [
+      126,
+      127,
+      128
+    ],
+    "commodity_categories": [
+      "Carbon Steel Sheet, Plate & Tubing",
+      "Heavy Carbon Plate & Structural Steel",
+      "Sheet, Plate, Bar & Tubing"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Desk: 920-336-9500 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.ryerson.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 70,
+    "wave": "C",
+    "company_id": 101,
+    "operating_brand": "Leeco Steel",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      129,
+      130,
+      285
+    ],
+    "candidate_focus_facility_ids": [
+      129,
+      130,
+      285
+    ],
+    "commodity_categories": [
+      "Heavy Carbon & Alloy Steel Plate",
+      "Heavy Steel Plate Products",
+      "Steel Plate"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Desk: 219-763-7400 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.leecosteel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 71,
+    "wave": "C",
+    "company_id": 102,
+    "operating_brand": "FerrouSouth",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      131
+    ],
+    "candidate_focus_facility_ids": [
+      131
+    ],
+    "commodity_categories": [
+      "Flat-Rolled Hot-Rolled Coils & Plate"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Tim Nave: (256) 616-7613 [DIRECT_PERSON]",
+    "official_website": "https://ferrousouth.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 72,
+    "wave": "C",
+    "company_id": 103,
+    "operating_brand": "Kloeckner Metals",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      132
+    ],
+    "candidate_focus_facility_ids": [
+      132
+    ],
+    "commodity_categories": [
+      "Flat-Rolled Sheet & Coil Processing"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Desk: 513-769-4000 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.kloecknermetals.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 73,
+    "wave": "C",
+    "company_id": 104,
+    "operating_brand": "Target Steel",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      133
+    ],
+    "candidate_focus_facility_ids": [
+      133
+    ],
+    "commodity_categories": [
+      "Flat-Rolled Carbon Steel Coils & Sheet"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "AFFILIATED_CARRIER_ENTITY",
+    "usable_contact_route": "Traffic Desk: 734-789-9700 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://targetsteel.net",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 74,
+    "wave": "C",
+    "company_id": 106,
+    "operating_brand": "Acier Leroux",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      135
+    ],
+    "candidate_focus_facility_ids": [
+      135
+    ],
+    "commodity_categories": [
+      "Full-Line Carbon Steel Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping & Receiving: 450-641-2280 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.russelmetals.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 75,
+    "wave": "C",
+    "company_id": 107,
+    "operating_brand": "Advanced Precast Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      136
+    ],
+    "candidate_focus_facility_ids": [
+      136
+    ],
+    "commodity_categories": [
+      "Architectural Precast Concrete"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Sales Desk: (905) 857-6111 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.advancedprecastinc.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 76,
+    "wave": "D",
+    "company_id": 108,
+    "operating_brand": "AE Concrete Products Ltd.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      137
+    ],
+    "candidate_focus_facility_ids": [
+      137
+    ],
+    "commodity_categories": [
+      "Precast Concrete Utility Infrastructure"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Sales Desk: (604) 576-1808 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://aeconcrete.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 77,
+    "wave": "D",
+    "company_id": 109,
+    "operating_brand": "Coldstream Concrete Ltd.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      138
+    ],
+    "candidate_focus_facility_ids": [
+      138
+    ],
+    "commodity_categories": [
+      "Precast Concrete Drainage & Infrastructure"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Office Desk: (519) 666-0604 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.coldstreamconcrete.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 78,
+    "wave": "D",
+    "company_id": 110,
+    "operating_brand": "Con-Force Structures Ltd.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      139
+    ],
+    "candidate_focus_facility_ids": [
+      139
+    ],
+    "commodity_categories": [
+      "Prestressed & Structural Precast Concrete"
+    ],
+    "equipment_categories": [
+      "STEP_DECK"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Office Desk: (604) 242-1968 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://conforcestructures.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 79,
+    "wave": "D",
+    "company_id": 111,
+    "operating_brand": "Facca Incorporated",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      140
+    ],
+    "candidate_focus_facility_ids": [
+      140
+    ],
+    "commodity_categories": [
+      "Precast Bridge & Heavy Civil Infrastructure"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Main Office Desk: (519) 975-0377 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.facca.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 80,
+    "wave": "D",
+    "company_id": 112,
+    "operating_brand": "Fritz-Alder Precast",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      141
+    ],
+    "candidate_focus_facility_ids": [
+      141
+    ],
+    "commodity_categories": [
+      "Prestressed Hollowcore & Precast Wall Panels"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Office Desk: (519) 366-2253 [GENERAL_SWITCHBOARD]",
+    "official_website": "http://www.faprecast.ca",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 81,
+    "wave": "D",
+    "company_id": 113,
+    "operating_brand": "Rainbow Concrete Industries Ltd. / Granite Prestressed",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      142
+    ],
+    "candidate_focus_facility_ids": [
+      142
+    ],
+    "commodity_categories": [
+      "Prestressed Hollowcore & Precast Infrastructure"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Sales Desk: (705) 566-1740 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://rcil.ca",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 82,
+    "wave": "D",
+    "company_id": 114,
+    "operating_brand": "Anchor Concrete Products",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      143
+    ],
+    "candidate_focus_facility_ids": [
+      143
+    ],
+    "commodity_categories": [
+      "Precast Concrete Infrastructure & Barriers"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Logistics Desk: (613) 546-6683 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://anchorconcrete.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 83,
+    "wave": "D",
+    "company_id": 115,
+    "operating_brand": "Brooklin Concrete Products",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      144
+    ],
+    "candidate_focus_facility_ids": [
+      144
+    ],
+    "commodity_categories": [
+      "Precast Concrete Infrastructure & Buildings"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Sales Desk: (905) 655-3311 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.brooklin.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 84,
+    "wave": "D",
+    "company_id": 116,
+    "operating_brand": "Central Precast Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      145
+    ],
+    "candidate_focus_facility_ids": [
+      145
+    ],
+    "commodity_categories": [
+      "Architectural & Structural Precast"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Information Desk: (613) 225-9510 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.centralprecast.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 85,
+    "wave": "D",
+    "company_id": 117,
+    "operating_brand": "Ed's Concrete Products Ltd.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      146
+    ],
+    "candidate_focus_facility_ids": [
+      146
+    ],
+    "commodity_categories": [
+      "Precast Retaining Systems & Architectural Precast"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Office Desk: (519) 271-6590 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://edsconcrete.ca",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 86,
+    "wave": "D",
+    "company_id": 118,
+    "operating_brand": "IECS Group Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      147
+    ],
+    "candidate_focus_facility_ids": [
+      147
+    ],
+    "commodity_categories": [
+      "Precast Erosion Mats & Concrete Culverts"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Plant Operations Desk: (519) 785-4327 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://iecs.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 87,
+    "wave": "D",
+    "company_id": 119,
+    "operating_brand": "Kustom PreCast Koncrete Ltd.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      148
+    ],
+    "candidate_focus_facility_ids": [
+      148
+    ],
+    "commodity_categories": [
+      "Architectural & Commercial Precast"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Office Desk: (613) 839-5251 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://kustomprecast.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 88,
+    "wave": "D",
+    "company_id": 120,
+    "operating_brand": "Modular Precast Systems Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      149
+    ],
+    "candidate_focus_facility_ids": [
+      149
+    ],
+    "commodity_categories": [
+      "Architectural & Structural Precast Facades"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Estimating Desk: (647) 368-7688 [GENERAL_SWITCHBOARD]",
+    "official_website": "http://www.modularprecastsystems.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 89,
+    "wave": "D",
+    "company_id": 122,
+    "operating_brand": "Encore Precast LLC",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      151
+    ],
+    "candidate_focus_facility_ids": [
+      151
+    ],
+    "commodity_categories": [
+      "Precast Concrete Bridges & Infrastructure"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Main Office Desk: (513) 726-5678 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://encoreprecastllc.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 90,
+    "wave": "D",
+    "company_id": 123,
+    "operating_brand": "Everly Concrete Products Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      152
+    ],
+    "candidate_focus_facility_ids": [
+      152
+    ],
+    "commodity_categories": [
+      "Precast Concrete Infrastructure & Tanks"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Main Office Desk: (740) 635-1415 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://everlyconcrete.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 91,
+    "wave": "D",
+    "company_id": 131,
+    "operating_brand": "M CON Products Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      160
+    ],
+    "candidate_focus_facility_ids": [
+      160
+    ],
+    "commodity_categories": [
+      "Precast Concrete Pipe & Infrastructure"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Information Desk: (613) 831-1736 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://mconproducts.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 92,
+    "wave": "D",
+    "company_id": 134,
+    "operating_brand": "Northern Concrete Pipe, Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      163
+    ],
+    "candidate_focus_facility_ids": [
+      163
+    ],
+    "commodity_categories": [
+      "Precast Concrete Pipe & Infrastructure"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Thomas Washabaugh: (989) 892-3545 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.ncp-inc.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 93,
+    "wave": "D",
+    "company_id": 142,
+    "operating_brand": "Camcar Plastics, Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      171
+    ],
+    "candidate_focus_facility_ids": [
+      171
+    ],
+    "commodity_categories": [
+      "MOLDED_PLASTICS"
+    ],
+    "equipment_categories": [
+      "DRY_VAN"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Sales Desk: 231-726-5000 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.ccplasticparts.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 94,
+    "wave": "D",
+    "company_id": 143,
+    "operating_brand": "Dunnage Engineering",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      172
+    ],
+    "candidate_focus_facility_ids": [
+      172
+    ],
+    "commodity_categories": [
+      "MOLDED_PLASTICS"
+    ],
+    "equipment_categories": [
+      "DRY_VAN"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Office: 810-229-9501 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.dunnage-eng.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 95,
+    "wave": "D",
+    "company_id": 144,
+    "operating_brand": "Stone Plastics & Manufacturing, Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      173
+    ],
+    "candidate_focus_facility_ids": [
+      173
+    ],
+    "commodity_categories": [
+      "MOLDED_PLASTICS"
+    ],
+    "equipment_categories": [
+      "DRY_VAN"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Customer Service Desk: 616-748-9740 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://stoneplasticsmfg.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 96,
+    "wave": "D",
+    "company_id": 145,
+    "operating_brand": "Champion Plastics, Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      174
+    ],
+    "candidate_focus_facility_ids": [
+      174
+    ],
+    "commodity_categories": [
+      "MOLDED_PLASTICS"
+    ],
+    "equipment_categories": [
+      "DRY_VAN"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "General Office: 248-373-8995 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://championplastics.net",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 97,
+    "wave": "D",
+    "company_id": 146,
+    "operating_brand": "Delta Technologies LLC",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      175
+    ],
+    "candidate_focus_facility_ids": [
+      175
+    ],
+    "commodity_categories": [
+      "TOOLING_MOLDS"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Main Tooling Desk: 248-391-6800 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://deltatechgroup.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 98,
+    "wave": "D",
+    "company_id": 147,
+    "operating_brand": "Romeo RIM, Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      176
+    ],
+    "candidate_focus_facility_ids": [
+      176
+    ],
+    "commodity_categories": [
+      "MOLDED_PLASTICS"
+    ],
+    "equipment_categories": [
+      "DRY_VAN"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Sales Department: 586-336-5800 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://romeorim.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 99,
+    "wave": "D",
+    "company_id": 155,
+    "operating_brand": "AarKel Tool and Die Inc.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      184
+    ],
+    "candidate_focus_facility_ids": [
+      184
+    ],
+    "commodity_categories": [
+      "TOOLING_MOLDS"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping & Receiving Department: 519-627-7960 [DEPARTMENT_LINE]",
+    "official_website": "https://www.aarkel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 100,
+    "wave": "D",
+    "company_id": 196,
+    "operating_brand": "Appling County Pallet Co.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      231
+    ],
+    "candidate_focus_facility_ids": [
+      231
+    ],
+    "commodity_categories": [
+      "Pallets & Skids"
+    ],
+    "equipment_categories": [
+      "DRY_VAN"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Office: 912-367-7756 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://gatrees.org",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 101,
+    "wave": "E",
+    "company_id": 203,
+    "operating_brand": "Domtar",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      245
+    ],
+    "candidate_focus_facility_ids": [
+      245
+    ],
+    "commodity_categories": [
+      "Pulp & Paper"
+    ],
+    "equipment_categories": [
+      "DRY_VAN"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Logistics & Shipping Office: 807-223-9000 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.domtar.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 102,
+    "wave": "E",
+    "company_id": 216,
+    "operating_brand": "Reliance Steel & Aluminum",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      261
+    ],
+    "candidate_focus_facility_ids": [
+      261
+    ],
+    "commodity_categories": [
+      "Steel & Metal Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Office: 817-274-1681 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.reliance.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 103,
+    "wave": "E",
+    "company_id": 217,
+    "operating_brand": "O'Neal Steel",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      262,
+      263
+    ],
+    "candidate_focus_facility_ids": [
+      262,
+      263
+    ],
+    "commodity_categories": [
+      "Steel & Metal Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Department: 317-398-3333 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.onealsteel.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 104,
+    "wave": "E",
+    "company_id": 218,
+    "operating_brand": "Metals USA",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      264,
+      265
+    ],
+    "candidate_focus_facility_ids": [
+      264,
+      265
+    ],
+    "commodity_categories": [
+      "Steel & Metal Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Desk: 330-264-8848 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.metalsusa.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 105,
+    "wave": "E",
+    "company_id": 289,
+    "operating_brand": "Kepley-Frank Hardwood Co.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      375
+    ],
+    "candidate_focus_facility_ids": [
+      375
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Logistics: (336) 746-5419 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://kepleyfrank.us",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 106,
+    "wave": "E",
+    "company_id": 321,
+    "operating_brand": "Yoder Lumber Co.",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "SHORTLISTED",
+    "operating_facility_ids": [
+      408
+    ],
+    "candidate_focus_facility_ids": [
+      408
+    ],
+    "commodity_categories": [
+      "Lumber & Wood Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "UNKNOWN",
+    "broker_friendly_status_current": "UNKNOWN",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "AFFILIATED_CARRIER_ENTITY",
+    "usable_contact_route": "Berlin Facility Main & Toll-Free Desk: (800) 531-1704 [TOLL_FREE]",
+    "official_website": "https://www.yoderlumber.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B candidate fully actionable with FTL fit and verified website; commercial carrier use unresolved."
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "campaign_position": 107,
+    "wave": "E",
+    "company_id": 219,
+    "operating_brand": "Steel Dynamics",
+    "current_tier": "TIER_B_WORTH_CALLING",
+    "lifecycle_summary": "QUALIFIED",
+    "operating_facility_ids": [
+      266,
+      267
+    ],
+    "candidate_focus_facility_ids": [
+      267
+    ],
+    "commodity_categories": [
+      "Steel & Metal Products"
+    ],
+    "equipment_categories": [
+      "FLATBED"
+    ],
+    "commercial_carrier_use_current": "VERIFIED",
+    "broker_friendly_status_current": "VERIFIED_DIRECT_ONLY",
+    "private_fleet_current": "UNKNOWN",
+    "fleet_relationship_current": "UNKNOWN",
+    "usable_contact_route": "Shipping Office: 260-625-8100 [GENERAL_SWITCHBOARD]",
+    "official_website": "https://www.steeldynamics.com",
+    "primary_A_trigger_gap": "commercial_carrier_use",
+    "secondary_A_trigger_gap": "broker_friendly_status",
+    "research_priority_reason": "Tier B/C candidate; secondary research queue."
+  }
+]

@@ -1,0 +1,1247 @@
+[
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 1,
+    "company_id": 20,
+    "operating_brand": "H&D Steel Service Center, Inc.",
+    "research_focus_facility_id": 19,
+    "research_focus_facility_name": "North Royalton Metals Processing Center",
+    "current_state": {
+      "opportunity_tier": "TIER_C_SECONDARY",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "IN_HOUSE_OWNED",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 2,
+    "company_id": 27,
+    "operating_brand": "Mack Industries, Inc.",
+    "research_focus_facility_id": 26,
+    "research_focus_facility_name": "Valley City Production Plant (HQ: 1321 Industrial Pkwy N, Brunswick, OH)",
+    "current_state": {
+      "opportunity_tier": "TIER_C_SECONDARY",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "IN_HOUSE_OWNED",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 25,
+      "successful_200": 9,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 25 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://www.mackconcrete.com/",
+          "source_title": "Home - Mack Industries",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.mackconcrete.com/contact/",
+          "source_title": "Contact - Mack Industries",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.mackconcrete.com/locations/sheffield-lorain-ready-mix/",
+          "source_title": "Sheffield Lorain Ready Mix - Mack Industries",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 3,
+    "company_id": 33,
+    "operating_brand": "Norwalk Concrete Industries",
+    "research_focus_facility_id": 32,
+    "research_focus_facility_name": "Norwalk Production Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_C_SECONDARY",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 4,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 22 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://nciprecast.com",
+          "source_title": "NCI Precast Residential Services &#8211; Precast Concrete and Precast Concrete Accessories",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://nciprecast.com/contact/",
+          "source_title": "Contact &#8211; NCI Precast Residential Services",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://nciprecast.com/contact/",
+          "source_title": "Contact &#8211; NCI Precast Residential Services",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 4,
+    "company_id": 105,
+    "operating_brand": "Precision Strip",
+    "research_focus_facility_id": 134,
+    "research_focus_facility_name": "Precision Strip - Minster Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_C_SECONDARY",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 40,
+      "successful_200": 26,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "carrier_evidence": "Official website explicitly documents common carrier shipping: 'Shipment of material by approved common carrier can also be arranged by our Traffic Coordinator.' and 'We can arrange for shipment of your material on either a Precision Strip Transport truck or by common carrier, to or from virtually anywhere in the U.S., at a cost competitive price.'",
+      "broker_evidence": "Official website explicitly offers and coordinates 3PL and brokerage services: 'In addition, Precision Strip Transport provides third party logistic (3PL) services to handle all your transportation needs. By outsourcing your logistic function to Precision Strip Transportation Services, you preserve valuable time that can be used to operate your business.'",
+      "fleet_evidence": "Fleet of over 200 trucks operated (already VERIFIED_PRESENT in DB).",
+      "contact_evidence": "Jamey Eilerman listed on official Transportation Services page as Main Contact (jamey_eilerman@precision-strip.com).",
+      "sources": [
+        {
+          "source_url": "https://www.precision-strip.com/capabilities/transportation-services/",
+          "source_title": "Precision Strip - Transportation Services",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "is_primary": true
+        }
+      ]
+    },
+    "evaluation_decision": "PROMOTE_TO_TIER_A",
+    "proposed_changes": [
+      {
+        "company_id": 105,
+        "operating_brand": "Precision Strip",
+        "facility_id": 134,
+        "field": "commercial_carrier_use",
+        "subject_type": "facility",
+        "action": "ACCEPT",
+        "old_value": "UNKNOWN",
+        "proposed_value": "VERIFIED",
+        "verification_status": "VERIFIED",
+        "source_url": "https://www.precision-strip.com/capabilities/transportation-services/",
+        "source_title": "Precision Strip - Transportation Services",
+        "source_type": "COMPANY_WEBSITE",
+        "rationale": "Official Transportation Services page explicitly documents shipment of material by approved common carrier arranged by Traffic Coordinator."
+      },
+      {
+        "company_id": 105,
+        "operating_brand": "Precision Strip",
+        "facility_id": 134,
+        "field": "broker_friendly_status",
+        "subject_type": "facility",
+        "action": "ACCEPT",
+        "old_value": "UNKNOWN",
+        "proposed_value": "VERIFIED_ACCEPTS",
+        "verification_status": "VERIFIED",
+        "source_url": "https://www.precision-strip.com/capabilities/transportation-services/",
+        "source_title": "Precision Strip - Transportation Services",
+        "source_type": "COMPANY_WEBSITE",
+        "rationale": "Official corporate site explicitly documents provision and utilization of 3PL logistics services and approved common carriers."
+      },
+      {
+        "company_id": 105,
+        "operating_brand": "Precision Strip",
+        "facility_id": 134,
+        "field": "contact",
+        "subject_type": "contact",
+        "action": "ACCEPT",
+        "old_value": "NONE",
+        "proposed_value": "Jamey Eilerman | Main Contact - Transportation Services | jamey_eilerman@precision-strip.com [DIRECT_PERSON] | 419-628-2343 [GENERAL_SWITCHBOARD]",
+        "verification_status": "VERIFIED",
+        "source_url": "https://www.precision-strip.com/capabilities/transportation-services/",
+        "source_title": "Precision Strip - Transportation Services",
+        "source_type": "COMPANY_WEBSITE",
+        "contact_payload": {
+          "facility_id": 134,
+          "contact_identity": "NAMED_PERSON",
+          "person_name": "Jamey Eilerman",
+          "department": "Transportation & Logistics",
+          "exact_published_title": "Main Contact - Transportation Services",
+          "phone_number": "419-628-2343",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "jamey_eilerman@precision-strip.com",
+          "email_directness": "DIRECT_PERSON",
+          "role_category": "FREIGHT_LOGISTICS",
+          "outbound_shipping_procurement_relevance": "VERIFIED",
+          "broker_procurement_relevance": "VERIFIED",
+          "is_primary_contact": 1
+        },
+        "rationale": "Directly published logistics / transportation main contact on official corporate capabilities page."
+      }
+    ]
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 5,
+    "company_id": 300,
+    "operating_brand": "Cole Hardwood Inc.",
+    "research_focus_facility_id": 386,
+    "research_focus_facility_name": "Logansport Hardwood Facility & Concentration Yard",
+    "current_state": {
+      "opportunity_tier": "TIER_C_SECONDARY",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "IN_HOUSE_OWNED",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 4,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 22 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://colehardwood.com",
+          "source_title": "Cole Hardwood",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://colehardwood.com/employee-contact/",
+          "source_title": "Our People &#8211; Cole Hardwood",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://colehardwood.com/about-us/",
+          "source_title": "About Us &#8211; Cole Hardwood",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 6,
+    "company_id": 2,
+    "operating_brand": "Kenwal Steel Corp.",
+    "research_focus_facility_id": 2,
+    "research_focus_facility_name": "Dearborn Steel Service Center",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 7,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 23 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://kenwal.com/",
+          "source_title": "Homepage - Kenwal Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://kenwal.com/contact/",
+          "source_title": "Contact - Kenwal Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://kenwal.com/kenwal-steel-services/material-control-delivery/",
+          "source_title": "Material Control &amp; Delivery - Kenwal Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 7,
+    "company_id": 3,
+    "operating_brand": "DECAST Ltd.",
+    "research_focus_facility_id": 3,
+    "research_focus_facility_name": "Utopia Precast Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 2
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 6,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 22 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://decastltd.com",
+          "source_title": "Home | DECAST",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://decastltd.com/contact.php",
+          "source_title": "Contact | DECAST",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://decastltd.com/contact.php",
+          "source_title": "Contact | DECAST",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 8,
+    "company_id": 9,
+    "operating_brand": "Shearouse Lumber Company",
+    "research_focus_facility_id": 8,
+    "research_focus_facility_name": "Pooler Sawmill & Wood Preservation Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 1,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "http://www.shearouselumber.com",
+          "source_title": "Sawmill, Lumber Yard, Wood, Shearouse Lumber Co., Pooler, Georgia",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 9,
+    "company_id": 10,
+    "operating_brand": "Leslie Forest Products Ltd.",
+    "research_focus_facility_id": 9,
+    "research_focus_facility_name": "Delta Remanufacturing Mill & Timber Yard",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 2
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 2,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 22 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://www.leslieforest.com/",
+          "source_title": "Leslie Forest Products Ltd.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.leslieforest.com/contact",
+          "source_title": "CONTACT | leslieforest",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 10,
+    "company_id": 11,
+    "operating_brand": "Andersen Pacific Forest Products Ltd.",
+    "research_focus_facility_id": 10,
+    "research_focus_facility_name": "Maple Ridge Specialty Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 24,
+      "successful_200": 6,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 24 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://andersenpacific.ca",
+          "source_title": "Andersen Pacific Forest Products \u2014 Specialty BC Lumber",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://andersenpacific.ca/contact",
+          "source_title": "Contact \u2014 Andersen Pacific Forest Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://andersenpacific.ca/contact",
+          "source_title": "Contact \u2014 Andersen Pacific Forest Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 11,
+    "company_id": 12,
+    "operating_brand": "Mill & Timber Products Ltd. / AP Group",
+    "research_focus_facility_id": 11,
+    "research_focus_facility_name": "Surrey Mill Operations / Pan-Abode Division (HQ: 95 Schooner St, Coquitlam, BC)",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 6,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 23 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://millandtimber.com/",
+          "source_title": "Mill &amp; Timber Products Ltd.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://millandtimber.com/contact-us/",
+          "source_title": "Contact Us &#8211; Mill &amp; Timber Products Ltd.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://millandtimber.com/contact-us/",
+          "source_title": "Contact Us &#8211; Mill &amp; Timber Products Ltd.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 12,
+    "company_id": 13,
+    "operating_brand": "Jordan Forest Products, LLC",
+    "research_focus_facility_id": 12,
+    "research_focus_facility_name": "Barnesville Curve-Sawing Mill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 3,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 23 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://jordanlumber.com/",
+          "source_title": "Jordan Lumber &amp; Supply - Bringing Lumber to Life Sustainably Since 1939",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://jordanlumber.com/contact/",
+          "source_title": "Contact Us - Jordan Lumber &amp; Supply",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://jordanlumber.com/contact/",
+          "source_title": "Contact Us - Jordan Lumber &amp; Supply",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 13,
+    "company_id": 15,
+    "operating_brand": "The Universal Steel Company",
+    "research_focus_facility_id": 14,
+    "research_focus_facility_name": "Cleveland Flat-Rolled Processing Center",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 22,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 22 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://univsteel.com/",
+          "source_title": "Universal Steel, Co",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://univsteel.com/contact",
+          "source_title": "Contact Us",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://univsteel.com/error404",
+          "source_title": "Error",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 14,
+    "company_id": 22,
+    "operating_brand": "Janco Steel Ltd.",
+    "research_focus_facility_id": 21,
+    "research_focus_facility_name": "Stoney Creek Coil Processing Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "AFFILIATED_CARRIER_ENTITY",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 5,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 22 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://jancosteel.com",
+          "source_title": "Flat-rolled steel specialists | Janco Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://jancosteel.com/contact",
+          "source_title": "Contact | Janco Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://jancosteel.com/contact",
+          "source_title": "Contact | Janco Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 15,
+    "company_id": 24,
+    "operating_brand": "AmeriSteel",
+    "research_focus_facility_id": 23,
+    "research_focus_facility_name": "Warren Fabrication & Coating Division (Processing: 33900 Doreka, Fraser, MI)",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 5,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "fleet_evidence": "Official website explicitly documents owned delivery truck: 'In-House Delivery Our own 2022 Kenworth truck with 40,000lb capacity ensures reliable delivery... delivery across Metro Detroit.' and '2023 Purchased new 40,000 lb capacity delivery truck'.",
+      "carrier_evidence": "Outside commercial carrier use unmentioned; preserved UNKNOWN.",
+      "broker_evidence": "Broker acceptance unmentioned; preserved UNKNOWN.",
+      "sources": [
+        {
+          "source_url": "https://www.ameristeel.com/about",
+          "source_title": "About AmeriSteel | Family-Owned Steel Service Center",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "is_primary": true
+        }
+      ]
+    },
+    "evaluation_decision": "MOVE_TO_TIER_C",
+    "proposed_changes": [
+      {
+        "company_id": 24,
+        "operating_brand": "AmeriSteel",
+        "facility_id": 23,
+        "field": "private_fleet_present",
+        "subject_type": "facility",
+        "action": "ACCEPT",
+        "old_value": "UNKNOWN",
+        "proposed_value": "VERIFIED_PRESENT",
+        "verification_status": "VERIFIED",
+        "source_url": "https://www.ameristeel.com/about",
+        "source_title": "About AmeriSteel | Family-Owned Steel Service Center",
+        "source_type": "COMPANY_WEBSITE",
+        "rationale": "Official website confirms in-house 2022 Kenworth delivery truck with 40,000lb capacity."
+      },
+      {
+        "company_id": 24,
+        "operating_brand": "AmeriSteel",
+        "facility_id": 23,
+        "field": "fleet_relationship_type",
+        "subject_type": "facility",
+        "action": "ACCEPT",
+        "old_value": "UNKNOWN",
+        "proposed_value": "IN_HOUSE_OWNED",
+        "verification_status": "VERIFIED",
+        "source_url": "https://www.ameristeel.com/about",
+        "source_title": "About AmeriSteel | Family-Owned Steel Service Center",
+        "source_type": "COMPANY_WEBSITE",
+        "rationale": "Company explicitly states 'Our own 2022 Kenworth truck', proving in-house owned asset."
+      }
+    ]
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 16,
+    "company_id": 28,
+    "operating_brand": "Lindsay Precast",
+    "research_focus_facility_id": 27,
+    "research_focus_facility_name": "Canal Fulton Headquarters & Precast Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 31,
+      "successful_200": 11,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 31 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://www.lindsayprecast.com/",
+          "source_title": "Lindsay Precast | Home | North American Concrete and Steel Manufacturer",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.lindsayprecast.com/colorado-dacono-location",
+          "source_title": "Lindsay Precast | Colorado - Dacono - Location",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.lindsayprecast.com/colorado-plant-a-location",
+          "source_title": "Lindsay Precast | Colorado - Plant A - Location",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 17,
+    "company_id": 29,
+    "operating_brand": "Tindall Corporation",
+    "research_focus_facility_id": 28,
+    "research_focus_facility_name": "Spartanburg Precast / Prestressed Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 18,
+    "company_id": 30,
+    "operating_brand": "High Concrete Group LLC",
+    "research_focus_facility_id": 29,
+    "research_focus_facility_name": "Denver Precast Plant & Operations",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "AFFILIATED_CARRIER_ENTITY",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 4
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 5,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 23 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://www.highconcrete.com",
+          "source_title": "High Concrete Group | Leader In Precast Concrete Solutions",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.highconcrete.com/about-us/leadership-team/",
+          "source_title": "Precast Concrete Specialists | Sales Reps | High Concrete",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.highconcrete.com/contact-us/",
+          "source_title": "Contact Top Precast Concrete Experts | High Concrete Group",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 19,
+    "company_id": 31,
+    "operating_brand": "Concast Pipe Inc.",
+    "research_focus_facility_id": 30,
+    "research_focus_facility_name": "Puslinch Production Facility & Head Office",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 5,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 23 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://www.concastpipe.com",
+          "source_title": "Concast Pipe Inc - Precast Concrete Products - Home - Concast Pipe Inc",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.concastpipe.com/contact/",
+          "source_title": "CONTACT CONCAST - Concast Pipe Inc",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.concastpipe.com/contact/",
+          "source_title": "CONTACT CONCAST - Concast Pipe Inc",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 20,
+    "company_id": 32,
+    "operating_brand": "Coreslab Structures (ONT) Inc.",
+    "research_focus_facility_id": 31,
+    "research_focus_facility_name": "Dundas Precast Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 4
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 32,
+      "successful_200": 32,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 32 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://www.coreslab.com/",
+          "source_title": "Precast Concrete Manufacturer | Coreslab Structures",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.coreslab.com/contact",
+          "source_title": "Contact Coreslab | Precast Concrete Manufacturer",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.coreslab.com/contact/",
+          "source_title": "Contact Coreslab | Precast Concrete Manufacturer",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 21,
+    "company_id": 34,
+    "operating_brand": "E.C. Babbert, Inc.",
+    "research_focus_facility_id": 33,
+    "research_focus_facility_name": "Canal Winchester Precast Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 4,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 22 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://www.ecbabbert.com",
+          "source_title": "EC Babbert - Quality Pre-cast Concrete Products and Services",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.ecbabbert.com/contact/",
+          "source_title": "Contact - EC Babbert",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.ecbabbert.com/contact/",
+          "source_title": "Contact - EC Babbert",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 22,
+    "company_id": 35,
+    "operating_brand": "Precon Precast Limited",
+    "research_focus_facility_id": 34,
+    "research_focus_facility_name": "Woodstock Precast Manufacturing Plant (Admin: Suite 210, 7025 Langer Drive, Mississauga, ON)",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 5,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 23 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://pre-con.com",
+          "source_title": "Precon",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://pre-con.com/products-services/transportation-infrastructure/",
+          "source_title": "Transportation Infrastructure - PreCon",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://pre-con.com/wp-content/plugins/contact-form-7/includes/css/styles.css",
+          "source_title": "Precon Precast Limited",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 23,
+    "company_id": 38,
+    "operating_brand": "Integrity Tool & Mold, Inc.",
+    "research_focus_facility_id": 37,
+    "research_focus_facility_name": "Oldcastle Headquarters & Advanced Manufacturing Complex",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 27,
+      "successful_200": 27,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 27 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://teamintegrity.com/",
+          "source_title": "Home - Team Integrity",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://teamintegrity.com/contact-canada/",
+          "source_title": "Contact Canada - Team Integrity",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://teamintegrity.com/contact-mexico/",
+          "source_title": "Contact Mexico - Team Integrity",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 24,
+    "company_id": 41,
+    "operating_brand": "PTI Engineered Plastics",
+    "research_focus_facility_id": 40,
+    "research_focus_facility_name": "Macomb Advanced Molding Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 7,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 22 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://teampti.com",
+          "source_title": "Plastic Injection Molding Company - Custom Injection Molding - PTI Engineered Plastics, Inc.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://teampti.com/contact/",
+          "source_title": "Contact - PTI Engineered Plastics, Inc.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://teampti.com/contact/",
+          "source_title": "Contact - PTI Engineered Plastics, Inc.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "A",
+    "campaign_position": 25,
+    "company_id": 43,
+    "operating_brand": "Jones Plastic & Engineering Company, LLC",
+    "research_focus_facility_id": 42,
+    "research_focus_facility_name": "Jeffersontown Headquarters & Molding Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 8,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 23 attempted URLs. Insufficient primary evidence to verify commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination rules.",
+      "sources": [
+        {
+          "source_url": "https://www.jonesplastic.com/",
+          "source_title": "Injection Molding &amp; Assembly | Jones Plastic",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.jonesplastic.com/contact-us",
+          "source_title": "Request an Injection Molding Quote | Jones Plastic",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.jonesplastic.com/facility-locations",
+          "source_title": "Facility Locations | Jones Plastic Manufacturing",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  }
+]

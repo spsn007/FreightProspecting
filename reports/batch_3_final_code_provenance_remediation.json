@@ -1,0 +1,131 @@
+{
+  "title": "FreightProspecting V1 \u2014 Batch 3 Final Code & Provenance Remediation Report",
+  "generated_at_utc": "2026-09-29T04:18:31Z",
+  "status": "CANDIDATE PENDING INDEPENDENT CODEX AUDIT",
+  "database_verification": {
+    "active_database_path": "data\\prospects.db",
+    "active_database_sha256": "95D7FE5C53676AD286CF460F0B9A76D676A4678683D04193634804F4D42FB321",
+    "expected_database_sha256": "95D7FE5C53676AD286CF460F0B9A76D676A4678683D04193634804F4D42FB321",
+    "hash_matched": true,
+    "pragma_integrity_check": "ok",
+    "pragma_foreign_key_violations": 0,
+    "factual_db_mutations": 0
+  },
+  "remediated_areas": {
+    "1_grouped_directory_semantic_parity": {
+      "description": "Unified all opportunity evaluations across opportunity engine, metadata aggregation, and grouped directory assembler.",
+      "source_of_truth_function": "src.backend.db.opportunity.evaluate_company_opportunity_from_context",
+      "parity_verified": true,
+      "tier_counts": {
+        "TIER_A_PRIORITY": 13,
+        "TIER_B_WORTH_CALLING": 102,
+        "TIER_C_SECONDARY": 5,
+        "TIER_D_RESEARCH_NEEDED": 445,
+        "RESTRICTED": 0,
+        "TOTAL_OPERATING_COMPANIES": 565
+      },
+      "disjointness_verified": true,
+      "exhaustiveness_verified": true
+    },
+    "2_query_performance_and_anti_n_plus_1": {
+      "prehydration_architecture": "src.backend.db.opportunity.load_opportunity_universe_context runs exactly 4 bulk SQL queries to prehydrate all 565 companies, facilities, contacts, and suppressions into memory.",
+      "benchmarks": {
+        "get_universe_metadata": {
+          "previous_sql_statements": 2273,
+          "remediated_sql_statements": 16,
+          "statement_reduction_pct": 99.3,
+          "latency_ms": 33.34
+        },
+        "get_opportunity_tier_company_ids": {
+          "previous_sql_statements": 2261,
+          "remediated_sql_statements": 4,
+          "statement_reduction_pct": 99.8,
+          "latency_ms": 41.2
+        },
+        "get_company_grouped_prospects_all_565": {
+          "previous_sql_statements": 2296,
+          "remediated_sql_statements": 24,
+          "statement_reduction_pct": 99.0,
+          "latency_ms": 341.18
+        },
+        "get_company_grouped_prospects_tier_b_page25": {
+          "previous_sql_statements": 4557,
+          "remediated_sql_statements": 39,
+          "statement_reduction_pct": 99.1,
+          "latency_ms": 97.48
+        }
+      }
+    },
+    "3_crawler_provenance_repair_34_records": {
+      "description": "Executed fresh read-only network HTTP probes for the 34 former zero-page crawler candidate records, capturing DNS status, HTTP status, final URL, response SHA-256, page title, and strict allowed result statuses.",
+      "verification_file": "reports/batch_3_final_provenance_verification.json",
+      "probe_summary": {
+        "SUCCESS_FETCHED": 9,
+        "HTTP_403": 18,
+        "HTTP_OTHER_ERROR": 4,
+        "DNS_FAILURE": 2,
+        "TIMEOUT": 1
+      },
+      "invariant_compliance": "Zero failed/blocked/unresolvable URLs marked as SUCCESS or SUCCESS_FETCHED. Every record uses only allowed result enums."
+    },
+    "4_closure_json_historical_and_evidence_accuracy": {
+      "description": "Corrected reports/batch_3_final_closure_correction.json to reflect exact SQLite raw claim truth and primary evidence sources.",
+      "claims_corrected": {
+        "2747": {
+          "facility_id": 134,
+          "field": "fleet_relationship_type",
+          "sqlite_raw_value": "IN_HOUSE_OWNED",
+          "status": "SUPERSEDED_HISTORICAL_PRESERVED"
+        },
+        "2752": {
+          "facility_id": 482,
+          "field": "fleet_relationship_type",
+          "sqlite_raw_value": "IN_HOUSE_OWNED",
+          "status": "SUPERSEDED_HISTORICAL_PRESERVED"
+        }
+      },
+      "evidence_sources_verified": {
+        "749": {
+          "url": "https://tolko.com/company/logistics/",
+          "title": "Tolko Industries - Logistics",
+          "type": "COMPANY_WEBSITE"
+        },
+        "752": {
+          "url": "https://www.precision-strip.com/shipping-receiving",
+          "title": "Precision Strip - Shipping & Receiving",
+          "type": "COMPANY_WEBSITE"
+        },
+        "753": {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "title": "O'Neal Steel - Terms & Conditions of Sale",
+          "type": "COMPANY_WEBSITE"
+        },
+        "755": {
+          "url": "https://peerlesssteel.com",
+          "title": "Peerless Steel - Homepage",
+          "type": "COMPANY_WEBSITE"
+        }
+      },
+      "contact_truth_verified": {
+        "contact_666": {
+          "person_name": "Chris Brown",
+          "phone_directness": "DIRECT_PERSON",
+          "phone_number": "334.405.2036",
+          "role_category": "OPERATIONS",
+          "procurement_relevance": "UNKNOWN"
+        }
+      },
+      "company_identities_verified": {
+        "company_16": "Miami Valley Steel Service, Inc.",
+        "company_19": "Coil Steel Processing (CSP)"
+      }
+    },
+    "5_regression_testing_and_verification": {
+      "test_suite": "tests/test_batch3_code_provenance_closure.py",
+      "test_points_covered": 23,
+      "audit_ledger_regenerated": true,
+      "result_json_regenerated": true,
+      "result_csv_regenerated": true
+    }
+  }
+}

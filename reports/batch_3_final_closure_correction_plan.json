@@ -1,0 +1,187 @@
+{
+  "title": "FreightProspecting V1 — Batch 3 Final Closure Remediation Plan",
+  "planned_at_utc": "2026-09-29T03:15:00Z",
+  "rule_version": "1.1",
+  "starting_candidate_db_hash": "321200AB1C3070A2CC233640D3E8ED8984645A42576321A8E14DEBCBE6B8C670",
+  "verified_pre_closure_backup": "data/backups/prospects_backup_pre_batch3_final_closure_20260929_083324.db",
+  "backup_verified_hash": "321200AB1C3070A2CC233640D3E8ED8984645A42576321A8E14DEBCBE6B8C670",
+  "scope_boundaries": {
+    "rerun_batch3_from_scratch": false,
+    "select_new_companies": false,
+    "start_batch_4": false,
+    "start_stage_3h_batch_2": false,
+    "perform_final_codex_audit": false,
+    "batch3_status": "CANDIDATE_PENDING_CODEX_FREEZE"
+  },
+  "planned_claim_corrections": [
+    {
+      "claim_id": 2743,
+      "company_id": 71,
+      "company_name": "Tolko Industries Ltd.",
+      "facility_id": 81,
+      "facility_name": "Armstrong Division",
+      "claim_field": "commercial_carrier_use",
+      "current_value": "VERIFIED",
+      "current_status": "VERIFIED",
+      "target_value": "UNKNOWN",
+      "target_status": "UNKNOWN",
+      "action": "APPEND_ONLY_SUPERSESSION",
+      "supersession_rationale": "Corporate logistics webpage (tolko.com/company/logistics/) describes general corporate transport partnerships but lacks facility-specific shipping/carrier instructions for Armstrong Division. Reverts to honest UNKNOWN.",
+      "evidence_source_id": 749,
+      "evidence_url": "https://tolko.com/company/logistics/",
+      "facility_row_update": {
+        "commercial_carrier_use": "UNKNOWN"
+      },
+      "expected_company_tier": "TIER_B_WORTH_CALLING"
+    },
+    {
+      "claim_id": 2747,
+      "company_id": 105,
+      "company_name": "Precision Strip, Inc.",
+      "facility_id": 134,
+      "facility_name": "Precision Strip - Minster Facility",
+      "claim_field": "fleet_relationship_type",
+      "current_value": "IN_HOUSE_OWNED",
+      "current_status": "VERIFIED",
+      "target_value": "UNKNOWN",
+      "target_status": "UNKNOWN",
+      "action": "APPEND_ONLY_SUPERSESSION",
+      "supersession_rationale": "Official shipping & receiving page confirms fleet of over 200 trucks (verifying private_fleet_present = VERIFIED_PRESENT in Claim 2746), but provides no primary-source legal ownership structure for Minster Facility. Reverts to honest UNKNOWN.",
+      "evidence_source_id": 752,
+      "evidence_url": "https://www.precision-strip.com/shipping-receiving",
+      "facility_row_update": {
+        "fleet_relationship_type": "UNKNOWN"
+      },
+      "expected_company_tier": "TIER_C_SECONDARY"
+    },
+    {
+      "claim_id": 2748,
+      "company_id": 217,
+      "company_name": "O'Neal Steel",
+      "facility_id": 262,
+      "facility_name": "Birmingham Service Center",
+      "claim_field": "commercial_carrier_use",
+      "current_value": "VERIFIED",
+      "current_status": "VERIFIED",
+      "target_value": "UNKNOWN",
+      "target_status": "UNKNOWN",
+      "action": "APPEND_ONLY_SUPERSESSION",
+      "supersession_rationale": "Corporate sales terms (onealsteel.com/terms-and-conditions/) define customer pickup & common carrier delivery terms across O'Neal, but do not provide facility-specific outside carrier routing or operational carrier dispatch instructions for Birmingham. Reverts to honest UNKNOWN.",
+      "evidence_source_id": 753,
+      "evidence_url": "https://www.onealsteel.com/terms-and-conditions/",
+      "facility_row_update": {
+        "commercial_carrier_use": "UNKNOWN"
+      },
+      "expected_company_tier": "TIER_B_WORTH_CALLING"
+    },
+    {
+      "claim_id": 2752,
+      "company_id": 395,
+      "company_name": "Peerless Steel Company",
+      "facility_id": 482,
+      "facility_name": "Troy Tool Steel & Alloy Distribution Center",
+      "claim_field": "fleet_relationship_type",
+      "current_value": "IN_HOUSE_OWNED",
+      "current_status": "VERIFIED",
+      "target_value": "UNKNOWN",
+      "target_status": "UNKNOWN",
+      "action": "APPEND_ONLY_SUPERSESSION",
+      "supersession_rationale": "Official website confirms operating fleet of trucks and common carrier delivery (preserving private_fleet_present = VERIFIED_PRESENT and commercial_carrier_use = VERIFIED), but does not document legal asset ownership structure. Reverts to honest UNKNOWN.",
+      "evidence_source_id": 755,
+      "evidence_url": "https://peerlesssteel.com",
+      "facility_row_update": {
+        "fleet_relationship_type": "UNKNOWN"
+      },
+      "expected_company_tier": "TIER_D_RESEARCH_NEEDED"
+    }
+  ],
+  "planned_contact_corrections": [
+    {
+      "contact_id": 666,
+      "company_id": null,
+      "facility_id": 65,
+      "facility_name": "Graceville Sawmill",
+      "person_name": "Chris Brown",
+      "current_state": {
+        "exact_published_title": "General Manager",
+        "role_category": "FREIGHT_LOGISTICS",
+        "phone_number": "334.405.2036",
+        "phone_directness": "DIRECT_PERSON",
+        "outbound_shipping_procurement_relevance": "VERIFIED"
+      },
+      "target_state": {
+        "exact_published_title": "General Manager",
+        "role_category": "OPERATIONS",
+        "phone_number": "334.405.2036",
+        "phone_directness": "DIRECT_PERSON",
+        "outbound_shipping_procurement_relevance": "UNKNOWN"
+      },
+      "correction_rationale": "Title is General Manager at Rex Transportation (Graceville, FL). General Manager represents executive plant/fleet operations rather than direct freight procurement / load tendering desk. Conservative truth requires role_category = OPERATIONS and outbound_shipping_procurement_relevance = UNKNOWN."
+    },
+    {
+      "contact_id": 669,
+      "company_id": null,
+      "facility_id": 69,
+      "facility_name": "Two Rivers Lumber - Demopolis Mill",
+      "person_name": "Jody King",
+      "current_state": {
+        "exact_published_title": "Demopolis Mill Manager",
+        "role_category": "OPERATIONS",
+        "phone_number": "334-654-8077",
+        "phone_directness": "DIRECT_PERSON",
+        "outbound_shipping_procurement_relevance": "INFERRED"
+      },
+      "target_state": {
+        "exact_published_title": "Demopolis General Manager",
+        "role_category": "OPERATIONS",
+        "phone_number": "334-654-8077",
+        "phone_directness": "GENERAL_SWITCHBOARD",
+        "outbound_shipping_procurement_relevance": "UNKNOWN"
+      },
+      "correction_rationale": "Exact published title on official contact page (tworiverslumber.com/contact/) is 'Demopolis General Manager' (not 'Demopolis Mill Manager'). The published phone 334-654-8077 is the main Demopolis facility switchboard line, not a direct personal line. Conservative truth requires exact title match, phone_directness = GENERAL_SWITCHBOARD, and outbound_shipping_procurement_relevance = UNKNOWN."
+    }
+  ],
+  "planned_production_code_fixes": [
+    {
+      "file": "src/backend/db/opportunity.py",
+      "issue": "Mixed-facility restriction logic: evaluate_broker_opportunity previously treated ANY facility having VERIFIED_DIRECT_ONLY as restricting the entire corporate entity.",
+      "solution": "Refactor company evaluation: a company is RESTRICTED only if a company-level DNC/restriction exists or if ALL active/ready operating facilities are VERIFIED_DIRECT_ONLY. When a company has mixed facilities (e.g. Butler is DIRECT_ONLY, Columbia City is broker UNKNOWN), evaluate the company across its actionable, non-restricted facilities so the qualifying non-restricted facility determines the corporate opportunity tier.",
+      "impact": "Steel Dynamics (Company 219) moves from RESTRICTED to TIER_B_WORTH_CALLING. Butler facility remains RESTRICTED individually."
+    },
+    {
+      "file": "src/backend/db/queries.py",
+      "issue": "Directory tier filtering pushdown divergence: build_company_filter_sql had divergent manual SQL subqueries for tier filtering, causing mismatches (e.g. Engine=99 vs Directory=103).",
+      "solution": "Align build_company_filter_sql to derive company ID filtering directly from the authoritative opportunity classification engine (evaluate_broker_opportunity). Guarantees ENGINE == METADATA == DIRECTORY COUNTS across all 5 tiers and enforces 0 tier overlap.",
+      "impact": "Eliminates all directory tier divergence and ensures complete exclusivity across all filters."
+    }
+  ],
+  "planned_provenance_repairs": [
+    {
+      "item": "Google Search Discovery Source Types",
+      "scope": "87 records in batch_3 staging files where source_type was misclassified as COMPANY_WEBSITE for google.com URLs.",
+      "action": "Correct source_type to SEARCH_DISCOVERY."
+    },
+    {
+      "item": "Zero-Pages Crawler Records",
+      "scope": "34 records in batch_3 crawler raw files showing zero pages checked.",
+      "action": "Review official sources or explicitly document OFFICIAL_SOURCE_INACCESSIBLE / INSUFFICIENT_PUBLIC_EVIDENCE."
+    }
+  ],
+  "expected_final_tier_distribution": {
+    "TIER_A_PRIORITY": 13,
+    "TIER_B_WORTH_CALLING": 102,
+    "TIER_C_SECONDARY": 5,
+    "TIER_D_RESEARCH_NEEDED": 445,
+    "RESTRICTED": 0,
+    "TOTAL_OPERATING_COMPANIES": 565
+  },
+  "invariants_to_enforce": {
+    "engine_metadata_directory_equality": true,
+    "directory_tier_exclusivity": true,
+    "lifecycle_drift_count": 0,
+    "operational_tables_count": 0,
+    "safer_only_active_claims": 0,
+    "orphan_claims": 0,
+    "duplicate_current_claims": 0
+  }
+}

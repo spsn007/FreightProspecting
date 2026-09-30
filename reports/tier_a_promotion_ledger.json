@@ -1,0 +1,17 @@
+[
+  {
+    "promotion_number": 1,
+    "promoted_at_utc": "2026-09-29T05:46:37Z",
+    "wave": "A",
+    "company_id": 105,
+    "operating_brand": "Precision Strip",
+    "focus_facility_id": 134,
+    "previous_tier": "TIER_C_SECONDARY",
+    "new_tier": "TIER_A_PRIORITY",
+    "primary_trigger": "commercial_carrier_use = VERIFIED",
+    "secondary_trigger": "NONE",
+    "primary_source_url": "https://www.precision-strip.com/capabilities/transportation-services/",
+    "direct_contact_added": "Jamey Eilerman (Main Contact, jamey_eilerman@precision-strip.com, (419) 628-2343)",
+    "db_sha256_after_wave": "FE73DC3F051A7AEE7FC83ED7E0D7DF2CA05EFEE9C9C2629001327B551AF104DF"
+  }
+]

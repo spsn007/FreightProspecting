@@ -1,0 +1,49 @@
+{
+  "title": "FreightProspecting V1 \u2014 Batch 2 Final Surgical Correction Summary",
+  "generated_at_utc": "2026-09-28T20:33:04Z",
+  "rule_version": "1.1",
+  "pre_correction_db_hash": "CD3DE3D6485B27DE60392BA081349884781998676A66CD70D5AF23A6FE37F062",
+  "final_db_hash": "05BAE4B965716E16B902B4C37E293B7C03278B62490C03E8344F33F4FEC87D65",
+  "blockers_resolved": [
+    {
+      "blocker_id": 1,
+      "title": "Northern Concrete Pipe unsupported VERIFIED fleet claims",
+      "entity": "Northern Concrete Pipe, Inc. (Company 134, Facility 163)",
+      "action_taken": "CASE B executed. Conservative append-only supersession: superseded Claim 2728 and Claim 2729 with UNKNOWN claims (IDs 2731, 2732) backed by corporate site Source 217. Updated facilities row 163 private_fleet_present = UNKNOWN, fleet_relationship_type = UNKNOWN.",
+      "tier_outcome": "Company 134 naturally evaluates to TIER_B_WORTH_CALLING (Bay City is QUALIFIED, fleet unknown, carrier unknown)."
+    },
+    {
+      "blocker_id": 2,
+      "title": "get_universe_metadata multi-facility tier-count semantic mismatch",
+      "component": "src/backend/db/queries.py",
+      "action_taken": "Refactored get_universe_metadata() to evaluate operating companies directly using evaluate_broker_opportunity() across all 565 companies as single source of truth.",
+      "performance_benchmark_ms": "48.19 ms average across all 565 companies",
+      "counterexample_fixed": "Company with Fac A QUALIFIED (no carrier) and Fac B DISCOVERY (carrier VERIFIED) now evaluates to TIER_A_PRIORITY across both evaluate_broker_opportunity and get_universe_metadata."
+    }
+  ],
+  "universe_metrics": {
+    "total_operating_companies": 565,
+    "total_facilities": 653,
+    "tier_distribution": {
+      "ALL": 565,
+      "TIER_A_PRIORITY": 12,
+      "TIER_B_WORTH_CALLING": 104,
+      "TIER_C_SECONDARY": 4,
+      "TIER_D_RESEARCH_NEEDED": 445,
+      "RESTRICTED": 0,
+      "PRIORITY": 12,
+      "WORTH_CALLING": 104,
+      "SECONDARY": 4,
+      "RESEARCH": 445
+    },
+    "safer_only_active_claims_count": 0,
+    "outside_roster_mutations_count": 0,
+    "lifecycle_diff_count": 0
+  },
+  "regression_tests": [
+    "test_11_ncp_fleet_claims_superseded_and_unknown",
+    "test_12_multi_facility_mixed_lifecycle_counterexample",
+    "test_13_universe_metadata_strict_invariant_match"
+  ],
+  "test_suite_status": "396 passed, 0 failed"
+}

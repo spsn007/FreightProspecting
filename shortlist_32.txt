@@ -1,0 +1,226 @@
+Total Shortlisted: 32
+
+1. [CID 1 | FID 1] Beasley Forest Products
+   Facility: Hazlehurst Sawmill - 770 Uvalda Hwy, Hazlehurst, GA
+   Web: https://www.beasleyforestproducts.com
+   Carrier=UNKNOWN, Fleet=VERIFIED_PRESENT, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(VERIFIED): Hardwood lumber, pallet cants, crane mats, timber mats, railroad crossties
+   Contacts (2): Phil Clements (Sawmill Manager) phone=(912) 375-5174 (GENERAL_SWITCHBOARD) email=None; Mark Joiner (Logistics Manager) phone=(912) 347-5930 (DIRECT_PERSON) email=None
+
+2. [CID 2 | FID 2] Kenwal Steel Corp.
+   Facility: Dearborn Steel Service Center - 8223 W. Warren, Dearborn, MI
+   Web: https://www.kenwal.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(VERIFIED): Flat-rolled steel coils, slit coils, master coils
+   Contacts (1): NoName (Main Switchboard) phone=(313) 739-1000 (GENERAL_SWITCHBOARD) email=None
+
+3. [CID 3 | FID 3] DECAST Ltd.
+   Facility: Utopia Precast Plant - 8807 County Road 56, Utopia, ON
+   Web: https://decastltd.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: STEP_DECK(INFERRED): Precast concrete drainage, bridge girders, concrete pressure pipes, tunnel segments
+   Contacts (2): NoName (Main Reception) phone=(705) 734-2892 (RECEPTION) email=info@decastltd.com; NoName (Toll-Free Customer Line) phone=(800) 461-5632 (TOLL_FREE) email=None
+
+4. [CID 5 | FID 4] WMG Technologies
+   Facility: Tooling Division (Malden Location) - 4035 Malden Road, Windsor, ON
+   Web: https://wmgtec.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Automotive injection molds, tooling solutions, optic inserts, exterior/interior molded components
+   Contacts (1): NoName (Tooling Division Reception) phone=(519) 972-9032 (RECEPTION) email=None
+
+5. [CID 6 | FID 5] Battle Lumber Company
+   Facility: Wadley Hardwood Sawmill & Multi-Plant Facility - 11261 Hwy 1 South, Wadley, GA
+   Web: https://www.battlelumberco.com
+   Carrier=VERIFIED, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hardwood grade lumber, pallet cants, crane mats, railroad crossties, industrial mulch
+   Contacts (1): NoName (NoTitle) phone=(478) 252-5210 (GENERAL_SWITCHBOARD) email=sales@battlelumberco.com
+
+6. [CID 7 | FID 6] Custom Cut Timber Products
+   Facility: Forsyth Sawmill & Timber Yard - 701 West Main Street (Mailing: PO Box 344, Smarr, GA 31086), Forsyth, GA
+   Web: None
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Crane mats, bridge timbers, cants, rough hardwood lumber, blocking/dunnage
+   Contacts (1): Chris Yawn (CEO / Manager) phone=(478) 214-8688 (GENERAL_SWITCHBOARD) email=custommats@yahoo.com
+
+7. [CID 10 | FID 9] Leslie Forest Products Ltd.
+   Facility: Delta Remanufacturing Mill & Timber Yard - 7902 Progress Way, Delta, BC
+   Web: http://www.leslieforest.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Western Red Cedar, Hemlock, Douglas Fir, SPF industrial lumber packages, clear lumber
+   Contacts (2): James Sangara (Mill Coordinator / Cedar Sales) phone=(604) 952-4537 (GENERAL_SWITCHBOARD) email=shipping@leslieforest.com; NoName (Shipping Department) phone=(604) 952-4537 (GENERAL_SWITCHBOARD) email=shipping@leslieforest.com
+
+8. [CID 16 | FID 15] Miami Valley Steel Service, Inc.
+   Facility: Piqua Processing & Distribution Facility - 201 Fox Drive, Piqua, OH
+   Web: https://www.miamivalleysteel.com
+   Carrier=VERIFIED, Fleet=VERIFIED_PRESENT, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Heavy/light gauge slitting, multi-blanking, cut-to-length sheets, oscillate coils, HR/CR/Galvanized
+   Contacts (2): NoName (NoTitle) phone=(937) 773-7127 (GENERAL_SWITCHBOARD) email=traffic@miamivalleysteel.com; Doug Fenter (NoTitle) phone=(937) 773-7127 (GENERAL_SWITCHBOARD) email=doug.fenter@miamivalleysteel.com
+
+9. [CID 17 | FID 16] MidWest Materials, Inc.
+   Facility: Perry Steel Service Center - 3687 Shepard Road, Perry, OH
+   Web: https://midwestmaterials.com
+   Carrier=VERIFIED, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hot-rolled, pickled & oiled, cold-rolled, coated steel coils, stretcher-leveled sheets
+   Contacts (1): NoName (NoTitle) phone=(440) 259-5200 (GENERAL_SWITCHBOARD) email=None
+
+10. [CID 18 | FID 17] Liberty Steel Products, Inc.
+   Facility: Hubbard Steel Processing Center - 7193 Hubbard-Masury Road SE, Hubbard, OH
+   Web: https://libertysteelproducts.com
+   Carrier=VERIFIED, Fleet=VERIFIED_PRESENT, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Slit coil, cut-to-length sheets, configured blanking, pickling
+   Contacts (1): NoName (NoTitle) phone=(330) 534-7998 (GENERAL_SWITCHBOARD) email=None
+
+11. [CID 19 | FID 18] Coil Steel Processing (CSP)
+   Facility: Toledo Stretcher Leveling & Processing Plant - 1604 Prosperity Road, Toledo, OH
+   Web: https://coilsteelprocessing.com
+   Carrier=VERIFIED, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(VERIFIED): Stretcher-leveled cut-to-length steel sheets, floor plate, HR, CR, pickled & oiled coils
+   Contacts (1): NoName (NoTitle) phone=(419) 269-9700 (GENERAL_SWITCHBOARD) email=sales@coilsteelprocessing.com
+
+12. [CID 21 | FID 20] Taylor Steel Inc.
+   Facility: Stoney Creek Flat-Rolled Service Center - 477 Arvin Avenue, Stoney Creek, ON
+   Web: https://taylorsteel.com
+   Carrier=VERIFIED, Fleet=VERIFIED_PRESENT, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Slit coil, blanking, cut-to-length sheets, pickling, toll processing (automotive and industrial grades)
+   Contacts (1): NoName (NoTitle) phone=(905) 662-4925 (GENERAL_SWITCHBOARD) email=sales@taylorsteel.com
+
+13. [CID 25 | FID 24] Majestic Steel USA
+   Facility: Bedford Heights Flagship Service Center & Distribution Hub - 26100 Richmond Road, Bedford Heights, OH
+   Web: https://www.majesticsteel.com
+   Carrier=VERIFIED, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Galvanized, galvalume, aluminized, cold-rolled master coils, slit coils, cut-to-length sheets
+   Contacts (1): NoName (NoTitle) phone=(440) 786-2666 (GENERAL_SWITCHBOARD) email=press@majesticsteel.com
+
+14. [CID 26 | FID 25] Heidtman Steel Products, Inc.
+   Facility: Toledo Headquarters & Processing Facility - 2401 Front St., Toledo, OH
+   Web: https://heidtman.com
+   Carrier=VERIFIED, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hot-rolled pickled & oiled, high-strength cold-rolled, coated steel, slitting, leveling
+   Contacts (1): NoName (NoTitle) phone=(419) 691-4646 (GENERAL_SWITCHBOARD) email=Hsp.sales@heidtman.com
+
+15. [CID 30 | FID 29] High Concrete Group LLC
+   Facility: Denver Precast Plant & Operations - 125 Denver Road, Denver, PA
+   Web: https://www.highconcrete.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Architectural precast facades, hollowcore slabs, precast parking structures, stadium risers
+   Contacts (4): Jamie Sweigart (VP of Sales) phone=(717) 824-1542 (DIRECT_PERSON) email=jsweigart@high.net; Alexandra "Ace" Clayton (Business Development) phone=(717) 538-8078 (DIRECT_PERSON) email=aclayton@high.net; Eric Rowits (Sales Representative) phone=(717) 336-9300 (GENERAL_SWITCHBOARD) email=erowits@high.net; NoName (Inquiry Desk) phone=(717) 336-9300 (GENERAL_SWITCHBOARD) email=concrete.answers@high.net
+
+16. [CID 31 | FID 30] Concast Pipe Inc.
+   Facility: Puslinch Production Facility & Head Office - 299 Brock Road South, Puslinch, ON
+   Web: https://www.concastpipe.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Reinforced concrete pipe, maintenance holes, box culverts, catch basins, utility chambers
+   Contacts (1): NoName (NoTitle) phone=(519) 763-8655 (GENERAL_SWITCHBOARD) email=sales@concastpipe.com
+
+17. [CID 32 | FID 31] Coreslab Structures (ONT) Inc.
+   Facility: Dundas Precast Facility - 205 Coreslab Drive, Dundas, ON
+   Web: https://coreslab.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hollowcore floor/roof slabs, precast columns, structural beams, bridge components
+   Contacts (4): Jordan Davidson (Sales Manager) phone=(905) 689-3993 (GENERAL_SWITCHBOARD) email=SalesOntario@coreslab.com; Jacob Cammisoli (Sales Consultant GTA) phone=(905) 689-3993 (GENERAL_SWITCHBOARD) email=jcammisoli@coreslab.com; Tom Beasley (Sales Consultant Niagara) phone=(905) 689-3993 (GENERAL_SWITCHBOARD) email=tbeasley@coreslab.com; NoName (Sales Ontario Desk) phone=(905) 689-3993 (GENERAL_SWITCHBOARD) email=SalesOntario@coreslab.com
+
+18. [CID 33 | FID 32] Norwalk Concrete Industries
+   Facility: Norwalk Production Plant - 80 Commerce Drive, Norwalk, OH
+   Web: https://nciprecast.com
+   Carrier=UNKNOWN, Fleet=VERIFIED_PRESENT, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Highway barrier walls, utility vaults, manholes, storm water management structures, lift stations
+   Contacts (1): NoName (NoTitle) phone=(419) 668-8167 (GENERAL_SWITCHBOARD) email=info@nciprecast.com
+
+19. [CID 34 | FID 33] E.C. Babbert, Inc.
+   Facility: Canal Winchester Precast Plant - 7415 Diley Rd. (Mailing: PO Box 203), Canal Winchester, OH
+   Web: https://www.ecbabbert.com
+   Carrier=UNKNOWN, Fleet=VERIFIED_PRESENT, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Sanitary structures, storm sewer structures, grease interceptors, transformer pads, pull boxes
+   Contacts (1): NoName (NoTitle) phone=(614) 837-8444 (GENERAL_SWITCHBOARD) email=sales@ecbabbert.com
+
+20. [CID 35 | FID 34] Precon Precast Limited
+   Facility: Woodstock Precast Manufacturing Plant (Admin: Suite 210, 7025 Langer Drive, Mississauga, ON) - 1100 Dundas Street, Woodstock, ON
+   Web: https://pre-con.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Precast bridge girders, architectural wall panels, structural infrastructure elements
+   Contacts (1): NoName (NoTitle) phone=(519) 537-6288 (GENERAL_SWITCHBOARD) email=sales@pre-con.com
+
+21. [CID 40 | FID 39] Cascade Engineering
+   Facility: Grand Rapids World Headquarters & Manufacturing Complex - 5050 33rd Street SE, Grand Rapids, MI
+   Web: https://cascadeng.com
+   Carrier=VERIFIED, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Industrial roll-out waste containers, automotive exterior components, material handling pallets
+   Contacts (1): Danielle Flores (Director of Supply Chain and Purchasing) phone=574-304-0625 (DIRECT_PERSON) email=danielle.flores@cascadeng.com
+
+22. [CID 42 | FID 41] Bemis Manufacturing Company
+   Facility: Sheboygan Falls Dedicated Shipping & Receiving Center (HQ: 300 Mill St) - W2940 Old County Road PP, Sheboygan Falls, WI
+   Web: https://bemismfg.com
+   Carrier=VERIFIED, Fleet=VERIFIED_PRESENT, BrokerFriendly=UNKNOWN
+   Equip/Products: DRY_VAN(INFERRED): Large custom injection-molded products, proprietary consumer/commercial products, healthcare products
+   Contacts (1): NoName (NoTitle) phone=(920) 467-4621 (GENERAL_SWITCHBOARD) email=corp@BemisMfg.com
+
+23. [CID 44 | FID 43] SyBridge Technologies
+   Facility: Lakeshore Advanced Tooling Center - 465 Jutras Drive South, Lakeshore, ON
+   Web: https://sybridge.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): High-precision plastic injection molds, tooling, life sciences and automotive tooling
+   Contacts (1): Ryan J. Hurley (Logistics Manager) phone=(519) 727-9949 (GENERAL_SWITCHBOARD) email=info@sybridge.com
+
+24. [CID 60 | FID 65] Rex Lumber
+   Facility: Bristol Sawmill - 18601 NW County Road 12, Bristol, FL
+   Web: https://www.rex-lumber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber, timbers
+   Contacts (1): NoName (NoTitle) phone=850-643-2238 (GENERAL_SWITCHBOARD) email=bristol@rex-lumber.com
+
+25. [CID 63 | FID 68] Scotch Plywood Company
+   Facility: Fulton Plywood Plant - 385 Plywood Road, Fulton, AL
+   Web: https://scotchplywood.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Pine structural plywood panels
+   Contacts (1): NoName (NoTitle) phone=334-636-2731 (DEPARTMENT_LINE) email=None
+
+26. [CID 68 | FID 73] Troy Lumber Company
+   Facility: Troy Sawmill - 110 Leslie Street, Troy, NC
+   Web: https://troy-lumber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber, decking
+   Contacts (1): NoName (NoTitle) phone=910-576-4489 (DEPARTMENT_LINE) email=None
+
+27. [CID 77 | FID 90] Vanderwell Contractors
+   Facility: Mitsue Sawmill - 44061 W Mitsue Ind Road, Slave Lake, AB
+   Web: https://www.vanderwell.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): SPF dimension lumber, wood pellets, chips
+   Contacts (1): NoName (NoTitle) phone=780-805-3050 (DEPARTMENT_LINE) email=general@vanderwell.com
+
+28. [CID 86 | FID 102] Scott Steel
+   Facility: Scott Steel - Piqua Processing Facility - 915 S Downing St, Piqua, OH
+   Web: https://www.scottsteelllc.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Low-carbon steel coils, slit coils, edging, cut sheets, precision blanks
+   Contacts (1): NoName (NoTitle) phone=937-606-2805 (DEPARTMENT_LINE) email=traffic@scottsteelllc.com
+
+29. [CID 155 | FID 184] AarKel Tool and Die Inc.
+   Facility: AarKel Wallaceburg Tooling & Shipping Facility - 760 Lowe Ave, Wallaceburg, ON
+   Web: https://www.aarkel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Large plastic injection molds, die cast tooling, structural automotive molds
+   Contacts (1): NoName (NoTitle) phone=519-627-7960 (DEPARTMENT_LINE) email=diecastsales@aarkel.com
+
+30. [CID 289 | FID 375] Kepley-Frank Hardwood Co.
+   Facility: Lexington Hardwood Sawmill - 975 Conrad Hill Mine Rd, Lexington, NC
+   Web: https://kepleyfrank.us
+   Carrier=UNKNOWN, Fleet=UNKNOWN, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Green and kiln dried hardwood lumber, crossties, pallet cants
+   Contacts (1): NoName (NoTitle) phone=(336) 746-5419 (GENERAL_SWITCHBOARD) email=info@kepleyfrank.us
+
+31. [CID 300 | FID 386] Cole Hardwood Inc.
+   Facility: Bourbon Hardwood Facility - 1611 W Shaffer Rd, Bourbon, IN
+   Web: https://colehardwood.com
+   Carrier=UNKNOWN, Fleet=VERIFIED_PRESENT, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Indiana hardwood lumber, kiln dried walnut, oak, hickory
+   Contacts (1): NoName (NoTitle) phone=(574) 342-8050 (GENERAL_SWITCHBOARD) email=sales@colehardwood.com
+
+32. [CID 321 | FID 408] Yoder Lumber Co.
+   Facility: Berlin Sawmill & Millwork Facility - 4515 Township Road 367, Millersburg, OH
+   Web: https://www.yoderlumber.com
+   Carrier=UNKNOWN, Fleet=VERIFIED_PRESENT, BrokerFriendly=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Appalachian hardwood lumber, architectural millwork, pallet cants
+   Contacts (1): Wayne Yoder (Shipping Manager) phone=(330) 893-3031 (DIRECT_PERSON) email=info@yoderlumber.com
+

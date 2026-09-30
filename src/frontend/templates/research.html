@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Evidence Ledger — FreightProspecting V1{% endblock %}
+
+{% block breadcrumb %}
+<span>Evidence Ledger</span>
+<span style="color:#cbd5e1">/</span>
+<span style="font-weight:400; color:var(--color-text-muted);">Evidence Sources & Provenance</span>
+{% endblock %}
+
+{% block content %}
+<div>
+  <div class="section-header">
+    <div>
+      <h1 class="section-title">Evidence Sources & Provenance Ledger</h1>
+      <p class="section-subtitle">Field-level traceability for all business assertions. Zero fabrication, audited primary and secondary evidence sources.</p>
+    </div>
+    <div style="display:flex; gap:0.5rem;">
+      <span class="badge badge-verified">{{ counts.verified_claims_count }} Verified Claims</span>
+      <span class="badge badge-inferred">{{ counts.inferred_claims_count }} Inferred</span>
+      <span class="badge badge-unknown">{{ counts.unknown_claims_count }} Unknown</span>
+    </div>
+  </div>
+
+  <!-- Three-Dimensional Time Model Banner -->
+  <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem 1.5rem; margin-bottom:1.5rem; box-shadow:var(--shadow-sm);">
+    <h3 style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin-bottom:0.35rem;">
+      Three-Dimensional Time Model
+    </h3>
+    <p style="font-size:0.8125rem; color:var(--color-text-muted); margin-bottom:0.75rem;">
+      FreightProspecting enforces three non-negotiable temporal dimensions across all evidence records:
+    </p>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; font-size:0.8125rem;">
+      <div style="background:var(--color-border-subtle); border:1px solid var(--color-border); border-radius:6px; padding:0.75rem;">
+        <div style="font-weight:700; color:#0284c7; margin-bottom:0.2rem;">1. source_published_at</div>
+        <div style="color:var(--color-text-muted); font-size:0.75rem;">Timestamp when source document/article was officially published by the company or authority.</div>
+      </div>
+      <div style="background:var(--color-border-subtle); border:1px solid var(--color-border); border-radius:6px; padding:0.75rem;">
+        <div style="font-weight:700; color:#0284c7; margin-bottom:0.2rem;">2. event_at</div>
+        <div style="color:var(--color-text-muted); font-size:0.75rem;">Timestamp when the real-world event occurred. Nullable for persistent facts (addresses, phone numbers). No text strings like 'Active'.</div>
+      </div>
+      <div style="background:var(--color-border-subtle); border:1px solid var(--color-border); border-radius:6px; padding:0.75rem;">
+        <div style="font-weight:700; color:#0284c7; margin-bottom:0.2rem;">3. observed_at</div>
+        <div style="color:var(--color-text-muted); font-size:0.75rem;">Timestamp when the researcher or system retrieved and recorded the evidence.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Evidence Sources Table -->
+  <div class="table-card">
+    <div class="table-toolbar">
+      <div style="font-weight:700; color:var(--color-text-main); font-size:0.9375rem;">
+        Audited Evidence Sources ({{ sources|length }} Records)
+      </div>
+      <span class="badge badge-verified">✓ Field-Level Provenance Backed</span>
+    </div>
+
+    <div style="overflow-x:auto;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Source Type</th>
+            <th>Publisher / Title</th>
+            <th>URL / Access Location</th>
+            <th>Observed At</th>
+            <th>Event Timestamp</th>
+            <th>Classification</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in sources %}
+          <tr>
+            <td style="font-family:var(--font-mono); font-weight:700; color:var(--color-text-muted);">
+              #{{ s.id }}
+            </td>
+            <td>
+              <span class="badge badge-equipment" style="font-size:0.6875rem;">
+                {{ s.source_type }}
+              </span>
+            </td>
+            <td style="font-weight:600; color:var(--color-text-main);">
+              {{ s.source_title_publisher }}
+            </td>
+            <td style="max-width:280px;">
+              {% if s.source_url %}
+              <a href="{{ s.source_url | safe_url }}" target="_blank" rel="noopener" style="color:#0284c7; text-decoration:none; font-family:var(--font-mono); font-size:0.75rem; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="{{ s.source_url }}">
+                {{ s.source_url }} ↗
+              </a>
+              {% else %}
+              <span style="color:#94a3b8; font-style:italic;">Direct verification record / No URL</span>
+              {% endif %}
+            </td>
+            <td style="font-family:var(--font-mono); font-size:0.75rem; color:#475569;">
+              {{ s.observed_at }}
+            </td>
+            <td style="font-family:var(--font-mono); font-size:0.75rem; color:#475569;">
+              {{ s.event_at if s.event_at else 'NULL (Persistent)' }}
+            </td>
+            <td>
+              {% if s.is_primary_source %}
+              <span class="badge badge-verified" style="font-size:0.6875rem;">Primary Source</span>
+              {% else %}
+              <span class="badge badge-unknown" style="font-size:0.6875rem;">Secondary / {{ s.source_type }}</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

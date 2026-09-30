@@ -1,0 +1,1517 @@
+{% extends "base.html" %}
+
+{% block title %}Master Directory — FreightProspecting V1{% endblock %}
+
+{% block breadcrumb %}
+<span>Master Directory</span>
+<span style="color:#cbd5e1">/</span>
+<span style="font-weight:400; color:var(--color-text-muted);">Shipper Prospects</span>
+{% endblock %}
+
+{% block content %}
+<script id="company-groups-data" type="application/json">{{ (company_groups or [])|tojson|safe }}</script>
+<script id="prospects-data" type="application/json">{{ (prospects or [])|tojson|safe }}</script>
+<script id="pagination-data" type="application/json">{{ (pagination or {})|tojson|safe }}</script>
+<script id="metadata-data" type="application/json">{{ (metadata or {})|tojson|safe }}</script>
+<script id="taxonomy-overview-data" type="application/json">{{ (taxonomy_overview or [])|tojson|safe }}</script>
+<script id="commodity-families-data" type="application/json">{{ (commodity_families or [])|tojson|safe }}</script>
+<script id="commodity-categories-data" type="application/json">{{ (commodity_categories or [])|tojson|safe }}</script>
+
+<div x-data="{
+  viewMode: 'COMPANIES',
+  searchQuery: '',
+  tierTab: 'ALL',
+  lifecycleFilter: 'ALL',
+  lifecycleTab: 'ALL',
+  structureFilter: 'ALL',
+  facilityCountFilter: 'ALL',
+  frictionFilter: 'ALL',
+  equipmentFilter: 'ALL',
+  fleetFilter: 'ALL',
+  carrierFilter: 'ALL',
+  procurementFilter: 'ALL',
+  phoneFilter: 'ALL',
+  outreachFilter: 'ALL',
+  familyFilter: 'ALL',
+  categoryFilter: 'ALL',
+  seasonalityFilter: 'ALL',
+  unreviewedOnly: false,
+  showMoreFilters: false,
+  showLifecycleGuide: false,
+  showOpportunityModal: false,
+  sortOption: (new URLSearchParams(window.location.search).get('q') || '').trim() ? 'relevance' : 'name_asc',
+  currentPage: 1,
+  pageSize: 25,
+  expandedCompanies: {},
+  companies: JSON.parse(document.getElementById('company-groups-data').textContent),
+  pagination: JSON.parse(document.getElementById('pagination-data').textContent || 'null'),
+  meta: JSON.parse(document.getElementById('metadata-data').textContent || '{}'),
+  init() {
+    const p = new URLSearchParams(window.location.search);
+    if (p.has('tier')) this.tierTab = p.get('tier');
+    if (p.has('stage')) {
+      this.lifecycleFilter = p.get('stage');
+      this.lifecycleTab = p.get('stage');
+    }
+    if (p.has('q')) {
+      this.searchQuery = p.get('q');
+      if (this.searchQuery.trim()) {
+        this.sortOption = 'relevance';
+      }
+      this.$nextTick(() => {
+        const el = document.getElementById('master-search-input');
+        if (el) {
+          el.focus();
+          const len = el.value.length;
+          el.setSelectionRange(len, len);
+        }
+      });
+    }
+    if (p.has('friction')) this.frictionFilter = p.get('friction');
+    if (p.has('equipment')) this.equipmentFilter = p.get('equipment');
+    if (p.has('family')) this.familyFilter = p.get('family');
+    if (p.has('category')) this.categoryFilter = p.get('category');
+    if (p.has('seasonality')) this.seasonalityFilter = p.get('seasonality');
+    if (p.has('structure')) this.structureFilter = p.get('structure');
+    if (p.has('facility_count')) this.facilityCountFilter = p.get('facility_count');
+    if (p.has('fleet')) this.fleetFilter = p.get('fleet');
+    if (p.has('carrier')) this.carrierFilter = p.get('carrier');
+    if (p.has('procurement')) this.procurementFilter = p.get('procurement');
+    if (p.has('outreach')) this.outreachFilter = p.get('outreach');
+    if (p.has('unreviewed')) this.unreviewedOnly = p.get('unreviewed') === 'true';
+    if (this.pagination) {
+      this.currentPage = this.pagination.page || 1;
+      this.pageSize = this.pagination.page_size || 25;
+    }
+
+    // Listen for outreach call logged events
+    window.addEventListener('outreach-logged', (e) => {
+      const data = e.detail;
+      if (!data) return;
+      const comp = this.companies.find(c => c.company_id === data.company_id);
+      if (comp) {
+        comp.outreach_status = data.disposition;
+        comp.attempt_count = data.attempt_count;
+        comp.last_contacted_at = data.contacted_at;
+        comp.next_follow_up_at = data.follow_up_at;
+        comp.last_feedback_notes = data.feedback_notes;
+        comp.is_viewed = 1;
+        if (data.facility_id) {
+          comp.last_facility_id = data.facility_id;
+          const fac = comp.facilities.find(f => f.facility_id === data.facility_id);
+          if (fac) {
+            comp.last_facility_name = fac.facility_name;
+            fac.is_last_contacted = true;
+          }
+        }
+      }
+    });
+  },
+  applySearch() {
+    const params = new URLSearchParams(window.location.search);
+    const q = this.searchQuery ? this.searchQuery.trim() : '';
+    if (q) {
+      params.set('q', q);
+    } else {
+      params.delete('q');
+    }
+    params.set('page', '1');
+    window.location.href = '/prospects?' + params.toString();
+  },
+  clearSearch() {
+    this.searchQuery = '';
+    this.applySearch();
+  },
+  selectTierTab(tab) {
+    this.tierTab = tab;
+    const params = new URLSearchParams(window.location.search);
+    if (tab && tab !== 'ALL') {
+      params.set('tier', tab);
+    } else {
+      params.delete('tier');
+    }
+    params.set('page', '1');
+    window.location.href = '/prospects?' + params.toString();
+  },
+  applyLifecycleFilter(st) {
+    const val = st !== undefined ? st : this.lifecycleFilter;
+    this.lifecycleFilter = val;
+    this.lifecycleTab = val;
+    const params = new URLSearchParams(window.location.search);
+    if (val && val !== 'ALL') {
+      params.set('stage', val);
+    } else {
+      params.delete('stage');
+    }
+    params.set('page', '1');
+    window.location.href = '/prospects?' + params.toString();
+  },
+  selectTab(tab) {
+    this.applyLifecycleFilter(tab);
+  },
+  get prospects() {
+    if (!this._allProspects) {
+      this._allProspects = this.companies.flatMap(c => c.facilities || []);
+    }
+    return this._allProspects;
+  },
+  taxonomyOverview: JSON.parse(document.getElementById('taxonomy-overview-data').textContent || '[]'),
+  commodityFamilies: JSON.parse(document.getElementById('commodity-families-data').textContent || '[]'),
+  commodityCategories: JSON.parse(document.getElementById('commodity-categories-data').textContent || '[]'),
+
+  activeSecondaryFiltersCount() {
+    let c = 0;
+    if (this.structureFilter !== 'ALL') c++;
+    if (this.facilityCountFilter !== 'ALL') c++;
+    if (this.fleetFilter !== 'ALL') c++;
+    if (this.carrierFilter !== 'ALL') c++;
+    if (this.procurementFilter !== 'ALL') c++;
+    if (this.familyFilter !== 'ALL') c++;
+    if (this.categoryFilter !== 'ALL') c++;
+    if (this.seasonalityFilter !== 'ALL') c++;
+    return c;
+  },
+
+  openLogCall(c, f = null) {
+    const childFacs = (c.facilities || []).map(fac => ({
+      id: fac.facility_id,
+      name: fac.facility_name,
+      city: fac.city,
+      state: fac.state_prov,
+      phone: (fac.contacts && fac.contacts.length > 0 && fac.contacts[0].phone_number) ? fac.contacts[0].phone_number : '',
+      contact: (fac.contacts && fac.contacts.length > 0 && fac.contacts[0].person_name) ? fac.contacts[0].person_name : ''
+    }));
+
+    let initialPhone = '';
+    let initialContact = '';
+    let targetFacilityId = f ? f.facility_id : null;
+    let targetFacilityName = f ? f.facility_name : null;
+
+    if (f) {
+      if (f.contacts && f.contacts.length > 0) {
+        initialPhone = f.contacts[0].phone_number || '';
+        initialContact = f.contacts[0].person_name || '';
+      }
+    } else if (childFacs.length > 0) {
+      initialPhone = childFacs[0].phone || '';
+      initialContact = childFacs[0].contact || '';
+    }
+
+    window.dispatchEvent(new CustomEvent('open-log-call', {
+      detail: {
+        companyId: c.company_id,
+        companyName: c.operating_brand,
+        facilityId: targetFacilityId,
+        facilityName: targetFacilityName,
+        contactName: initialContact,
+        phoneNumber: initialPhone,
+        childFacilities: childFacs,
+        defaultDisposition: (c.outreach_status && c.outreach_status !== 'UNCONTACTED') ? c.outreach_status : 'NO_ANSWER'
+      }
+    }));
+  },
+
+  toggleCompany(cid) {
+    this.expandedCompanies[cid] = !this.expandedCompanies[cid];
+  },
+  expandAll() {
+    this.filteredCompanies().forEach(c => {
+      this.expandedCompanies[c.company_id] = true;
+    });
+  },
+  collapseAll() {
+    this.expandedCompanies = {};
+  },
+  resetPage() {
+    if (this.pagination) {
+      this.navigatePage(1);
+    } else {
+      this.currentPage = 1;
+    }
+  },
+
+  // Company filtering
+  matchesCompanyFilter(c) {
+    // 1. Lifecycle tab
+    if (this.lifecycleTab !== 'ALL' && c.lifecycle_stage !== this.lifecycleTab) {
+      return false;
+    }
+
+    // 2. Search query (unified search over brand, legal, address, and child facilities, commodities, products, contacts)
+    const q = this.searchQuery.toLowerCase().trim();
+    if (q) {
+      if (q.length === 1) {
+        const brand = (c.operating_brand || '').toLowerCase();
+        const legal = (c.legal_name || '').toLowerCase();
+        const facs = (c.facilities || []).some(f => (f.facility_name || '').toLowerCase().startsWith(q));
+        if (!brand.startsWith(q) && !legal.startsWith(q) && !facs) {
+          return false;
+        }
+      } else if (!c.searchable_text.includes(q)) {
+        return false;
+      }
+    }
+
+    // 3. Structure filter
+    if (this.structureFilter === 'SINGLE' && c.facility_count !== 1) return false;
+    if (this.structureFilter === 'MULTI' && c.facility_count < 2) return false;
+
+    // 4. Facility count filter
+    if (this.facilityCountFilter === '1' && c.facility_count !== 1) return false;
+    if (this.facilityCountFilter === '2_5' && (c.facility_count < 2 || c.facility_count > 5)) return false;
+    if (this.facilityCountFilter === '6_20' && (c.facility_count < 6 || c.facility_count > 20)) return false;
+    if (this.facilityCountFilter === '20_PLUS' && c.facility_count < 21) return false;
+
+    // 5. Broker Access Friction filter
+    if (this.frictionFilter !== 'ALL' && c.friction_level !== this.frictionFilter) return false;
+
+    // 6. Outreach Status filter
+    if (this.outreachFilter !== 'ALL') {
+      if (this.outreachFilter === 'FOLLOW_UP' || this.outreachFilter === 'FOLLOW_UPS') {
+        if (!c.next_follow_up_at) return false;
+      } else if (c.outreach_status !== this.outreachFilter) {
+        return false;
+      }
+    }
+
+    // 7. Unreviewed Only filter
+    if (this.unreviewedOnly && c.is_viewed) {
+      return false;
+    }
+
+    // 8. Equipment filter
+    if (this.equipmentFilter !== 'ALL' && !c.equipment_categories.includes(this.equipmentFilter)) return false;
+
+    // 9. Private fleet filter
+    if (this.fleetFilter === 'VERIFIED_PRESENT' && !c.facts.private_fleet_present) return false;
+    if (this.fleetFilter === 'NONE_VERIFIED' && c.facts.private_fleet_present) return false;
+
+    // 10. Commercial carrier filter
+    if (this.carrierFilter === 'VERIFIED' && !c.facts.commercial_carrier_use) return false;
+    if (this.carrierFilter === 'UNKNOWN' && c.facts.commercial_carrier_use) return false;
+
+    // 11. Procurement filter
+    if (this.procurementFilter !== 'ALL' && c.facts.freight_procurement_level !== this.procurementFilter) return false;
+
+    // 12. Commodity Family filter
+    if (this.familyFilter !== 'ALL') {
+      if (!c.commodity_family_codes || !c.commodity_family_codes.includes(this.familyFilter)) {
+        return false;
+      }
+    }
+
+    // 13. Commodity Category filter
+    if (this.categoryFilter !== 'ALL') {
+      if (!c.commodity_category_codes || !c.commodity_category_codes.includes(this.categoryFilter)) {
+        return false;
+      }
+    }
+
+    // 14. Seasonality filter
+    if (this.seasonalityFilter !== 'ALL') {
+      if (!c.seasonality_profiles || !c.seasonality_profiles.includes(this.seasonalityFilter)) {
+        return false;
+      }
+    }
+
+    return true;
+  },
+
+  // Company sorting & pagination
+  sortedCompanies() {
+    const list = this.companies.filter(c => this.matchesCompanyFilter(c));
+    if (this.sortOption === 'relevance') {
+      return list;
+    }
+    const frictionOrder = { 'HIGH': 4, 'MEDIUM': 3, 'LOW': 2, 'UNKNOWN': 1 };
+    return list.sort((a, b) => {
+      if (this.sortOption === 'name_asc') {
+        return (a.operating_brand || '').localeCompare(b.operating_brand || '');
+      } else if (this.sortOption === 'fac_desc') {
+        return b.facility_count - a.facility_count || (a.operating_brand || '').localeCompare(b.operating_brand || '');
+      } else if (this.sortOption === 'fac_asc') {
+        return a.facility_count - b.facility_count || (a.operating_brand || '').localeCompare(b.operating_brand || '');
+      } else if (this.sortOption === 'friction_desc') {
+        return (frictionOrder[b.friction_level] || 0) - (frictionOrder[a.friction_level] || 0) || (a.operating_brand || '').localeCompare(b.operating_brand || '');
+      } else if (this.sortOption === 'friction_asc') {
+        return (frictionOrder[a.friction_level] || 0) - (frictionOrder[b.friction_level] || 0) || (a.operating_brand || '').localeCompare(b.operating_brand || '');
+      }
+      return 0;
+    });
+  },
+  filteredCompanies() {
+    return this.sortedCompanies();
+  },
+  paginatedCompanies() {
+    if (this.pagination) {
+      return this.sortedCompanies();
+    }
+    const f = this.filteredCompanies();
+    const start = (this.currentPage - 1) * this.pageSize;
+    return f.slice(start, start + this.pageSize);
+  },
+  totalCompanyPages() {
+    if (this.pagination) {
+      return this.pagination.total_pages || 1;
+    }
+    return Math.ceil(this.filteredCompanies().length / this.pageSize) || 1;
+  },
+
+  // Facility filtering
+  matchesProspectFilter(p) {
+    if (this.lifecycleTab !== 'ALL' && p.lifecycle_stage !== this.lifecycleTab) {
+      return false;
+    }
+
+    const q = this.searchQuery.toLowerCase().trim();
+    if (q) {
+      const brand = (p.operating_brand || '').toLowerCase();
+      const facName = (p.facility_name || '').toLowerCase();
+      if (q.length === 1) {
+        if (!brand.startsWith(q) && !facName.startsWith(q)) {
+          return false;
+        }
+      } else {
+        const city = (p.city || '').toLowerCase();
+        const state = (p.state_prov || '').toLowerCase();
+        const commCat = (p.primary_commodity?.commodity_category || '').toLowerCase();
+        const products = (p.primary_commodity?.specific_products || '').toLowerCase();
+        const famName = (p.commodity_family_name || '').toLowerCase();
+        const catName = (p.commodity_category_name || '').toLowerCase();
+        const catCode = (p.commodity_category_code || '').toLowerCase();
+        const season = (p.category_seasonality || '').toLowerCase();
+        if (!brand.includes(q) && !facName.includes(q) && !city.includes(q) && !state.includes(q) &&
+            !commCat.includes(q) && !products.includes(q) && !famName.includes(q) && !catName.includes(q) &&
+            !catCode.includes(q) && !season.includes(q)) {
+          return false;
+        }
+      }
+    }
+
+    if (this.equipmentFilter !== 'ALL') {
+      const matchEq = p.commodities && p.commodities.some(c => c.equipment_category === this.equipmentFilter);
+      if (!matchEq) return false;
+    }
+
+    if (this.fleetFilter === 'VERIFIED_PRESENT' && p.private_fleet_present !== 'VERIFIED_PRESENT') return false;
+    if (this.fleetFilter === 'NONE_VERIFIED' && p.private_fleet_present === 'VERIFIED_PRESENT') return false;
+
+    if (this.carrierFilter === 'VERIFIED' && p.commercial_carrier_use !== 'VERIFIED') return false;
+    if (this.carrierFilter === 'UNKNOWN' && p.commercial_carrier_use === 'VERIFIED') return false;
+
+    if (this.procurementFilter !== 'ALL' && p.freight_procurement_level !== this.procurementFilter) return false;
+
+    if (this.phoneFilter !== 'ALL') {
+      if (!p.best_contact || p.best_contact.phone_directness !== this.phoneFilter) return false;
+    }
+
+    // Taxonomy filters (Facility Mode)
+    if (this.familyFilter !== 'ALL') {
+      const matchFam = (p.commodity_family_code === this.familyFilter) ||
+        (p.taxonomy_mappings && p.taxonomy_mappings.some(m => m.family_code === this.familyFilter));
+      if (!matchFam) return false;
+    }
+
+    if (this.categoryFilter !== 'ALL') {
+      const matchCat = (p.commodity_category_code === this.categoryFilter) ||
+        (p.taxonomy_mappings && p.taxonomy_mappings.some(m => m.category_code === this.categoryFilter));
+      if (!matchCat) return false;
+    }
+
+    if (this.seasonalityFilter !== 'ALL') {
+      const matchSeason = (p.category_seasonality === this.seasonalityFilter) ||
+        (p.taxonomy_mappings && p.taxonomy_mappings.some(m => m.cat_seasonality === this.seasonalityFilter));
+      if (!matchSeason) return false;
+    }
+
+    return true;
+  },
+  filteredProspects() {
+    return this.prospects.filter(p => this.matchesProspectFilter(p));
+  },
+  paginatedProspects() {
+    if (this.pagination) {
+      return this.filteredProspects();
+    }
+    const f = this.filteredProspects();
+    const start = (this.currentPage - 1) * this.pageSize;
+    return f.slice(start, start + this.pageSize);
+  },
+  totalProspectPages() {
+    if (this.pagination) {
+      return this.pagination.total_pages || 1;
+    }
+    return Math.ceil(this.filteredProspects().length / this.pageSize) || 1;
+  },
+
+  // Pagination navigation
+  navigatePage(p, size = null) {
+    const params = new URLSearchParams(window.location.search);
+    params.set('page', p);
+    if (this.tierTab && this.tierTab !== 'ALL') params.set('tier', this.tierTab); else params.delete('tier');
+    if (this.lifecycleFilter && this.lifecycleFilter !== 'ALL') params.set('stage', this.lifecycleFilter); else params.delete('stage');
+    if (this.searchQuery && this.searchQuery.trim()) params.set('q', this.searchQuery.trim()); else params.delete('q');
+    if (this.frictionFilter && this.frictionFilter !== 'ALL') params.set('friction', this.frictionFilter); else params.delete('friction');
+    if (this.equipmentFilter && this.equipmentFilter !== 'ALL') params.set('equipment', this.equipmentFilter); else params.delete('equipment');
+    if (this.familyFilter && this.familyFilter !== 'ALL') params.set('family', this.familyFilter); else params.delete('family');
+    if (this.categoryFilter && this.categoryFilter !== 'ALL') params.set('category', this.categoryFilter); else params.delete('category');
+    if (this.seasonalityFilter && this.seasonalityFilter !== 'ALL') params.set('seasonality', this.seasonalityFilter); else params.delete('seasonality');
+    if (this.structureFilter && this.structureFilter !== 'ALL') params.set('structure', this.structureFilter); else params.delete('structure');
+    if (this.facilityCountFilter && this.facilityCountFilter !== 'ALL') params.set('facility_count', this.facilityCountFilter); else params.delete('facility_count');
+    if (this.fleetFilter && this.fleetFilter !== 'ALL') params.set('fleet', this.fleetFilter); else params.delete('fleet');
+    if (this.carrierFilter && this.carrierFilter !== 'ALL') params.set('carrier', this.carrierFilter); else params.delete('carrier');
+    if (this.procurementFilter && this.procurementFilter !== 'ALL') params.set('procurement', this.procurementFilter); else params.delete('procurement');
+    if (this.outreachFilter && this.outreachFilter !== 'ALL') params.set('outreach', this.outreachFilter); else params.delete('outreach');
+    if (this.unreviewedOnly) params.set('unreviewed', 'true'); else params.delete('unreviewed');
+    window.location.href = '/prospects?' + params.toString();
+  },
+  prevPage() {
+    if (this.pagination) {
+      if (this.currentPage > 1) {
+        this.navigatePage(this.currentPage - 1);
+      }
+    } else if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  },
+  nextPage() {
+    const total = this.totalPages();
+    if (this.pagination) {
+      if (this.currentPage < total) {
+        this.navigatePage(this.currentPage + 1);
+      }
+    } else if (this.currentPage < total) {
+      this.currentPage++;
+    }
+  },
+  totalPages() {
+    if (this.pagination) {
+      return this.pagination.total_pages || 1;
+    }
+    return this.viewMode === 'COMPANIES' ? this.totalCompanyPages() : this.totalProspectPages();
+  }
+}">
+
+  <!-- Dual Summary Metrics Grid -->
+  <div class="metrics-grid" style="margin-bottom:1.25rem;">
+    <!-- Metric 1: Operating Companies -->
+    <div class="metric-card">
+      <div class="metric-header">
+        <span class="metric-label">Operating Companies</span>
+        <span class="badge badge-facility-count">{{ counts.all_companies_count }} Active</span>
+      </div>
+      <div class="metric-value">{{ counts.all_companies_count }}</div>
+      <div class="metric-subtext">
+        <strong>{{ counts.shortlisted_companies_count }}</strong> Shortlist &bull;
+        <strong>{{ counts.qualified_companies_count }}</strong> Qualified &bull;
+        <strong>{{ counts.discovery_companies_count }}</strong> Discovery
+      </div>
+    </div>
+
+    <!-- Metric 2: Physical Facilities -->
+    <div class="metric-card">
+      <div class="metric-header">
+        <span class="metric-label">Physical Shipping Facilities</span>
+        <span class="badge badge-multi-plant">{{ counts.all_prospects_count }} Total</span>
+      </div>
+      <div class="metric-value">{{ counts.all_prospects_count }}</div>
+      <div class="metric-subtext">
+        <strong>{{ counts.shortlisted_count }}</strong> Shortlisted &bull;
+        <strong>{{ counts.qualified_count }}</strong> Qualified &bull;
+        <strong>{{ counts.discovery_count }}</strong> Discovery
+      </div>
+    </div>
+
+    <!-- Metric 3: Company Network Structure -->
+    <div class="metric-card">
+      <div class="metric-header">
+        <span class="metric-label">Company Structure</span>
+        <span class="badge badge-dept">Network Spread</span>
+      </div>
+      <div class="metric-value" style="font-size:1.5rem;">
+        {{ counts.single_facility_companies_count }} <span style="font-size:0.875rem; font-weight:500; color:var(--color-text-muted);">Single</span> &bull;
+        {{ counts.multi_facility_companies_count }} <span style="font-size:0.875rem; font-weight:500; color:var(--color-text-muted);">Multi-Plant</span>
+      </div>
+      <div class="metric-subtext">
+        Multi: West Fraser (7), Canfor (5), GP (4), Interfor (4)
+      </div>
+    </div>
+
+    <!-- Metric 4: Broker Access Friction -->
+    <div class="metric-card">
+      <div class="metric-header">
+        <span class="metric-label">Broker Access Friction</span>
+        <span class="badge badge-verified">Observable Heuristic</span>
+      </div>
+      <div class="metric-value" style="font-size:1.5rem;">
+        <span style="color:#047857;" x-text="companies.filter(c => c.friction_level === 'LOW').length"></span> <span style="font-size:0.75rem; font-weight:600; color:var(--color-text-muted);">Low</span> &bull;
+        <span style="color:#b45309;" x-text="companies.filter(c => c.friction_level === 'MEDIUM').length"></span> <span style="font-size:0.75rem; font-weight:600; color:var(--color-text-muted);">Med</span> &bull;
+        <span style="color:#b91c1c;" x-text="companies.filter(c => c.friction_level === 'HIGH').length"></span> <span style="font-size:0.75rem; font-weight:600; color:var(--color-text-muted);">High</span>
+      </div>
+      <div class="metric-subtext">
+        Zero fake rejection % &bull; <span x-text="companies.filter(c => c.friction_level === 'UNKNOWN').length"></span> Unknown friction
+      </div>
+    </div>
+  </div>
+
+  <!-- Section Header & View Mode Switcher -->
+  <div class="section-header" style="align-items:center; flex-wrap:wrap; gap:1rem;">
+    <div>
+      <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+        <h1 class="section-title" style="margin:0;">Master Directory</h1>
+        <span class="badge badge-dept" style="font-size:0.8125rem; padding:0.25rem 0.65rem; font-weight:700;">
+          <span x-text="(meta.total_companies != null ? meta.total_companies : 565)"></span> Companies &bull; <span x-text="(meta.total_facilities != null ? meta.total_facilities : 653)"></span> Facilities
+        </span>
+      </div>
+      <p class="section-subtitle" style="margin-top:0.25rem;">
+        <template x-if="viewMode === 'COMPANIES'">
+          <span>Showing <strong style="color:var(--color-text-main);" x-text="meta.page_start || 1"></strong> to <strong style="color:var(--color-text-main);" x-text="meta.page_end || companies.length"></strong> of <strong style="color:var(--color-text-main);" x-text="meta.total_companies != null ? meta.total_companies : companies.length"></strong> Companies</span>
+        </template>
+        <template x-if="viewMode === 'FACILITIES'">
+          <span>Showing <strong style="color:var(--color-text-main);" x-text="meta.page_start || 1"></strong> to <strong style="color:var(--color-text-main);" x-text="meta.page_end || prospects.length"></strong> of <strong style="color:var(--color-text-main);" x-text="meta.total_facilities != null ? meta.total_facilities : prospects.length"></strong> Facilities</span>
+        </template>
+        <template x-if="searchQuery">
+          <span style="color:var(--color-primary); font-weight:600;"> &bull; Filtered by search &ldquo;<span x-text="searchQuery"></span>&rdquo; (<span x-text="viewMode === 'COMPANIES' ? (meta.total_companies != null ? meta.total_companies : companies.length) : (meta.total_facilities != null ? meta.total_facilities : prospects.length)"></span> found)</span>
+        </template>
+      </p>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+      <!-- View Mode Toggle -->
+      <div class="view-toggle-group">
+        <button type="button" class="view-toggle-btn" :class="viewMode === 'COMPANIES' ? 'active' : ''" @click="viewMode = 'COMPANIES'; resetPage()">
+          🏢 Companies (<span x-text="meta.total_companies != null ? meta.total_companies : companies.length"></span>)
+        </button>
+        <button type="button" class="view-toggle-btn" :class="viewMode === 'FACILITIES' ? 'active' : ''" @click="viewMode = 'FACILITIES'; resetPage()">
+          📍 Facilities (<span x-text="meta.total_facilities != null ? meta.total_facilities : prospects.length"></span>)
+        </button>
+      </div>
+
+      <!-- Lifecycle Guide Toggle Button -->
+      <button type="button" class="btn btn-secondary btn-sm"
+              @click="showLifecycleGuide = !showLifecycleGuide"
+              style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:600; font-size:0.75rem;">
+        <span x-text="showLifecycleGuide ? 'Hide Lifecycle Guide ▴' : '📖 Lifecycle Guide ▾'"></span>
+      </button>
+
+      <!-- Opportunity Categories Toggle Button -->
+      <button type="button" id="opportunity-categories-toggle-btn" class="btn btn-secondary btn-sm"
+              @click="showOpportunityModal = !showOpportunityModal"
+              style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:600; font-size:0.75rem;">
+        <span x-text="showOpportunityModal ? 'Hide Categories ▴' : '🌱 Opportunity Categories ▾'"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Lifecycle Guide Expandable Banner -->
+  <div x-show="showLifecycleGuide" x-collapse style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.125rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-sm);">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+      <h3 style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin:0; display:flex; align-items:center; gap:0.5rem;">
+        <span>📖 Prospect Readiness Lifecycle Standards</span>
+      </h3>
+      <span style="font-size:0.75rem; color:var(--color-text-muted); font-weight:500;">Deterministic Factual Readiness • Zero Hallucination • Internal Broker Workflow</span>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; font-size:0.8125rem;">
+      <!-- DISCOVERY -->
+      <div style="padding:0.875rem 1rem; border-radius:6px; background:rgba(59, 130, 246, 0.05); border:1px solid rgba(59, 130, 246, 0.2);">
+        <div style="font-weight:700; color:#2563eb; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem;">
+          <span>🔍 DISCOVERY</span>
+          <span class="badge" style="font-size:0.6875rem; padding:0.1rem 0.4rem; background:rgba(59, 130, 246, 0.1); color:#2563eb;">Universe Intake</span>
+        </div>
+        <p style="margin:0; color:var(--color-text-main); line-height:1.45;">
+          <strong>Relevant prospect worth retaining and investigating.</strong> Basic operating, commodity, and contact evidence is present. Full readiness review has not yet passed.
+        </p>
+        <div style="margin-top:0.4rem; font-size:0.75rem; color:var(--color-text-muted);">
+          Does not require named logistics manager, verified private fleet, or live freight today.
+        </div>
+      </div>
+      <!-- QUALIFIED -->
+      <div style="padding:0.875rem 1rem; border-radius:6px; background:rgba(16, 185, 129, 0.05); border:1px solid rgba(16, 185, 129, 0.2);">
+        <div style="font-weight:700; color:#059669; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem;">
+          <span>✓ QUALIFIED</span>
+          <span class="badge" style="font-size:0.6875rem; padding:0.1rem 0.4rem; background:rgba(16, 185, 129, 0.1); color:#059669;">Ready to Pursue</span>
+        </div>
+        <p style="margin:0; color:var(--color-text-main); line-height:1.45;">
+          <strong>Factual readiness checks passed.</strong> Verified operating facility, approved heavy FTL equipment profile, eligible territory, callable phone route, and primary source evidence provenance.
+        </p>
+        <div style="margin-top:0.4rem; font-size:0.75rem; color:var(--color-text-muted);">
+          Suitable for serious outreach. Does not imply broker acceptance or guaranteed loads today.
+        </div>
+      </div>
+      <!-- SHORTLISTED -->
+      <div style="padding:0.875rem 1rem; border-radius:6px; background:rgba(245, 158, 11, 0.05); border:1px solid rgba(245, 158, 11, 0.2);">
+        <div style="font-weight:700; color:#d97706; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem;">
+          <span>⭐ SHORTLISTED</span>
+          <span class="badge" style="font-size:0.6875rem; padding:0.1rem 0.4rem; background:rgba(245, 158, 11, 0.1); color:#d97706;">Active Broker Priority</span>
+        </div>
+        <p style="margin:0; color:var(--color-text-main); line-height:1.45;">
+          <strong>Priority prospect selected for active broker pursuit now.</strong> Strong practical access (callable facility phone or logistics desk), manageable scale (single or 2-3 regional plants), Low/Med friction.
+        </p>
+        <div style="margin-top:0.4rem; font-size:0.75rem; color:var(--color-text-muted);">
+          Curated active calling pool. Does not imply guaranteed profitability or awarded contract.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Opportunity Categories Expandable Banner -->
+  <div x-show="showOpportunityModal" x-collapse style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-sm);">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.875rem; flex-wrap:wrap; gap:0.5rem;">
+      <div>
+        <h3 style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin:0; display:flex; align-items:center; gap:0.5rem;">
+          <span>🌱 Seasonal & Opportunity Freight Taxonomy</span>
+        </h3>
+        <p style="margin:0.2rem 0 0 0; font-size:0.75rem; color:var(--color-text-muted);">
+          Curated commodity families, non-binding equipment suitability, and seasonal cycle guidance. Numbers represent live verified prospect companies.
+        </p>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <span class="badge badge-dept" style="font-size:0.6875rem;">10 Families • 32 Categories</span>
+        <button type="button" class="btn btn-ghost btn-sm" @click="showOpportunityModal = false" style="font-size:0.75rem; padding:0.2rem 0.5rem;">✕ Close</button>
+      </div>
+    </div>
+
+    <!-- Families Grid -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1rem;">
+      <template x-for="fam in taxonomyOverview" :key="fam.family_code">
+        <div style="border:1px solid var(--color-border); border-radius:6px; padding:0.875rem; background:rgba(255,255,255,0.02); display:flex; flex-direction:column;">
+          <!-- Family Header -->
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem;">
+            <div>
+              <span style="font-weight:700; font-size:0.875rem; color:var(--color-text-main);" x-text="fam.display_name"></span>
+              <template x-if="!fam.is_active">
+                <span class="badge" style="font-size:0.625rem; background:rgba(239, 68, 68, 0.1); color:#dc2626; margin-left:0.35rem;">DEFERRED</span>
+              </template>
+            </div>
+            <span class="badge" style="font-size:0.6875rem; background:rgba(59, 130, 246, 0.1); color:#2563eb;" x-text="fam.total_companies + ' Co (' + fam.total_facilities + ' Plants)'"></span>
+          </div>
+          <p style="font-size:0.6875rem; color:var(--color-text-muted); margin:0 0 0.6rem 0; line-height:1.35;" x-text="fam.description"></p>
+
+          <!-- Categories List -->
+          <div style="display:flex; flex-direction:column; gap:0.35rem; margin-top:auto;">
+            <template x-for="cat in fam.categories" :key="cat.category_code">
+              <div style="display:flex; justify-content:space-between; align-items:center; padding:0.3rem 0.45rem; border-radius:4px; background:rgba(0,0,0,0.02); border:1px solid var(--color-border-subtle); font-size:0.75rem;">
+                <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap;">
+                  <button type="button" @click="categoryFilter = cat.category_code; familyFilter = fam.family_code; showOpportunityModal = false; resetPage();"
+                          style="background:none; border:none; padding:0; cursor:pointer; font-weight:600; text-align:left; color:var(--color-primary); text-decoration:underline;">
+                    <span x-text="cat.display_name"></span>
+                  </button>
+                  <template x-if="cat.seasonality_profile && cat.seasonality_profile !== 'YEAR_ROUND'">
+                    <span class="badge" style="font-size:0.625rem; padding:0.05rem 0.3rem; background:rgba(217, 119, 6, 0.1); color:#b45309;" x-text="cat.seasonality_profile.replace('_', ' ')"></span>
+                  </template>
+                  <template x-if="cat.peak_months">
+                    <span style="font-size:0.625rem; color:var(--color-text-muted);" x-text="'(' + cat.peak_months + ')'"></span>
+                  </template>
+                  <template x-if="cat.deferred_status_note">
+                    <span style="font-size:0.625rem; color:#dc2626; font-style:italic;" x-text="cat.deferred_status_note"></span>
+                  </template>
+                </div>
+                <div style="display:flex; align-items:center; gap:0.35rem;">
+                  <span class="badge badge-equipment" style="font-size:0.625rem; padding:0.05rem 0.3rem;" x-text="cat.typical_equipment_fit"></span>
+                  <span style="font-size:0.6875rem; font-weight:700;" :style="cat.company_count > 0 ? 'color:var(--color-primary);' : 'color:#94a3b8;'" x-text="cat.company_count + ' Co'"></span>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+
+  <!-- Broker Opportunity Tier Tabs (Dimension 2: Call Priority) -->
+  <div class="tab-group" style="margin-bottom:1.25rem;">
+    <button type="button" class="tab-btn" :class="tierTab === 'ALL' ? 'active' : ''" @click="selectTierTab('ALL')">
+      <span x-text="viewMode === 'COMPANIES' ? 'All Prospects' : 'All Facilities'"></span>
+      <span class="tab-count" x-text="viewMode === 'COMPANIES' ? (meta.opportunity_counts ? meta.opportunity_counts.ALL : 565) : (meta.facility_opportunity_counts ? meta.facility_opportunity_counts.ALL : 653)"></span>
+    </button>
+    <button type="button" class="tab-btn" :class="tierTab === 'TIER_A_PRIORITY' ? 'active' : ''" @click="selectTierTab('TIER_A_PRIORITY')">
+      ⭐ Priority Prospects <span class="tab-count" x-text="viewMode === 'COMPANIES' ? (meta.opportunity_counts ? meta.opportunity_counts.TIER_A_PRIORITY : 10) : (meta.facility_opportunity_counts ? meta.facility_opportunity_counts.TIER_A_PRIORITY : 10)"></span>
+    </button>
+    <button type="button" class="tab-btn" :class="tierTab === 'TIER_B_WORTH_CALLING' ? 'active' : ''" @click="selectTierTab('TIER_B_WORTH_CALLING')">
+      📞 Worth Calling <span class="tab-count" x-text="viewMode === 'COMPANIES' ? (meta.opportunity_counts ? meta.opportunity_counts.TIER_B_WORTH_CALLING : 103) : (meta.facility_opportunity_counts ? meta.facility_opportunity_counts.TIER_B_WORTH_CALLING : 136)"></span>
+    </button>
+    <button type="button" class="tab-btn" :class="tierTab === 'TIER_C_SECONDARY' ? 'active' : ''" @click="selectTierTab('TIER_C_SECONDARY')">
+      🚚 Secondary Prospects <span class="tab-count" x-text="viewMode === 'COMPANIES' ? (meta.opportunity_counts ? meta.opportunity_counts.TIER_C_SECONDARY : 7) : (meta.facility_opportunity_counts ? meta.facility_opportunity_counts.TIER_C_SECONDARY : 7)"></span>
+    </button>
+    <button type="button" class="tab-btn" :class="tierTab === 'TIER_D_RESEARCH_NEEDED' ? 'active' : ''" @click="selectTierTab('TIER_D_RESEARCH_NEEDED')">
+      🔍 Needs More Research <span class="tab-count" x-text="viewMode === 'COMPANIES' ? (meta.opportunity_counts ? meta.opportunity_counts.TIER_D_RESEARCH_NEEDED : 445) : (meta.facility_opportunity_counts ? meta.facility_opportunity_counts.TIER_D_RESEARCH_NEEDED : 500)"></span>
+    </button>
+  </div>
+
+  <!-- Filter & Search Toolbar -->
+  <div class="table-card" style="margin-bottom:1.25rem;">
+    <!-- Primary Toolbar Row -->
+    <div class="table-toolbar">
+      <!-- Unified Search Input -->
+      <div class="search-input-wrap" style="position:relative;">
+        <svg class="search-icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <input type="text"
+               id="master-search-input"
+               class="search-input"
+               placeholder="Search company, child plant, commodity, or contact..."
+               x-model="searchQuery"
+               @input.debounce.300ms="applySearch()"
+               @keydown.enter="applySearch()">
+        <template x-if="searchQuery">
+          <button type="button" class="search-clear-btn" @click="clearSearch()" title="Clear search">×</button>
+        </template>
+      </div>
+
+      <!-- Primary Filters Row -->
+      <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+        <!-- Research Lifecycle Stage Filter (Dimension 1: Research Readiness) -->
+        <select class="filter-select" x-model="lifecycleFilter" @change="applyLifecycleFilter()">
+          <option value="ALL">All Stages (565)</option>
+          <option value="SHORTLISTED">⭐ Shortlisted (29)</option>
+          <option value="QUALIFIED">✓ Qualified (91)</option>
+          <option value="DISCOVERY">🔍 Discovery (445)</option>
+        </select>
+
+        <!-- Outreach Status Filter (Company Mode) -->
+        <template x-if="viewMode === 'COMPANIES'">
+          <select class="filter-select" x-model="outreachFilter" @change="resetPage()">
+            <option value="ALL">All Outreach</option>
+            <option value="UNCONTACTED">⚪ Uncontacted</option>
+            <option value="INTERESTED">🔥 Interested</option>
+            <option value="CALL_BACK">📞 Call Back</option>
+            <option value="NO_ANSWER">⏳ No Answer</option>
+            <option value="NOT_INTERESTED">⛔ Not Interested</option>
+          </select>
+        </template>
+
+        <!-- Broker Access Friction Filter (Company Mode) -->
+        <template x-if="viewMode === 'COMPANIES'">
+          <select class="filter-select" x-model="frictionFilter" @change="resetPage()">
+            <option value="ALL">All Friction</option>
+            <option value="LOW" x-text="'🟢 Low (' + companies.filter(c => c.friction_level === 'LOW').length + ')'"></option>
+            <option value="MEDIUM" x-text="'🟡 Med (' + companies.filter(c => c.friction_level === 'MEDIUM').length + ')'"></option>
+            <option value="HIGH" x-text="'🔴 High (' + companies.filter(c => c.friction_level === 'HIGH').length + ')'"></option>
+            <option value="UNKNOWN" x-text="'⚪ Unknown (' + companies.filter(c => c.friction_level === 'UNKNOWN').length + ')'"></option>
+          </select>
+        </template>
+
+        <!-- Equipment Filter -->
+        <select class="filter-select" x-model="equipmentFilter" @change="resetPage()">
+          <option value="ALL">All Equipment</option>
+          <option value="FLATBED">Flatbed</option>
+          <option value="STEP_DECK">Step Deck</option>
+          <option value="DRY_VAN">Dry Van</option>
+        </select>
+
+        <!-- Unreviewed Toggle (Company Mode) -->
+        <template x-if="viewMode === 'COMPANIES'">
+          <label class="filter-toggle-pill" title="Filter to show only prospects not yet viewed">
+            <input type="checkbox" x-model="unreviewedOnly" @change="resetPage()" style="cursor:pointer;" />
+            <span>Unreviewed</span>
+          </label>
+        </template>
+
+        <!-- Secondary Filters Toggle Button -->
+        <template x-if="viewMode === 'COMPANIES'">
+          <button type="button" class="btn btn-secondary btn-sm" @click="showMoreFilters = !showMoreFilters" style="display:inline-flex; align-items:center; gap:0.35rem;" title="Show additional filters">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:13px; height:13px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+            <span>Filters</span>
+            <template x-if="activeSecondaryFiltersCount() > 0">
+              <span class="pill-counter" style="background:var(--color-primary); color:#ffffff; font-size:0.625rem; padding:0.05rem 0.35rem;" x-text="activeSecondaryFiltersCount()"></span>
+            </template>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px; height:11px; transition:transform 0.15s ease;" :style="showMoreFilters ? 'transform:rotate(180deg)' : ''"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+        </template>
+
+        <!-- Sort Option (Company Mode) -->
+        <template x-if="viewMode === 'COMPANIES'">
+          <select class="filter-select" x-model="sortOption" @change="resetPage()">
+            <option value="relevance" x-show="searchQuery">Sort: Best Match (Relevance)</option>
+            <option value="name_asc">Sort: Name (A-Z)</option>
+            <option value="fac_desc">Sort: Most Plants</option>
+            <option value="fac_asc">Sort: Fewest Plants</option>
+            <option value="friction_desc">Sort: Friction (High → Low)</option>
+            <option value="friction_asc">Sort: Friction (Low → High)</option>
+          </select>
+        </template>
+
+        <!-- Reset Button -->
+        <button class="btn btn-ghost btn-sm"
+                x-show="searchQuery || lifecycleTab !== 'ALL' || structureFilter !== 'ALL' || facilityCountFilter !== 'ALL' || frictionFilter !== 'ALL' || outreachFilter !== 'ALL' || unreviewedOnly || equipmentFilter !== 'ALL' || fleetFilter !== 'ALL' || carrierFilter !== 'ALL' || procurementFilter !== 'ALL' || familyFilter !== 'ALL' || categoryFilter !== 'ALL' || seasonalityFilter !== 'ALL'"
+                @click="searchQuery = ''; lifecycleTab = 'ALL'; structureFilter = 'ALL'; facilityCountFilter = 'ALL'; frictionFilter = 'ALL'; outreachFilter = 'ALL'; unreviewedOnly = false; equipmentFilter = 'ALL'; fleetFilter = 'ALL'; carrierFilter = 'ALL'; procurementFilter = 'ALL'; phoneFilter = 'ALL'; familyFilter = 'ALL'; categoryFilter = 'ALL'; seasonalityFilter = 'ALL'; sortOption = 'name_asc'; resetPage();"
+                title="Reset all filters to defaults">
+          ✕ Reset
+        </button>
+      </div>
+    </div>
+
+    <!-- Secondary Filters Drawer (Collapsible) -->
+    <div x-show="showMoreFilters && viewMode === 'COMPANIES'" x-transition style="padding:0.75rem 1.25rem; background-color:var(--color-border-subtle); border-top:1px solid var(--color-border); display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+      <span style="font-size:0.75rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.04em;">Deep Filters:</span>
+
+      <!-- Commodity Family Filter -->
+      <select class="filter-select" x-model="familyFilter" @change="categoryFilter = 'ALL'; resetPage()">
+        <option value="ALL">All Commodity Families</option>
+        <template x-for="fam in commodityFamilies" :key="fam.family_code">
+          <option :value="fam.family_code" x-text="fam.display_name"></option>
+        </template>
+      </select>
+
+      <!-- Commodity Category Filter -->
+      <select class="filter-select" x-model="categoryFilter" @change="resetPage()">
+        <option value="ALL">All Categories</option>
+        <template x-for="cat in (familyFilter === 'ALL' ? commodityCategories : commodityCategories.filter(c => c.family_code === familyFilter))" :key="cat.category_code">
+          <option :value="cat.category_code" x-text="cat.display_name"></option>
+        </template>
+      </select>
+
+      <!-- Seasonality Filter -->
+      <select class="filter-select" x-model="seasonalityFilter" @change="resetPage()">
+        <option value="ALL">All Seasonalities</option>
+        <option value="YEAR_ROUND">Year-Round</option>
+        <option value="SPRING_PEAK">Spring Peak</option>
+        <option value="SUMMER_PEAK">Summer Peak</option>
+        <option value="FALL_PEAK">Fall Peak</option>
+        <option value="WINTER_PEAK">Winter Peak</option>
+        <option value="HOLIDAY_PEAK">Holiday Peak</option>
+        <option value="HARVEST_DRIVEN">Harvest Driven</option>
+        <option value="PROJECT_DRIVEN">Project Driven</option>
+        <option value="WEATHER_DRIVEN">Weather Driven</option>
+        <option value="MULTI_SEASON">Multi-Season</option>
+      </select>
+
+      <!-- Company Structure Filter -->
+      <select class="filter-select" x-model="structureFilter" @change="resetPage()">
+        <option value="ALL">All Structures</option>
+        <option value="SINGLE">Single-Facility (1)</option>
+        <option value="MULTI">Multi-Facility (2+)</option>
+      </select>
+
+      <!-- Facility Count Bucket Filter -->
+      <select class="filter-select" x-model="facilityCountFilter" @change="resetPage()">
+        <option value="ALL">All Plant Counts</option>
+        <option value="1">1 Facility Only</option>
+        <option value="2_5">2 to 5 Facilities</option>
+        <option value="6_20">6 to 20 Facilities</option>
+        <option value="20_PLUS">20+ Facilities</option>
+      </select>
+
+      <!-- Fleet Filter -->
+      <select class="filter-select" x-model="fleetFilter" @change="resetPage()">
+        <option value="ALL">All Fleet Statuses</option>
+        <option value="VERIFIED_PRESENT">🚚 Private Fleet: VERIFIED</option>
+        <option value="NONE_VERIFIED">Private Fleet: UNKNOWN</option>
+      </select>
+
+      <!-- Commercial Carrier Filter -->
+      <select class="filter-select" x-model="carrierFilter" @change="resetPage()">
+        <option value="ALL">All Carrier Statuses</option>
+        <option value="VERIFIED">Carrier Use: VERIFIED</option>
+        <option value="UNKNOWN">Commercial Carrier: UNKNOWN</option>
+      </select>
+
+      <!-- Procurement Filter -->
+      <select class="filter-select" x-model="procurementFilter" @change="resetPage()">
+        <option value="ALL">All Procurement Levels</option>
+        <option value="CORPORATE_PARENT">Corporate Centralized</option>
+        <option value="FACILITY_LEVEL">Plant Local Desk</option>
+        <option value="UNKNOWN">Procurement Unknown</option>
+      </select>
+
+      <!-- Expand / Collapse All -->
+      <div style="display:inline-flex; gap:0.35rem; margin-left:auto;">
+        <button class="btn btn-secondary btn-sm" @click="expandAll()" title="Expand all visible company facility trays">
+          Expand All Trays
+        </button>
+        <button class="btn btn-secondary btn-sm" @click="collapseAll()" title="Collapse all company trays">
+          Collapse All
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================== -->
+  <!-- VIEW 1: COMPANY-GROUPED VIEW (DEFAULT)                                   -->
+  <!-- ======================================================================== -->
+  <div x-show="viewMode === 'COMPANIES'">
+    <template x-for="c in paginatedCompanies()" :key="c.company_id">
+      <div class="company-card">
+        <!-- Company Card Header (Broker-First Simplified Layout) -->
+        <div class="company-card-header" @click="toggleCompany(c.company_id)">
+          <!-- 1. FULL-WIDTH HEADER ZONE -->
+          <div class="broker-card-header-zone">
+            <!-- Row 1: Brand & Status Badges -->
+            <div class="broker-card-header-top">
+              <span style="font-weight:700; color:var(--color-text-main); font-size:1.125rem;" x-text="c.operating_brand"></span>
+
+              <!-- Broker Opportunity Status Badge -->
+              <span class="badge"
+                    :class="{
+                      'badge-priority': c.opportunity_tier === 'TIER_A_PRIORITY',
+                      'badge-worth-calling': c.opportunity_tier === 'TIER_B_WORTH_CALLING',
+                      'badge-secondary': c.opportunity_tier === 'TIER_C_SECONDARY',
+                      'badge-research': c.opportunity_tier === 'TIER_D_RESEARCH_NEEDED'
+                    }"
+                    style="font-size:0.75rem; font-weight:700; padding:0.2rem 0.55rem;"
+                    x-text="c.broker_status_label">
+              </span>
+
+              <!-- Outreach Status Badge -->
+              <span class="badge"
+                    :class="{
+                      'badge-uncontacted': (c.outreach_status || 'UNCONTACTED') === 'UNCONTACTED',
+                      'badge-interested': c.outreach_status === 'INTERESTED',
+                      'badge-no-answer': c.outreach_status === 'NO_ANSWER',
+                      'badge-not-interested': c.outreach_status === 'NOT_INTERESTED',
+                      'badge-callback': c.outreach_status === 'CALL_BACK'
+                    }"
+                    style="font-size:0.6875rem;"
+                    x-text="c.outreach_status === 'INTERESTED' ? '🔥 Interested' : (c.outreach_status === 'CALL_BACK' ? '📞 Call Back' : (c.outreach_status === 'NO_ANSWER' ? '⏳ No Answer (' + (c.attempt_count || 1) + ')' : (c.outreach_status === 'NOT_INTERESTED' ? '⛔ Not Interested' : '⚪ Uncontacted')))">
+              </span>
+
+              <!-- Reviewed Badge -->
+              <template x-if="c.is_viewed">
+                <span class="badge badge-viewed" style="font-size:0.625rem;">👁 Reviewed</span>
+              </template>
+
+              <!-- Dual Fleet + Carrier Status Badges -->
+              <template x-if="c.private_fleet_present === 'VERIFIED_PRESENT' && c.commercial_carrier_use === 'VERIFIED'">
+                <span class="badge badge-fleet-carrier" title="Private fleet verified and outside commercial carrier use verified. Own trucks confirmed; outside carrier use also confirmed.">
+                  🚚 Own Trucks + ↔ Outside Carriers Confirmed
+                </span>
+              </template>
+              <template x-if="c.private_fleet_present === 'VERIFIED_PRESENT' && c.commercial_carrier_use !== 'VERIFIED'">
+                <span class="badge badge-secondary" title="Private fleet verified. Operating a fleet is an operational attribute; outside carrier use not yet confirmed.">
+                  🚚 Own Trucks Confirmed • Outside carriers not confirmed
+                </span>
+              </template>
+              <template x-if="c.commercial_carrier_use === 'VERIFIED' && c.private_fleet_present !== 'VERIFIED_PRESENT'">
+                <span class="badge badge-carrier" title="Outside commercial carrier use verified.">
+                  ↔ Outside Carriers Confirmed
+                </span>
+              </template>
+              <template x-if="c.private_fleet_present !== 'VERIFIED_PRESENT' && c.commercial_carrier_use !== 'VERIFIED'">
+                <span class="badge badge-unknown" title="Fleet and outside carrier usage not confirmed yet. Default neutral stance.">
+                  Fleet / Carrier: UNKNOWN
+                </span>
+              </template>
+            </div>
+
+            <!-- Row 2: Location • Commodity • Equipment • Plant Network • Website -->
+            <div class="broker-card-header-sub">
+              <span style="font-weight:600; color:var(--color-text-main);">
+                📍 <span x-text="c.best_location || 'US/Canada'"></span>
+              </span>
+              <span>•</span>
+              <span style="color:var(--color-text-main);" x-text="c.primary_family_name || 'Industrial Freight'"></span>
+              <template x-if="c.equipment_categories && c.equipment_categories.length > 0">
+                <span class="badge badge-equipment" style="font-size:0.6875rem;" x-text="c.equipment_categories.join(' / ')"></span>
+              </template>
+              <template x-if="c.facility_count > 1">
+                <span class="badge badge-multi-plant" style="font-size:0.6875rem;" x-text="c.facility_count + ' Plants'"></span>
+              </template>
+              <template x-if="c.website_url && (c.website_url.startsWith('http://') || c.website_url.startsWith('https://'))">
+                <a :href="c.website_url" target="_blank" rel="noopener noreferrer" @click.stop style="color:var(--color-primary); text-decoration:none; font-size:0.75rem; margin-left:0.25rem;">
+                  🌐 <span x-text="c.website_url.replace('https://', '').replace('http://', '').replace('www.', '').split('/')[0]"></span>
+                </a>
+              </template>
+            </div>
+
+            <!-- Row 3: UI Truth Panel (Deterministic Real-World Evidence Breakdown) -->
+            <div class="truth-panel">
+              <span class="truth-panel-title">Truth Panel:</span>
+              <span class="truth-pill" :class="c.commercial_carrier_use === 'VERIFIED' ? 'truth-pill-verified' : 'truth-pill-unconfirmed'">
+                <strong>OUTSIDE CARRIER USE:</strong> <span x-text="c.commercial_carrier_use === 'VERIFIED' ? 'VERIFIED' : 'NOT CONFIRMED'"></span>
+              </span>
+              <span class="truth-pill" :class="c.broker_friendly_status === 'VERIFIED_ACCEPTS' ? 'truth-pill-verified' : (c.broker_friendly_status === 'VERIFIED_DIRECT_ONLY' ? 'truth-pill-alert' : 'truth-pill-unconfirmed')">
+                <strong>BROKER USE:</strong> <span x-text="c.broker_friendly_status === 'VERIFIED_ACCEPTS' ? 'VERIFIED ACCEPTS' : (c.broker_friendly_status === 'VERIFIED_DIRECT_ONLY' ? 'DIRECT ONLY' : 'NOT CONFIRMED')"></span>
+              </span>
+              <span class="truth-pill" :class="(c.private_fleet_present === 'VERIFIED_PRESENT' || c.private_fleet_present === 'VERIFIED_NO_FLEET') ? 'truth-pill-verified' : 'truth-pill-unconfirmed'">
+                <strong>OWN TRUCKS:</strong> <span x-text="c.private_fleet_present === 'VERIFIED_PRESENT' ? 'VERIFIED PRESENT' : (c.private_fleet_present === 'VERIFIED_NO_FLEET' ? 'NO FLEET' : 'NOT CONFIRMED')"></span>
+              </span>
+              <template x-if="c.facility_count > 1 && c.qualifying_facility_name">
+                <span class="truth-pill truth-pill-verified" style="margin-left:auto;">
+                  <strong>QUALIFYING FACILITY:</strong> <span x-text="c.qualifying_facility_name + ' (' + c.qualifying_facility_location + ')'"></span>
+                </span>
+              </template>
+            </div>
+          </div>
+
+          <!-- 2. 3-COLUMN OPERATIONAL ROW -->
+          <div class="company-card-grid-broker">
+            <!-- Col A: Why Call / Discovery (Left Column) -->
+            <div class="broker-card-col-info broker-card-col-why">
+              <!-- Factual Reasons / Why it may be worth calling -->
+              <template x-if="c.lifecycle_stage !== 'DISCOVERY' && c.broker_why_bullets && c.broker_why_bullets.length > 0">
+                <div class="broker-why-container">
+                  <div class="broker-why-title">Why it may be worth calling:</div>
+                  <ul class="broker-why-list">
+                    <template x-for="bullet in c.broker_why_bullets" :key="bullet">
+                      <li>
+                        <span class="broker-why-check">✓</span>
+                        <span x-text="bullet"></span>
+                      </li>
+                    </template>
+                  </ul>
+                </div>
+              </template>
+
+              <!-- Discovery Pool: What We Know / Still Checking -->
+              <template x-if="c.lifecycle_stage === 'DISCOVERY'">
+                <div class="broker-discovery-container">
+                  <div style="font-size:0.75rem; color:var(--color-text-main); line-height:1.4;">
+                    <strong style="color:var(--color-text-main);">What we know:</strong>
+                    <span x-text="c.discovery_what_we_know.join(' • ')"></span>
+                  </div>
+                  <div style="font-size:0.75rem; color:#d97706; margin-top:0.25rem;">
+                    <strong style="font-weight:700;">Still checking:</strong>
+                    <span x-text="c.discovery_still_checking"></span>
+                  </div>
+                </div>
+              </template>
+            </div>
+
+            <!-- Col B: CONTACT ASSETS (Center Column) -->
+            <div class="broker-card-col-contact">
+              <template x-if="c.best_phone">
+                <div class="broker-phone-card">
+                  <div class="broker-phone-label" x-text="c.best_phone_label"></div>
+                  <div class="broker-phone-val">
+                    <a :href="'tel:' + c.best_phone_clean" class="broker-phone-link" @click.stop>
+                      📞 <span x-text="c.best_phone"></span>
+                    </a>
+                  </div>
+                </div>
+              </template>
+              <template x-if="!c.best_phone">
+                <div class="broker-phone-card broker-phone-empty">
+                  <div class="broker-phone-label">Facility Phone</div>
+                  <div style="font-size:0.8125rem; color:var(--color-text-muted); font-style:italic;">
+                    Researching desk line
+                  </div>
+                </div>
+              </template>
+
+              <!-- Email Line (if present) -->
+              <template x-if="c.best_email">
+                <div class="broker-email-row">
+                  <a :href="'mailto:' + c.best_email" class="broker-email-link" @click.stop>
+                    ✉️ <span x-text="c.best_email"></span>
+                  </a>
+                </div>
+              </template>
+            </div>
+
+            <!-- Col C: ACTIONS (Right Column) -->
+            <div class="broker-card-actions">
+              <template x-if="c.best_phone">
+                <a :href="'tel:' + c.best_phone_clean" class="btn btn-call btn-sm" @click.stop style="width:100%; justify-content:center; font-weight:700;">
+                  📞 Call Now
+                </a>
+              </template>
+              <button type="button" class="btn btn-primary btn-sm" @click.stop="openLogCall(c, null)" style="width:100%; justify-content:center;">
+                📝 Log Call
+              </button>
+              <template x-if="c.primary_facility_id">
+                <a :href="'/prospects/' + c.primary_facility_id" class="btn btn-secondary btn-sm" @click.stop style="width:100%; justify-content:center;">
+                  Review Prospect →
+                </a>
+              </template>
+              <button type="button" class="btn btn-secondary btn-sm" @click.stop="toggleCompany(c.company_id)" style="width:100%; justify-content:center; font-size:0.75rem;">
+                <span x-text="expandedCompanies[c.company_id] ? 'Hide Details ▲' : 'Details (' + c.facility_count + ') ▼'"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expandable Child Facilities Tray -->
+        <div class="company-tray" x-show="expandedCompanies[c.company_id]" x-transition>
+          <div style="margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+            <div style="font-size:0.8125rem; font-weight:700; color:var(--color-text-main);">
+              Physical Shipping Facilities for <span x-text="c.operating_brand"></span> (<span x-text="c.facility_count"></span>)
+            </div>
+            <!-- Technical attributes summary pill -->
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; font-size:0.6875rem;">
+              <span class="badge"
+                    :class="{
+                      'badge-friction-low': c.friction_level === 'LOW',
+                      'badge-friction-medium': c.friction_level === 'MEDIUM',
+                      'badge-friction-high': c.friction_level === 'HIGH',
+                      'badge-friction-unknown': c.friction_level === 'UNKNOWN'
+                    }"
+                    x-text="c.friction_level === 'LOW' ? '🟢 Low Friction' : (c.friction_level === 'MEDIUM' ? '🟡 Medium Friction' : (c.friction_level === 'HIGH' ? '🔴 High Friction' : '⚪ Unknown Friction'))">
+              </span>
+              <span class="badge"
+                    :class="{
+                      'badge-verified': c.facts.company_footprint_status === 'SINGLE_SITE_VERIFIED',
+                      'badge-inferred': c.facts.company_footprint_status === 'MULTI_SITE_VERIFIED',
+                      'badge-unknown': c.facts.company_footprint_status === 'UNKNOWN'
+                    }"
+                    x-text="c.facts.footprint_display || 'Footprint: UNKNOWN'">
+              </span>
+              <template x-if="c.facts.private_fleet_present">
+                <span class="badge badge-fleet">🚚 Fleet Verified</span>
+              </template>
+              <template x-if="c.facts.commercial_carrier_use">
+                <span class="badge badge-verified">✓ Carrier Verified</span>
+              </template>
+            </div>
+          </div>
+
+          <div style="overflow-x:auto;">
+            <table class="child-facilities-table">
+              <thead>
+                <tr>
+                  <th>Facility Name & Type</th>
+                  <th>Location & Physical Address</th>
+                  <th>Commodity / Equipment</th>
+                  <th>Primary Logistics Contact</th>
+                  <th>Fleet / Carrier</th>
+                  <th>Readiness</th>
+                  <th style="text-align:right;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template x-for="f in c.facilities" :key="f.facility_id">
+                  <tr>
+                    <!-- Facility Name & Type -->
+                    <td>
+                      <div style="font-weight:700; color:var(--color-text-main);" x-text="f.facility_name"></div>
+                      <div style="font-size:0.6875rem; color:var(--color-text-muted);" x-text="f.facility_type"></div>
+                    </td>
+
+                    <!-- Location & Physical Address -->
+                    <td>
+                      <div style="font-weight:600;" x-text="f.location_str"></div>
+                      <div style="font-size:0.6875rem; color:var(--color-text-muted);" x-text="f.physical_address"></div>
+                    </td>
+
+                    <!-- Commodity & Equipment -->
+                    <td>
+                      <div style="font-weight:600;" x-text="f.primary_commodity ? f.primary_commodity.commodity_category : 'N/A'"></div>
+                      <div style="font-size:0.6875rem; color:var(--color-text-muted); max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
+                           :title="f.primary_commodity ? f.primary_commodity.specific_products : ''"
+                           x-text="f.primary_commodity ? f.primary_commodity.specific_products : ''"></div>
+                      <div style="margin-top:0.25rem; display:flex; align-items:center; gap:0.25rem;">
+                        <span class="badge badge-equipment" style="font-size:0.625rem;" x-text="f.primary_commodity ? f.primary_commodity.equipment_category : 'UNKNOWN'"></span>
+                        <span class="badge" style="font-size:0.625rem;"
+                              :class="{
+                                'badge-verified': f.primary_commodity?.equipment_usage_status === 'VERIFIED',
+                                'badge-inferred': f.primary_commodity?.equipment_usage_status === 'INFERRED',
+                                'badge-unknown': f.primary_commodity?.equipment_usage_status === 'UNKNOWN'
+                              }"
+                              x-text="f.primary_commodity?.equipment_usage_status === 'VERIFIED' ? '✓ Verified' : (f.primary_commodity?.equipment_usage_status === 'INFERRED' ? '◇ Inferred' : '? Unknown')">
+                        </span>
+                      </div>
+                    </td>
+
+                    <!-- Primary Logistics Contact -->
+                    <td>
+                      <template x-if="f.best_contact">
+                        <div>
+                          <div style="font-weight:600;" x-text="f.best_contact.person_name || f.best_contact.exact_published_title"></div>
+                          <div style="font-size:0.6875rem; color:var(--color-text-muted);" x-text="f.best_contact.phone_number || f.best_contact.email_address"></div>
+                          <div style="display:flex; gap:0.25rem; flex-wrap:wrap; margin-top:0.2rem;">
+                            <span class="badge" style="font-size:0.625rem;"
+                                  :class="{
+                                    'badge-direct': f.best_contact.phone_directness === 'DIRECT_PERSON',
+                                    'badge-dept': f.best_contact.phone_directness === 'DEPARTMENT_LINE',
+                                    'badge-switchboard': ['GENERAL_SWITCHBOARD', 'RECEPTION', 'TOLL_FREE'].includes(f.best_contact.phone_directness),
+                                    'badge-unknown': f.best_contact.phone_directness === 'UNKNOWN'
+                                  }"
+                                  x-text="f.best_contact.phone_directness === 'DIRECT_PERSON' ? 'Direct Line' : (f.best_contact.phone_directness === 'DEPARTMENT_LINE' ? 'Dept Line' : (f.best_contact.phone_directness === 'GENERAL_SWITCHBOARD' ? 'Switchboard' : (f.best_contact.phone_directness || 'Contact')))">
+                            </span>
+                            <template x-if="f.best_contact.role_category && f.best_contact.role_category !== 'UNKNOWN'">
+                              <span class="badge" style="font-size:0.625rem;"
+                                    :class="{
+                                      'badge-logistics': f.best_contact.role_category === 'FREIGHT_LOGISTICS',
+                                      'badge-sales': f.best_contact.role_category === 'COMMERCIAL_SALES',
+                                      'badge-operations': f.best_contact.role_category === 'OPERATIONS',
+                                      'badge-unknown': f.best_contact.role_category === 'GENERAL_FACILITY'
+                                    }"
+                                    x-text="f.best_contact.role_category === 'FREIGHT_LOGISTICS' ? 'Logistics' : (f.best_contact.role_category === 'COMMERCIAL_SALES' ? 'Sales' : f.best_contact.role_category)">
+                              </span>
+                            </template>
+                          </div>
+                        </div>
+                      </template>
+                      <template x-if="!f.best_contact">
+                        <span style="color:#94a3b8; font-style:italic;">No contact audited</span>
+                      </template>
+                    </td>
+
+                    <!-- Fleet / Carrier -->
+                    <td>
+                      <span class="badge" style="font-size:0.625rem;"
+                            :class="f.private_fleet_present === 'VERIFIED_PRESENT' ? 'badge-fleet' : 'badge-unknown'"
+                            x-text="f.private_fleet_present === 'VERIFIED_PRESENT' ? '🚚 Fleet: VERIFIED' : 'Fleet: UNKNOWN'">
+                      </span>
+                      <div style="font-size:0.625rem; margin-top:0.15rem;"
+                           :style="f.commercial_carrier_use === 'VERIFIED' ? 'color:#15803d; font-weight:600;' : 'color:var(--color-text-muted);'"
+                           x-text="f.commercial_carrier_use === 'VERIFIED' ? 'Carrier: VERIFIED' : 'Carrier: UNKNOWN'">
+                      </div>
+                    </td>
+
+                    <!-- Qualification Readiness -->
+                    <td>
+                      <span class="badge" style="font-size:0.625rem;"
+                            :class="f.qualification_readiness?.is_ready ? 'badge-verified' : 'badge-unknown'"
+                            x-text="f.qualification_readiness?.is_ready ? '✓ 5/5 Ready' : (f.qualification_readiness ? f.qualification_readiness.passed_count + '/5 Ready' : 'Incomplete')">
+                      </span>
+                    </td>
+
+                    <!-- Action -->
+                    <td style="text-align:right;">
+                      <div style="display:flex; justify-content:flex-end; gap:0.35rem; align-items:center;">
+                        <button type="button" class="btn btn-secondary btn-sm" style="font-size:0.75rem; padding:0.25rem 0.5rem;"
+                                @click.stop="openLogCall(c, f)">
+                          📞 Call
+                        </button>
+                        <a :href="'/prospects/' + f.facility_id" class="btn btn-primary btn-sm" style="font-size:0.75rem; padding:0.25rem 0.6rem;">
+                          View Profile →
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Empty State for Company Mode -->
+    <div class="empty-state-card" x-show="filteredCompanies().length === 0">
+      <div class="empty-state-icon-box">🏢</div>
+      <div class="empty-state-title">No companies match your filters</div>
+      <div class="empty-state-desc">Try resetting your keyword search, lifecycle tab, friction, or structure filters.</div>
+      <button class="btn btn-secondary btn-sm"
+              @click="searchQuery = ''; lifecycleTab = 'ALL'; structureFilter = 'ALL'; facilityCountFilter = 'ALL'; frictionFilter = 'ALL'; outreachFilter = 'ALL'; unreviewedOnly = false; equipmentFilter = 'ALL'; fleetFilter = 'ALL'; carrierFilter = 'ALL'; procurementFilter = 'ALL'; resetPage();">
+        Reset All Filters
+      </button>
+    </div>
+  </div>
+
+  <!-- ======================================================================== -->
+  <!-- VIEW 2: FLAT FACILITIES VIEW (ORIGINAL GRANULAR TABLE)                   -->
+  <!-- ======================================================================== -->
+  <div x-show="viewMode === 'FACILITIES'">
+    <div class="table-card">
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Company & Facility</th>
+              <th>Stage</th>
+              <th>Location</th>
+              <th>Commodity / Equipment</th>
+              <th>Primary Contact</th>
+              <th>Fleet & Carrier</th>
+              <th>Readiness</th>
+              <th style="text-align:right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="p in paginatedProspects()" :key="p.facility_id">
+              <tr>
+                <!-- Company & Facility -->
+                <td>
+                  <div style="font-weight:700; color:var(--color-text-main); font-size:0.875rem;" x-text="p.operating_brand"></div>
+                  <div style="font-size:0.75rem; color:var(--color-text-muted);" x-text="p.facility_name"></div>
+                  <div style="font-size:0.6875rem; color:#0284c7;" x-show="p.parent_info"
+                       x-text="'TI Automotive Group (Acquired 2023) • Hierarchy: UNKNOWN'"></div>
+                </td>
+
+                <!-- Stage & Opportunity Tier -->
+                <td>
+                  <span class="badge"
+                        :class="{
+                          'badge-priority': p.opportunity_tier === 'TIER_A_PRIORITY',
+                          'badge-worth-calling': p.opportunity_tier === 'TIER_B_WORTH_CALLING',
+                          'badge-secondary': p.opportunity_tier === 'TIER_C_SECONDARY',
+                          'badge-research': p.opportunity_tier === 'TIER_D_RESEARCH_NEEDED'
+                        }"
+                        x-text="p.broker_status_label || p.lifecycle_stage">
+                  </span>
+                  <div style="font-size:0.6875rem; color:var(--color-text-muted); margin-top:0.2rem;" x-text="'Stage: ' + p.lifecycle_stage"></div>
+                  <template x-if="p.why_facts && p.why_facts.length > 0">
+                    <div style="margin-top:0.25rem;">
+                      <details style="cursor:pointer; font-size:0.6875rem;">
+                        <summary style="color:var(--color-primary); font-weight:600; outline:none;"
+                                 x-text="p.lifecycle_stage === 'SHORTLISTED' ? 'Why Shortlisted ▾' : (p.lifecycle_stage === 'QUALIFIED' ? 'Why Qualified ▾' : 'Status ▾')">
+                        </summary>
+                        <div style="margin-top:0.2rem; padding:0.35rem 0.5rem; background:rgba(0,0,0,0.03); border-radius:4px; border:1px solid var(--color-border); font-size:0.6875rem; color:var(--color-text-main); min-width:180px;">
+                          <template x-for="fact in p.why_facts" :key="fact">
+                            <div style="line-height:1.3; margin-bottom:0.15rem;">✓ <span x-text="fact"></span></div>
+                          </template>
+                        </div>
+                      </details>
+                    </div>
+                  </template>
+                </td>
+
+                <!-- Location -->
+                <td>
+                  <div style="font-weight:600;" x-text="p.location_str"></div>
+                  <div style="font-size:0.75rem; color:var(--color-text-muted);" x-text="p.physical_address"></div>
+                </td>
+
+                <!-- Commodity & Equipment -->
+                <td style="max-width:220px;">
+                  <div style="font-weight:600;" x-text="p.primary_commodity ? p.primary_commodity.commodity_category : 'N/A'"></div>
+                  <div style="font-size:0.75rem; color:var(--color-text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
+                       :title="p.primary_commodity ? p.primary_commodity.specific_products : ''"
+                       x-text="p.primary_commodity ? p.primary_commodity.specific_products : ''"></div>
+                  <div style="margin-top:0.35rem; display:flex; align-items:center; gap:0.25rem;">
+                    <span class="badge badge-equipment" style="font-size:0.6875rem;" x-text="p.primary_commodity ? p.primary_commodity.equipment_category : 'UNKNOWN'"></span>
+                    <span class="badge" style="font-size:0.6875rem;"
+                          :class="{
+                            'badge-verified': p.primary_commodity?.equipment_usage_status === 'VERIFIED',
+                            'badge-inferred': p.primary_commodity?.equipment_usage_status === 'INFERRED',
+                            'badge-unknown': p.primary_commodity?.equipment_usage_status === 'UNKNOWN'
+                          }"
+                          x-text="p.primary_commodity?.equipment_usage_status === 'VERIFIED' ? '✓ Verified' : (p.primary_commodity?.equipment_usage_status === 'INFERRED' ? '◇ Inferred' : '? Unknown')">
+                    </span>
+                  </div>
+                </td>
+
+                <!-- Primary Contact -->
+                <td>
+                  <template x-if="p.best_contact">
+                    <div>
+                      <div style="font-weight:600;" x-text="p.best_contact.person_name || p.best_contact.exact_published_title"></div>
+                      <div style="font-size:0.75rem; color:var(--color-text-muted);" x-text="p.best_contact.phone_number || p.best_contact.email_address"></div>
+                      <div style="display:flex; gap:0.25rem; flex-wrap:wrap; margin-top:0.25rem;">
+                        <span class="badge" style="font-size:0.6875rem;"
+                              :class="{
+                                'badge-direct': p.best_contact.phone_directness === 'DIRECT_PERSON',
+                                'badge-dept': p.best_contact.phone_directness === 'DEPARTMENT_LINE',
+                                'badge-switchboard': ['GENERAL_SWITCHBOARD', 'RECEPTION', 'TOLL_FREE'].includes(p.best_contact.phone_directness),
+                                'badge-unknown': p.best_contact.phone_directness === 'UNKNOWN'
+                              }"
+                              x-text="p.best_contact.phone_directness === 'DIRECT_PERSON' ? 'Direct Line' : (p.best_contact.phone_directness === 'DEPARTMENT_LINE' ? 'Dept Line' : (p.best_contact.phone_directness === 'GENERAL_SWITCHBOARD' ? 'Switchboard' : (p.best_contact.phone_directness || 'Contact')))">
+                        </span>
+                        <template x-if="p.best_contact.role_category && p.best_contact.role_category !== 'UNKNOWN'">
+                          <span class="badge" style="font-size:0.6875rem;"
+                                :class="{
+                                  'badge-logistics': p.best_contact.role_category === 'FREIGHT_LOGISTICS',
+                                  'badge-sales': p.best_contact.role_category === 'COMMERCIAL_SALES',
+                                  'badge-operations': p.best_contact.role_category === 'OPERATIONS',
+                                  'badge-unknown': p.best_contact.role_category === 'GENERAL_FACILITY'
+                                }"
+                                x-text="p.best_contact.role_category === 'FREIGHT_LOGISTICS' ? 'Logistics' : (p.best_contact.role_category === 'COMMERCIAL_SALES' ? 'Sales' : p.best_contact.role_category)">
+                          </span>
+                        </template>
+                      </div>
+                    </div>
+                  </template>
+                  <template x-if="!p.best_contact">
+                    <span style="color:#94a3b8; font-style:italic;">No contact</span>
+                  </template>
+                </td>
+
+                <!-- Fleet & Carrier Status -->
+                <td>
+                  <template x-if="p.private_fleet_present === 'VERIFIED_PRESENT' && p.commercial_carrier_use === 'VERIFIED'">
+                    <span class="badge badge-fleet-carrier" title="Private fleet verified and outside commercial carrier use verified. Own trucks confirmed; outside carrier use also confirmed.">
+                      🚚 Own Trucks + ↔ Outside
+                    </span>
+                  </template>
+                  <template x-if="p.private_fleet_present === 'VERIFIED_PRESENT' && p.commercial_carrier_use !== 'VERIFIED'">
+                    <span class="badge badge-secondary" title="Private fleet verified. Operating a fleet is an operational attribute; outside carrier use not yet confirmed.">
+                      🚚 Own Trucks
+                    </span>
+                  </template>
+                  <template x-if="p.commercial_carrier_use === 'VERIFIED' && p.private_fleet_present !== 'VERIFIED_PRESENT'">
+                    <span class="badge badge-carrier" title="Outside commercial carrier use verified.">
+                      ↔ Outside Carriers
+                    </span>
+                  </template>
+                  <template x-if="p.private_fleet_present !== 'VERIFIED_PRESENT' && p.commercial_carrier_use !== 'VERIFIED'">
+                    <span class="badge badge-unknown" title="Fleet and outside carrier usage not confirmed yet. Default neutral stance.">
+                      Fleet/Carrier: UNKNOWN
+                    </span>
+                  </template>
+                  <template x-if="p.fleet_relationship_type === 'IN_HOUSE_OWNED'">
+                    <div style="font-size:0.6875rem; color:#166534; margin-top:0.2rem;">In-House Owned</div>
+                  </template>
+                  <template x-if="p.fleet_relationship_type === 'AFFILIATED_CARRIER_ENTITY'">
+                    <div style="font-size:0.6875rem; color:#0284c7; margin-top:0.2rem;">Affiliated Carrier</div>
+                  </template>
+                </td>
+
+                <!-- Qualification Readiness -->
+                <td>
+                  <span class="badge"
+                        :class="p.qualification_readiness?.is_ready ? 'badge-verified' : 'badge-unknown'"
+                        :title="p.qualification_readiness?.is_ready ? 'All 5 qualification readiness criteria satisfied' : 'Incomplete qualification data'"
+                        x-text="p.qualification_readiness?.is_ready ? '✓ 5/5 Ready' : (p.qualification_readiness ? p.qualification_readiness.passed_count + '/5 Ready' : 'Incomplete')">
+                  </span>
+                </td>
+
+                <!-- Actions -->
+                <td style="text-align:right;">
+                  <div style="display:flex; justify-content:flex-end; gap:0.35rem; align-items:center;">
+                    <button type="button" class="btn btn-secondary btn-sm" style="font-size:0.75rem; padding:0.25rem 0.5rem;"
+                            @click.stop="openLogCall({company_id: p.company_id, operating_brand: p.operating_brand, legal_name: p.operating_brand, facilities: [p]}, p)">
+                      📞 Call
+                    </button>
+                    <a :href="'/prospects/' + p.facility_id" class="btn btn-primary btn-sm">
+                      View Profile →
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </template>
+            <!-- Empty State for Facilities Mode -->
+            <tr x-show="filteredProspects().length === 0">
+              <td colspan="8" style="text-align:center; padding:3rem 1rem; color:var(--color-text-muted);">
+                <div style="font-size:1.125rem; font-weight:600; color:var(--color-text-main); margin-bottom:0.5rem;">No prospects match your search criteria</div>
+                <div style="font-size:0.875rem;">Try adjusting your keyword search, lifecycle tab, or equipment filters.</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared Pagination Footer -->
+  <div class="table-card" style="margin-top:1rem;">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:0.75rem 1.25rem; flex-wrap:wrap; gap:1rem;">
+      <div style="font-size:0.8125rem; color:var(--color-text-muted); font-weight:500;">
+        <template x-if="viewMode === 'COMPANIES'">
+          <span>
+            Showing <strong style="color:var(--color-text-main);" x-text="pagination ? ((pagination.page - 1) * pagination.page_size + 1) : (filteredCompanies().length === 0 ? 0 : ((currentPage - 1) * pageSize + 1))"></strong> to <strong style="color:var(--color-text-main);" x-text="pagination ? Math.min(pagination.page * pagination.page_size, pagination.total_count) : Math.min(currentPage * pageSize, filteredCompanies().length)"></strong> of <strong style="color:var(--color-text-main);" x-text="pagination ? pagination.total_count : filteredCompanies().length"></strong> filtered companies
+          </span>
+        </template>
+        <template x-if="viewMode === 'FACILITIES'">
+          <span>
+            Showing <strong style="color:var(--color-text-main);" x-text="pagination ? ((pagination.page - 1) * pagination.page_size + 1) : (filteredProspects().length === 0 ? 0 : ((currentPage - 1) * pageSize + 1))"></strong> to <strong style="color:var(--color-text-main);" x-text="pagination ? Math.min(pagination.page * pagination.page_size, pagination.total_count) : Math.min(currentPage * pageSize, filteredProspects().length)"></strong> of <strong style="color:var(--color-text-main);" x-text="pagination ? pagination.total_count : filteredProspects().length"></strong> filtered facilities
+          </span>
+        </template>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <div style="display:flex; align-items:center; gap:0.35rem; font-size:0.8125rem; color:var(--color-text-muted);">
+          <span>Per page:</span>
+          <select class="filter-select" style="padding:0.25rem 0.5rem; font-size:0.8125rem;" x-model.number="pageSize" @change="pagination ? navigatePage(1, pageSize) : (currentPage = 1)">
+            <option :value="10">10</option>
+            <option :value="25">25</option>
+            <option :value="50">50</option>
+            <option :value="100">100</option>
+            <option :value="500">All</option>
+          </select>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.35rem;">
+          <button class="btn btn-secondary btn-sm" :disabled="currentPage <= 1" @click="prevPage()" style="padding:0.35rem 0.75rem;">
+            ← Previous
+          </button>
+          <span style="font-size:0.8125rem; font-weight:600; padding:0 0.5rem; color:var(--color-text-main);" x-text="'Page ' + currentPage + ' of ' + totalPages()">{% if pagination %}Page {{ pagination.page }} of {{ pagination.total_pages }}{% else %}Page 1 of 1{% endif %}</span>
+          <button class="btn btn-secondary btn-sm" :disabled="currentPage >= totalPages()" @click="nextPage()" style="padding:0.35rem 0.75rem;">
+            Next →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

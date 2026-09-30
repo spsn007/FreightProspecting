@@ -1,0 +1,1334 @@
+[
+  {
+    "company_id": 104,
+    "operating_brand": "Target Steel",
+    "research_focus_facility_id": 133,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 143,
+          "person_name": null,
+          "department": "Traffic Desk",
+          "exact_published_title": null,
+          "phone_number": "734-789-9700",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "traffic@targetsteel.net",
+          "email_directness": "DEPARTMENT",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "AFFILIATED_CARRIER_ENTITY",
+      "fleet_relationship_claim_level": "VERIFIED",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "traffic@targetsteel.net",
+          "department": "Traffic / Logistics Desk",
+          "role_category": "FREIGHT_LOGISTICS",
+          "directness": "DEPARTMENT",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Published direct traffic department mailbox on official corporate site."
+        }
+      ],
+      "equipment_findings": "Flatbed / Conestoga coil steel trailers (SST Trucking operates 25 Conestoga flatbed trailers).",
+      "facility_scope": "COMPANY_AND_FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.targetsteel.net/about.html",
+          "source_title": "Target Steel - About Us",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official corporate website confirms affiliate carrier SST Trucking operates 25 Conestoga flatbed trailers dedicated to servicing Target Steel and outside accounts."
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "fleet_relationship_type",
+          "old_value": "UNKNOWN",
+          "proposed_value": "AFFILIATED_CARRIER_ENTITY",
+          "claim_level": "VERIFIED",
+          "source_url": "https://www.targetsteel.net/about.html",
+          "source_title": "Target Steel - About Us",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "COMPANY",
+          "target_facility_id": 133,
+          "exact_support_summary": "Official corporate website confirms affiliate carrier SST Trucking operates 25 Conestoga flatbeds servicing Target Steel and outside accounts."
+        }
+      ]
+    }
+  },
+  {
+    "company_id": 32,
+    "operating_brand": "Coreslab Structures (ONT) Inc.",
+    "research_focus_facility_id": 31,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 38,
+          "person_name": "Jordan Davidson",
+          "department": null,
+          "exact_published_title": "Sales Manager",
+          "phone_number": "(905) 689-3993",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "SalesOntario@coreslab.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "COMMERCIAL_SALES"
+        },
+        {
+          "id": 39,
+          "person_name": "Jacob Cammisoli",
+          "department": "Sales",
+          "exact_published_title": "Sales Consultant GTA",
+          "phone_number": "(905) 689-3993",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "jcammisoli@coreslab.com",
+          "email_directness": "DIRECT_PERSON",
+          "role_category": "COMMERCIAL_SALES"
+        },
+        {
+          "id": 40,
+          "person_name": "Tom Beasley",
+          "department": "Sales",
+          "exact_published_title": "Sales Consultant Niagara",
+          "phone_number": "(905) 689-3993",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "tbeasley@coreslab.com",
+          "email_directness": "DIRECT_PERSON",
+          "role_category": "COMMERCIAL_SALES"
+        },
+        {
+          "id": 41,
+          "person_name": null,
+          "department": "Sales",
+          "exact_published_title": "Sales Ontario Desk",
+          "phone_number": "(905) 689-3993",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "SalesOntario@coreslab.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "COMMERCIAL_SALES"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DIRECT_PERSON",
+          "person_name": "Jordan Davidson",
+          "exact_published_title": "Sales Manager",
+          "email_address": "jdavidson@coreslab.com",
+          "phone_number": "(905) 689-3993",
+          "email_directness": "DIRECT_PERSON",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "status": "IMPROVED_EXISTING",
+          "notes": "Direct published person email on official Dundas location page (replaces generic department mailbox)."
+        },
+        {
+          "type": "DIRECT_PERSON",
+          "person_name": "Jacob Cammisoli",
+          "exact_published_title": "Sales Consultant GTA",
+          "email_address": "jcammisoli@coreslab.com",
+          "email_directness": "DIRECT_PERSON",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Direct sales consultant for GTA region."
+        },
+        {
+          "type": "DIRECT_PERSON",
+          "person_name": "Tom Beasley",
+          "exact_published_title": "Sales Consultant Niagara",
+          "email_address": "tbeasley@coreslab.com",
+          "email_directness": "DIRECT_PERSON",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Direct sales consultant for Niagara region."
+        }
+      ],
+      "equipment_findings": "Heavy precast concrete structural elements requiring specialized flatbed, step deck, and heavy-haul trailers.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.coreslab.com/locations/dundas-ontario-canada-precast-concrete/",
+          "source_title": "Coreslab Structures (ONT) Inc. Dundas Location",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official Dundas location page documents precast operations and publishes direct sales team emails."
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "contacts[38].email_address",
+          "old_value": "SalesOntario@coreslab.com",
+          "proposed_value": "jdavidson@coreslab.com",
+          "claim_level": "VERIFIED",
+          "source_url": "https://www.coreslab.com/locations/dundas-ontario-canada-precast-concrete/",
+          "source_title": "Coreslab Structures (ONT) Inc. Dundas Location",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "target_contact_id": 38,
+          "exact_support_summary": "Official location page publishes direct email jdavidson@coreslab.com for named sales manager Jordan Davidson."
+        },
+        {
+          "field": "contacts[38].email_directness",
+          "old_value": "DEPARTMENT",
+          "proposed_value": "DIRECT_PERSON",
+          "claim_level": "VERIFIED",
+          "source_url": "https://www.coreslab.com/locations/dundas-ontario-canada-precast-concrete/",
+          "source_title": "Coreslab Structures (ONT) Inc. Dundas Location",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "target_contact_id": 38,
+          "exact_support_summary": "Jordan Davidson's published email is a personal direct corporate email address."
+        }
+      ]
+    }
+  },
+  {
+    "company_id": 48,
+    "operating_brand": "Interfor",
+    "research_focus_facility_id": 51,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 61,
+          "person_name": null,
+          "department": "Shipping Office",
+          "exact_published_title": null,
+          "phone_number": "912-367-3671",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "info@interfor.com",
+          "email_directness": "GENERAL",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "VERIFIED",
+      "commercial_carrier_claim_level": "VERIFIED",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Baxley Sawmill Shipping / Office",
+          "phone_number": "(912) 367-7711",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Verified facility contact route."
+        }
+      ],
+      "equipment_findings": "FTL Flatbed for dimensional lumber, timber, and residual wood products.",
+      "facility_scope": "COMPANY_AND_FACILITY",
+      "sources": [
+        {
+          "source_url": "https://interfor.com/terms-and-conditions/",
+          "source_title": "Interfor Carrier Terms and Conditions",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Interfor officially publishes Carrier Terms and Conditions governing commercial motor carriers for transportation of lumber, I-joists, and residual products on rate confirmations."
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "commercial_carrier_use",
+          "old_value": "UNKNOWN",
+          "proposed_value": "VERIFIED",
+          "claim_level": "VERIFIED",
+          "source_url": "https://interfor.com/terms-and-conditions/",
+          "source_title": "Interfor Carrier Terms and Conditions",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "COMPANY",
+          "target_facility_id": 51,
+          "exact_support_summary": "Official corporate Carrier Terms and Conditions govern outside commercial motor carriers transporting freight tendered by Interfor on rate confirmations."
+        }
+      ]
+    }
+  },
+  {
+    "company_id": 43,
+    "operating_brand": "Jones Plastic & Engineering Company, LLC",
+    "research_focus_facility_id": 42,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 52,
+          "person_name": null,
+          "department": "Commercial Sales Desk",
+          "exact_published_title": null,
+          "phone_number": "(502) 491-3785",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@jonesplastic.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "UNKNOWN"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DIRECT_PERSON",
+          "person_name": "Ron Shapton",
+          "exact_published_title": "Director of Business Development",
+          "email_address": "RShapton@JonesPlastic.com",
+          "phone_number": "+1-615-717-7709",
+          "email_directness": "DIRECT_PERSON",
+          "phone_directness": "DIRECT_PERSON",
+          "status": "DISCOVERED_NEW",
+          "notes": "Published direct business development contact on official locations page."
+        },
+        {
+          "type": "DEPARTMENT",
+          "route": "sales@jonesplastic.com",
+          "phone_number": "(502) 491-3785",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Corporate switchboard and commercial desk."
+        }
+      ],
+      "equipment_findings": "Dry Van (FTL injection molded automotive and appliance components).",
+      "facility_scope": "COMPANY_AND_FACILITY",
+      "sources": [
+        {
+          "source_url": "http://www.jonesplastic.com/locations/",
+          "source_title": "Jones Plastic & Engineering Locations",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official locations page confirms Jeffersontown HQ and molding facility and publishes direct executive contact."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 36,
+    "operating_brand": "Cavalier Tool & Manufacturing Ltd.",
+    "research_focus_facility_id": 35,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 45,
+          "person_name": null,
+          "department": "Engineering / Commercial Sales Desk",
+          "exact_published_title": null,
+          "phone_number": "(519) 944-2144",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "molds@cavaliertool.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "UNKNOWN"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "molds@cavaliertool.com",
+          "phone_number": "+1 (844) 773-8183",
+          "directness": "DEPARTMENT",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Toll-free and general mold inquiries mailbox."
+        }
+      ],
+      "equipment_findings": "Heavy-haul flatbed / step deck (40+ ton injection molds) and cross-border warehouse in Dearborn, MI.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.cavaliertool.com/contact-us/",
+          "source_title": "Cavalier Tool Contact Us",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official contact page confirms Windsor plant, toll-free number, and cross-border mold manufacturing."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 24,
+    "operating_brand": "AmeriSteel",
+    "research_focus_facility_id": 23,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 27,
+          "person_name": null,
+          "department": "Commercial Sales Desk",
+          "exact_published_title": null,
+          "phone_number": "(586) 585-5250",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@ameristeel.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "UNKNOWN"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "General Office Desk",
+          "phone_number": "(586) 756-3400",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Warren plant contact route."
+        }
+      ],
+      "equipment_findings": "Flatbed for steel coils, sheet metal, and structural slit steel.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.ameristeel.com/about",
+          "source_title": "AmeriSteel About Us",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official website confirms Warren and Fraser steel processing operations."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 134,
+    "operating_brand": "Northern Concrete Pipe, Inc.",
+    "research_focus_facility_id": 163,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 173,
+          "person_name": "Thomas Washabaugh",
+          "department": null,
+          "exact_published_title": null,
+          "phone_number": "(989) 892-3545",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "trw@ncp-inc.com",
+          "email_directness": "DIRECT_PERSON",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "VERIFIED_PRESENT",
+      "private_fleet_claim_level": "VERIFIED",
+      "fleet_relationship_proposed": "IN_HOUSE_OWNED",
+      "fleet_relationship_claim_level": "VERIFIED",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Bay City Main Office",
+          "phone_number": "(989) 892-3545",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Verified plant dispatch / office desk."
+        }
+      ],
+      "equipment_findings": "Company-operated boom flatbeds (50-foot boom trailers) for concrete pipe and precast structures.",
+      "facility_scope": "COMPANY_AND_FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.ncp-inc.com/delivery-policy/",
+          "source_title": "Northern Concrete Pipe Delivery Policy",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official delivery policy states quoted prices apply F.O.B. tailgate for truckload lots via company motor trucks with 50-ft boom flatbed trailers, maintaining an operated fleet of specialized delivery vehicles."
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "private_fleet_present",
+          "old_value": "UNKNOWN",
+          "proposed_value": "VERIFIED_PRESENT",
+          "claim_level": "VERIFIED",
+          "source_url": "https://www.ncp-inc.com/delivery-policy/",
+          "source_title": "Northern Concrete Pipe Delivery Policy",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "COMPANY",
+          "target_facility_id": 163,
+          "exact_support_summary": "Official delivery policy confirms company operates and maintains a fleet of company motor trucks with 50-foot boom flatbed trailers for truckload deliveries."
+        },
+        {
+          "field": "fleet_relationship_type",
+          "old_value": "UNKNOWN",
+          "proposed_value": "IN_HOUSE_OWNED",
+          "claim_level": "VERIFIED",
+          "source_url": "https://www.ncp-inc.com/delivery-policy/",
+          "source_title": "Northern Concrete Pipe Delivery Policy",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "COMPANY",
+          "target_facility_id": 163,
+          "exact_support_summary": "Official delivery policy states company maintains and operates its own vehicle delivery fleet."
+        }
+      ]
+    }
+  },
+  {
+    "company_id": 11,
+    "operating_brand": "Andersen Pacific Forest Products Ltd.",
+    "research_focus_facility_id": 10,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 13,
+          "person_name": null,
+          "department": "General Sales Desk",
+          "exact_published_title": null,
+          "phone_number": "(604) 462-7316",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@apfp.bc.ca",
+          "email_directness": "DEPARTMENT",
+          "role_category": "UNKNOWN"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Maple Ridge Mill Office",
+          "phone_number": "(604) 462-7116",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Verified plant contact route."
+        }
+      ],
+      "equipment_findings": "Flatbed for specialty Douglas Fir and Hemlock timber and lumber.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://andersenpacific.ca",
+          "source_title": "Andersen Pacific Forest Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official homepage confirms custom cutting and export/domestic timber sawmill in Maple Ridge, BC."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 92,
+    "operating_brand": "Ratner Steel Supply",
+    "research_focus_facility_id": 114,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 124,
+          "person_name": null,
+          "department": "Shipping & Logistics Desk",
+          "exact_published_title": null,
+          "phone_number": "219-787-6700",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@ratnersteel.com",
+          "email_directness": "GENERAL",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Portage Plant Office",
+          "phone_number": "(219) 787-8400",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Portage steel service center dispatch/office route."
+        }
+      ],
+      "equipment_findings": "Flatbed / Conestoga for hot rolled and HRPO steel plate and sheet.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://ratnersteel.com/location/",
+          "source_title": "Ratner Steel Locations",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official locations page confirms Portage, IN steel processing facility at Port of Indiana."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 108,
+    "operating_brand": "AE Concrete Products Ltd.",
+    "research_focus_facility_id": 137,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 147,
+          "person_name": null,
+          "department": "Sales Desk",
+          "exact_published_title": null,
+          "phone_number": "(604) 576-1808",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@aeconcrete.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Agassiz / Langley Office Desk",
+          "phone_number": "(604) 576-9404",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Precast plant contact route."
+        }
+      ],
+      "equipment_findings": "Flatbed and step deck for precast utility vaults, electrical boxes, and civil products.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://aeconcrete.com",
+          "source_title": "AE Concrete Products Official Website",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official site documents precast civil infrastructure and utility products."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 12,
+    "operating_brand": "Mill & Timber Products Ltd. / AP Group",
+    "research_focus_facility_id": 11,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 14,
+          "person_name": null,
+          "department": "Cedar Sales Desk",
+          "exact_published_title": null,
+          "phone_number": "(604) 580-2781",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "wrcsales@apgroup.ca",
+          "email_directness": "DEPARTMENT",
+          "role_category": "UNKNOWN"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Surrey Mill Desk",
+          "phone_number": "(604) 580-2999",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Sawmill operations contact route."
+        }
+      ],
+      "equipment_findings": "Flatbed for Western Red Cedar timber, lumber, and siding products.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "http://www.millandtimber.com",
+          "source_title": "Mill & Timber Products Ltd.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official website confirms Western Red Cedar sawmill operations in Surrey, BC."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 41,
+    "operating_brand": "PTI Engineered Plastics",
+    "research_focus_facility_id": 40,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 50,
+          "person_name": null,
+          "department": "General Information Desk",
+          "exact_published_title": null,
+          "phone_number": "(586) 263-5100",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "info@teampti.com",
+          "email_directness": "GENERAL",
+          "role_category": "UNKNOWN"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Macomb Headquarters Desk",
+          "phone_number": "(586) 263-5000",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Molding facility main line."
+        }
+      ],
+      "equipment_findings": "Dry Van for precision injection molded components.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://teampti.com",
+          "source_title": "PTI Engineered Plastics",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official website confirms Macomb, MI advanced molding facility."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 115,
+    "operating_brand": "Brooklin Concrete Products",
+    "research_focus_facility_id": 144,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 154,
+          "person_name": null,
+          "department": "Sales Desk",
+          "exact_published_title": null,
+          "phone_number": "(905) 655-3311",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "brooklinsales@brooklin.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Lindsay Precast Office Desk",
+          "phone_number": "(705) 324-5251",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Plant and dispatch contact route."
+        }
+      ],
+      "equipment_findings": "Flatbed and boom trucks for precast septic tanks, manholes, and retaining walls.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.brooklin.com",
+          "source_title": "Brooklin Concrete Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official website confirms Lindsay, ON precast manufacturing and regional jobsite delivery."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 52,
+    "operating_brand": "Varn Wood Products",
+    "research_focus_facility_id": 55,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 65,
+          "person_name": null,
+          "department": "Mill Office Desk",
+          "exact_published_title": null,
+          "phone_number": "912-458-2187",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "varnwood@varnwood.com",
+          "email_directness": "GENERAL",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DIRECT_PERSON",
+          "person_name": "Barry Bauman",
+          "exact_published_title": "Sales & Shipping Manager",
+          "phone_number": "(912) 458-8276",
+          "phone_directness": "DIRECT_PERSON",
+          "status": "DISCOVERED_NEW",
+          "notes": "Published direct lumber sales and shipping line on official contact page."
+        },
+        {
+          "type": "DEPARTMENT",
+          "route": "varnwood@varnwood.com",
+          "phone_number": "912-458-2187",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "General mill desk."
+        }
+      ],
+      "equipment_findings": "Flatbed for Southern Yellow Pine dimensional lumber and timber.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://varnwood.com",
+          "source_title": "Varn Wood Products Official Contact",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official corporate website confirms 100M bd ft Hoboken, GA sawmill and publishes direct shipping manager Barry Bauman."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 143,
+    "operating_brand": "Dunnage Engineering",
+    "research_focus_facility_id": 172,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 182,
+          "person_name": null,
+          "department": "General Office",
+          "exact_published_title": null,
+          "phone_number": "810-229-9501",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "info@dunnage-eng.com",
+          "email_directness": "GENERAL",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Brighton Office Desk",
+          "phone_number": "(810) 229-9501",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Plant and engineering contact route."
+        }
+      ],
+      "equipment_findings": "Dry Van for custom polyurethane returnable dunnage and packaging trays.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.dunnage-eng.com",
+          "source_title": "Dunnage Engineering Official Website",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official website confirms Brighton, MI manufacturing of custom automotive returnable packaging."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 89,
+    "operating_brand": "H&H Metal Source",
+    "research_focus_facility_id": 107,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 117,
+          "person_name": null,
+          "department": "Traffic / Shipping Desk",
+          "exact_published_title": null,
+          "phone_number": "616-364-0113",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "quotes@hhmetalsource.com",
+          "email_directness": "GENERAL",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Grand Rapids Plant Office",
+          "phone_number": "(616) 451-9990",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Metal distribution center contact route."
+        }
+      ],
+      "equipment_findings": "Flatbed for steel slit coil and sheet metal.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.hhmetalsource.com/why-hh/",
+          "source_title": "H&H Metal Source - Why H&H",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official website confirms Grand Rapids steel distribution center."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 146,
+    "operating_brand": "Delta Technologies LLC",
+    "research_focus_facility_id": 175,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 185,
+          "person_name": null,
+          "department": "Main Tooling Desk",
+          "exact_published_title": null,
+          "phone_number": "248-391-6800",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "ccdadm@deltatechgroup.com",
+          "email_directness": "GENERAL",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Auburn Hills Office Desk",
+          "phone_number": "(248) 391-3800",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Tooling facility contact route."
+        }
+      ],
+      "equipment_findings": "Flatbed / Step deck for automotive tooling, dies, and molds.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://deltatechgroup.com",
+          "source_title": "Delta Technologies Group",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official website confirms Auburn Hills automotive tooling plant."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 379,
+    "operating_brand": "Benjamin Steel Company",
+    "research_focus_facility_id": 466,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 476,
+          "person_name": null,
+          "department": "Commercial Sales",
+          "exact_published_title": null,
+          "phone_number": "(937) 325-5551",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@benjaminsteel.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "COMMERCIAL_SALES"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Springfield Service Center Desk",
+          "phone_number": "(937) 322-7514",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Pre-existing verified contact route."
+        }
+      ],
+      "equipment_findings": "Flatbed for steel bar, plate, tubing, and beams.",
+      "facility_scope": "FACILITY",
+      "sources": [],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 331,
+    "operating_brand": "Swanson Group",
+    "research_focus_facility_id": 418,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 428,
+          "person_name": null,
+          "department": "Commercial Sales",
+          "exact_published_title": null,
+          "phone_number": "(541) 832-1111",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@swansongroup.biz",
+          "email_directness": "DEPARTMENT",
+          "role_category": "COMMERCIAL_SALES"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "VERIFIED",
+      "commercial_carrier_claim_level": "VERIFIED",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DIRECT_PERSON",
+          "person_name": "Dustin Hill",
+          "exact_published_title": "Glendale Shipping Coordinator",
+          "email_address": "dustin.hill@swansongroup.biz",
+          "email_directness": "DIRECT_PERSON",
+          "status": "DISCOVERED_NEW",
+          "notes": "Published direct Glendale shipping coordinator on official shipping and receiving page."
+        },
+        {
+          "type": "DIRECT_PERSON",
+          "person_name": "Brady Sanders",
+          "exact_published_title": "Traffic Coordinator",
+          "email_address": "brady.sanders@swansongroup.biz",
+          "email_directness": "DIRECT_PERSON",
+          "status": "DISCOVERED_NEW",
+          "notes": "Published direct traffic coordinator on official shipping and receiving page."
+        },
+        {
+          "type": "DEPARTMENT",
+          "route": "sales@swansongroup.biz",
+          "phone_number": "(541) 832-1111",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Commercial sales desk."
+        }
+      ],
+      "equipment_findings": "Flatbed and Dry Van for plywood, veneers, stud lumber, and timber.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://swansongroup.biz/shipping-and-receiving/",
+          "source_title": "Swanson Group Shipping and Receiving Instructions",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official shipping instructions mandate all outside commercial carriers schedule appointments via Opendock and publishes direct shipping coordinator Dustin Hill and traffic coordinator Brady Sanders."
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "commercial_carrier_use",
+          "old_value": "UNKNOWN",
+          "proposed_value": "VERIFIED",
+          "claim_level": "VERIFIED",
+          "source_url": "https://swansongroup.biz/shipping-and-receiving/",
+          "source_title": "Swanson Group Shipping and Receiving Instructions",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "target_facility_id": 418,
+          "exact_support_summary": "Official shipping and receiving instructions mandate that all outside commercial carriers picking up or delivering freight at the Glendale Mill schedule appointments via Opendock."
+        }
+      ]
+    }
+  },
+  {
+    "company_id": 130,
+    "operating_brand": "Stubbe's Precast",
+    "research_focus_facility_id": 159,
+    "current_db_state": {
+      "lifecycle": "DISCOVERY",
+      "opportunity_tier": "TIER_D_RESEARCH_NEEDED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 169,
+          "person_name": null,
+          "department": "General Office Desk",
+          "exact_published_title": null,
+          "phone_number": "(519) 424-2183",
+          "phone_extension": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "careers@stubbes.org",
+          "email_directness": "DEPARTMENT",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": [
+        {
+          "type": "DEPARTMENT",
+          "route": "Harley Precast Plant Desk",
+          "phone_number": "(519) 424-2244",
+          "status": "CONFIRMED_EXISTING",
+          "notes": "Pre-existing plant contact route."
+        }
+      ],
+      "equipment_findings": "Flatbed and step deck for precast concrete walls, hollowcore, and structural elements.",
+      "facility_scope": "FACILITY",
+      "sources": [],
+      "proposed_factual_changes": []
+    }
+  }
+]

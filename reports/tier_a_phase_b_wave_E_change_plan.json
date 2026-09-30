@@ -1,0 +1,502 @@
+[
+  {
+    "campaign_position": 201,
+    "company_id": 328,
+    "operating_brand": "Hull-Oakes Lumber Co.",
+    "focus_facility_id": 415,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 202,
+    "company_id": 329,
+    "operating_brand": "Zip-O-Log Mills",
+    "focus_facility_id": 416,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 203,
+    "company_id": 330,
+    "operating_brand": "Freres Engineered Wood",
+    "focus_facility_id": 417,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 204,
+    "company_id": 332,
+    "operating_brand": "Vaagen Brothers Lumber",
+    "focus_facility_id": 419,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 205,
+    "company_id": 333,
+    "operating_brand": "Canyon Lumber Co.",
+    "focus_facility_id": 420,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 206,
+    "company_id": 334,
+    "operating_brand": "F.H. Stoltze Land & Lumber",
+    "focus_facility_id": 421,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 207,
+    "company_id": 335,
+    "operating_brand": "Bennett Lumber Products",
+    "focus_facility_id": 422,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 208,
+    "company_id": 336,
+    "operating_brand": "Riley Creek Lumber",
+    "focus_facility_id": 423,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 209,
+    "company_id": 337,
+    "operating_brand": "W.D. Cowls Inc.",
+    "focus_facility_id": 424,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 210,
+    "company_id": 338,
+    "operating_brand": "Robbins Lumber Inc.",
+    "focus_facility_id": 425,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 211,
+    "company_id": 339,
+    "operating_brand": "Pleasant River Lumber",
+    "focus_facility_id": 426,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 212,
+    "company_id": 340,
+    "operating_brand": "Limington Lumber Co.",
+    "focus_facility_id": 427,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 213,
+    "company_id": 341,
+    "operating_brand": "Murray Bros. Lumber",
+    "focus_facility_id": 428,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 214,
+    "company_id": 342,
+    "operating_brand": "Townsend Lumber",
+    "focus_facility_id": 429,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 215,
+    "company_id": 343,
+    "operating_brand": "Lavern Heideman & Sons",
+    "focus_facility_id": 430,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 216,
+    "company_id": 344,
+    "operating_brand": "Midway Lumber Mills",
+    "focus_facility_id": 431,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 217,
+    "company_id": 345,
+    "operating_brand": "Haliburton Forest Products",
+    "focus_facility_id": 432,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 218,
+    "company_id": 346,
+    "operating_brand": "Manitoulin Cedar Products",
+    "focus_facility_id": 433,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 219,
+    "company_id": 347,
+    "operating_brand": "G.W. Martin Lumber",
+    "focus_facility_id": 434,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 220,
+    "company_id": 348,
+    "operating_brand": "B&B Wood Products",
+    "focus_facility_id": 435,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 221,
+    "company_id": 349,
+    "operating_brand": "Atikokan Renewable Fuels",
+    "focus_facility_id": 436,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 222,
+    "company_id": 350,
+    "operating_brand": "Scierie West Brome",
+    "focus_facility_id": 437,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 223,
+    "company_id": 351,
+    "operating_brand": "Scierie Saint-Elz\u00e9ar",
+    "focus_facility_id": 438,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 224,
+    "company_id": 352,
+    "operating_brand": "Scierie Alexandre Lemay",
+    "focus_facility_id": 439,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 225,
+    "company_id": 353,
+    "operating_brand": "Scierie Blier",
+    "focus_facility_id": 440,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 226,
+    "company_id": 354,
+    "operating_brand": "Scierie Duclos",
+    "focus_facility_id": 441,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 227,
+    "company_id": 355,
+    "operating_brand": "Scierie Saint-Michel",
+    "focus_facility_id": 442,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 228,
+    "company_id": 356,
+    "operating_brand": "Scierie Clermond Hamel",
+    "focus_facility_id": 443,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 229,
+    "company_id": 357,
+    "operating_brand": "Bois CFM",
+    "focus_facility_id": 444,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 230,
+    "company_id": 358,
+    "operating_brand": "Bois de sciage Lafontaine",
+    "focus_facility_id": 445,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 231,
+    "company_id": 359,
+    "operating_brand": "Mat\u00e9riaux Blanchet",
+    "focus_facility_id": 446,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 232,
+    "company_id": 360,
+    "operating_brand": "B\u00e9gin & B\u00e9gin",
+    "focus_facility_id": 447,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 233,
+    "company_id": 361,
+    "operating_brand": "Commonwealth Plywood",
+    "focus_facility_id": 448,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 234,
+    "company_id": 362,
+    "operating_brand": "Produits Forestiers Petit Paris",
+    "focus_facility_id": 449,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 235,
+    "company_id": 363,
+    "operating_brand": "Bois Granval",
+    "focus_facility_id": 450,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 236,
+    "company_id": 364,
+    "operating_brand": "Planchers Mercier",
+    "focus_facility_id": 451,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 237,
+    "company_id": 365,
+    "operating_brand": "Planchers PG",
+    "focus_facility_id": 452,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 238,
+    "company_id": 366,
+    "operating_brand": "Gilbert Smith Forest Products",
+    "focus_facility_id": 453,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 239,
+    "company_id": 367,
+    "operating_brand": "Downie Timber",
+    "focus_facility_id": 454,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 240,
+    "company_id": 368,
+    "operating_brand": "Wynndel Box & Lumber",
+    "focus_facility_id": 455,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 241,
+    "company_id": 369,
+    "operating_brand": "Delta Cedar Products",
+    "focus_facility_id": 456,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 242,
+    "company_id": 370,
+    "operating_brand": "Porcupine Wood Products",
+    "focus_facility_id": 457,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 243,
+    "company_id": 371,
+    "operating_brand": "S&R Sawmills",
+    "focus_facility_id": 458,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 244,
+    "company_id": 372,
+    "operating_brand": "Vanderhoof Specialty Wood Products",
+    "focus_facility_id": 459,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 245,
+    "company_id": 373,
+    "operating_brand": "Spray Lake Sawmills",
+    "focus_facility_id": 460,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 246,
+    "company_id": 374,
+    "operating_brand": "Boucher Bros. Lumber",
+    "focus_facility_id": 461,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 247,
+    "company_id": 375,
+    "operating_brand": "Mostowich Lumber",
+    "focus_facility_id": 462,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 248,
+    "company_id": 376,
+    "operating_brand": "Devon Lumber Co.",
+    "focus_facility_id": 463,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 249,
+    "company_id": 377,
+    "operating_brand": "H.A. Fawcett & Son",
+    "focus_facility_id": 464,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 250,
+    "company_id": 378,
+    "operating_brand": "Scierie Gaston Morin",
+    "focus_facility_id": 465,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  }
+]

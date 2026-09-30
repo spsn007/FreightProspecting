@@ -1,0 +1,523 @@
+[
+  {
+    "campaign_position": 251,
+    "company_id": 379,
+    "operating_brand": "Benjamin Steel Company",
+    "focus_facility_id": 466,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 252,
+    "company_id": 380,
+    "operating_brand": "Churchill Steel Plate",
+    "focus_facility_id": 467,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 253,
+    "company_id": 381,
+    "operating_brand": "Andes Coil Processors",
+    "focus_facility_id": 468,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 254,
+    "company_id": 382,
+    "operating_brand": "Penn Stainless Products",
+    "focus_facility_id": 469,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 255,
+    "company_id": 383,
+    "operating_brand": "High Steel Structures",
+    "focus_facility_id": 470,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 256,
+    "company_id": 384,
+    "operating_brand": "Continental Alloys & Services",
+    "focus_facility_id": 471,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 257,
+    "company_id": 385,
+    "operating_brand": "Texas Steel Conversion",
+    "focus_facility_id": 472,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 258,
+    "company_id": 386,
+    "operating_brand": "Borrmann Metal Center",
+    "focus_facility_id": 473,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 259,
+    "company_id": 387,
+    "operating_brand": "Infra-Metals Co.",
+    "focus_facility_id": 474,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 260,
+    "company_id": 388,
+    "operating_brand": "Klein Steel Service",
+    "focus_facility_id": 475,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 261,
+    "company_id": 389,
+    "operating_brand": "Friedman Industries",
+    "focus_facility_id": 476,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 262,
+    "company_id": 390,
+    "operating_brand": "Brown-Strauss Steel",
+    "focus_facility_id": 477,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 263,
+    "company_id": 391,
+    "operating_brand": "PDM Steel Service Centers",
+    "focus_facility_id": 478,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 264,
+    "company_id": 392,
+    "operating_brand": "Grand Steel Products",
+    "focus_facility_id": 479,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 265,
+    "company_id": 393,
+    "operating_brand": "Falcon Steel America",
+    "focus_facility_id": 480,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 266,
+    "company_id": 394,
+    "operating_brand": "Paxton & Vierling Steel",
+    "focus_facility_id": 481,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 267,
+    "company_id": 396,
+    "operating_brand": "Bull Moose Tube Co.",
+    "focus_facility_id": 483,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [
+      {
+        "field": "commercial_carrier_use",
+        "claimed_value": "VERIFIED",
+        "verification_status": "VERIFIED",
+        "scope": "FACILITY",
+        "facility_id": 483,
+        "company_id": null,
+        "source_url": "https://www.bullmoosetube.com/company/carrier-onboarding-application/",
+        "rationale": "Carrier Onboarding Application - Bull Moose Tube {\"@context\":\"https://schema."
+      }
+    ],
+    "expected_engine_effect": "TIER_A_PROMOTION",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 268,
+    "company_id": 397,
+    "operating_brand": "Hanna Steel Corp.",
+    "focus_facility_id": 484,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 269,
+    "company_id": 398,
+    "operating_brand": "Midland Steel Company",
+    "focus_facility_id": 485,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 270,
+    "company_id": 399,
+    "operating_brand": "Schuff Steel Company",
+    "focus_facility_id": 486,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 271,
+    "company_id": 400,
+    "operating_brand": "Drake-Williams Steel",
+    "focus_facility_id": 487,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 272,
+    "company_id": 401,
+    "operating_brand": "Industrial Steel Construction",
+    "focus_facility_id": 488,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 273,
+    "company_id": 402,
+    "operating_brand": "Owen Steel Company",
+    "focus_facility_id": 489,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 274,
+    "company_id": 403,
+    "operating_brand": "Southern Tool Steel",
+    "focus_facility_id": 490,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 275,
+    "company_id": 404,
+    "operating_brand": "Dixie Southern",
+    "focus_facility_id": 491,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 276,
+    "company_id": 405,
+    "operating_brand": "W&W | AFCO Steel",
+    "focus_facility_id": 492,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 277,
+    "company_id": 406,
+    "operating_brand": "Banker Steel Co.",
+    "focus_facility_id": 493,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 278,
+    "company_id": 407,
+    "operating_brand": "Central Texas Iron Works",
+    "focus_facility_id": 494,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 279,
+    "company_id": 408,
+    "operating_brand": "PVS Metals",
+    "focus_facility_id": 495,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 280,
+    "company_id": 409,
+    "operating_brand": "Stupp Bridge Company",
+    "focus_facility_id": 496,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 281,
+    "company_id": 410,
+    "operating_brand": "Tri-State Steel Company",
+    "focus_facility_id": 497,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 282,
+    "company_id": 411,
+    "operating_brand": "Cives Steel Company",
+    "focus_facility_id": 498,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 283,
+    "company_id": 412,
+    "operating_brand": "G&G Steel Inc.",
+    "focus_facility_id": 499,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [
+      {
+        "field": "private_fleet_present",
+        "claimed_value": "VERIFIED_PRESENT",
+        "verification_status": "VERIFIED",
+        "scope": "FACILITY",
+        "facility_id": 499,
+        "source_url": "https://ggsteel.com",
+        "rationale": "our own fleet of trucks and specialized trailers."
+      }
+    ],
+    "expected_engine_effect": "TIER_C_MOVEMENT",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 284,
+    "company_id": 413,
+    "operating_brand": "Steel Fab Inc.",
+    "focus_facility_id": 500,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 285,
+    "company_id": 414,
+    "operating_brand": "Merrill Iron & Steel",
+    "focus_facility_id": 501,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 286,
+    "company_id": 415,
+    "operating_brand": "True North Steel",
+    "focus_facility_id": 502,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 287,
+    "company_id": 416,
+    "operating_brand": "Valley Joist",
+    "focus_facility_id": 503,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 288,
+    "company_id": 417,
+    "operating_brand": "New Millennium Building Systems",
+    "focus_facility_id": 504,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 289,
+    "company_id": 418,
+    "operating_brand": "Clingan Steel Inc.",
+    "focus_facility_id": 505,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 290,
+    "company_id": 419,
+    "operating_brand": "Ken-Mac Metals",
+    "focus_facility_id": 506,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 291,
+    "company_id": 420,
+    "operating_brand": "National Material Company",
+    "focus_facility_id": 507,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 292,
+    "company_id": 421,
+    "operating_brand": "Crest Steel Corp.",
+    "focus_facility_id": 508,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 293,
+    "company_id": 422,
+    "operating_brand": "Alliance Steel LLC",
+    "focus_facility_id": 509,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 294,
+    "company_id": 423,
+    "operating_brand": "Delta Steel Inc.",
+    "focus_facility_id": 510,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 295,
+    "company_id": 424,
+    "operating_brand": "Chatham Steel Corp.",
+    "focus_facility_id": 511,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 296,
+    "company_id": 425,
+    "operating_brand": "Intsel Steel South",
+    "focus_facility_id": 512,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 297,
+    "company_id": 426,
+    "operating_brand": "Boyd Metals Inc.",
+    "focus_facility_id": 513,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 298,
+    "company_id": 427,
+    "operating_brand": "Sabel Steel Service",
+    "focus_facility_id": 514,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 299,
+    "company_id": 428,
+    "operating_brand": "Singer Steel Co.",
+    "focus_facility_id": 515,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 300,
+    "company_id": 429,
+    "operating_brand": "Interstate Steel Supply",
+    "focus_facility_id": 516,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  }
+]

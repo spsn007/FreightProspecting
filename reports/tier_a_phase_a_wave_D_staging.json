@@ -1,0 +1,1058 @@
+[
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 76,
+    "company_id": 108,
+    "operating_brand": "AE Concrete Products Ltd.",
+    "research_focus_facility_id": 137,
+    "research_focus_facility_name": "Langley Precast Infrastructure Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 24,
+      "successful_200": 6,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 24 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.aeconcrete.com/",
+          "source_title": "Precast Concrete Supplier - AE Concrete Products Ltd.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.aeconcrete.com/contact/",
+          "source_title": "Contact Us - AE Concrete Products Ltd.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.aeconcrete.com/contact/",
+          "source_title": "Contact Us - AE Concrete Products Ltd.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 77,
+    "company_id": 109,
+    "operating_brand": "Coldstream Concrete Ltd.",
+    "research_focus_facility_id": 138,
+    "research_focus_facility_name": "Ilderton Precast Pipe & Culvert Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 4,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 23 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://coldstreamconcrete.com/",
+          "source_title": "Coldstream Concrete | Precast Concrete Company Ontario",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://coldstreamconcrete.com/concrete-contractor-leadership-team",
+          "source_title": "Our Leadership Team | Coldstream Concrete",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://coldstreamconcrete.com/contact-ontario-precast-concrete",
+          "source_title": "Contact Precast Concrete Ontario | Coldstream Concrete",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 78,
+    "company_id": 110,
+    "operating_brand": "Con-Force Structures Ltd.",
+    "research_focus_facility_id": 139,
+    "research_focus_facility_name": "Delta Prestressed Concrete Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 2,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.conforcestructures.com/",
+          "source_title": "Home | Con Force Structures",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.conforcestructures.com/logistics-extraordinary-loads",
+          "source_title": "Contact Us | Con Force Structures",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 79,
+    "company_id": 111,
+    "operating_brand": "Facca Incorporated",
+    "research_focus_facility_id": 140,
+    "research_focus_facility_name": "Ruscom Precast Yard & Infrastructure Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 4,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.facca.com",
+          "source_title": "Heavy Civil Infrastructure &amp; Structural Construction Services Across Ontario | Facca Inc.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.facca.com/contact",
+          "source_title": "Contact Our Infrastructure Construction Team | Facca Inc.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.facca.com/contact",
+          "source_title": "Contact Our Infrastructure Construction Team | Facca Inc.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 80,
+    "company_id": 112,
+    "operating_brand": "Fritz-Alder Precast",
+    "research_focus_facility_id": 141,
+    "research_focus_facility_name": "Chepstow Hollowcore & Precast Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 81,
+    "company_id": 113,
+    "operating_brand": "Rainbow Concrete Industries Ltd. / Granite Prestressed",
+    "research_focus_facility_id": 142,
+    "research_focus_facility_name": "Sudbury Prestressed & Precast Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 1,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://rcil.ca",
+          "source_title": "Rainbow Concrete - Serving Sudbury, North Bay &amp; Northern Ontario",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 82,
+    "company_id": 114,
+    "operating_brand": "Anchor Concrete Products",
+    "research_focus_facility_id": 143,
+    "research_focus_facility_name": "Kingston Precast Production Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 6,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 23 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://anchorconcrete.com",
+          "source_title": "Anchor Concrete - Precast Concrete Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://anchorconcrete.com/contact",
+          "source_title": "Contact - Anchor Concrete",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://anchorconcrete.com/contact/",
+          "source_title": "Contact - Anchor Concrete",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 83,
+    "company_id": 115,
+    "operating_brand": "Brooklin Concrete Products",
+    "research_focus_facility_id": 144,
+    "research_focus_facility_name": "Lindsay Precast Facility & Headquarters",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 27,
+      "successful_200": 11,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 27 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.brooklin.com",
+          "source_title": "Brooklin Concrete Products - high-quality precast concrete products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.brooklin.com/contact-us/",
+          "source_title": "Contact Us - Brooklin Concrete Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.brooklin.com/urban-transportation/",
+          "source_title": "Urban Transportation - Brooklin Concrete Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 84,
+    "company_id": 116,
+    "operating_brand": "Central Precast Inc.",
+    "research_focus_facility_id": 145,
+    "research_focus_facility_name": "Ottawa Precast Production Facility & Head Office",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 5,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://centralprecast.com/",
+          "source_title": "Central Precast | Making Your Vision Concrete",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://centralprecast.com/contact/",
+          "source_title": "Central Precast | Contact",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://centralprecast.com/contact/",
+          "source_title": "Central Precast | Contact",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 85,
+    "company_id": 117,
+    "operating_brand": "Ed's Concrete Products Ltd.",
+    "research_focus_facility_id": 146,
+    "research_focus_facility_name": "Stratford Precast Production Plant & Head Office",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 4,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.edsconcrete.ca/",
+          "source_title": "Ed's Concrete | Precast Concrete Solutions",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.edsconcrete.ca/contact",
+          "source_title": "Ed's Concrete | CONTACT",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.edsconcrete.ca/contact",
+          "source_title": "Ed's Concrete | CONTACT",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 86,
+    "company_id": 118,
+    "operating_brand": "IECS Group Inc.",
+    "research_focus_facility_id": 147,
+    "research_focus_facility_name": "Rodney Precast Culvert & Erosion Control Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 87,
+    "company_id": 119,
+    "operating_brand": "Kustom PreCast Koncrete Ltd.",
+    "research_focus_facility_id": 148,
+    "research_focus_facility_name": "Kanata Precast Production Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 3,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://kustomprecast.com",
+          "source_title": "Custom Precast Concrete Solutions | Kustom PreCast Koncrete",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://kustomprecast.com/contact",
+          "source_title": "Contact Us - Kustom Precast Koncrete | Kustom PreCast Koncrete",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://kustomprecast.com/contact",
+          "source_title": "Contact Us - Kustom Precast Koncrete | Kustom PreCast Koncrete",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 88,
+    "company_id": 120,
+    "operating_brand": "Modular Precast Systems Inc.",
+    "research_focus_facility_id": 149,
+    "research_focus_facility_name": "Bradford Architectural Precast Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 89,
+    "company_id": 122,
+    "operating_brand": "Encore Precast LLC",
+    "research_focus_facility_id": 151,
+    "research_focus_facility_name": "Seven Mile Precast Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 4,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://encoreprecastllc.com",
+          "source_title": "Encore Precast",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://encoreprecastllc.com/contact/",
+          "source_title": "Contact &#8211; Encore Precast",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://encoreprecastllc.com/contact/",
+          "source_title": "Contact &#8211; Encore Precast",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 90,
+    "company_id": 123,
+    "operating_brand": "Everly Concrete Products Inc.",
+    "research_focus_facility_id": 152,
+    "research_focus_facility_name": "Adena Precast Production Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 91,
+    "company_id": 131,
+    "operating_brand": "M CON Products Inc.",
+    "research_focus_facility_id": 160,
+    "research_focus_facility_name": "Carp Infrastructure & Precast Pipe Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 21,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://mconproducts.com",
+          "source_title": "MCON",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://mconproducts.com/contact/",
+          "source_title": "Contact | MCON",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://mconproducts.com",
+          "source_title": "MCON",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 92,
+    "company_id": 134,
+    "operating_brand": "Northern Concrete Pipe, Inc.",
+    "research_focus_facility_id": 163,
+    "research_focus_facility_name": "Bay City Precast & Pipe Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 21,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.ncp-inc.com",
+          "source_title": "Northern Concrete Pipe, Inc.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.ncp-inc.com/shipping",
+          "source_title": "Northern Concrete Pipe, Inc.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.ncp-inc.com/shipping-receiving",
+          "source_title": "Northern Concrete Pipe, Inc.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 93,
+    "company_id": 142,
+    "operating_brand": "Camcar Plastics, Inc.",
+    "research_focus_facility_id": 171,
+    "research_focus_facility_name": "Camcar Plastics Muskegon Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 1,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.ccplasticparts.com",
+          "source_title": "Camcar Plastics | Get Quality Plastic Solutions Today",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 94,
+    "company_id": 143,
+    "operating_brand": "Dunnage Engineering",
+    "research_focus_facility_id": 172,
+    "research_focus_facility_name": "Dunnage Engineering Brighton Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 95,
+    "company_id": 144,
+    "operating_brand": "Stone Plastics & Manufacturing, Inc.",
+    "research_focus_facility_id": 173,
+    "research_focus_facility_name": "Stone Plastics Zeeland Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 5,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 23 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.stoneplasticsmfg.com/",
+          "source_title": "Stone Plastics",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.stoneplasticsmfg.com/contact/",
+          "source_title": "Contact | Stone Plastics",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.stoneplasticsmfg.com/contact/",
+          "source_title": "Contact | Stone Plastics",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 96,
+    "company_id": 145,
+    "operating_brand": "Champion Plastics, Inc.",
+    "research_focus_facility_id": 174,
+    "research_focus_facility_name": "Champion Plastics Auburn Hills Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 2,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 23 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://championplastics.net",
+          "source_title": "Champion Plastics, Inc. | Precision Injection Molder, Auburn Hills, Michigan - Precision Injection Molding",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://championplastics.net/contact-us/",
+          "source_title": "Contact Us - Champion Plastics, Inc. | Precision Injection Molder, Auburn Hills, Michigan",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 97,
+    "company_id": 146,
+    "operating_brand": "Delta Technologies LLC",
+    "research_focus_facility_id": 175,
+    "research_focus_facility_name": "Delta Technologies Auburn Hills Tooling Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 4,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.deltatechgroup.com/",
+          "source_title": "Mold Making | Delta Technologies LLC | United States",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.deltatechgroup.com/contact",
+          "source_title": "Contact Us| Delta Technologies LLC",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.deltatechgroup.com/contact",
+          "source_title": "Contact Us| Delta Technologies LLC",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 98,
+    "company_id": 147,
+    "operating_brand": "Romeo RIM, Inc.",
+    "research_focus_facility_id": 176,
+    "research_focus_facility_name": "Romeo RIM Production Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 99,
+    "company_id": 155,
+    "operating_brand": "AarKel Tool and Die Inc.",
+    "research_focus_facility_id": 184,
+    "research_focus_facility_name": "AarKel Wallaceburg Tooling & Shipping Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 24,
+      "successful_200": 7,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 24 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.aarkel.com",
+          "source_title": "AarKel Tool and Die Inc",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.aarkel.com/contact/",
+          "source_title": "AarKel Tool and Die Inc Contact",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.aarkel.com/contact/send-data/",
+          "source_title": "AarKel Tool and Die Inc Send Data",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "D",
+    "campaign_position": 100,
+    "company_id": 196,
+    "operating_brand": "Appling County Pallet Co.",
+    "research_focus_facility_id": 231,
+    "research_focus_facility_name": "Baxley Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside commercial carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  }
+]

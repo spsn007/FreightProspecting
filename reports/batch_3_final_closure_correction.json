@@ -1,0 +1,222 @@
+{
+  "title": "FreightProspecting V1 \u2014 Batch 3 Final Closure Remediation Package",
+  "generated_at_utc": "2026-09-29T03:34:00Z",
+  "status": "CANDIDATE PENDING INDEPENDENT CODEX AUDIT",
+  "hashes": {
+    "frozen_batch2_baseline_sha256": "05BAE4B965716E16B902B4C37E293B7C03278B62490C03E8344F33F4FEC87D65",
+    "pre_closure_candidate_sha256": "321200AB1C3070A2CC233640D3E8ED8984645A42576321A8E14DEBCBE6B8C670",
+    "post_closure_candidate_sha256": "95D7FE5C53676AD286CF460F0B9A76D676A4678683D04193634804F4D42FB321",
+    "pre_closure_backup_path": "data/backups/prospects_backup_pre_batch3_final_closure_20260929_083324.db"
+  },
+  "remediation_summary": {
+    "evidence_scope_corrections": 4,
+    "contact_truth_corrections": 2,
+    "production_code_fixes": [
+      "src/backend/db/opportunity.py: mixed-facility partition for Steel Dynamics (Butler restricted, Columbia City Tier B -> Company 219 Tier B)",
+      "src/backend/db/queries.py: build_company_filter_sql pushdown via get_opportunity_tier_company_ids",
+      "src/backend/db/queries.py: _assemble_company_groups pure-Python opportunity evaluation (AUD-011 query reduction < 40 SQL statements)"
+    ],
+    "provenance_repairs": {
+      "google_com_misclassifications_fixed": 87,
+      "zero_page_crawler_records_repaired": 34,
+      "provenance_verification_file": "reports/batch_3_final_provenance_verification.json",
+      "network_probe_summary": {
+        "SUCCESS_FETCHED": 9,
+        "HTTP_403": 18,
+        "HTTP_OTHER_ERROR": 4,
+        "DNS_FAILURE": 2,
+        "TIMEOUT": 1
+      }
+    },
+    "company_identity_confirmations": {
+      "company_16": {
+        "company_id": 16,
+        "operating_brand": "Miami Valley Steel Service, Inc.",
+        "notes": "Verified steel service center operating brand in SQLite (not Miami Valley Paper Tube)."
+      },
+      "company_19": {
+        "company_id": 19,
+        "operating_brand": "Coil Steel Processing (CSP)",
+        "notes": "Verified steel processing operating brand in SQLite (not Continental Structural Plastics)."
+      }
+    }
+  },
+  "evidence_scope_details": [
+    {
+      "company_id": 71,
+      "operating_brand": "Tolko Industries",
+      "facility_id": 81,
+      "facility_name": "Tolko Industries - Armstrong Division",
+      "field": "commercial_carrier_use",
+      "superseded_claim_id": 2743,
+      "old_value": "VERIFIED",
+      "replacement_claim_id": 2757,
+      "new_value": "UNKNOWN",
+      "evidence_source_id": 749,
+      "source_url": "https://tolko.com/company/logistics/",
+      "rationale": "Armstrong facility documentation lacks verified outside carrier use; preserved UNKNOWN.",
+      "source_title_publisher": "Tolko Industries - Logistics",
+      "source_type": "COMPANY_WEBSITE"
+    },
+    {
+      "company_id": 105,
+      "operating_brand": "Precision Strip",
+      "facility_id": 134,
+      "facility_name": "Precision Strip - Minster Headquarters",
+      "field": "fleet_relationship_type",
+      "superseded_claim_id": 2747,
+      "old_value": "IN_HOUSE_OWNED",
+      "replacement_claim_id": 2758,
+      "new_value": "UNKNOWN",
+      "evidence_source_id": 752,
+      "source_url": "https://www.precision-strip.com/shipping-receiving",
+      "rationale": "Private fleet presence is VERIFIED_PRESENT; specific dedicated contract relationship unproven and preserved UNKNOWN.",
+      "source_title_publisher": "Precision Strip - Shipping & Receiving",
+      "source_type": "COMPANY_WEBSITE"
+    },
+    {
+      "company_id": 217,
+      "operating_brand": "O'Neal Steel",
+      "facility_id": 262,
+      "facility_name": "O'Neal Steel - Birmingham Service Center",
+      "field": "commercial_carrier_use",
+      "superseded_claim_id": 2748,
+      "old_value": "VERIFIED",
+      "replacement_claim_id": 2759,
+      "new_value": "UNKNOWN",
+      "evidence_source_id": 753,
+      "source_url": "https://www.onealsteel.com/terms-and-conditions/",
+      "rationale": "Birmingham facility documentation lacks primary outside commercial carrier confirmation; preserved UNKNOWN.",
+      "source_title_publisher": "O'Neal Steel - Terms & Conditions of Sale",
+      "source_type": "COMPANY_WEBSITE"
+    },
+    {
+      "company_id": 395,
+      "operating_brand": "Peerless Steel Co.",
+      "facility_id": 482,
+      "facility_name": "Troy Tool Steel & Alloy Distribution Center",
+      "field": "fleet_relationship_type",
+      "superseded_claim_id": 2752,
+      "old_value": "IN_HOUSE_OWNED",
+      "replacement_claim_id": 2760,
+      "new_value": "UNKNOWN",
+      "evidence_source_id": 755,
+      "source_url": "https://peerlesssteel.com",
+      "rationale": "General fleet operations present; dedicated third-party fleet relationship unproven and preserved UNKNOWN.",
+      "source_title_publisher": "Peerless Steel - Homepage",
+      "source_type": "COMPANY_WEBSITE"
+    }
+  ],
+  "contact_truth_details": [
+    {
+      "contact_id": 666,
+      "company_id": 60,
+      "operating_brand": "Rex Lumber",
+      "facility_id": 65,
+      "person_name": "Chris Brown",
+      "exact_published_title": "General Manager",
+      "role_category": "OPERATIONS",
+      "phone_directness": "DIRECT_PERSON",
+      "outbound_shipping_procurement_relevance": "UNKNOWN",
+      "notes": "Chris Brown cell phone published directly on primary source; phone directness is DIRECT_PERSON. General Manager role categorized as OPERATIONS; outbound shipping procurement relevance UNKNOWN.",
+      "phone_number": "334.405.2036"
+    },
+    {
+      "contact_id": 669,
+      "company_id": 64,
+      "operating_brand": "Two Rivers Lumber Co.",
+      "facility_id": 69,
+      "person_name": "Jody King",
+      "exact_published_title": "Demopolis General Manager",
+      "role_category": "OPERATIONS",
+      "phone_directness": "GENERAL_SWITCHBOARD",
+      "outbound_shipping_procurement_relevance": "UNKNOWN",
+      "notes": "Title published as Demopolis General Manager; phone is plant main switchboard (GENERAL_SWITCHBOARD); procurement relevance UNKNOWN."
+    }
+  ],
+  "tier_semantics": {
+    "steel_dynamics": {
+      "company_id": 219,
+      "facility_266_butler": "RESTRICTED (verified direct-only broker policy)",
+      "facility_267_columbia_city": "TIER_B_WORTH_CALLING (unrestricted manufacturing facility)",
+      "company_tier": "TIER_B_WORTH_CALLING",
+      "rationale": "Mixed-facility architecture: Butler facility is restricted locally, but Columbia City is actionable, qualifying the parent company for Tier B outreach."
+    },
+    "directory_tier_parity": {
+      "engine_equals_metadata_equals_directory": true,
+      "tier_overlap_count": 0,
+      "authoritative_tier_counts": {
+        "TIER_A_PRIORITY": 13,
+        "TIER_B_WORTH_CALLING": 102,
+        "TIER_C_SECONDARY": 5,
+        "TIER_D_RESEARCH_NEEDED": 445,
+        "RESTRICTED": 0,
+        "TOTAL_OPERATING_COMPANIES": 565
+      }
+    }
+  },
+  "tier_movements_summary": {
+    "movements_vs_frozen_batch2": [
+      {
+        "company_id": 23,
+        "operating_brand": "Imperial Metal Services",
+        "pre_batch3_tier": "TIER_B_WORTH_CALLING",
+        "final_candidate_tier": "TIER_A_PRIORITY",
+        "rationale": "Verified outside commercial carrier use confirmed via primary shipping documentation."
+      },
+      {
+        "company_id": 105,
+        "operating_brand": "Precision Strip",
+        "pre_batch3_tier": "TIER_B_WORTH_CALLING",
+        "final_candidate_tier": "TIER_C_SECONDARY",
+        "rationale": "Private fleet presence verified; commercial carrier use UNKNOWN."
+      }
+    ],
+    "movements_vs_pre_closure_candidate": [
+      {
+        "company_id": 71,
+        "operating_brand": "Tolko Industries",
+        "pre_closure_tier": "TIER_A_PRIORITY",
+        "final_candidate_tier": "TIER_B_WORTH_CALLING",
+        "rationale": "Armstrong commercial carrier claim superseded to UNKNOWN."
+      },
+      {
+        "company_id": 217,
+        "operating_brand": "O'Neal Steel",
+        "pre_closure_tier": "TIER_A_PRIORITY",
+        "final_candidate_tier": "TIER_B_WORTH_CALLING",
+        "rationale": "Birmingham commercial carrier claim superseded to UNKNOWN."
+      },
+      {
+        "company_id": 219,
+        "operating_brand": "Steel Dynamics",
+        "pre_closure_tier": "RESTRICTED",
+        "final_candidate_tier": "TIER_B_WORTH_CALLING",
+        "rationale": "Mixed-facility partition qualifies company via unrestricted Columbia City facility."
+      }
+    ]
+  },
+  "verification_and_health": {
+    "pytest_suite": "428 passed, 0 failed, 1 warning (deprecation)",
+    "test_file_count": 20,
+    "pragma_integrity_check": "ok",
+    "pragma_foreign_key_check": 0,
+    "duplicate_accepted_claims": 0,
+    "orphan_claims": 0,
+    "orphan_claim_evidence": 0,
+    "operational_tables_counts": {
+      "outreach_logs": 0,
+      "load_opportunities": 0,
+      "freight_demand_signals": 0,
+      "capacity_postings": 0,
+      "load_capacity_matches": 0
+    },
+    "lifecycle_stage_drift_count": 0,
+    "total_facilities": 653,
+    "visual_qa": {
+      "total_screens_captured": 13,
+      "console_errors": 0,
+      "status": "PASS"
+    }
+  }
+}

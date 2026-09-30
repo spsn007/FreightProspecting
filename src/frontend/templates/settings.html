@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}Settings & Controls — FreightProspecting V1{% endblock %}
+
+{% block breadcrumb %}
+<span>Settings & Controls</span>
+<span style="color:#cbd5e1">/</span>
+<span style="font-weight:400; color:var(--color-text-muted);">System Parameters</span>
+{% endblock %}
+
+{% block content %}
+<div>
+  <div class="section-header">
+    <div>
+      <h1 class="section-title">System Settings & Operational Controls</h1>
+      <p class="section-subtitle">Local application configuration, geographic territory boundaries, and persistence controls.</p>
+    </div>
+    <span class="badge badge-verified">Local Python & SQLite Engine • No Paid AI/API</span>
+  </div>
+
+  <!-- Primary Operational Settings (Broker-Facing) -->
+  <div style="margin-bottom:1.5rem;">
+    <div style="font-weight:700; color:var(--color-text-main); font-size:0.9375rem; margin-bottom:0.75rem;">
+      Operational Policies & Rules
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem;">
+      <!-- Geographic Scope -->
+      <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; box-shadow:var(--shadow-xs);">
+        <div style="font-size:0.6875rem; font-weight:700; text-transform:uppercase; color:#0284c7; margin-bottom:0.25rem;">
+          Decision A: Geographic Scope
+        </div>
+        <div style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin-bottom:0.35rem;">
+          Lower 48 & Canada (Alaska Excluded)
+        </div>
+        <div style="font-size:0.8125rem; color:var(--color-text-muted); line-height:1.4;">
+          Domestic US Lower 48 states, Canada (10 provinces & 3 territories), and cross-border lanes are active. Alaska is excluded by default in V1 unless explicitly toggled. Hawaii and Mexico are hard-excluded.
+        </div>
+      </div>
+
+      <!-- Equipment Scope -->
+      <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; box-shadow:var(--shadow-xs);">
+        <div style="font-size:0.6875rem; font-weight:700; text-transform:uppercase; color:#0284c7; margin-bottom:0.25rem;">
+          Equipment Scope
+        </div>
+        <div style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin-bottom:0.35rem;">
+          FTL Flatbed, Step Deck & Dry Van
+        </div>
+        <div style="font-size:0.8125rem; color:var(--color-text-muted); line-height:1.4;">
+          Target equipment is Full Truckload (FTL) Flatbed, Step Deck, and Dry Van. Trailer length (48' vs 53') is an equipment/load capacity attribute, never a hard 53-ft restriction.
+        </div>
+      </div>
+
+      <!-- Outreach Priority -->
+      <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; box-shadow:var(--shadow-xs);">
+        <div style="font-size:0.6875rem; font-weight:700; text-transform:uppercase; color:#0284c7; margin-bottom:0.25rem;">
+          Decision B: Outreach Priority
+        </div>
+        <div style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin-bottom:0.35rem;">
+          Phone-First Prospecting
+        </div>
+        <div style="font-size:0.8125rem; color:var(--color-text-muted); line-height:1.4;">
+          Verified direct phone lines and dock extensions are the highest-value sales assets. Valid email addresses remain supported and actionable for quotes and rate confirmations.
+        </div>
+      </div>
+
+      <!-- No-Paid-AI Policy -->
+      <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; box-shadow:var(--shadow-xs);">
+        <div style="font-size:0.6875rem; font-weight:700; text-transform:uppercase; color:#0284c7; margin-bottom:0.25rem;">
+          Decision H: Zero-Paid-AI Architecture
+        </div>
+        <div style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin-bottom:0.35rem;">
+          No Paid AI/API Required
+        </div>
+        <div style="font-size:0.8125rem; color:var(--color-text-muted); line-height:1.4;">
+          Core application runs 100% locally on your machine without requiring Gemini, OpenAI, or Google Search API keys. Internet is only needed for external web research and public site links.
+        </div>
+      </div>
+
+      <!-- Suppression Scopes -->
+      <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; box-shadow:var(--shadow-xs); grid-column:span 2;">
+        <div style="font-size:0.6875rem; font-weight:700; text-transform:uppercase; color:#0284c7; margin-bottom:0.25rem;">
+          Suppression System
+        </div>
+        <div style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin-bottom:0.35rem;">
+          5 Scoped Suppression Levels
+        </div>
+        <div style="font-size:0.8125rem; color:var(--color-text-muted); line-height:1.4;">
+          Prevents contacting restricted shippers or bidding on conflicting lanes across 5 scopes: <code>COMPANY</code>, <code>FACILITY</code>, <code>COMPANY_LANE</code>, <code>FACILITY_LANE</code>, and <code>GLOBAL_LANE</code>. Shippers with private fleets remain visible by default in prospecting views.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Database Configuration & Settings Table -->
+  <div class="table-card">
+    <div class="table-toolbar">
+      <div style="font-weight:700; color:var(--color-text-main); font-size:0.9375rem;">
+        Active System Parameters (<code>settings</code> table)
+      </div>
+      <div style="font-size:0.75rem; color:var(--color-text-muted); font-family:var(--font-mono);">
+        Database: D:\FreightProspecting\data\prospects.db
+      </div>
+    </div>
+
+    <div style="overflow-x:auto;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Setting Key</th>
+            <th>Value</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for st in settings %}
+          <tr>
+            <td style="font-family:var(--font-mono); font-weight:700; color:#1e293b;">
+              {{ st.setting_key }}
+            </td>
+            <td>
+              <span class="badge badge-equipment" style="font-family:var(--font-mono); font-size:0.75rem;">
+                {{ st.setting_value }}
+              </span>
+            </td>
+            <td>
+              <span class="badge badge-unknown" style="font-size:0.6875rem;">
+                {{ st.value_type }}
+              </span>
+            </td>
+            <td style="color:#475569; font-size:0.8125rem;">
+              {{ st.description }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Subtle Diagnostic & Technical Status Section -->
+  <div style="margin-top:1.5rem; background:var(--color-surface-inset); border:1px solid var(--color-border); border-radius:8px; padding:1rem 1.25rem;">
+    <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--color-text-muted); letter-spacing:0.04em; margin-bottom:0.35rem;">
+      System / Technical Status (Diagnostics)
+    </div>
+    <p style="font-size:0.75rem; color:var(--color-text-muted); margin-bottom:0.75rem; line-height:1.4;">
+      SQLite 3 engine runs in Write-Ahead Logging (WAL) mode with foreign keys enabled. Point-in-time online backups execute via <code>src/backend/db/backup.py</code> to <code>data/backups/</code> without blocking readers.
+    </p>
+    <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+      <span class="badge badge-verified" style="font-size:0.6875rem;">✓ 17 Physical Tables (0 Views)</span>
+      <span class="badge badge-verified" style="font-size:0.6875rem;">✓ Exact-1 Subject CHECK Enforced</span>
+      <span class="badge badge-verified" style="font-size:0.6875rem;">✓ Partial Unique Current Indexes</span>
+      <span class="badge badge-verified" style="font-size:0.6875rem;">✓ SQLite WAL Mode Active</span>
+    </div>
+  </div>
+</div>
+{% endblock %}

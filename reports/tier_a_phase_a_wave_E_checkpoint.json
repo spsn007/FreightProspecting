@@ -1,0 +1,57 @@
+{
+  "campaign": "TIER_A_ACCELERATION",
+  "phase": "PHASE_A",
+  "wave": "E",
+  "status": "COMPLETED_SAFE",
+  "timestamp_utc": "2026-09-29T06:26:51Z",
+  "hash_before": "CD970B4B0D6D1462FA1611099D00CE421582ED39BBDA54A407975A01EAE447BB",
+  "hash_after": "635DA7D4AEDD0BB01E1A8DB317DA473F17B91E317582661E0973BE31AD260792",
+  "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_a_wave_E_20260929_062651.db",
+  "companies_researched_count": 7,
+  "accepted_changes_count": 1,
+  "tier_movements": [
+    {
+      "company_id": 218,
+      "operating_brand": "Metals USA",
+      "old_tier": "TIER_B_WORTH_CALLING",
+      "new_tier": "TIER_A_PRIORITY",
+      "reason": "commercial_carrier_use = VERIFIED"
+    }
+  ],
+  "engine_counts": {
+    "ALL": 565,
+    "TIER_A_PRIORITY": 16,
+    "TIER_B_WORTH_CALLING": 97,
+    "TIER_C_SECONDARY": 7,
+    "TIER_D_RESEARCH_NEEDED": 445,
+    "RESTRICTED": 0,
+    "PRIORITY": 16,
+    "WORTH_CALLING": 97,
+    "SECONDARY": 7,
+    "RESEARCH": 445
+  },
+  "metadata_counts": {
+    "ALL": 565,
+    "TIER_A_PRIORITY": 16,
+    "TIER_B_WORTH_CALLING": 97,
+    "TIER_C_SECONDARY": 7,
+    "TIER_D_RESEARCH_NEEDED": 445,
+    "RESTRICTED": 0,
+    "PRIORITY": 16,
+    "WORTH_CALLING": 97,
+    "SECONDARY": 7,
+    "RESEARCH": 445
+  },
+  "pragma_integrity": "ok",
+  "pragma_fk_check": 0,
+  "lifecycle_diff": 0,
+  "operational_table_counts": 0,
+  "phase_a_status": "EXHAUSTED_ALL_107_COMPANIES",
+  "stop_condition_check": {
+    "tier_a_count": 16,
+    "target": 100,
+    "stop_condition_1_met": false,
+    "stop_condition_2_met": true,
+    "next_action": "CONCLUDE_PHASE_A_AND_BUILD_PHASE_B_CANDIDATE_ANALYSIS"
+  }
+}

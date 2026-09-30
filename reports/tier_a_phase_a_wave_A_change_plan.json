@@ -1,0 +1,121 @@
+{
+  "campaign": "TIER_A_ACCELERATION",
+  "phase": "PHASE_A",
+  "wave": "A",
+  "created_at_utc": "2026-09-29T05:46:31Z",
+  "companies_researched_count": 25,
+  "total_change_proposals_count": 5,
+  "accepted_changes": [
+    {
+      "company_id": 105,
+      "operating_brand": "Precision Strip",
+      "facility_id": 134,
+      "field": "commercial_carrier_use",
+      "subject_type": "facility",
+      "action": "ACCEPT",
+      "old_value": "UNKNOWN",
+      "proposed_value": "VERIFIED",
+      "verification_status": "VERIFIED",
+      "source_url": "https://www.precision-strip.com/capabilities/transportation-services/",
+      "source_title": "Precision Strip - Transportation Services",
+      "source_type": "COMPANY_WEBSITE",
+      "rationale": "Official Transportation Services page explicitly documents shipment of material by approved common carrier arranged by Traffic Coordinator."
+    },
+    {
+      "company_id": 105,
+      "operating_brand": "Precision Strip",
+      "facility_id": 134,
+      "field": "broker_friendly_status",
+      "subject_type": "facility",
+      "action": "ACCEPT",
+      "old_value": "UNKNOWN",
+      "proposed_value": "VERIFIED_ACCEPTS",
+      "verification_status": "VERIFIED",
+      "source_url": "https://www.precision-strip.com/capabilities/transportation-services/",
+      "source_title": "Precision Strip - Transportation Services",
+      "source_type": "COMPANY_WEBSITE",
+      "rationale": "Official corporate site explicitly documents provision and utilization of 3PL logistics services and approved common carriers."
+    },
+    {
+      "company_id": 105,
+      "operating_brand": "Precision Strip",
+      "facility_id": 134,
+      "field": "contact",
+      "subject_type": "contact",
+      "action": "ACCEPT",
+      "old_value": "NONE",
+      "proposed_value": "Jamey Eilerman | Main Contact - Transportation Services | jamey_eilerman@precision-strip.com [DIRECT_PERSON] | 419-628-2343 [GENERAL_SWITCHBOARD]",
+      "verification_status": "VERIFIED",
+      "source_url": "https://www.precision-strip.com/capabilities/transportation-services/",
+      "source_title": "Precision Strip - Transportation Services",
+      "source_type": "COMPANY_WEBSITE",
+      "contact_payload": {
+        "facility_id": 134,
+        "contact_identity": "NAMED_PERSON",
+        "person_name": "Jamey Eilerman",
+        "department": "Transportation & Logistics",
+        "exact_published_title": "Main Contact - Transportation Services",
+        "phone_number": "419-628-2343",
+        "phone_extension": null,
+        "phone_directness": "GENERAL_SWITCHBOARD",
+        "email_address": "jamey_eilerman@precision-strip.com",
+        "email_directness": "DIRECT_PERSON",
+        "role_category": "FREIGHT_LOGISTICS",
+        "outbound_shipping_procurement_relevance": "VERIFIED",
+        "broker_procurement_relevance": "VERIFIED",
+        "is_primary_contact": 1
+      },
+      "rationale": "Directly published logistics / transportation main contact on official corporate capabilities page."
+    },
+    {
+      "company_id": 24,
+      "operating_brand": "AmeriSteel",
+      "facility_id": 23,
+      "field": "private_fleet_present",
+      "subject_type": "facility",
+      "action": "ACCEPT",
+      "old_value": "UNKNOWN",
+      "proposed_value": "VERIFIED_PRESENT",
+      "verification_status": "VERIFIED",
+      "source_url": "https://www.ameristeel.com/about",
+      "source_title": "About AmeriSteel | Family-Owned Steel Service Center",
+      "source_type": "COMPANY_WEBSITE",
+      "rationale": "Official website confirms in-house 2022 Kenworth delivery truck with 40,000lb capacity."
+    },
+    {
+      "company_id": 24,
+      "operating_brand": "AmeriSteel",
+      "facility_id": 23,
+      "field": "fleet_relationship_type",
+      "subject_type": "facility",
+      "action": "ACCEPT",
+      "old_value": "UNKNOWN",
+      "proposed_value": "IN_HOUSE_OWNED",
+      "verification_status": "VERIFIED",
+      "source_url": "https://www.ameristeel.com/about",
+      "source_title": "About AmeriSteel | Family-Owned Steel Service Center",
+      "source_type": "COMPANY_WEBSITE",
+      "rationale": "Company explicitly states 'Our own 2022 Kenworth truck', proving in-house owned asset."
+    }
+  ],
+  "downgraded_changes": [],
+  "rejected_changes": [],
+  "tier_movement_forecast": [
+    {
+      "company_id": 105,
+      "operating_brand": "Precision Strip",
+      "facility_id": 134,
+      "current_tier": "TIER_C_SECONDARY",
+      "projected_tier": "TIER_A_PRIORITY",
+      "trigger": "commercial_carrier_use = VERIFIED and broker_friendly_status = VERIFIED_ACCEPTS"
+    },
+    {
+      "company_id": 24,
+      "operating_brand": "AmeriSteel",
+      "facility_id": 23,
+      "current_tier": "TIER_B_WORTH_CALLING",
+      "projected_tier": "TIER_C_SECONDARY",
+      "trigger": "private_fleet_present = VERIFIED_PRESENT, commercial_carrier_use = UNKNOWN"
+    }
+  ]
+}

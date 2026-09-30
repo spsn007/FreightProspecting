@@ -1,0 +1,2 @@
+promotion_number,promoted_at_utc,wave,company_id,operating_brand,focus_facility_id,previous_tier,new_tier,primary_trigger,secondary_trigger,primary_source_url,direct_contact_added,db_sha256_after_wave
+1,2026-09-29T05:46:37Z,A,105,Precision Strip,134,TIER_C_SECONDARY,TIER_A_PRIORITY,commercial_carrier_use = VERIFIED,NONE,https://www.precision-strip.com/capabilities/transportation-services/,"Jamey Eilerman (Main Contact, jamey_eilerman@precision-strip.com, (419) 628-2343)",FE73DC3F051A7AEE7FC83ED7E0D7DF2CA05EFEE9C9C2629001327B551AF104DF

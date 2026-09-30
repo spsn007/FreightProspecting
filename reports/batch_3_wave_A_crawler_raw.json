@@ -1,0 +1,791 @@
+[
+  {
+    "company_id": 2,
+    "operating_brand": "Kenwal Steel Corp.",
+    "batch_position": 1,
+    "wave": "A",
+    "facility_id": 2,
+    "base_url": "https://www.kenwal.com",
+    "pages_checked": [
+      "https://kenwal.com/",
+      "https://kenwal.com/contact/",
+      "https://kenwal.com/contact/",
+      "https://kenwal.com/company/",
+      "https://kenwal.com/company/",
+      "https://kenwal.com/careers/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "sales@kenwal.com"
+    ],
+    "all_phones": [
+      "(313) 739-1000"
+    ]
+  },
+  {
+    "company_id": 3,
+    "operating_brand": "DECAST Ltd.",
+    "batch_position": 2,
+    "wave": "A",
+    "facility_id": 3,
+    "base_url": "https://decastltd.com",
+    "pages_checked": [
+      "https://decastltd.com",
+      "https://decastltd.com/contact.php",
+      "https://decastltd.com/",
+      "https://decastltd.com/uploads/1549645866_DECAST-Terms-and-Conditions.pdf",
+      "https://jobs.glowinthecloud.com/decast?l=en"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "engineering@decastltd.com",
+      "info@decastltd.com",
+      "sales@decastltd.com"
+    ],
+    "all_phones": [
+      "(705) 734-2270",
+      "(705) 734-2892",
+      "(705) 734-2920",
+      "(705) 734-9373",
+      "(800) 461-5632",
+      "(888) 835-7940",
+      "705-734-2892"
+    ]
+  },
+  {
+    "company_id": 9,
+    "operating_brand": "Shearouse Lumber Company",
+    "batch_position": 3,
+    "wave": "A",
+    "facility_id": 8,
+    "base_url": "http://www.shearouselumber.com",
+    "pages_checked": [
+      "http://www.shearouselumber.com"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [
+      "800-548-9404",
+      "912-748-5901",
+      "912-748-7244"
+    ]
+  },
+  {
+    "company_id": 13,
+    "operating_brand": "Jordan Forest Products, LLC",
+    "batch_position": 4,
+    "wave": "A",
+    "facility_id": 12,
+    "base_url": "http://www.jordanlumber.com",
+    "pages_checked": [
+      "https://jordanlumber.com/",
+      "https://jordanlumber.com/contact/",
+      "https://jordanlumber.com/careers/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [
+      "704-224-5920",
+      "910-428-9048",
+      "910-439-6121",
+      "910-439-8110",
+      "910-439-8130",
+      "910-439-8140",
+      "910-439-8152",
+      "910-439-8153",
+      "910-439-8157",
+      "910-572-8724",
+      "910-975-5166",
+      "980-581-7580"
+    ]
+  },
+  {
+    "company_id": 15,
+    "operating_brand": "The Universal Steel Company",
+    "batch_position": 5,
+    "wave": "A",
+    "facility_id": 14,
+    "base_url": "https://www.univsteel.com",
+    "pages_checked": [
+      "https://univsteel.com/error404",
+      "https://univsteel.com/error404"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "info@univsteel.com"
+    ],
+    "all_phones": [
+      "216-883-4972"
+    ]
+  },
+  {
+    "company_id": 22,
+    "operating_brand": "Janco Steel Ltd.",
+    "batch_position": 6,
+    "wave": "A",
+    "facility_id": 21,
+    "base_url": "https://jancosteel.com",
+    "pages_checked": [
+      "https://jancosteel.com",
+      "https://jancosteel.com/contact",
+      "https://jancosteel.com/about",
+      "https://jancosteel.com/careers"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [
+      "1-800-263-1375",
+      "905-643-3535",
+      "905-643-3585",
+      "905.643.3535"
+    ]
+  },
+  {
+    "company_id": 23,
+    "operating_brand": "Imperial Metal Services",
+    "batch_position": 7,
+    "wave": "A",
+    "facility_id": 22,
+    "base_url": "https://www.imperialms.ca",
+    "pages_checked": [
+      "https://www.imperialms.ca",
+      "https://www.imperialms.ca/en/services/delivery/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "SUCCESS_FETCHED",
+    "crawler_notes": "Successfully fetched 25090 bytes",
+    "http_status": 200,
+    "final_url": "https://www.imperialms.ca/en/",
+    "dns_status": "RESOLVED",
+    "access_status": "ACCESSIBLE",
+    "content_sha256": "076dfa17852614f757aeab6c349416aed1215fd52fbc9c2dabe14531e45e121b",
+    "page_title": "Imperial Metal Services - Distribution of flat rolled carbon steel",
+    "verified_at": "2026-09-29T04:13:22Z",
+    "attempted_url": "https://www.imperialms.ca",
+    "requested_at_utc": "2026-09-29T04:13:22Z"
+  },
+  {
+    "company_id": 28,
+    "operating_brand": "Lindsay Precast",
+    "batch_position": 8,
+    "wave": "A",
+    "facility_id": 27,
+    "base_url": "https://lindsayprecast.com",
+    "pages_checked": [
+      "https://www.lindsayprecast.com/",
+      "https://www.lindsayprecast.com/contact",
+      "https://www.lindsayprecast.com/about",
+      "https://www.lindsayprecast.com/locations"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "ADiBello@LindsayPrecast.com",
+      "Chemerda@LindsayPrecast.com",
+      "DBurns@LindsayPrecast.com",
+      "Drendek@LindsayPrecast.com",
+      "Hfaison@LindsayPrecast.com",
+      "Info@LindsayPrecast.com",
+      "JWygant@LindsayPrecast.com"
+    ],
+    "all_phones": [
+      "330-854-6664",
+      "386-462-5701",
+      "717-442-8282",
+      "717-442-9330",
+      "719-392-0066",
+      "800-669-2278",
+      "800-768-8265",
+      "800-837-7788",
+      "888-685-7595",
+      "919-494-7616"
+    ]
+  },
+  {
+    "company_id": 29,
+    "operating_brand": "Tindall Corporation",
+    "batch_position": 9,
+    "wave": "A",
+    "facility_id": 28,
+    "base_url": "https://tindallcorp.com",
+    "pages_checked": [
+      "https://tindallcorp.com"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "HTTP_403",
+    "crawler_notes": "HTTP 403 Forbidden",
+    "http_status": 403,
+    "final_url": "https://tindallcorp.com",
+    "dns_status": "RESOLVED",
+    "access_status": "BLOCKED",
+    "content_sha256": "52cfe7fe38cb2218fb6a8f5f4e83d3e473bd9c90474d1e849af878cac4926ae0",
+    "page_title": "Just a moment...",
+    "verified_at": "2026-09-29T04:13:26Z",
+    "attempted_url": "https://tindallcorp.com",
+    "requested_at_utc": "2026-09-29T04:13:26Z"
+  },
+  {
+    "company_id": 31,
+    "operating_brand": "Concast Pipe Inc.",
+    "batch_position": 10,
+    "wave": "A",
+    "facility_id": 30,
+    "base_url": "https://www.concastpipe.com",
+    "pages_checked": [
+      "https://www.concastpipe.com",
+      "https://www.concastpipe.com/contact/",
+      "https://www.concastpipe.com/about/",
+      "https://www.concastpipe.com/careers/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "hr@concastpipe.com.",
+      "sales@concastpipe.com"
+    ],
+    "all_phones": [
+      "1.800.668.7473",
+      "519.763.1956",
+      "800.668.7473",
+      "905.825.2691"
+    ]
+  },
+  {
+    "company_id": 35,
+    "operating_brand": "Precon Precast Limited",
+    "batch_position": 11,
+    "wave": "A",
+    "facility_id": 34,
+    "base_url": "https://pre-con.com",
+    "pages_checked": [
+      "https://pre-con.com",
+      "https://pre-con.com/contact/",
+      "https://pre-con.com/products-services/transportation-infrastructure/",
+      "https://pre-con.com/careers/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "careers@oscogroup.com",
+      "privacy@ocil.ca"
+    ],
+    "all_phones": [
+      "(877) 320-1138",
+      "519-537-6288",
+      "905-457-4140"
+    ]
+  },
+  {
+    "company_id": 45,
+    "operating_brand": "Canfor",
+    "batch_position": 12,
+    "wave": "A",
+    "facility_id": 44,
+    "base_url": "https://www.canfor.com",
+    "pages_checked": [
+      "https://www.canfor.com",
+      "https://www.canfor.com/contact",
+      "https://www.canfor.com/careers"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "info@canfor.com",
+      "media@canfor.com",
+      "pg.form.comment@canfor.com"
+    ],
+    "all_phones": [
+      "250-426-6241",
+      "250-952-3512",
+      "250-962-3500",
+      "251-457-6872",
+      "403-279-3700",
+      "604-661-5225",
+      "604-661-5241",
+      "800-221-2326",
+      "843-236-9399"
+    ]
+  },
+  {
+    "company_id": 46,
+    "operating_brand": "Georgia-Pacific",
+    "batch_position": 13,
+    "wave": "A",
+    "facility_id": 46,
+    "base_url": "https://www.gp.com",
+    "pages_checked": [
+      "https://www.gp.com",
+      "https://www.gp.com/404?s=%20contact",
+      "https://www.gp.com/404?s=%20contact-us",
+      "https://www.gp.com/404?s=%20contact_us",
+      "https://www.gp.com/about-us",
+      "https://www.gp.com/about-us",
+      "https://www.gp.com/404?s=%20locations",
+      "https://www.gp.com/404?s=%20facilities",
+      "https://www.gp.com/404?s=%20shipping",
+      "https://www.gp.com/404?s=%20shipping-receiving",
+      "https://www.gp.com/404?s=%20logistics",
+      "https://www.gp.com/404?s=%20transportation",
+      "https://www.gp.com/404?s=%20carriers",
+      "https://www.gp.com/404?s=%20carrier-info",
+      "https://www.gp.com/404?s=%20terms",
+      "https://www.gp.com/404?s=%20terms-and-conditions",
+      "https://www.gp.com/404?s=%20terms-of-sale",
+      "https://www.gp.com/careers",
+      "https://www.gp.com/404?s=%20delivery"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": []
+  },
+  {
+    "company_id": 47,
+    "operating_brand": "Huber Engineered Woods",
+    "batch_position": 14,
+    "wave": "A",
+    "facility_id": 50,
+    "base_url": "https://www.huberwood.com",
+    "pages_checked": [
+      "https://www.huberwood.com",
+      "https://www.huberwood.com/contact-us",
+      "https://www.huberwood.com/where-to-buy",
+      "https://www.huberwood.com/terms-and-conditions",
+      "https://www.huberwood.com/careers"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [
+        {
+          "url": "https://www.huberwood.com",
+          "snippet": "sales manager and get answers about fiber sourcing or technical questions and everything in between."
+        },
+        {
+          "url": "https://www.huberwood.com/contact-us",
+          "snippet": "Sales Manager Search Your Area Have a Technical Question?"
+        }
+      ],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [
+      "1.800.933.9220"
+    ]
+  },
+  {
+    "company_id": 49,
+    "operating_brand": "Langdale Forest Products",
+    "batch_position": 15,
+    "wave": "A",
+    "facility_id": 52,
+    "base_url": "https://langdaleforest.com",
+    "pages_checked": [
+      "https://langdaleforest.com",
+      "https://langdaleforest.com/contact",
+      "https://langdaleforest.com/about",
+      "https://langdaleforest.com/shipping"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [
+        {
+          "url": "https://langdaleforest.com",
+          "snippet": "truckloads of logs per day for our sawmill."
+        }
+      ],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [
+        {
+          "url": "https://langdaleforest.com/contact",
+          "snippet": "Sales Manager \uf10b Phone (229) 333-2577 \uf2b6 Email pmcrae@LangdaleForest."
+        }
+      ],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "abbyr@langdaleforest.com",
+      "dasher@langdaleforest.com",
+      "dpollock@langdaleforest.com",
+      "info@langdaleforest.com",
+      "jlindsey@langdaleforest.com",
+      "kmccurdy@langdaleforest.com",
+      "mcallaghan@langdaleforest.com",
+      "pmcrae@LangdaleForest.com",
+      "tdarby@langdaleforest.com",
+      "ttripp@langdaleforest.com",
+      "tya@langdaleforest.com"
+    ],
+    "all_phones": [
+      "(229) 219-2338",
+      "(229) 333-2500",
+      "(229) 333-2503",
+      "(229) 333-2517",
+      "(229) 333-2521",
+      "(229) 333-2522",
+      "(229) 333-2530",
+      "(229) 333-2533",
+      "(229) 333-2563",
+      "(229) 333-2575",
+      "(229) 333-2577",
+      "(239) 314-4299",
+      "(770) 358-5930",
+      "(800) 864-6909"
+    ]
+  },
+  {
+    "company_id": 50,
+    "operating_brand": "South Georgia Sawmill & Timber Frames",
+    "batch_position": 16,
+    "wave": "A",
+    "facility_id": 53,
+    "base_url": "https://southgeorgiasawmill.com",
+    "pages_checked": [
+      "https://southgeorgiasawmill.com/",
+      "https://southgeorgiasawmill.com/contact"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "SUCCESS_FETCHED",
+    "crawler_notes": "Successfully fetched 128623 bytes",
+    "http_status": 200,
+    "final_url": "https://southgeorgiasawmill.com",
+    "dns_status": "RESOLVED",
+    "access_status": "ACCESSIBLE",
+    "content_sha256": "3d41139c4877fbf0a07308554409416939e1f6216c7be3b32175736fde0a86fb",
+    "page_title": "Home - South Georgia Sawmill &amp; Timber Frames",
+    "verified_at": "2026-09-29T04:13:28Z",
+    "attempted_url": "https://southgeorgiasawmill.com",
+    "requested_at_utc": "2026-09-29T04:13:28Z"
+  },
+  {
+    "company_id": 51,
+    "operating_brand": "Sparks Lumber Company",
+    "batch_position": 17,
+    "wave": "A",
+    "facility_id": 54,
+    "base_url": "https://gatrees.org",
+    "pages_checked": [
+      "https://gatrees.org"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "HTTP_403",
+    "crawler_notes": "HTTP 403 Forbidden",
+    "http_status": 403,
+    "final_url": "https://gatrees.org",
+    "dns_status": "RESOLVED",
+    "access_status": "BLOCKED",
+    "content_sha256": "63330b72dd51ed4b06282032fe1f64f5029766f71fc402dbe443dcc7710616be",
+    "page_title": "Just a moment...",
+    "verified_at": "2026-09-29T04:13:29Z",
+    "attempted_url": "https://gatrees.org",
+    "requested_at_utc": "2026-09-29T04:13:29Z"
+  },
+  {
+    "company_id": 53,
+    "operating_brand": "Woodstar Timber Products",
+    "batch_position": 18,
+    "wave": "A",
+    "facility_id": 56,
+    "base_url": "https://woodstartimber.com",
+    "pages_checked": [
+      "https://www.woodstartimber.com/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "woodstartimber@gmail.com"
+    ],
+    "all_phones": [
+      "706-768-5025"
+    ]
+  },
+  {
+    "company_id": 54,
+    "operating_brand": "H.V. & T.G. Thompson Lumber Co.",
+    "batch_position": 19,
+    "wave": "A",
+    "facility_id": 57,
+    "base_url": "https://pineandcypress.com",
+    "pages_checked": [
+      "https://www.pineandcypress.com/",
+      "https://www.pineandcypress.com/contact-us"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "info@pineandcypress.com"
+    ],
+    "all_phones": [
+      "(912) 583-2236",
+      "912-583-4909"
+    ]
+  },
+  {
+    "company_id": 55,
+    "operating_brand": "Burt Lumber Company",
+    "batch_position": 20,
+    "wave": "A",
+    "facility_id": 58,
+    "base_url": "https://burtlumbercompany.com",
+    "pages_checked": [
+      "https://burtlumbercompany.com",
+      "https://burtlumbercompany.com/contact/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "DHARDY57@hotmail.com"
+    ],
+    "all_phones": [
+      "706-678-1531",
+      "706-678-4040"
+    ]
+  },
+  {
+    "company_id": 56,
+    "operating_brand": "T&S Hardwoods",
+    "batch_position": 21,
+    "wave": "A",
+    "facility_id": 59,
+    "base_url": "https://tshardwoods.com",
+    "pages_checked": [
+      "https://tshardwoods.com"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": []
+  },
+  {
+    "company_id": 57,
+    "operating_brand": "Oakcrest Lumber",
+    "batch_position": 22,
+    "wave": "A",
+    "facility_id": 60,
+    "base_url": "https://oakcrestlumber.com",
+    "pages_checked": [
+      "https://www.oakcrestlumber.com/",
+      "https://www.oakcrestlumber.com/contact-us",
+      "https://www.oakcrestlumber.com/about-us",
+      "https://www.oakcrestlumber.com/locations"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [
+      "229-649-9328",
+      "229-649-9585",
+      "423-623-7382",
+      "423-623-7383"
+    ]
+  },
+  {
+    "company_id": 58,
+    "operating_brand": "Pollard Lumber Company",
+    "batch_position": 23,
+    "wave": "A",
+    "facility_id": 61,
+    "base_url": "https://gatrees.org",
+    "pages_checked": [
+      "https://gatrees.org"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "HTTP_403",
+    "crawler_notes": "HTTP 403 Forbidden",
+    "http_status": 403,
+    "final_url": "https://gatrees.org",
+    "dns_status": "RESOLVED",
+    "access_status": "BLOCKED",
+    "content_sha256": "4d129cae5ad715a0b84bedca729f1302f15a8a574d78173839b7847169f75f17",
+    "page_title": "Just a moment...",
+    "verified_at": "2026-09-29T04:13:31Z",
+    "attempted_url": "https://gatrees.org",
+    "requested_at_utc": "2026-09-29T04:13:31Z"
+  },
+  {
+    "company_id": 59,
+    "operating_brand": "West Fraser",
+    "batch_position": 24,
+    "wave": "A",
+    "facility_id": 62,
+    "base_url": "https://www.westfraser.com",
+    "pages_checked": [
+      "https://www.westfraser.com"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "HTTP_403",
+    "crawler_notes": "HTTP 403 Forbidden",
+    "http_status": 403,
+    "final_url": "https://www.westfraser.com",
+    "dns_status": "RESOLVED",
+    "access_status": "BLOCKED",
+    "content_sha256": "589cbf23a17ae9c91b0262a1754dc17511f1d36ae9fe1fcdcdb48b6f7824c90f",
+    "page_title": "403 - Forbidden",
+    "verified_at": "2026-09-29T04:13:33Z",
+    "attempted_url": "https://www.westfraser.com",
+    "requested_at_utc": "2026-09-29T04:13:33Z"
+  },
+  {
+    "company_id": 60,
+    "operating_brand": "Rex Lumber",
+    "batch_position": 25,
+    "wave": "A",
+    "facility_id": 65,
+    "base_url": "https://www.rex-lumber.com",
+    "pages_checked": [
+      "https://rex-lumber.com/",
+      "https://rex-lumber.com/contact/",
+      "https://rex-lumber.com/careers-in-bristol-fl/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [
+      "1 334.770.0950",
+      "1 601.833.1990",
+      "1 850.643.2238",
+      "850-263-2056",
+      "850.263.2056"
+    ]
+  }
+]

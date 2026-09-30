@@ -1,0 +1,62 @@
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python cache & compilation
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Environment files & secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Scratch, temporary and throwaway files
+scratch/
+temp/
+tmp/
+scratch_dom.html
+ALL
+
+# Prompt scratch dumps
+last_prompt.txt
+prompt_5.txt
+scratch_prompt8.txt
+stage3g_prompt.txt
+
+# Browser profiles and session data
+browser-profile/
+browser_profiles/
+
+# Local databases and runtime WAL/SHM state
+data/*.db
+data/*.sqlite
+data/*.sqlite3
+data/*.db-wal
+data/*.db-shm
+
+# Redundant local backup snapshots (preserved locally; see docs/BACKUP_AND_RESTORE.md)
+data/backups/
+
+# Allow authoritative GitHub backup snapshots tracked via Git LFS
+!backup/github/
+!backup/github/*.db
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+desktop.ini

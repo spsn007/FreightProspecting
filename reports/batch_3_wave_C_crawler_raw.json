@@ -1,0 +1,950 @@
+[
+  {
+    "company_id": 105,
+    "operating_brand": "Precision Strip",
+    "batch_position": 51,
+    "wave": "C",
+    "facility_id": 134,
+    "base_url": "https://www.precision-strip.com",
+    "pages_checked": [
+      "https://www.precision-strip.com",
+      "https://www.precision-strip.com/contact",
+      "https://www.precision-strip.com/about-us",
+      "https://www.precision-strip.com/about-us",
+      "https://www.precision-strip.com/locations",
+      "https://www.precision-strip.com/shipping-receiving",
+      "https://www.precision-strip.com/careers"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [
+        {
+          "url": "https://www.precision-strip.com",
+          "snippet": "Our fleet of over 200 trucks can provide \"just-in-time\" delivery service to your facility."
+        },
+        {
+          "url": "https://www.precision-strip.com/shipping-receiving",
+          "snippet": "Our fleet of over 200 trucks can provide just-in-time&nbsp;delivery service to your facility."
+        }
+      ],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [
+      "219.850.5080",
+      "256.315.2345",
+      "270.282.8420",
+      "270.282.8421",
+      "270.542.6100",
+      "419.628.2343",
+      "419.661.1100",
+      "419.674.4186",
+      "423.271.3690",
+      "513.423.4166",
+      "734-301-4001",
+      "734.736.7030",
+      "734.736.7040",
+      "765.778.4452",
+      "812.850.3161",
+      "812.850.3162",
+      "937.667.6255"
+    ]
+  },
+  {
+    "company_id": 106,
+    "operating_brand": "Acier Leroux",
+    "batch_position": 52,
+    "wave": "C",
+    "facility_id": 135,
+    "base_url": "https://www.russelmetals.com",
+    "pages_checked": [
+      "https://www.russelmetals.com"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "HTTP_403",
+    "crawler_notes": "HTTP 403 Forbidden",
+    "http_status": 403,
+    "final_url": "https://www.russelmetals.com",
+    "dns_status": "RESOLVED",
+    "access_status": "BLOCKED",
+    "content_sha256": "cb8e3693fa852abe6697dc1d7f2159190ff16fdf097060528d670bca167a1406",
+    "page_title": "Just a moment...",
+    "verified_at": "2026-09-29T04:14:06Z",
+    "attempted_url": "https://www.russelmetals.com",
+    "requested_at_utc": "2026-09-29T04:14:06Z"
+  },
+  {
+    "company_id": 107,
+    "operating_brand": "Advanced Precast Inc.",
+    "batch_position": 53,
+    "wave": "C",
+    "facility_id": 136,
+    "base_url": "https://www.advancedprecastinc.com",
+    "pages_checked": [],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "DNS_FAILURE",
+    "crawler_notes": "DNS resolution failed: [Errno 11001] getaddrinfo failed",
+    "http_status": null,
+    "final_url": null,
+    "dns_status": "FAILED",
+    "access_status": "UNREACHABLE",
+    "content_sha256": null,
+    "page_title": null,
+    "verified_at": "2026-09-29T04:14:07Z",
+    "attempted_url": "https://www.advancedprecastinc.com",
+    "requested_at_utc": "2026-09-29T04:14:07Z"
+  },
+  {
+    "company_id": 109,
+    "operating_brand": "Coldstream Concrete Ltd.",
+    "batch_position": 54,
+    "wave": "C",
+    "facility_id": 138,
+    "base_url": "https://www.coldstreamconcrete.com",
+    "pages_checked": [
+      "https://coldstreamconcrete.com/",
+      "https://coldstreamconcrete.com/who-we-are-concrete-manufacturer",
+      "https://coldstreamconcrete.com/precast-careers"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [
+        {
+          "url": "https://coldstreamconcrete.com/precast-careers",
+          "snippet": "delivery schedules, and contribute to new driver orientation and ongoing training so drivers are set up for success and kept informed."
+        },
+        {
+          "url": "https://coldstreamconcrete.com/precast-careers",
+          "snippet": "delivery schedules, contractor requirements, product availability, and operational priorities."
+        }
+      ],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [
+        {
+          "url": "https://coldstreamconcrete.com/precast-careers",
+          "snippet": "Dispatcher, you will be the first point of contact for truck drivers and a central communication point between contractors, production, and sales teams."
+        },
+        {
+          "url": "https://coldstreamconcrete.com/precast-careers",
+          "snippet": "dispatch and coordination of truck drivers, delivery schedules, contractor requirements, product availability, and operational priorities."
+        },
+        {
+          "url": "https://coldstreamconcrete.com/precast-careers",
+          "snippet": "dispatcher, logistics coordinator, transportation administrator, or operational support professional with 3&ndash;5 years of related experience."
+        }
+      ],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "careers@coldstreamconcrete.com",
+      "info@coldstreamconcrete.c"
+    ],
+    "all_phones": [
+      "519-666-0604",
+      "519-666-0977"
+    ]
+  },
+  {
+    "company_id": 110,
+    "operating_brand": "Con-Force Structures Ltd.",
+    "batch_position": 55,
+    "wave": "C",
+    "facility_id": 139,
+    "base_url": "https://conforcestructures.com",
+    "pages_checked": [
+      "https://www.conforcestructures.com/",
+      "https://www.conforcestructures.com/about-us"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": []
+  },
+  {
+    "company_id": 111,
+    "operating_brand": "Facca Incorporated",
+    "batch_position": 56,
+    "wave": "C",
+    "facility_id": 140,
+    "base_url": "https://www.facca.com",
+    "pages_checked": [
+      "https://www.facca.com",
+      "https://www.facca.com/contact",
+      "https://www.facca.com/about",
+      "https://www.facca.com/careers"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "info@facca.com"
+    ],
+    "all_phones": [
+      "(519) 975-0377",
+      "(519) 975-0427"
+    ]
+  },
+  {
+    "company_id": 112,
+    "operating_brand": "Fritz-Alder Precast",
+    "batch_position": 57,
+    "wave": "C",
+    "facility_id": 141,
+    "base_url": "http://www.faprecast.ca",
+    "pages_checked": [],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "TIMEOUT",
+    "crawler_notes": "Connection timed out",
+    "http_status": null,
+    "final_url": null,
+    "dns_status": "RESOLVED",
+    "access_status": "TIMEOUT",
+    "content_sha256": null,
+    "page_title": null,
+    "verified_at": "2026-09-29T04:14:18Z",
+    "attempted_url": "http://www.faprecast.ca",
+    "requested_at_utc": "2026-09-29T04:14:18Z"
+  },
+  {
+    "company_id": 113,
+    "operating_brand": "Rainbow Concrete Industries Ltd. / Granite Prestressed",
+    "batch_position": 58,
+    "wave": "C",
+    "facility_id": 142,
+    "base_url": "https://rcil.ca",
+    "pages_checked": [
+      "https://rcil.ca/",
+      "https://rcil.ca/contact"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "SUCCESS_FETCHED",
+    "crawler_notes": "Successfully fetched 75190 bytes",
+    "http_status": 200,
+    "final_url": "https://rcil.ca",
+    "dns_status": "RESOLVED",
+    "access_status": "ACCESSIBLE",
+    "content_sha256": "260ae0db7011f96d80f1300a65ca06b1000109813a82cc675a794ce120fb8775",
+    "page_title": "Rainbow Concrete - Serving Sudbury, North Bay &amp; Northern Ontario",
+    "verified_at": "2026-09-29T04:14:31Z",
+    "attempted_url": "https://rcil.ca",
+    "requested_at_utc": "2026-09-29T04:14:31Z"
+  },
+  {
+    "company_id": 116,
+    "operating_brand": "Central Precast Inc.",
+    "batch_position": 59,
+    "wave": "C",
+    "facility_id": 145,
+    "base_url": "https://www.centralprecast.com",
+    "pages_checked": [
+      "https://centralprecast.com/",
+      "https://centralprecast.com/contact/",
+      "https://centralprecast.com/about/",
+      "https://centralprecast.com/terms-of-service/",
+      "https://centralprecast.com/careers/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [
+        {
+          "url": "https://centralprecast.com/careers/",
+          "snippet": "Dispatcher to ensure timely and efficient service."
+        },
+        {
+          "url": "https://centralprecast.com/careers/",
+          "snippet": "dispatch and customer pickup requests, as well as to greet customers and receive incoming calls at the front counter."
+        },
+        {
+          "url": "https://centralprecast.com/careers/",
+          "snippet": "dispatcher or order fulfillment 1-2 years of customer service experience troubleshooting discrepancies and working with customers to resolve them."
+        }
+      ],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "hr@centralprecast.com",
+      "hr@centralprecast.com.",
+      "hr@mconproducts.com",
+      "info@centralprecast.com",
+      "sales@centralprecast.com"
+    ],
+    "all_phones": [
+      "+1 613 225 9510",
+      "+1 613 831 7007",
+      "+1 800 267 3487"
+    ]
+  },
+  {
+    "company_id": 117,
+    "operating_brand": "Ed's Concrete Products Ltd.",
+    "batch_position": 60,
+    "wave": "C",
+    "facility_id": 146,
+    "base_url": "https://edsconcrete.ca",
+    "pages_checked": [
+      "https://www.edsconcrete.ca/",
+      "https://www.edsconcrete.ca/contact",
+      "https://www.edsconcrete.ca/about"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "amy@edsconcrete.com",
+      "andre@edsconcrete.com",
+      "ap@edsconcrete.com",
+      "ar@edsconcrete.com",
+      "byron@edsconcrete.com",
+      "chris@edsconcrete.com",
+      "info@edsconcrete.com",
+      "katelyn@edsconcrete.com",
+      "lou@edsconcrete.com"
+    ],
+    "all_phones": [
+      "1-877-265-6590",
+      "519-271-6590",
+      "519-468-6979"
+    ]
+  },
+  {
+    "company_id": 118,
+    "operating_brand": "IECS Group Inc.",
+    "batch_position": 61,
+    "wave": "C",
+    "facility_id": 147,
+    "base_url": "https://iecs.com",
+    "pages_checked": [
+      "https://iecs.com"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "HTTP_403",
+    "crawler_notes": "HTTP 403 Forbidden",
+    "http_status": 403,
+    "final_url": "https://iecs.com",
+    "dns_status": "RESOLVED",
+    "access_status": "BLOCKED",
+    "content_sha256": "0eef8a036d384bc589e9cefb4711a688355a9929028c93c1fe38545ab49762fe",
+    "page_title": "Just a moment...",
+    "verified_at": "2026-09-29T04:14:33Z",
+    "attempted_url": "https://iecs.com",
+    "requested_at_utc": "2026-09-29T04:14:33Z"
+  },
+  {
+    "company_id": 119,
+    "operating_brand": "Kustom PreCast Koncrete Ltd.",
+    "batch_position": 62,
+    "wave": "C",
+    "facility_id": 148,
+    "base_url": "https://kustomprecast.com",
+    "pages_checked": [
+      "https://kustomprecast.com/",
+      "https://kustomprecast.com/contact"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "SUCCESS_FETCHED",
+    "crawler_notes": "Successfully fetched 90247 bytes",
+    "http_status": 200,
+    "final_url": "https://kustomprecast.com",
+    "dns_status": "RESOLVED",
+    "access_status": "ACCESSIBLE",
+    "content_sha256": "486a4835724a23e0e1c72583c14d6f2fdbd94f4096edff162b1c1eb5c813380c",
+    "page_title": "Custom Precast Concrete Solutions | Kustom PreCast Koncrete",
+    "verified_at": "2026-09-29T04:14:34Z",
+    "attempted_url": "https://kustomprecast.com",
+    "requested_at_utc": "2026-09-29T04:14:34Z"
+  },
+  {
+    "company_id": 120,
+    "operating_brand": "Modular Precast Systems Inc.",
+    "batch_position": 63,
+    "wave": "C",
+    "facility_id": 149,
+    "base_url": "http://www.modularprecastsystems.com",
+    "pages_checked": [
+      "http://www.modularprecastsystems.com"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "HTTP_OTHER_ERROR",
+    "crawler_notes": "HTTP 202",
+    "http_status": 202,
+    "final_url": "http://www.modularprecastsystems.com",
+    "dns_status": "RESOLVED",
+    "access_status": "ERROR",
+    "content_sha256": "af5aaeef699438d6b0f7fbb5d41521120734fb7e5f663cef32c32b1a23f8229b",
+    "page_title": null,
+    "verified_at": "2026-09-29T04:14:39Z",
+    "attempted_url": "http://www.modularprecastsystems.com",
+    "requested_at_utc": "2026-09-29T04:14:39Z"
+  },
+  {
+    "company_id": 122,
+    "operating_brand": "Encore Precast LLC",
+    "batch_position": 64,
+    "wave": "C",
+    "facility_id": 151,
+    "base_url": "https://encoreprecastllc.com",
+    "pages_checked": [
+      "https://encoreprecastllc.com",
+      "https://encoreprecastllc.com/contact/",
+      "https://encoreprecastllc.com/about/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [
+        {
+          "url": "https://encoreprecastllc.com",
+          "snippet": "our trucks arrived when scheduled and the product fit together without a hitch."
+        }
+      ],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [
+      "513-726-5678"
+    ]
+  },
+  {
+    "company_id": 123,
+    "operating_brand": "Everly Concrete Products Inc.",
+    "batch_position": 65,
+    "wave": "C",
+    "facility_id": 152,
+    "base_url": "https://everlyconcrete.com",
+    "pages_checked": [
+      "https://everlyconcrete.com"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "HTTP_403",
+    "crawler_notes": "HTTP 403 Forbidden",
+    "http_status": 403,
+    "final_url": "https://everlyconcrete.com",
+    "dns_status": "RESOLVED",
+    "access_status": "BLOCKED",
+    "content_sha256": "581d4c31141369e0dacb4d45f084e384eb57114f4421d7b33b9ecdaf558531e8",
+    "page_title": "Just a moment...",
+    "verified_at": "2026-09-29T04:14:41Z",
+    "attempted_url": "https://everlyconcrete.com",
+    "requested_at_utc": "2026-09-29T04:14:41Z"
+  },
+  {
+    "company_id": 131,
+    "operating_brand": "M CON Products Inc.",
+    "batch_position": 66,
+    "wave": "C",
+    "facility_id": 160,
+    "base_url": "https://mconproducts.com",
+    "pages_checked": [
+      "https://mconproducts.com",
+      "https://mconproducts.com/contact/",
+      "https://mconproducts.com",
+      "https://mconproducts.com",
+      "https://mconproducts.com/about/",
+      "https://mconproducts.com",
+      "https://mconproducts.com",
+      "https://mconproducts.com",
+      "https://mconproducts.com",
+      "https://mconproducts.com",
+      "https://mconproducts.com",
+      "https://mconproducts.com",
+      "https://mconproducts.com",
+      "https://mconproducts.com",
+      "https://mconproducts.com",
+      "https://mconproducts.com",
+      "https://mconproducts.com",
+      "https://mconproducts.com/careers/",
+      "https://mconproducts.com"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [
+        {
+          "url": "https://mconproducts.com/careers/",
+          "snippet": "Dispatcher and will be responsible for strapping loaded trailers, delivering finished goods to job sites, and assisting with product yard storage."
+        },
+        {
+          "url": "https://mconproducts.com/careers/",
+          "snippet": "dispatch and customer pickup requests, as well as to greet customers and receive incoming calls at the front counter."
+        },
+        {
+          "url": "https://mconproducts.com/careers/",
+          "snippet": "dispatcher or order fulfillment 1-2 years of customer service experience troubleshooting discrepancies and working with customers to resolve them."
+        }
+      ],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "accounting@mconproducts.com",
+      "hr@centralprecast.com",
+      "hr@mconproducts.com",
+      "info@mconproducts.com",
+      "safety@mconproducts.com",
+      "sales@mconproducts.com"
+    ],
+    "all_phones": [
+      "+1 613 831 1736",
+      "+1 800 267 5515"
+    ]
+  },
+  {
+    "company_id": 142,
+    "operating_brand": "Camcar Plastics, Inc.",
+    "batch_position": 67,
+    "wave": "C",
+    "facility_id": 171,
+    "base_url": "https://www.ccplasticparts.com",
+    "pages_checked": [
+      "https://www.ccplasticparts.com"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "sales@ccplasticparts.com"
+    ],
+    "all_phones": [
+      "231-726-5000"
+    ]
+  },
+  {
+    "company_id": 144,
+    "operating_brand": "Stone Plastics & Manufacturing, Inc.",
+    "batch_position": 68,
+    "wave": "C",
+    "facility_id": 173,
+    "base_url": "https://stoneplasticsmfg.com",
+    "pages_checked": [
+      "https://www.stoneplasticsmfg.com/",
+      "https://www.stoneplasticsmfg.com/contact/",
+      "https://www.stoneplasticsmfg.com/our-company/facilities/",
+      "https://www.stoneplasticsmfg.com/careers/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [
+      "616.377.4611",
+      "616.748.9740"
+    ]
+  },
+  {
+    "company_id": 145,
+    "operating_brand": "Champion Plastics, Inc.",
+    "batch_position": 69,
+    "wave": "C",
+    "facility_id": 174,
+    "base_url": "https://championplastics.net",
+    "pages_checked": [
+      "https://championplastics.net"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "info@championplastics.net"
+    ],
+    "all_phones": [
+      "248.373.8995"
+    ]
+  },
+  {
+    "company_id": 147,
+    "operating_brand": "Romeo RIM, Inc.",
+    "batch_position": 70,
+    "wave": "C",
+    "facility_id": 176,
+    "base_url": "https://romeorim.com",
+    "pages_checked": [
+      "https://romeorim.com"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "HTTP_OTHER_ERROR",
+    "crawler_notes": "HTTP 202",
+    "http_status": 202,
+    "final_url": "https://romeorim.com",
+    "dns_status": "RESOLVED",
+    "access_status": "ERROR",
+    "content_sha256": "7add21fc797d532cdefa07ad109124928e8cf931920593103eaa249c4391f2c8",
+    "page_title": null,
+    "verified_at": "2026-09-29T04:14:43Z",
+    "attempted_url": "https://romeorim.com",
+    "requested_at_utc": "2026-09-29T04:14:43Z"
+  },
+  {
+    "company_id": 196,
+    "operating_brand": "Appling County Pallet Co.",
+    "batch_position": 71,
+    "wave": "C",
+    "facility_id": 231,
+    "base_url": "https://gatrees.org",
+    "pages_checked": [
+      "https://gatrees.org"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "HTTP_403",
+    "crawler_notes": "HTTP 403 Forbidden",
+    "http_status": 403,
+    "final_url": "https://gatrees.org",
+    "dns_status": "RESOLVED",
+    "access_status": "BLOCKED",
+    "content_sha256": "cfd1d273ae8820d3b34d3985df8545fe35c4c99bca3bdc0cea35584d1b3380fc",
+    "page_title": "Just a moment...",
+    "verified_at": "2026-09-29T04:14:46Z",
+    "attempted_url": "https://gatrees.org",
+    "requested_at_utc": "2026-09-29T04:14:46Z"
+  },
+  {
+    "company_id": 203,
+    "operating_brand": "Domtar",
+    "batch_position": 72,
+    "wave": "C",
+    "facility_id": 245,
+    "base_url": "https://www.domtar.com",
+    "pages_checked": [
+      "https://www.domtar.com"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [],
+    "crawler_status": "HTTP_403",
+    "crawler_notes": "HTTP 403 Forbidden",
+    "http_status": 403,
+    "final_url": "https://www.domtar.com",
+    "dns_status": "RESOLVED",
+    "access_status": "BLOCKED",
+    "content_sha256": "12913968102c59f44ebc24cb7f349e13d275988d9202d371c5470c3a5b90bf56",
+    "page_title": "Just a moment...",
+    "verified_at": "2026-09-29T04:14:47Z",
+    "attempted_url": "https://www.domtar.com",
+    "requested_at_utc": "2026-09-29T04:14:47Z"
+  },
+  {
+    "company_id": 216,
+    "operating_brand": "Reliance Steel & Aluminum",
+    "batch_position": 73,
+    "wave": "C",
+    "facility_id": 261,
+    "base_url": "https://www.reliance.com",
+    "pages_checked": [
+      "https://www.reliance.com",
+      "https://www.reliance.com/contact",
+      "https://www.reliance.com/about",
+      "https://www.reliance.com/family-of-companies/locations/",
+      "https://www.reliance.com/terms-of-use/",
+      "https://careers.reliance.com/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "1095@reliance.com"
+    ],
+    "all_phones": [
+      "(213) 687-7700",
+      "(213) 687-8792",
+      "(480) 564-5700",
+      "(714) 229-9768",
+      "(714) 816-3800",
+      "1 (213) 687-7700"
+    ]
+  },
+  {
+    "company_id": 217,
+    "operating_brand": "O'Neal Steel",
+    "batch_position": 74,
+    "wave": "C",
+    "facility_id": 262,
+    "base_url": "https://www.onealsteel.com",
+    "pages_checked": [
+      "https://www.onealsteel.com",
+      "https://www.onealsteel.com/contact-our-greensboro-team/",
+      "https://www.onealsteel.com/contact-us/",
+      "https://www.onealsteel.com/about-us/",
+      "https://www.onealsteel.com/about-us/",
+      "https://www.onealsteel.com/locations/",
+      "https://www.onealsteel.com/terms-and-conditions/",
+      "https://www.onealsteel.com/terms-and-conditions/",
+      "https://www.onealsteel.com/careers/",
+      "https://www.onealsteel.com/delivery-notifications/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "shipping instructions, Buyer shall return to Seller F."
+        },
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "carrier shall be responsible for securing the load and flagging or otherwise marking the Goods and/or Services for transport."
+        },
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "carrier."
+        },
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "COMMON CARRIERS."
+        },
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "carrier or his, her or its agent."
+        },
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "shipping instructions, Buyer shall return to Seller F."
+        },
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "carrier shall be responsible for securing the load and flagging or otherwise marking the Goods and/or Services for transport."
+        },
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "carrier."
+        },
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "COMMON CARRIERS."
+        },
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "carrier or his, her or its agent."
+        }
+      ],
+      "broker": [
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "BROKERAGE AND OTHER FEES."
+        },
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "brokerage fees."
+        },
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "BROKERAGE AND OTHER FEES."
+        },
+        {
+          "url": "https://www.onealsteel.com/terms-and-conditions/",
+          "snippet": "brokerage fees."
+        }
+      ],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [],
+    "all_phones": [
+      "1 251-457-4361",
+      "1 319-235-6521",
+      "205-599-8000",
+      "260-493-1506",
+      "317-421-1200",
+      "336-664-6400",
+      "337-332-4575",
+      "405-803-7550",
+      "501-490-0040",
+      "601-939-4132",
+      "615-256-2900",
+      "724-251-2008",
+      "800-462-2034",
+      "812-867-8700",
+      "816-558-7550",
+      "833-277-6686",
+      "865-588-5365",
+      "904-695-3500",
+      "972-402-7900"
+    ]
+  },
+  {
+    "company_id": 218,
+    "operating_brand": "Metals USA",
+    "batch_position": 75,
+    "wave": "C",
+    "facility_id": 264,
+    "base_url": "https://www.metalsusa.com",
+    "pages_checked": [
+      "https://www.metalsusa.com",
+      "https://www.metalsusa.com/contact-us/",
+      "https://www.metalsusa.com/contact-us/",
+      "https://www.metalsusa.com/about-us/",
+      "https://www.metalsusa.com/about-us/",
+      "https://www.metalsusa.com/terms-of-use/",
+      "https://www.metalsusa.com/careers/"
+    ],
+    "evidence_snippets": {
+      "commercial_carrier": [],
+      "broker": [],
+      "private_fleet": [],
+      "shipping_logistics": [],
+      "contacts_found": []
+    },
+    "all_emails": [
+      "JRobertson@metalsusa.com",
+      "Jrobertson@metalsusa.com",
+      "clint.lynch@lynchmetals.com",
+      "john.ciminio@metalsusa.com",
+      "john.cimino@metalsusa.com",
+      "kevin.richter@metalsusa.com",
+      "kurt.krausse@metalsusa.com",
+      "scott.stafford@metalsusa.com",
+      "thomas.scully@metalsusa.com"
+    ],
+    "all_phones": [
+      "1 800-343-1100",
+      "1 800-635-6061",
+      "1 800-766-6677",
+      "1 800-766-7700",
+      "1 800-999-9785",
+      "1-800-523-3340",
+      "215-295-2345",
+      "251-432-5050",
+      "267-580-2100",
+      "336-674-7991",
+      "504-667-5339",
+      "580-233-0411",
+      "714-238-7240",
+      "724-266-7708",
+      "770-536-1214",
+      "800 245-7646",
+      "800 508-0438",
+      "800-253-6772",
+      "800-334-3654",
+      "800-523-3340",
+      "800-537-1214",
+      "800-558-8567",
+      "800-569-5830",
+      "800-632-9064",
+      "800-634-1260",
+      "800-635-6061",
+      "800-777-9820",
+      "800-879-2963",
+      "888-254-1463",
+      "888-272-9464",
+      "888-575-6648",
+      "918-583-2222"
+    ]
+  }
+]

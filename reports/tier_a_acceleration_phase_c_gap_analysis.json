@@ -1,0 +1,40 @@
+{
+  "title": "FreightProspecting V1 \u2014 Tier A Acceleration Campaign Phase C Gap Analysis",
+  "generated_at_utc": "2026-09-29T09:58:42Z",
+  "target_tier_a_count": 100,
+  "current_tier_a_count": 19,
+  "remaining_tier_a_gap": 81,
+  "operating_universe_status": {
+    "total_companies": 565,
+    "tier_a_priority": 19,
+    "tier_b_worth_calling": 489,
+    "tier_c_secondary": 10,
+    "tier_d_research_needed": 47,
+    "restricted": 0
+  },
+  "target_pool_for_phase_c": {
+    "primary_pool": {
+      "name": "Tier B Worth Calling Universe (489 companies)",
+      "description": "Companies that have 100% verified facility identity, confirmed FTL equipment fit, eligible geography, verified callable phone route, and valid evidence provenance. They currently evaluate to Tier B solely because commercial carrier use is UNKNOWN on public web surfaces.",
+      "conversion_opportunity": "Only 81 conversions out of 489 companies (16.6% conversion rate) are required to hit the 100 Tier A goal.",
+      "action_strategy": "Phone-first outreach to verify outside carrier usage / shipping desk procedures directly with dispatchers or shipping coordinators."
+    },
+    "secondary_pool": {
+      "name": "Tier C Secondary Universe (10 companies)",
+      "description": "Companies with verified private fleets but unconfirmed outside carrier use. If phone outreach reveals peak-season or overflow outside carrier usage, these immediately elevate to Tier A (Private Fleet + Outside Carrier Verified).",
+      "action_strategy": "Inquire during dispatch calls whether outside carrier overflow is contracted during surges."
+    },
+    "remediation_pool": {
+      "name": "Tier D Discovery Residual (47 companies)",
+      "description": "Companies with specific data gaps preventing Gate 1 qualification (e.g. WMG Technologies requiring 2026 corporate structure verification; Holiday Tree Farms seasonal/reefer boundary; Bre-Cast address/contact verification).",
+      "action_strategy": "Surgical primary-source desk research or state corporate filing lookups."
+    }
+  },
+  "recommendations_for_phase_c_execution": [
+    "1. Launch Phase C focused exclusively on the 489 Tier B companies using the phone-first prospecting workflow.",
+    "2. Prioritize Tier B companies by single-facility structure and lowest broker-access friction first (LOW and UNKNOWN friction single-plant operations).",
+    "3. Enforce phone verification evidence standard: when a shipping coordinator confirms common carrier / broker pickup over the phone, record direct telephone verification evidence with contact ID and claim.",
+    "4. Track gross margin spread once freight opportunities are identified with active shippers.",
+    "5. Do NOT lower the evidence threshold or invent carrier usage claims."
+  ]
+}

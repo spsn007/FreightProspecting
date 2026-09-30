@@ -1,0 +1,512 @@
+[
+  {
+    "campaign_position": 351,
+    "company_id": 480,
+    "operating_brand": "Locke Solutions",
+    "focus_facility_id": 567,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 352,
+    "company_id": 481,
+    "operating_brand": "Dukane Precast",
+    "focus_facility_id": 568,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 353,
+    "company_id": 482,
+    "operating_brand": "Utility Concrete Products",
+    "focus_facility_id": 569,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 354,
+    "company_id": 483,
+    "operating_brand": "Nitterhouse Concrete Products",
+    "focus_facility_id": 570,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 355,
+    "company_id": 484,
+    "operating_brand": "Eagle Builders LP",
+    "focus_facility_id": 571,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 356,
+    "company_id": 485,
+    "operating_brand": "Mountain View Precast",
+    "focus_facility_id": 572,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 357,
+    "company_id": 486,
+    "operating_brand": "Proform Concrete Services",
+    "focus_facility_id": 573,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 358,
+    "company_id": 487,
+    "operating_brand": "Gate Precast Company",
+    "focus_facility_id": 574,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 359,
+    "company_id": 488,
+    "operating_brand": "Clark Pacific",
+    "focus_facility_id": 575,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 360,
+    "company_id": 489,
+    "operating_brand": "EnCon United",
+    "focus_facility_id": 576,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 361,
+    "company_id": 490,
+    "operating_brand": "Mid-States Concrete Industries",
+    "focus_facility_id": 577,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 362,
+    "company_id": 491,
+    "operating_brand": "Fabcon Precast",
+    "focus_facility_id": 578,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 363,
+    "company_id": 492,
+    "operating_brand": "Spancrete",
+    "focus_facility_id": 579,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 364,
+    "company_id": 493,
+    "operating_brand": "Foley Products Company",
+    "focus_facility_id": 580,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 365,
+    "company_id": 494,
+    "operating_brand": "Gainey's Concrete Products",
+    "focus_facility_id": 581,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 366,
+    "company_id": 495,
+    "operating_brand": "Crestline Precast",
+    "focus_facility_id": 582,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 367,
+    "company_id": 496,
+    "operating_brand": "Confer Precast Products",
+    "focus_facility_id": 583,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 368,
+    "company_id": 497,
+    "operating_brand": "Permatile Concrete Products",
+    "focus_facility_id": 584,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [
+      {
+        "field": "private_fleet_present",
+        "claimed_value": "VERIFIED_PRESENT",
+        "verification_status": "VERIFIED",
+        "scope": "FACILITY",
+        "facility_id": 584,
+        "source_url": "https://permatile.com/about-us/",
+        "rationale": "our own fleet of trucks."
+      }
+    ],
+    "expected_engine_effect": "TIER_C_MOVEMENT",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 369,
+    "company_id": 498,
+    "operating_brand": "Superior Concrete Products",
+    "focus_facility_id": 585,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 370,
+    "company_id": 499,
+    "operating_brand": "Wilbert Precast Inc.",
+    "focus_facility_id": 586,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 371,
+    "company_id": 500,
+    "operating_brand": "BPDL Precast",
+    "focus_facility_id": 587,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 372,
+    "company_id": 501,
+    "operating_brand": "Sartor Precast",
+    "focus_facility_id": 588,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 373,
+    "company_id": 502,
+    "operating_brand": "Atlantic Concrete Products",
+    "focus_facility_id": 589,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 374,
+    "company_id": 503,
+    "operating_brand": "Smith-Midland Corporation",
+    "focus_facility_id": 590,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 375,
+    "company_id": 504,
+    "operating_brand": "Modern Precast Concrete",
+    "focus_facility_id": 591,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 376,
+    "company_id": 505,
+    "operating_brand": "Wieser Concrete Products",
+    "focus_facility_id": 592,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 377,
+    "company_id": 506,
+    "operating_brand": "Shea Concrete Products",
+    "focus_facility_id": 593,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 378,
+    "company_id": 507,
+    "operating_brand": "Michie Corporation",
+    "focus_facility_id": 594,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 379,
+    "company_id": 508,
+    "operating_brand": "Camp Precast Concrete",
+    "focus_facility_id": 595,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 380,
+    "company_id": 509,
+    "operating_brand": "Calumet Flexicore Corp.",
+    "focus_facility_id": 596,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 381,
+    "company_id": 510,
+    "operating_brand": "Concrete Pipe & Precast",
+    "focus_facility_id": 597,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 382,
+    "company_id": 511,
+    "operating_brand": "Geneva Pipe and Precast",
+    "focus_facility_id": 598,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 383,
+    "company_id": 512,
+    "operating_brand": "United Concrete Products",
+    "focus_facility_id": 599,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 384,
+    "company_id": 513,
+    "operating_brand": "Carr Concrete Corporation",
+    "focus_facility_id": 600,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 385,
+    "company_id": 514,
+    "operating_brand": "Seminole Precast Manufacturing",
+    "focus_facility_id": 601,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 386,
+    "company_id": 515,
+    "operating_brand": "Huffcutt Concrete",
+    "focus_facility_id": 602,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 387,
+    "company_id": 516,
+    "operating_brand": "Dura-Crete Products",
+    "focus_facility_id": 603,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 388,
+    "company_id": 517,
+    "operating_brand": "Precast Specialties Corp.",
+    "focus_facility_id": 604,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 389,
+    "company_id": 518,
+    "operating_brand": "Advance Concrete Products",
+    "focus_facility_id": 605,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 390,
+    "company_id": 519,
+    "operating_brand": "Arrow Concrete Products",
+    "focus_facility_id": 606,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 391,
+    "company_id": 520,
+    "operating_brand": "Olympian Precast",
+    "focus_facility_id": 607,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 392,
+    "company_id": 521,
+    "operating_brand": "Barkman Concrete",
+    "focus_facility_id": 608,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 393,
+    "company_id": 522,
+    "operating_brand": "Shaw Precast Solutions",
+    "focus_facility_id": 609,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 394,
+    "company_id": 523,
+    "operating_brand": "Northeast Precast",
+    "focus_facility_id": 610,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 395,
+    "company_id": 524,
+    "operating_brand": "Terre Hill Concrete Products",
+    "focus_facility_id": 611,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 396,
+    "company_id": 525,
+    "operating_brand": "American Concrete Products",
+    "focus_facility_id": 612,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 397,
+    "company_id": 526,
+    "operating_brand": "StructureCraft",
+    "focus_facility_id": 613,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 398,
+    "company_id": 527,
+    "operating_brand": "Shoals Precast Concrete",
+    "focus_facility_id": 614,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 399,
+    "company_id": 528,
+    "operating_brand": "CXT Inc.",
+    "focus_facility_id": 615,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 400,
+    "company_id": 529,
+    "operating_brand": "Precast Concepts",
+    "focus_facility_id": 616,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  }
+]

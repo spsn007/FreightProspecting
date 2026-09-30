@@ -1,0 +1,190 @@
+<USER_REQUEST>
+/boost STAGE 3C — FIRST FIX BLANK MASTER DIRECTORY, THEN IMPLEMENT FREIGHT-BROKER CALL WORKFLOW / OUTREACH CRM
+
+WORKSPACE:
+D:\FreightProspecting
+
+THIS TASK HAS TWO PHASES.
+
+PHASE 1 IS BLOCKING AND MUST PASS FIRST:
+
+FIX THE CURRENT BLANK MASTER DIRECTORY /prospects REGRESSION.
+
+ONLY AFTER /prospects IS VISIBLY WORKING IN A REAL BROWSER:
+
+PROCEED TO PHASE 2:
+
+IMPLEMENT THE FREIGHT-BROKER CALL / FEEDBACK / FOLLOW-UP CRM WORKFLOW.
+
+Do NOT skip Phase 1.
+
+Do NOT implement CRM on top of a broken directory.
+
+==================================================
+CURRENT ACCEPTED BASELINE
+==================================================
+
+Company grouping / broker-friction truth correction is accepted.
+
+Expected current data:
+
+Operating company groups = 285
+Physical facilities = 372
+
+Lifecycle:
+
+SHORTLISTED = 4
+DISCOVERY = 368
+QUALIFIED = 0
+ARCHIVED = 0
+
+Current expected test baseline:
+
+129 passing tests
+
+Company View should:
+
+- be default
+- show Georgia-Pacific once
+- show 4 child facilities
+- preserve Companies | Facilities toggle
+- preserve grouping
+- preserve filters
+- preserve Dark Mode
+- preserve truth-corrected Broker Access Friction
+
+==================================================
+PHASE 1 — BLANK MASTER DIRECTORY IS PRIORITY #1
+==================================================
+
+The user currently reports:
+
+Clicking Master Directory results in a BLANK SCREEN.
+
+This is a production-blocking UI regression.
+
+Diagnose the actual running application.
+
+Do not assume automated TestClient HTTP 200 means the page works.
+
+Use the real browser/runtime.
+
+==================================================
+1. REPRODUCE THE FAILURE
+==================================================
+
+Launch the app exactly as the user normally does.
+
+Prefer:
+
+run_app.bat
+
+or the normal supported local launcher.
+
+Open:
+
+http://127.0.0.1:8000/prospects
+
+Use browser inspection.
+
+Verify whether the page is:
+
+- completely blank
+- loading shell
+<truncated 18120 bytes>
+st DB.
+
+Verify:
+
+company history records correct facility context.
+
+Sibling facilities remain distinct.
+
+--------------------------------------------------
+F. SIDEBAR
+
+Prospecting section visible.
+
+Freight & Operations collapsed by default.
+
+Click expands:
+
+Loads & Margins
+Carriers & Capacity
+
+Collapse again.
+
+Refresh behavior as designed.
+
+--------------------------------------------------
+G. DARK MODE
+
+Light → Dark
+
+refresh
+
+Dark persists
+
+Dark → Light
+
+No unreadable outreach badges.
+
+==================================================
+35. FINAL REPORT
+==================================================
+
+Return two separate sections:
+
+PHASE 1 — BLANK SCREEN REPAIR
+
+1. exact root cause
+2. browser/console error found
+3. files changed
+4. fix applied
+5. real-browser proof
+6. why previous automated tests missed it
+
+PHASE 2 — STAGE 3C CRM
+
+7. DB backup path
+8. schema changes
+9. outreach history model
+10. current engagement state model
+11. dispositions implemented
+12. Log Call UI
+13. feedback UI
+14. follow-up workflow
+15. Interested view
+16. No Answer view
+17. Not Interested view
+18. Viewed/Unreviewed functionality
+19. attempt counter
+20. multi-facility handling
+21. sidebar restructuring
+22. API/write endpoints
+23. Dark Mode regression
+24. browser QA
+25. full pytest result
+
+FINAL INVARIANT CONFIRMATION:
+
+- Master Directory no longer blank
+- Georgia-Pacific remains one company group with 4 child facilities
+- 285 operating company groups preserved
+- 372 facilities preserved
+- 368 Discovery preserved
+- 4 Shortlisted preserved
+- 0 Qualified preserved
+- Interested != Qualified
+- Not Interested != DNC
+- Viewed != Contacted
+- company call != all sibling facilities contacted
+- no fake production outreach records
+- no fake loads/signals
+- no prospect data deleted
+
+STOP after blank-screen repair + Stage 3C Outreach CRM.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-27T08:23:16+05:30.
+</ADDITIONAL_METADATA>

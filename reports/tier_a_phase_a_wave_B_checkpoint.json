@@ -1,0 +1,47 @@
+{
+  "campaign": "TIER_A_ACCELERATION",
+  "phase": "PHASE_A",
+  "wave": "B",
+  "status": "COMPLETED_SAFE",
+  "timestamp_utc": "2026-09-29T05:58:43Z",
+  "hash_before": "F99D98FBD5C13D583459B2D34A1AE14E9673B2342D7EBC76188F6BD8CAF4B60D",
+  "hash_after": "F99D98FBD5C13D583459B2D34A1AE14E9673B2342D7EBC76188F6BD8CAF4B60D",
+  "backup_path": "NONE_MUTATIONS_ZERO",
+  "companies_researched_count": 25,
+  "accepted_changes_count": 0,
+  "tier_movements": [],
+  "engine_counts": {
+    "ALL": 565,
+    "TIER_A_PRIORITY": 14,
+    "TIER_B_WORTH_CALLING": 101,
+    "TIER_C_SECONDARY": 5,
+    "TIER_D_RESEARCH_NEEDED": 445,
+    "RESTRICTED": 0,
+    "PRIORITY": 14,
+    "WORTH_CALLING": 101,
+    "SECONDARY": 5,
+    "RESEARCH": 445
+  },
+  "metadata_counts": {
+    "ALL": 565,
+    "TIER_A_PRIORITY": 14,
+    "TIER_B_WORTH_CALLING": 101,
+    "TIER_C_SECONDARY": 5,
+    "TIER_D_RESEARCH_NEEDED": 445,
+    "RESTRICTED": 0,
+    "PRIORITY": 14,
+    "WORTH_CALLING": 101,
+    "SECONDARY": 5,
+    "RESEARCH": 445
+  },
+  "pragma_integrity": "ok",
+  "pragma_fk_check": 0,
+  "lifecycle_diff": 0,
+  "operational_table_counts": 0,
+  "stop_condition_check": {
+    "tier_a_count": 14,
+    "target": 100,
+    "stop_condition_1_met": false,
+    "next_action": "PROCEED_TO_WAVE_C"
+  }
+}

@@ -1,0 +1,502 @@
+[
+  {
+    "campaign_position": 101,
+    "company_id": 224,
+    "operating_brand": "Gerdau Special Steel North America",
+    "focus_facility_id": 276,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 102,
+    "company_id": 225,
+    "operating_brand": "Marmon Keystone",
+    "focus_facility_id": 278,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 103,
+    "company_id": 226,
+    "operating_brand": "Webco Industries",
+    "focus_facility_id": 280,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 104,
+    "company_id": 227,
+    "operating_brand": "McNichols Co.",
+    "focus_facility_id": 282,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 105,
+    "company_id": 228,
+    "operating_brand": "Tubular Steel, Inc.",
+    "focus_facility_id": 284,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 106,
+    "company_id": 229,
+    "operating_brand": "Central Steel & Wire Co.",
+    "focus_facility_id": 286,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 107,
+    "company_id": 230,
+    "operating_brand": "Gibraltar Steel",
+    "focus_facility_id": 287,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 108,
+    "company_id": 231,
+    "operating_brand": "Metal Sales Manufacturing Corp.",
+    "focus_facility_id": 288,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 109,
+    "company_id": 232,
+    "operating_brand": "McElroy Metal",
+    "focus_facility_id": 290,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 110,
+    "company_id": 233,
+    "operating_brand": "Whirlwind Steel Buildings",
+    "focus_facility_id": 292,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 111,
+    "company_id": 234,
+    "operating_brand": "Heritage Building Systems",
+    "focus_facility_id": 293,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 112,
+    "company_id": 235,
+    "operating_brand": "Mid-West Steel Building Company",
+    "focus_facility_id": 294,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 113,
+    "company_id": 236,
+    "operating_brand": "Varco Pruden Buildings",
+    "focus_facility_id": 295,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 114,
+    "company_id": 237,
+    "operating_brand": "Butler Manufacturing",
+    "focus_facility_id": 296,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 115,
+    "company_id": 238,
+    "operating_brand": "Dean Steel Buildings",
+    "focus_facility_id": 297,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 116,
+    "company_id": 239,
+    "operating_brand": "Eastern Metal Supply",
+    "focus_facility_id": 298,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 117,
+    "company_id": 240,
+    "operating_brand": "Tri-State Aluminum",
+    "focus_facility_id": 300,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 118,
+    "company_id": 241,
+    "operating_brand": "Canam Group",
+    "focus_facility_id": 301,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 119,
+    "company_id": 242,
+    "operating_brand": "ADF Group",
+    "focus_facility_id": 303,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 120,
+    "company_id": 243,
+    "operating_brand": "Supermetal Structures",
+    "focus_facility_id": 304,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 121,
+    "company_id": 244,
+    "operating_brand": "Walters Group",
+    "focus_facility_id": 305,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 122,
+    "company_id": 245,
+    "operating_brand": "Supreme Group",
+    "focus_facility_id": 307,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 123,
+    "company_id": 246,
+    "operating_brand": "Rapidspan Structural",
+    "focus_facility_id": 308,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 124,
+    "company_id": 247,
+    "operating_brand": "Atlas Tube",
+    "focus_facility_id": 309,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 125,
+    "company_id": 248,
+    "operating_brand": "ArcelorMittal Dofasco",
+    "focus_facility_id": 310,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 126,
+    "company_id": 249,
+    "operating_brand": "Stelco",
+    "focus_facility_id": 311,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 127,
+    "company_id": 250,
+    "operating_brand": "Algoma Steel",
+    "focus_facility_id": 313,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 128,
+    "company_id": 251,
+    "operating_brand": "Evraz North America",
+    "focus_facility_id": 314,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 129,
+    "company_id": 252,
+    "operating_brand": "Varsteel Ltd.",
+    "focus_facility_id": 315,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 130,
+    "company_id": 253,
+    "operating_brand": "CanArt Aluminum Extrusion",
+    "focus_facility_id": 317,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 131,
+    "company_id": 254,
+    "operating_brand": "Extrudex Aluminum",
+    "focus_facility_id": 318,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 132,
+    "company_id": 255,
+    "operating_brand": "Apex Aluminum Extrusions",
+    "focus_facility_id": 319,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 133,
+    "company_id": 256,
+    "operating_brand": "Acier Profil\u00e9",
+    "focus_facility_id": 320,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 134,
+    "company_id": 257,
+    "operating_brand": "Oldcastle Infrastructure",
+    "focus_facility_id": 321,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 135,
+    "company_id": 258,
+    "operating_brand": "Rinker Materials",
+    "focus_facility_id": 324,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 136,
+    "company_id": 259,
+    "operating_brand": "County Materials Corp.",
+    "focus_facility_id": 327,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 137,
+    "company_id": 260,
+    "operating_brand": "Wells Concrete",
+    "focus_facility_id": 329,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 138,
+    "company_id": 261,
+    "operating_brand": "Metromont Corporation",
+    "focus_facility_id": 331,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 139,
+    "company_id": 262,
+    "operating_brand": "Jensen Precast",
+    "focus_facility_id": 333,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 140,
+    "company_id": 263,
+    "operating_brand": "Contech Engineered Solutions",
+    "focus_facility_id": 334,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 141,
+    "company_id": 264,
+    "operating_brand": "Armtec",
+    "focus_facility_id": 336,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 142,
+    "company_id": 265,
+    "operating_brand": "USG Corporation",
+    "focus_facility_id": 338,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 143,
+    "company_id": 266,
+    "operating_brand": "National Gypsum",
+    "focus_facility_id": 340,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 144,
+    "company_id": 267,
+    "operating_brand": "CertainTeed",
+    "focus_facility_id": 341,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 145,
+    "company_id": 268,
+    "operating_brand": "GAF Materials",
+    "focus_facility_id": 343,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 146,
+    "company_id": 269,
+    "operating_brand": "Owens Corning",
+    "focus_facility_id": 344,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 147,
+    "company_id": 270,
+    "operating_brand": "Johns Manville",
+    "focus_facility_id": 345,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 148,
+    "company_id": 271,
+    "operating_brand": "James Hardie Building Products",
+    "focus_facility_id": 346,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 149,
+    "company_id": 272,
+    "operating_brand": "Acme Brick",
+    "focus_facility_id": 347,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 150,
+    "company_id": 273,
+    "operating_brand": "General Shale Brick",
+    "focus_facility_id": 348,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  }
+]

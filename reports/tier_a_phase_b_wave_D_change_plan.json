@@ -1,0 +1,512 @@
+[
+  {
+    "campaign_position": 151,
+    "company_id": 274,
+    "operating_brand": "Magna International",
+    "focus_facility_id": 349,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 152,
+    "company_id": 275,
+    "operating_brand": "Martinrea International",
+    "focus_facility_id": 351,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 153,
+    "company_id": 276,
+    "operating_brand": "Linamar Corporation",
+    "focus_facility_id": 353,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 154,
+    "company_id": 277,
+    "operating_brand": "Autoneum North America",
+    "focus_facility_id": 355,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 155,
+    "company_id": 278,
+    "operating_brand": "Yanfeng Automotive Interiors",
+    "focus_facility_id": 357,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 156,
+    "company_id": 279,
+    "operating_brand": "Flex-N-Gate",
+    "focus_facility_id": 359,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 157,
+    "company_id": 280,
+    "operating_brand": "IAC Group",
+    "focus_facility_id": 361,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 158,
+    "company_id": 281,
+    "operating_brand": "Berry Global",
+    "focus_facility_id": 363,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 159,
+    "company_id": 282,
+    "operating_brand": "Sonoco Products",
+    "focus_facility_id": 365,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 160,
+    "company_id": 283,
+    "operating_brand": "Myers Industries",
+    "focus_facility_id": 367,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 161,
+    "company_id": 284,
+    "operating_brand": "Greif, Inc.",
+    "focus_facility_id": 369,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 162,
+    "company_id": 285,
+    "operating_brand": "Snyder Industries",
+    "focus_facility_id": 371,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 163,
+    "company_id": 286,
+    "operating_brand": "Chem-Tainer Industries",
+    "focus_facility_id": 372,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 164,
+    "company_id": 287,
+    "operating_brand": "Ashton Lewis Lumber Co.",
+    "focus_facility_id": 373,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 165,
+    "company_id": 288,
+    "operating_brand": "Associated Hardwoods Inc.",
+    "focus_facility_id": 374,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 166,
+    "company_id": 290,
+    "operating_brand": "Anderson Brothers Lumber",
+    "focus_facility_id": 376,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 167,
+    "company_id": 291,
+    "operating_brand": "Ferguson Land & Lumber",
+    "focus_facility_id": 377,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 168,
+    "company_id": 292,
+    "operating_brand": "Kane Hardwood",
+    "focus_facility_id": 378,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 169,
+    "company_id": 293,
+    "operating_brand": "Cherry Hill Hardwoods",
+    "focus_facility_id": 379,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 170,
+    "company_id": 294,
+    "operating_brand": "Gutchess Lumber",
+    "focus_facility_id": 380,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 171,
+    "company_id": 295,
+    "operating_brand": "Baillie Lumber Co.",
+    "focus_facility_id": 381,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 172,
+    "company_id": 296,
+    "operating_brand": "Cummings Lumber Co.",
+    "focus_facility_id": 382,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 173,
+    "company_id": 297,
+    "operating_brand": "Dwight Lewis Lumber",
+    "focus_facility_id": 383,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 174,
+    "company_id": 298,
+    "operating_brand": "Hickman Lumber Co.",
+    "focus_facility_id": 384,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 175,
+    "company_id": 299,
+    "operating_brand": "Bingaman & Son Lumber",
+    "focus_facility_id": 385,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 176,
+    "company_id": 301,
+    "operating_brand": "Foley Hardwoods Inc.",
+    "focus_facility_id": 387,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 177,
+    "company_id": 302,
+    "operating_brand": "Crone Lumber Co.",
+    "focus_facility_id": 388,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 178,
+    "company_id": 303,
+    "operating_brand": "Somerset Hardwood Flooring",
+    "focus_facility_id": 390,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 179,
+    "company_id": 304,
+    "operating_brand": "Freeman Lumber Co.",
+    "focus_facility_id": 391,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 180,
+    "company_id": 305,
+    "operating_brand": "Fitzpatrick & Weller",
+    "focus_facility_id": 392,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 181,
+    "company_id": 306,
+    "operating_brand": "Graham Lumber Co.",
+    "focus_facility_id": 393,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 182,
+    "company_id": 307,
+    "operating_brand": "Thompson Appalachian Hardwoods",
+    "focus_facility_id": 394,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 183,
+    "company_id": 309,
+    "operating_brand": "Griffin Lumber Co.",
+    "focus_facility_id": 396,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 184,
+    "company_id": 310,
+    "operating_brand": "Graf Brothers Flooring",
+    "focus_facility_id": 397,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 185,
+    "company_id": 311,
+    "operating_brand": "Swift Lumber Inc.",
+    "focus_facility_id": 398,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 186,
+    "company_id": 312,
+    "operating_brand": "Jasper Lumber Co.",
+    "focus_facility_id": 399,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 187,
+    "company_id": 313,
+    "operating_brand": "KyKenKee Inc.",
+    "focus_facility_id": 400,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 188,
+    "company_id": 314,
+    "operating_brand": "Wilson Lumber Company",
+    "focus_facility_id": 401,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 189,
+    "company_id": 315,
+    "operating_brand": "Hankins Lumber Co.",
+    "focus_facility_id": 402,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 190,
+    "company_id": 316,
+    "operating_brand": "Rutland Lumber Co.",
+    "focus_facility_id": 403,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [
+      {
+        "field": "private_fleet_present",
+        "claimed_value": "VERIFIED_PRESENT",
+        "verification_status": "VERIFIED",
+        "scope": "FACILITY",
+        "facility_id": 403,
+        "source_url": "https://rutlandlumber.com/about-us/",
+        "rationale": "our own fleet of tractor-trailers, we have the most reliable shipping in the industry."
+      }
+    ],
+    "expected_engine_effect": "TIER_C_MOVEMENT",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 191,
+    "company_id": 317,
+    "operating_brand": "Jones Lumber Co.",
+    "focus_facility_id": 404,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 192,
+    "company_id": 318,
+    "operating_brand": "Maxwell Hardwood Flooring",
+    "focus_facility_id": 405,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 193,
+    "company_id": 319,
+    "operating_brand": "Wilson Brothers Lumber",
+    "focus_facility_id": 406,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 194,
+    "company_id": 320,
+    "operating_brand": "Blue Rock Lumber",
+    "focus_facility_id": 407,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 195,
+    "company_id": 322,
+    "operating_brand": "DeNooyer Lumber Co.",
+    "focus_facility_id": 409,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 196,
+    "company_id": 323,
+    "operating_brand": "Kretz Lumber Co.",
+    "focus_facility_id": 410,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 197,
+    "company_id": 324,
+    "operating_brand": "Tigerton Lumber Co.",
+    "focus_facility_id": 411,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 198,
+    "company_id": 325,
+    "operating_brand": "Midwest Hardwood Corp.",
+    "focus_facility_id": 412,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 199,
+    "company_id": 326,
+    "operating_brand": "Besse Forest Products",
+    "focus_facility_id": 413,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  },
+  {
+    "campaign_position": 200,
+    "company_id": 327,
+    "operating_brand": "Mathews Lumber Co.",
+    "focus_facility_id": 414,
+    "lifecycle_action": "QUALIFY",
+    "proposed_claims": [],
+    "expected_engine_effect": "TIER_B_QUALIFIED",
+    "validation_status": "ACCEPT"
+  }
+]

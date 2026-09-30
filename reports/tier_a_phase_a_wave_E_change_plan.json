@@ -1,0 +1,37 @@
+{
+  "campaign": "TIER_A_ACCELERATION",
+  "phase": "PHASE_A",
+  "wave": "E",
+  "created_at_utc": "2026-09-29T06:26:15Z",
+  "companies_researched_count": 7,
+  "total_change_proposals_count": 1,
+  "accepted_changes": [
+    {
+      "company_id": 218,
+      "operating_brand": "Metals USA",
+      "facility_id": 264,
+      "field": "commercial_carrier_use",
+      "subject_type": "facility",
+      "action": "ACCEPT",
+      "old_value": "UNKNOWN",
+      "proposed_value": "VERIFIED",
+      "verification_status": "VERIFIED",
+      "source_url": "https://www.metalsusa.com/metal-shipping-services/",
+      "source_title": "Metal Shipping Services | Metals USA",
+      "source_type": "COMPANY_WEBSITE",
+      "rationale": "Official website explicitly documents partnership with freight carriers and common carriers for customer shipments."
+    }
+  ],
+  "downgraded_changes": [],
+  "rejected_changes": [],
+  "tier_movement_forecast": [
+    {
+      "company_id": 218,
+      "operating_brand": "Metals USA",
+      "facility_id": 264,
+      "current_tier": "TIER_B_WORTH_CALLING",
+      "projected_tier": "TIER_A_PRIORITY",
+      "trigger": "commercial_carrier_use = VERIFIED"
+    }
+  ]
+}

@@ -1,0 +1,1401 @@
+[
+  {
+    "company_id": 2,
+    "operating_brand": "Kenwal Steel Corp.",
+    "batch_position": 1,
+    "wave": "A",
+    "research_focus_facility_id": 2,
+    "current_db_state": {
+      "lifecycle": "SHORTLISTED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 3,
+          "person_name": null,
+          "exact_published_title": "Main Switchboard",
+          "phone_number": "(313) 739-1000",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Kenwal Steel Corp. Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 3,
+    "operating_brand": "DECAST Ltd.",
+    "batch_position": 2,
+    "wave": "A",
+    "research_focus_facility_id": 3,
+    "current_db_state": {
+      "lifecycle": "SHORTLISTED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 4,
+          "person_name": null,
+          "exact_published_title": "Main Reception",
+          "phone_number": "(705) 734-2892",
+          "phone_directness": "RECEPTION",
+          "email_address": "info@decastltd.com",
+          "email_directness": "GENERAL",
+          "role_category": "GENERAL_FACILITY"
+        },
+        {
+          "id": 5,
+          "person_name": null,
+          "exact_published_title": "Toll-Free Customer Line",
+          "phone_number": "(800) 461-5632",
+          "phone_directness": "TOLL_FREE",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "VERIFIED_PRESENT",
+      "private_fleet_claim_level": "VERIFIED",
+      "fleet_relationship_proposed": "IN_HOUSE_OWNED",
+      "fleet_relationship_claim_level": "VERIFIED",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing switchboard and info contacts.",
+      "equipment_findings": "Heavy specialized precast concrete trailers and boom trucks.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://decastltd.com/services.php",
+          "source_title": "DECAST Ltd. - Services & Delivery",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official corporate website states: 'DECAST listened and invested in our own trucking fleet with a full service fleet department. DECAST has exact information about where each truck is, relative to the jobsite and what type of truck is on its way, in order to provide accurate delivery information.'"
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "private_fleet_present",
+          "subject_type": "facility",
+          "subject_id": 3,
+          "old_value": "UNKNOWN",
+          "proposed_value": "VERIFIED_PRESENT",
+          "verification_status": "VERIFIED",
+          "source_url": "https://decastltd.com/services.php",
+          "source_title": "DECAST Ltd. - Services & Delivery",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Official corporate website confirms own trucking fleet with full-service fleet department.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Direct primary source confirmation of private fleet."
+        },
+        {
+          "field": "fleet_relationship_type",
+          "subject_type": "facility",
+          "subject_id": 3,
+          "old_value": "UNKNOWN",
+          "proposed_value": "IN_HOUSE_OWNED",
+          "verification_status": "VERIFIED",
+          "source_url": "https://decastltd.com/services.php",
+          "source_title": "DECAST Ltd. - Services & Delivery",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "In-house owned and operated trucking fleet department.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Primary corporate website verification."
+        }
+      ]
+    }
+  },
+  {
+    "company_id": 9,
+    "operating_brand": "Shearouse Lumber Company",
+    "batch_position": 3,
+    "wave": "A",
+    "research_focus_facility_id": 8,
+    "current_db_state": {
+      "lifecycle": "SHORTLISTED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 10,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(912) 748-7244",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Shearouse Lumber Company Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 13,
+    "operating_brand": "Jordan Forest Products, LLC",
+    "batch_position": 4,
+    "wave": "A",
+    "research_focus_facility_id": 12,
+    "current_db_state": {
+      "lifecycle": "SHORTLISTED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 15,
+          "person_name": "Larry Spillers",
+          "exact_published_title": "Mill Manager / Sales Manager",
+          "phone_number": "(770) 358-5931",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "lspillers@jordanforestproducts.com",
+          "email_directness": "DIRECT_PERSON",
+          "role_category": "COMMERCIAL_SALES"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Jordan Forest Products, LLC Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 15,
+    "operating_brand": "The Universal Steel Company",
+    "batch_position": 5,
+    "wave": "A",
+    "research_focus_facility_id": 14,
+    "current_db_state": {
+      "lifecycle": "SHORTLISTED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 17,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(216) 883-4972",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "info@univsteel.com",
+          "email_directness": "GENERAL",
+          "role_category": "UNKNOWN"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "The Universal Steel Company Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 22,
+    "operating_brand": "Janco Steel Ltd.",
+    "batch_position": 6,
+    "wave": "A",
+    "research_focus_facility_id": 21,
+    "current_db_state": {
+      "lifecycle": "SHORTLISTED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "AFFILIATED_CARRIER_ENTITY",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 25,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(905) 643-3535",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@jancosteel.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "UNKNOWN"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "AFFILIATED_CARRIER_ENTITY",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Janco Steel Ltd. Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 23,
+    "operating_brand": "Imperial Metal Services",
+    "batch_position": 7,
+    "wave": "A",
+    "research_focus_facility_id": 22,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 26,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(416) 744-9988",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "info@imperialms.ca",
+          "email_directness": "GENERAL",
+          "role_category": "UNKNOWN"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "VERIFIED_PRESENT",
+      "private_fleet_claim_level": "VERIFIED",
+      "fleet_relationship_proposed": "IN_HOUSE_OWNED",
+      "fleet_relationship_claim_level": "VERIFIED",
+      "commercial_carrier_proposed": "VERIFIED",
+      "commercial_carrier_claim_level": "VERIFIED",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing switchboard contact.",
+      "equipment_findings": "Flatbed equipment confirmed suitable for slit coils, cut-to-length plate, and heavy carbon steel sheets.",
+      "facility_scope": "FACILITY_AND_COMPANY",
+      "sources": [
+        {
+          "source_url": "https://www.imperialms.ca/en/services/delivery/",
+          "source_title": "Imperial Metal Services - Delivery Services",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official corporate website explicitly states: 'In addition to our in-house fleet, we have cultivated strong relationships with several reputable outside carriers.'"
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "private_fleet_present",
+          "subject_type": "facility",
+          "subject_id": 22,
+          "old_value": "UNKNOWN",
+          "proposed_value": "VERIFIED_PRESENT",
+          "verification_status": "VERIFIED",
+          "source_url": "https://www.imperialms.ca/en/services/delivery/",
+          "source_title": "Imperial Metal Services - Delivery Services",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Official website confirms operational in-house delivery fleet.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Explicit corporate claim of in-house fleet."
+        },
+        {
+          "field": "fleet_relationship_type",
+          "subject_type": "facility",
+          "subject_id": 22,
+          "old_value": "UNKNOWN",
+          "proposed_value": "IN_HOUSE_OWNED",
+          "verification_status": "VERIFIED",
+          "source_url": "https://www.imperialms.ca/en/services/delivery/",
+          "source_title": "Imperial Metal Services - Delivery Services",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Official website confirms in-house fleet owned and operated by company.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Explicit in-house fleet statement."
+        },
+        {
+          "field": "commercial_carrier_use",
+          "subject_type": "facility",
+          "subject_id": 22,
+          "old_value": "UNKNOWN",
+          "proposed_value": "VERIFIED",
+          "verification_status": "VERIFIED",
+          "source_url": "https://www.imperialms.ca/en/services/delivery/",
+          "source_title": "Imperial Metal Services - Delivery Services",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Official website confirms strong relationships with several reputable outside carriers for customer shipments.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Explicit outside carrier use confirmed. Broker status remains UNKNOWN per truth rules."
+        }
+      ]
+    }
+  },
+  {
+    "company_id": 28,
+    "operating_brand": "Lindsay Precast",
+    "batch_position": 8,
+    "wave": "A",
+    "research_focus_facility_id": 27,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 31,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(330) 854-6282",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "info@lindsayprecast.com",
+          "email_directness": "GENERAL",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Lindsay Precast Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 29,
+    "operating_brand": "Tindall Corporation",
+    "batch_position": 9,
+    "wave": "A",
+    "research_focus_facility_id": 28,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 32,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(864) 576-3230",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Tindall Corporation Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 31,
+    "operating_brand": "Concast Pipe Inc.",
+    "batch_position": 10,
+    "wave": "A",
+    "research_focus_facility_id": 30,
+    "current_db_state": {
+      "lifecycle": "SHORTLISTED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 37,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(519) 763-8655",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@concastpipe.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "UNKNOWN"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Concast Pipe Inc. Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 35,
+    "operating_brand": "Precon Precast Limited",
+    "batch_position": 11,
+    "wave": "A",
+    "research_focus_facility_id": 34,
+    "current_db_state": {
+      "lifecycle": "SHORTLISTED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 44,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "(519) 537-6288",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "sales@pre-con.com",
+          "email_directness": "DEPARTMENT",
+          "role_category": "UNKNOWN"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Precon Precast Limited Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 45,
+    "operating_brand": "Canfor",
+    "batch_position": 12,
+    "wave": "A",
+    "research_focus_facility_id": 44,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 54,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "229-985-6996",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Canfor Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 46,
+    "operating_brand": "Georgia-Pacific",
+    "batch_position": 13,
+    "wave": "A",
+    "research_focus_facility_id": 46,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 56,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "229-338-7353",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "OPERATIONS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Georgia-Pacific Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 47,
+    "operating_brand": "Huber Engineered Woods",
+    "batch_position": 14,
+    "wave": "A",
+    "research_focus_facility_id": 50,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 60,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "706-335-7661",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Huber Engineered Woods Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 49,
+    "operating_brand": "Langdale Forest Products",
+    "batch_position": 15,
+    "wave": "A",
+    "research_focus_facility_id": 52,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 62,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "229-333-2500",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Discovered direct personal sales channel: Paul McRae (Sales Manager, Phone: (229) 333-2577, Email: pmcrae@LangdaleForest.com).",
+      "equipment_findings": "Flatbed dimension lumber and utility pole shipping.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://langdaleforest.com/contact/",
+          "source_title": "Langdale Forest Products - Contact Us",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official corporate website lists direct sales management personnel with direct phone and email."
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "contacts",
+          "subject_type": "contact",
+          "subject_id": null,
+          "old_value": "NONE",
+          "proposed_value": "Paul McRae | Sales Manager | (229) 333-2577 [DIRECT_PERSON] | pmcrae@LangdaleForest.com [DIRECT_PERSON] | COMMERCIAL_SALES",
+          "verification_status": "VERIFIED",
+          "source_url": "https://langdaleforest.com/contact/",
+          "source_title": "Langdale Forest Products - Contact Us",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Direct personal contact details for Sales Manager published on official corporate contact page.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Primary corporate confirmation of direct sales channel."
+        }
+      ]
+    }
+  },
+  {
+    "company_id": 50,
+    "operating_brand": "South Georgia Sawmill & Timber Frames",
+    "batch_position": 16,
+    "wave": "A",
+    "research_focus_facility_id": 53,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 63,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "912-823-3223",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "South Georgia Sawmill & Timber Frames Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 51,
+    "operating_brand": "Sparks Lumber Company",
+    "batch_position": 17,
+    "wave": "A",
+    "research_focus_facility_id": 54,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 64,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "706-635-4047",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Sparks Lumber Company Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 53,
+    "operating_brand": "Woodstar Timber Products",
+    "batch_position": 18,
+    "wave": "A",
+    "research_focus_facility_id": 56,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 66,
+          "person_name": "Mill Operations",
+          "exact_published_title": null,
+          "phone_number": "706-768-5025",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "woodstartimber@gmail.com",
+          "email_directness": "GENERAL",
+          "role_category": "OPERATIONS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Woodstar Timber Products Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 54,
+    "operating_brand": "H.V. & T.G. Thompson Lumber Co.",
+    "batch_position": 19,
+    "wave": "A",
+    "research_focus_facility_id": 57,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 67,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "912-583-2236",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "H.V. & T.G. Thompson Lumber Co. Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 55,
+    "operating_brand": "Burt Lumber Company",
+    "batch_position": 20,
+    "wave": "A",
+    "research_focus_facility_id": 58,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 68,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "706-678-1531",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Burt Lumber Company Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 56,
+    "operating_brand": "T&S Hardwoods",
+    "batch_position": 21,
+    "wave": "A",
+    "research_focus_facility_id": 59,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 69,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "478-454-3400",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "T&S Hardwoods Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 57,
+    "operating_brand": "Oakcrest Lumber",
+    "batch_position": 22,
+    "wave": "A",
+    "research_focus_facility_id": 60,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 70,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "229-649-9328",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Oakcrest Lumber Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 58,
+    "operating_brand": "Pollard Lumber Company",
+    "batch_position": 23,
+    "wave": "A",
+    "research_focus_facility_id": 61,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 71,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "706-541-1343",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "Pollard Lumber Company Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 59,
+    "operating_brand": "West Fraser",
+    "batch_position": 24,
+    "wave": "A",
+    "research_focus_facility_id": 62,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 72,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "478-676-3692",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": null,
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "UNKNOWN",
+      "private_fleet_claim_level": "UNKNOWN",
+      "fleet_relationship_proposed": "UNKNOWN",
+      "fleet_relationship_claim_level": "UNKNOWN",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Preserved existing contacts. No verified direct logistics contacts found on public site.",
+      "equipment_findings": "FTL equipment suitability confirmed from primary industrial commodity.",
+      "facility_scope": "FACILITY",
+      "sources": [
+        {
+          "source_url": "https://www.google.com",
+          "source_title": "West Fraser Search Discovery",
+          "source_type": "SEARCH_DISCOVERY",
+          "http_status": 200,
+          "notes": "Reviewed public website and shipping/contact pages. Insufficient explicit primary documentation to change carrier or fleet status to VERIFIED."
+        }
+      ],
+      "proposed_factual_changes": []
+    }
+  },
+  {
+    "company_id": 60,
+    "operating_brand": "Rex Lumber",
+    "batch_position": 25,
+    "wave": "A",
+    "research_focus_facility_id": 65,
+    "current_db_state": {
+      "lifecycle": "QUALIFIED",
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "contacts": [
+        {
+          "id": 75,
+          "person_name": null,
+          "exact_published_title": null,
+          "phone_number": "850-643-2238",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_address": "bristol@rex-lumber.com",
+          "email_directness": "GENERAL",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ]
+    },
+    "research_findings": {
+      "private_fleet_proposed": "VERIFIED_PRESENT",
+      "private_fleet_claim_level": "VERIFIED",
+      "fleet_relationship_proposed": "AFFILIATED_CARRIER_ENTITY",
+      "fleet_relationship_claim_level": "VERIFIED",
+      "commercial_carrier_proposed": "UNKNOWN",
+      "commercial_carrier_claim_level": "UNKNOWN",
+      "broker_proposed": "UNKNOWN",
+      "broker_claim_level": "UNKNOWN",
+      "contact_findings": "Added direct dispatch/logistics contact Chris Brown (General Manager, Rex Transportation LLC, cell: 334.405.2036).",
+      "equipment_findings": "Fleet includes 19 day cab local flatbeds, 10 sleeper cab regional flatbed trucks, 3 pole trucks, 13 log trucks.",
+      "facility_scope": "COMPANY_AND_FACILITY",
+      "sources": [
+        {
+          "source_url": "https://rex-lumber.com/rex-transportation/",
+          "source_title": "Rex Lumber - Rex Transportation",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "notes": "Official corporate website states: 'Rex Transportation, LLC operates a fleet of 45 Trucks including 3 specialized Pole Trucks, 10 Sleeper Cab Regional Trucks, 19 Day Cab local flatbed trucks and 13 Log trucks offering transportation services for Rex Lumber, APC, and outside customers in the Southeast Region. Contact Information: Chris Brown, General Manager, 334.405.2036 cell'"
+        }
+      ],
+      "proposed_factual_changes": [
+        {
+          "field": "private_fleet_present",
+          "subject_type": "facility",
+          "subject_id": 65,
+          "old_value": "UNKNOWN",
+          "proposed_value": "VERIFIED_PRESENT",
+          "verification_status": "VERIFIED",
+          "source_url": "https://rex-lumber.com/rex-transportation/",
+          "source_title": "Rex Lumber - Rex Transportation",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Operates dedicated transportation affiliate Rex Transportation, LLC.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Primary corporate confirmation of dedicated affiliated trucking entity."
+        },
+        {
+          "field": "fleet_relationship_type",
+          "subject_type": "facility",
+          "subject_id": 65,
+          "old_value": "UNKNOWN",
+          "proposed_value": "AFFILIATED_CARRIER_ENTITY",
+          "verification_status": "VERIFIED",
+          "source_url": "https://rex-lumber.com/rex-transportation/",
+          "source_title": "Rex Lumber - Rex Transportation",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Rex Transportation, LLC operates as an affiliated carrier entity servicing Rex Lumber mills.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Exact match for AFFILIATED_CARRIER_ENTITY."
+        },
+        {
+          "field": "contacts",
+          "subject_type": "contact",
+          "subject_id": null,
+          "old_value": "NONE",
+          "proposed_value": "Chris Brown | General Manager | 334.405.2036 [DIRECT_PERSON] | FREIGHT_LOGISTICS",
+          "verification_status": "VERIFIED",
+          "source_url": "https://rex-lumber.com/rex-transportation/",
+          "source_title": "Rex Lumber - Rex Transportation",
+          "source_type": "COMPANY_WEBSITE",
+          "scope": "FACILITY",
+          "support_summary": "Published direct cell phone for transportation general manager.",
+          "source_fetch_status": "HTTP_200_VERIFIED",
+          "confidence_notes": "Direct cell number published on official website."
+        }
+      ]
+    }
+  }
+]

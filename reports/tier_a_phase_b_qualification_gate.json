@@ -1,0 +1,78 @@
+{
+  "title": "FreightProspecting V1 — Frozen Lifecycle Qualification Gate",
+  "generated_at_utc": "2026-09-29T07:28:00Z",
+  "authority": {
+    "code_authority": "src/backend/db/queries.py::evaluate_qualification_readiness (lines 236-520)",
+    "lifecycle_service_authority": "src/backend/db/queries.py::promote_prospect_stage (lines 522-580)",
+    "fastapi_endpoint_authority": "src/backend/main.py::api_update_prospect_stage (lines 729-747)",
+    "test_authority": [
+      "tests/test_stage3a_lifecycle.py",
+      "tests/test_stage3f_lifecycle.py",
+      "tests/test_audit_remediation_a.py",
+      "tests/test_audit_remediation_c.py",
+      "tests/test_audit_remediation_d.py",
+      "tests/test_audit_remediation_d1.py"
+    ],
+    "project_rules_authority": "GEMINI.md (Sections 2, 3, 4, 5, 6, 7)"
+  },
+  "readiness_criteria": [
+    {
+      "criterion_name": "facility_identity_verified",
+      "scope": "FACILITY",
+      "description": "Physical facility address, city, state/province, and country in US or Canada confirmed by primary evidence.",
+      "code_logic": "fac['physical_address'] present and not 'UNKNOWN', fac['city'] present, fac['state_prov'] present, fac['country'] in ('US', 'CA'), and facility has an accepted claim (is_current_accepted = 1) for 'physical_address' backed by at least one claim_evidence record with relationship = 'SUPPORTS'.",
+      "mandatory_to_qualify": true
+    },
+    {
+      "criterion_name": "commodity_equipment_fit",
+      "scope": "FACILITY",
+      "description": "At least one facility commodity profile with approved FTL freight equipment category (Flatbed, Step Deck, or Dry Van).",
+      "code_logic": "At least one row in facility_commodities for facility_id with equipment_category in ('FLATBED', 'STEP_DECK', 'DRY_VAN') and equipment_usage_status in ('VERIFIED', 'INFERRED'), AND an accepted claim for 'equipment_category' (verification_status in ('VERIFIED', 'INFERRED')) backed by claim_evidence with relationship = 'SUPPORTS'.",
+      "mandatory_to_qualify": true
+    },
+    {
+      "criterion_name": "geography_eligible",
+      "scope": "FACILITY",
+      "description": "Eligible freight territory: Domestic US Lower 48 states or Canadian provinces/territories.",
+      "code_logic": "If US: state_prov in LOWER_48_STATES (50 states minus HI and AK). HI is hard-excluded. AK is excluded by default in V1 (Decision A). If CA: state_prov in CANADIAN_JURISDICTIONS (10 provinces + 3 territories). Mexico (MX) is hard-excluded.",
+      "mandatory_to_qualify": true
+    },
+    {
+      "criterion_name": "usable_outreach_route",
+      "scope": "FACILITY_OR_CONTACT",
+      "description": "Phone-first, not phone-only. Valid callable phone route (10+ digits, non-placeholder) or usable email address with evidence provenance.",
+      "code_logic": "At least one contact record for facility_id with valid phone (is_valid_phone_number) or valid email (is_valid_email), AND an accepted claim matching the contact's directness (phone_directness or email_directness/email_address) backed by claim_evidence with relationship = 'SUPPORTS'. If claim_notes contains phone digits, they must match the contact's current phone number.",
+      "mandatory_to_qualify": true
+    },
+    {
+      "criterion_name": "supporting_evidence_provenance",
+      "scope": "FACILITY_OR_ENTITY",
+      "description": "Evidence provenance verified across facility, commodity, contact, or parent company claims.",
+      "code_logic": "Facility has at least 1 accepted claim (is_current_accepted = 1) backed by linked evidence_sources via claim_evidence with relationship = 'SUPPORTS' referencing facility_id, facility_commodity_id, contact_id, or company_id.",
+      "mandatory_to_qualify": true
+    }
+  ],
+  "facts_not_required_for_qualification": [
+    "commercial_carrier_use is NOT required to be VERIFIED (UNKNOWN is completely valid and neutral).",
+    "broker_friendly_status is NOT required to be VERIFIED_ACCEPTS (UNKNOWN is completely valid and neutral).",
+    "private_fleet_present is NOT required to be VERIFIED (UNKNOWN is completely valid and neutral).",
+    "Named individual decision-maker contact is NOT required (a general facility or logistics department switchboard route satisfies usable_outreach_route).",
+    "Load availability, freight rate, or capacity postings are NOT required."
+  ],
+  "conditions_blocking_qualification": [
+    "Missing physical facility address or address = 'UNKNOWN'.",
+    "Facility address not backed by an accepted claim with SUPPORTS evidence.",
+    "No commodity profile or commodity equipment category not in ('FLATBED', 'STEP_DECK', 'DRY_VAN').",
+    "Excluded commodity categories: Hazmat, precious cargo, live animals, raw fish/seafood, reefer/temperature-controlled primary targets.",
+    "Excluded geographic territories: Hawaii (HI), Mexico (MX), Alaska (AK unless override toggle enabled), overseas territories.",
+    "No callable telephone route (10+ digits) or usable email address.",
+    "Contact route not backed by an accepted directness claim with SUPPORTS evidence.",
+    "Active DO_NOT_CONTACT suppression at COMPANY or FACILITY scope."
+  ],
+  "lifecycle_transition_rule": {
+    "target_stage": "QUALIFIED",
+    "valid_source_stages": ["DISCOVERY"],
+    "automatic_shortlisting_allowed": false,
+    "rationale": "Shortlisting indicates active campaign outreach prioritization and is operator-directed. Phase B research focuses strictly on factual qualification readiness (DISCOVERY -> QUALIFIED)."
+  }
+}

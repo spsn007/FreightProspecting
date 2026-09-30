@@ -1,0 +1,60 @@
+{
+  "wave": "F",
+  "executed_at_utc": "2026-09-29T08:59:42Z",
+  "starting_hash": "97E356EA32028714122879692F3D61BE447FF0FB7348885951EE73553631AC75",
+  "ending_hash": "B66D83A9CBB4E66C4D0CE7213D43C8447C0325460EF4E4248A72EBA42A8D359E",
+  "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_F_20260929_085942.db",
+  "companies_researched": 50,
+  "companies_qualified": 50,
+  "companies_remaining_discovery": 0,
+  "new_a": 1,
+  "new_b": 48,
+  "new_c": 1,
+  "restricted_changes": 0,
+  "tier_a_before": 18,
+  "tier_a_after": 19,
+  "gap_to_100": 81,
+  "full_engine_distribution": {
+    "TIER_A_PRIORITY": 19,
+    "TIER_B_WORTH_CALLING": 390,
+    "TIER_C_SECONDARY": 9,
+    "TIER_D_RESEARCH_NEEDED": 147,
+    "RESTRICTED": 0
+  },
+  "metadata_distribution": {
+    "TIER_A_PRIORITY": 19,
+    "TIER_B_WORTH_CALLING": 390,
+    "TIER_C_SECONDARY": 9,
+    "TIER_D_RESEARCH_NEEDED": 147,
+    "RESTRICTED": 0
+  },
+  "directory_distribution": {
+    "TIER_A_PRIORITY": 19,
+    "TIER_B_WORTH_CALLING": 390,
+    "TIER_C_SECONDARY": 9,
+    "TIER_D_RESEARCH_NEEDED": 147,
+    "RESTRICTED": 0
+  },
+  "engine_equals_metadata_equals_directory": true,
+  "claim_counts": {
+    "total_claims": 2774,
+    "total_evidence_sources": 767,
+    "total_claim_evidence_links": 2777
+  },
+  "lifecycle_transitions_count": 50,
+  "outside_wave_mutations": 0,
+  "safer_only_claims": 0,
+  "orphan_claims": 0,
+  "duplicate_current_claims": 0,
+  "operational_table_counts": {
+    "outreach_logs": 0,
+    "load_opportunities": 0,
+    "freight_demand_signals": 0,
+    "capacity_postings": 0,
+    "load_capacity_matches": 0
+  },
+  "pragma_status": {
+    "integrity_check": "ok",
+    "foreign_key_check": 0
+  }
+}

@@ -1,0 +1,1083 @@
+[
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 26,
+    "company_id": 44,
+    "operating_brand": "SyBridge Technologies",
+    "research_focus_facility_id": 43,
+    "research_focus_facility_name": "Lakeshore Advanced Tooling Center",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 8,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 23 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://sybridge.com",
+          "source_title": "SyBridge Technologies | Full-Lifecycle Injection Mold Tooling",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://sybridge.com/contact/",
+          "source_title": "Contact Us | SyBridge Technologies",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://sybridge.com/contact/locations/",
+          "source_title": "Locations - SyBridge Technologies",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 27,
+    "company_id": 45,
+    "operating_brand": "Canfor",
+    "research_focus_facility_id": 44,
+    "research_focus_facility_name": "Moultrie Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 31,
+      "successful_200": 12,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 31 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.canfor.com",
+          "source_title": "Canfor \u2014 Lumber, Pulp, Paper &amp; Sustainable Wood Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.canfor.com/assets/leadership-grid-DeY8jf52.js",
+          "source_title": "Canfor",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.canfor.com/company/leadership",
+          "source_title": "Leadership \u2014 Canfor",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 28,
+    "company_id": 46,
+    "operating_brand": "Georgia-Pacific",
+    "research_focus_facility_id": 46,
+    "research_focus_facility_name": "Albany Lumber Mill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 31,
+      "successful_200": 31,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 31 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.gp.com",
+          "source_title": "Welcome To Georgia Pacific | Georgia-Pacific",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.gp.com/about-us/executive-leadership-team",
+          "source_title": "Executive Leadership Team | Georgia-Pacific",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.gp.com/about-us/locations",
+          "source_title": "United States | Georgia-Pacific",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 29,
+    "company_id": 47,
+    "operating_brand": "Huber Engineered Woods",
+    "research_focus_facility_id": 50,
+    "research_focus_facility_name": "Commerce OSB Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 26,
+      "successful_200": 9,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 26 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.huberwood.com",
+          "source_title": "Building Systems for Roofs, Walls &amp; Floors | Huber Engineered Woods",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.huberwood.com/contact-us",
+          "source_title": "Contact Us | Huber Engineered Woods",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.huberwood.com/contact-us",
+          "source_title": "Contact Us | Huber Engineered Woods",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 30,
+    "company_id": 49,
+    "operating_brand": "Langdale Forest Products",
+    "research_focus_facility_id": 52,
+    "research_focus_facility_name": "Valdosta Processing & Treating Complex",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 2
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 6,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 23 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://langdaleforest.com",
+          "source_title": "Langdale Forest Products | Quality &amp; Service, Since 1894",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://langdaleforest.com/contact/",
+          "source_title": "Contact | Langdale Forest Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://langdaleforest.com/shipping/",
+          "source_title": "Shipping | Langdale Forest Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 31,
+    "company_id": 50,
+    "operating_brand": "South Georgia Sawmill & Timber Frames",
+    "research_focus_facility_id": 53,
+    "research_focus_facility_name": "Pembroke Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 25,
+      "successful_200": 6,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 25 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://southgeorgiasawmill.com",
+          "source_title": "Home - South Georgia Sawmill &amp; Timber Frames",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://southgeorgiasawmill.com/wp-content/plugins/jetpack/jetpack_vendor/automattic/jetpack-forms/dist/contact-form/css/jetpack-forms-layout.css",
+          "source_title": "South Georgia Sawmill & Timber Frames",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://southgeorgiasawmill.com/contact/",
+          "source_title": "Contact us - South Georgia Sawmill &amp; Timber Frames",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 32,
+    "company_id": 51,
+    "operating_brand": "Sparks Lumber Company",
+    "research_focus_facility_id": 54,
+    "research_focus_facility_name": "Ellijay Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 33,
+    "company_id": 52,
+    "operating_brand": "Varn Wood Products",
+    "research_focus_facility_id": 55,
+    "research_focus_facility_name": "Hoboken Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 2,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.varnwood.com/",
+          "source_title": "Home | Varn Wood Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.varnwood.com/about",
+          "source_title": "About | Varn Wood Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 34,
+    "company_id": 53,
+    "operating_brand": "Woodstar Timber Products",
+    "research_focus_facility_id": 56,
+    "research_focus_facility_name": "Clarkesville Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 1,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://woodstartimber.com",
+          "source_title": "Home",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 35,
+    "company_id": 54,
+    "operating_brand": "H.V. & T.G. Thompson Lumber Co.",
+    "research_focus_facility_id": 57,
+    "research_focus_facility_name": "Ailey Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 3,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.pineandcypress.com/",
+          "source_title": "Building Supplies | H.V. &amp; T.G. Thompson Lumber",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.pineandcypress.com/contact-us",
+          "source_title": "Contact Us | H.V. &amp; T.G. Thompson Lumber",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.pineandcypress.com/contact-us",
+          "source_title": "Contact Us | H.V. &amp; T.G. Thompson Lumber",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 36,
+    "company_id": 55,
+    "operating_brand": "Burt Lumber Company",
+    "research_focus_facility_id": 58,
+    "research_focus_facility_name": "Washington Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 4,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 23 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://burtlumbercompany.com",
+          "source_title": "Burt Lumber Company Manufacturer Southern Yellow Pine",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://burtlumbercompany.com/contact/",
+          "source_title": "Burt Lumber Company Contact Us",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://burtlumbercompany.com/contact/default.html",
+          "source_title": "Burt Lumber Company Contact Us",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 37,
+    "company_id": 56,
+    "operating_brand": "T&S Hardwoods",
+    "research_focus_facility_id": 59,
+    "research_focus_facility_name": "Milledgeville Hardwood Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 1,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://tshardwoods.com",
+          "source_title": "Welcome to T.S. Hardwoods",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 38,
+    "company_id": 57,
+    "operating_brand": "Oakcrest Lumber",
+    "research_focus_facility_id": 60,
+    "research_focus_facility_name": "Buena Vista Hardwood Sawmill & Flooring Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 6,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 23 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.oakcrestlumber.com/",
+          "source_title": "Home | oakcrest",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.oakcrestlumber.com/contact-us",
+          "source_title": "Contact Us | oakcrest",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.oakcrestlumber.com/locations",
+          "source_title": "Locations | oakcrest",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 39,
+    "company_id": 58,
+    "operating_brand": "Pollard Lumber Company",
+    "research_focus_facility_id": 61,
+    "research_focus_facility_name": "Appling Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 40,
+    "company_id": 59,
+    "operating_brand": "West Fraser",
+    "research_focus_facility_id": 62,
+    "research_focus_facility_name": "Dudley Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 41,
+    "company_id": 60,
+    "operating_brand": "Rex Lumber",
+    "research_focus_facility_id": 65,
+    "research_focus_facility_name": "Bristol Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "AFFILIATED_CARRIER_ENTITY",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 2
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 31,
+      "successful_200": 12,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 31 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://rex-lumber.com/",
+          "source_title": "Rex-Lumber.com &#8211; Forest Products",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://rex-lumber.com/contact/",
+          "source_title": "Contact &#8211; Rex-Lumber.com",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://rex-lumber.com/membership-login/",
+          "source_title": "Employee Login / Register &#8211; Rex-Lumber.com",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 42,
+    "company_id": 61,
+    "operating_brand": "Boise Cascade",
+    "research_focus_facility_id": 66,
+    "research_focus_facility_name": "Havana Plywood Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 43,
+    "company_id": 62,
+    "operating_brand": "The Westervelt Company",
+    "research_focus_facility_id": 67,
+    "research_focus_facility_name": "Moundville Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 24,
+      "successful_200": 7,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 24 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://westerveltlumber.com",
+          "source_title": "Westervelt Lumber - Westervelt Lumber",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://westerveltlumber.com/contact/",
+          "source_title": "Contact - Westervelt Lumber",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://westerveltlumber.com/contact/",
+          "source_title": "Contact - Westervelt Lumber",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 44,
+    "company_id": 63,
+    "operating_brand": "Scotch Plywood Company",
+    "research_focus_facility_id": 68,
+    "research_focus_facility_name": "Fulton Plywood Plant",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 3,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.scotchplywood.com/",
+          "source_title": "Scotch &#8211; Plywood &amp; Land Management",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.scotchplywood.com/scotch-plywood/shipping/",
+          "source_title": "Scotch Plywood Shipping &#8211; Scotch",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.scotchplywood.com/scotch-plywood/shipping/",
+          "source_title": "Scotch Plywood Shipping &#8211; Scotch",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 45,
+    "company_id": 64,
+    "operating_brand": "Two Rivers Lumber Co.",
+    "research_focus_facility_id": 69,
+    "research_focus_facility_name": "Demopolis Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 2
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 6,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 23 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://tworiverslumber.com",
+          "source_title": "Two Rivers Lumber Company, LLC | Quality Southern Yellow Pine Lumber Made in Alabama",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://tworiverslumber.com/contact/",
+          "source_title": "Contact | Two Rivers Lumber Company, LLC",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://tworiverslumber.com/wp-content/plugins/contact-form-7/includes/css/styles.css",
+          "source_title": "Two Rivers Lumber Co.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 46,
+    "company_id": 65,
+    "operating_brand": "Charles Ingram Lumber Co.",
+    "research_focus_facility_id": 70,
+    "research_focus_facility_name": "Effingham Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 47,
+    "company_id": 66,
+    "operating_brand": "Collum's Lumber Products",
+    "research_focus_facility_id": 71,
+    "research_focus_facility_name": "Allendale Sawmill & Planer Mill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 21 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 48,
+    "company_id": 67,
+    "operating_brand": "Jordan Lumber & Supply Co.",
+    "research_focus_facility_id": 72,
+    "research_focus_facility_name": "Mt. Gilead Sawmill & Complex",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 23,
+      "successful_200": 3,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 23 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://jordanlumber.com",
+          "source_title": "Jordan Lumber &amp; Supply - Bringing Lumber to Life Sustainably Since 1939",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://jordanlumber.com/contact/",
+          "source_title": "Contact Us - Jordan Lumber &amp; Supply",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://jordanlumber.com/contact/",
+          "source_title": "Contact Us - Jordan Lumber &amp; Supply",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 49,
+    "company_id": 68,
+    "operating_brand": "Troy Lumber Company",
+    "research_focus_facility_id": 73,
+    "research_focus_facility_name": "Troy Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 4,
+      "inaccessible_or_blocked": 1
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://troy-lumber.com",
+          "source_title": "Troy Lumber Company &#8211; Southern Yellow Pine Lumber Production",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://troy-lumber.com/contact-us/",
+          "source_title": "Contact Us &#8211; Troy Lumber Company",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://troy-lumber.com/contact-us/",
+          "source_title": "Contact Us &#8211; Troy Lumber Company",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "B",
+    "campaign_position": 50,
+    "company_id": 69,
+    "operating_brand": "Morgan Lumber Company",
+    "research_focus_facility_id": 74,
+    "research_focus_facility_name": "Red Oak Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 3,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website and subpages inspected across 22 attempted URLs. Public documentation does not establish primary-source outside carrier contracts or broker acceptance. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://morganlumber.com",
+          "source_title": "HOME",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://morganlumber.com/contact-1",
+          "source_title": "CONTACT",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://morganlumber.com/about-us",
+          "source_title": "ABOUT US",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  }
+]

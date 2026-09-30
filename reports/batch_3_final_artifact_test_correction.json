@@ -1,0 +1,103 @@
+{
+  "title": "FreightProspecting V1 \u2014 Batch 3 Final Artifact & Test Closure Report",
+  "generated_at_utc": "2026-09-29T04:53:25Z",
+  "status": "CANDIDATE PENDING INDEPENDENT CODEX FREEZE AUDIT",
+  "database_verification": {
+    "database_hash_before": "95D7FE5C53676AD286CF460F0B9A76D676A4678683D04193634804F4D42FB321",
+    "database_hash_after": "95D7FE5C53676AD286CF460F0B9A76D676A4678683D04193634804F4D42FB321",
+    "database_unchanged": true,
+    "pragma_integrity_check": "ok",
+    "pragma_foreign_key_violations": 0,
+    "factual_db_mutations": 0
+  },
+  "blocker_1_provenance_schema": {
+    "provenance_schema_before": [
+      "company_id",
+      "operating_brand",
+      "base_url",
+      "http_status",
+      "final_url",
+      "dns_status",
+      "access_status",
+      "content_type",
+      "response_length",
+      "page_title",
+      "content_sha256",
+      "result",
+      "verified_at",
+      "notes"
+    ],
+    "provenance_schema_after": [
+      "company_id",
+      "operating_brand",
+      "attempted_url",
+      "requested_at_utc",
+      "http_status",
+      "final_url",
+      "dns_status",
+      "access_status",
+      "content_type",
+      "response_length",
+      "page_title",
+      "content_sha256",
+      "result",
+      "base_url",
+      "verified_at",
+      "notes"
+    ],
+    "record_count": 34,
+    "records_with_attempted_url": 34,
+    "records_with_requested_at_utc": 34,
+    "result_breakdown": {
+      "SUCCESS_FETCHED": 9,
+      "HTTP_403": 18,
+      "HTTP_OTHER_ERROR": 4,
+      "DNS_FAILURE": 2,
+      "TIMEOUT": 1
+    },
+    "false_success_count": 0
+  },
+  "blocker_2_regression_test_quality": {
+    "mixed_lifecycle_test": {
+      "test_name": "test_1_grouped_assembler_mixed_stage_case",
+      "test_file": "tests/test_batch3_code_provenance_closure.py",
+      "actual_grouped_path_called": "get_company_grouped_prospects(conn=mem_conn, search='Steel Dynamics')",
+      "engine_result": "TIER_B_WORTH_CALLING",
+      "grouped_result": "TIER_B_WORTH_CALLING",
+      "equality_verified": true
+    },
+    "company_dnc_test": {
+      "test_name": "test_2_grouped_assembler_company_dnc_case",
+      "test_file": "tests/test_batch3_code_provenance_closure.py",
+      "actual_grouped_path_called": "get_company_grouped_prospects(conn=mem_conn, search='Imperial Metal Services') and get_company_grouped_prospects(conn=mem_conn, tier=RESTRICTED)",
+      "engine_result": "RESTRICTED",
+      "grouped_result": "RESTRICTED",
+      "equality_verified": true
+    }
+  },
+  "blocker_3_machine_artifact_lifecycle": {
+    "lifecycle_mismatches_before": 39,
+    "lifecycle_mismatches_after_json": 0,
+    "lifecycle_mismatches_after_csv": 0,
+    "lifecycle_mismatches_after_ledger": 0,
+    "all_100_facilities_checked": true,
+    "source_of_truth_table": "prospect_lifecycle.stage"
+  },
+  "remediation_summary": {
+    "files_regenerated": [
+      "reports/batch_3_final_provenance_verification.json",
+      "reports/batch_3_wave_A_crawler_raw.json",
+      "reports/batch_3_wave_B_crawler_raw.json",
+      "reports/batch_3_wave_C_crawler_raw.json",
+      "reports/batch_3_wave_D_crawler_raw.json",
+      "reports/broker_research_batch3_result.json",
+      "reports/broker_research_batch3_result.csv",
+      "reports/broker_research_batch3_audit_ledger.json"
+    ],
+    "tests_added_or_changed": [
+      "tests/test_batch3_code_provenance_closure.py"
+    ],
+    "pytest_result": "451 passed, 0 failed, 1 warning (deprecation)",
+    "pragma_result": "ok, 0 violations"
+  }
+}

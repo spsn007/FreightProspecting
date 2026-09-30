@@ -1,0 +1,1300 @@
+{
+  "title": "FreightProspecting V1 \u2014 Broker Research Batch 1 Final Closure Report (v2: SAFER Remediation & Contact Directness Fix)",
+  "generated_at_utc": "2026-09-29T00:30:00Z",
+  "rule_version": "1.1",
+  "final_hash": "6E1658D57CA698E672D7006C57F795E901FD2DD6069BBFC8579F311445ACEE47",
+  "baseline_hash_before_blockers_fix": "A398DC9014B55388D40DE0E5CE68FD7CEAEF4692C55B2A121096D6C579A6AFCE",
+  "pre_task_backup_path": "data\\backups\\prospects_backup_pre_batch1_safersource_cleanup_20260929_002159.db",
+  "safer_only_active_claims_count_before": 4,
+  "safer_only_active_claims_count_after": 0,
+  "remediated_claims": [
+    {
+      "claim_id_superseded": 217,
+      "company_id": 14,
+      "company_name": "Edwards Wood Products, Inc.",
+      "facility_id": 13,
+      "claim_field": "fleet_relationship_type",
+      "claimed_value": "IN_HOUSE_OWNED",
+      "verification_status": "VERIFIED",
+      "evidence_source_id": 732,
+      "evidence_url": "https://www.edwardswoodproducts.com/transportation/",
+      "evidence_title": "Edwards Wood Products Official Transportation Page",
+      "decision": "Re-grounded using primary official corporate transportation page documenting dedicated 130+ company-owned trucks."
+    },
+    {
+      "claim_id_superseded": 232,
+      "company_id": 28,
+      "company_name": "Lindsay Precast",
+      "facility_id": 27,
+      "claim_field": "fleet_relationship_type",
+      "claimed_value": "UNKNOWN",
+      "verification_status": "UNKNOWN",
+      "evidence_source_id": 56,
+      "evidence_url": "https://lindsayprecast.com",
+      "evidence_title": "Canal Fulton Headquarters & Precast Plant Verification Record",
+      "decision": "Downgraded to UNKNOWN as permitted corporate evidence does not prove an affiliated carrier entity."
+    },
+    {
+      "claim_id_superseded": 233,
+      "company_id": 29,
+      "company_name": "Tindall Corporation",
+      "facility_id": 28,
+      "claim_field": "fleet_relationship_type",
+      "claimed_value": "UNKNOWN",
+      "verification_status": "UNKNOWN",
+      "evidence_source_id": 58,
+      "evidence_url": "https://tindallcorp.com",
+      "evidence_title": "Spartanburg Precast / Prestressed Facility Verification Record",
+      "decision": "Downgraded to UNKNOWN as permitted corporate evidence does not prove an affiliated carrier entity."
+    },
+    {
+      "claim_id_superseded": 237,
+      "company_id": 42,
+      "company_name": "Bemis Manufacturing Company",
+      "facility_id": 41,
+      "claim_field": "fleet_relationship_type",
+      "claimed_value": "UNKNOWN",
+      "verification_status": "UNKNOWN",
+      "evidence_source_id": 84,
+      "evidence_url": "https://bemismfg.com",
+      "evidence_title": "Sheboygan Falls Dedicated Shipping & Receiving Center Verification Record",
+      "decision": "Downgraded fleet_relationship_type to UNKNOWN; private_fleet_present remains VERIFIED_PRESENT under Source 84."
+    }
+  ],
+  "contact_corrections": [
+    {
+      "contact_id": 11,
+      "company_id": 10,
+      "company_name": "Leslie Forest Products Ltd.",
+      "person_name": "James Sangara",
+      "email_address": "james@leslieforest.com",
+      "field": "email_directness",
+      "value_before": "DEPARTMENT",
+      "value_after": "DIRECT_PERSON"
+    },
+    {
+      "contact_id": 12,
+      "company_id": 10,
+      "company_name": "Leslie Forest Products Ltd.",
+      "person_name": null,
+      "exact_published_title": "Shipping Department",
+      "email_address": "shipping@leslieforest.com",
+      "field": "email_directness",
+      "value": "DEPARTMENT"
+    }
+  ],
+  "total_operating_companies": 565,
+  "total_facilities": 653,
+  "tier_distribution": {
+    "TIER_A_PRIORITY": 11,
+    "TIER_B_WORTH_CALLING": 105,
+    "TIER_C_SECONDARY": 4,
+    "TIER_D_RESEARCH_NEEDED": 445,
+    "RESTRICTED": 0
+  },
+  "facility_tier_distribution": {
+    "TIER_A_PRIORITY": 11,
+    "TIER_B_WORTH_CALLING": 138,
+    "TIER_C_SECONDARY": 4,
+    "TIER_D_RESEARCH_NEEDED": 500,
+    "RESTRICTED": 0
+  },
+  "tier_a_list": [
+    {
+      "company_id": 1,
+      "operating_brand": "Beasley Forest Products",
+      "qualifying_facility_id": 1,
+      "qualifying_facility_name": "Hazlehurst Sawmill",
+      "location": "Hazlehurst, GA",
+      "physical_address": "770 Uvalda Hwy",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "commercial_carrier_use": "VERIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "AFFILIATED_CARRIER_ENTITY",
+      "broker_friendly_status": "UNKNOWN",
+      "opportunity_tier": "TIER_A_PRIORITY",
+      "broker_status_label": "Priority Prospect"
+    },
+    {
+      "company_id": 6,
+      "operating_brand": "Battle Lumber Company",
+      "qualifying_facility_id": 5,
+      "qualifying_facility_name": "Wadley Hardwood Sawmill & Multi-Plant Facility",
+      "location": "Wadley, GA",
+      "physical_address": "11261 Hwy 1 South",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "commercial_carrier_use": "VERIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "opportunity_tier": "TIER_A_PRIORITY",
+      "broker_status_label": "Priority Prospect"
+    },
+    {
+      "company_id": 14,
+      "operating_brand": "Edwards Wood Products, Inc.",
+      "qualifying_facility_id": 13,
+      "qualifying_facility_name": "Marshville Multi-Mill & Pallet Complex",
+      "location": "Marshville, NC",
+      "physical_address": "2215 Old Lawyers Rd",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "commercial_carrier_use": "VERIFIED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "IN_HOUSE_OWNED",
+      "broker_friendly_status": "UNKNOWN",
+      "opportunity_tier": "TIER_A_PRIORITY",
+      "broker_status_label": "Priority Prospect"
+    },
+    {
+      "company_id": 16,
+      "operating_brand": "Miami Valley Steel Service, Inc.",
+      "qualifying_facility_id": 15,
+      "qualifying_facility_name": "Piqua Processing & Distribution Facility",
+      "location": "Piqua, OH",
+      "physical_address": "201 Fox Drive",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "commercial_carrier_use": "VERIFIED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "IN_HOUSE_OWNED",
+      "broker_friendly_status": "UNKNOWN",
+      "opportunity_tier": "TIER_A_PRIORITY",
+      "broker_status_label": "Priority Prospect"
+    },
+    {
+      "company_id": 17,
+      "operating_brand": "MidWest Materials, Inc.",
+      "qualifying_facility_id": 16,
+      "qualifying_facility_name": "Perry Steel Service Center",
+      "location": "Perry, OH",
+      "physical_address": "3687 Shepard Road",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "commercial_carrier_use": "VERIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "opportunity_tier": "TIER_A_PRIORITY",
+      "broker_status_label": "Priority Prospect"
+    },
+    {
+      "company_id": 18,
+      "operating_brand": "Liberty Steel Products, Inc.",
+      "qualifying_facility_id": 17,
+      "qualifying_facility_name": "Hubbard Steel Processing Center",
+      "location": "Hubbard, OH",
+      "physical_address": "7193 Hubbard-Masury Road SE",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "commercial_carrier_use": "VERIFIED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "IN_HOUSE_OWNED",
+      "broker_friendly_status": "UNKNOWN",
+      "opportunity_tier": "TIER_A_PRIORITY",
+      "broker_status_label": "Priority Prospect"
+    },
+    {
+      "company_id": 19,
+      "operating_brand": "Coil Steel Processing (CSP)",
+      "qualifying_facility_id": 18,
+      "qualifying_facility_name": "Toledo Stretcher Leveling & Processing Plant",
+      "location": "Toledo, OH",
+      "physical_address": "1604 Prosperity Road",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "commercial_carrier_use": "VERIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "opportunity_tier": "TIER_A_PRIORITY",
+      "broker_status_label": "Priority Prospect"
+    },
+    {
+      "company_id": 21,
+      "operating_brand": "Taylor Steel Inc.",
+      "qualifying_facility_id": 20,
+      "qualifying_facility_name": "Stoney Creek Flat-Rolled Service Center",
+      "location": "Stoney Creek, ON",
+      "physical_address": "477 Arvin Avenue",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "commercial_carrier_use": "VERIFIED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "IN_HOUSE_OWNED",
+      "broker_friendly_status": "UNKNOWN",
+      "opportunity_tier": "TIER_A_PRIORITY",
+      "broker_status_label": "Priority Prospect"
+    },
+    {
+      "company_id": 25,
+      "operating_brand": "Majestic Steel USA",
+      "qualifying_facility_id": 24,
+      "qualifying_facility_name": "Bedford Heights Flagship Service Center & Distribution Hub",
+      "location": "Bedford Heights, OH",
+      "physical_address": "26100 Richmond Road",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "commercial_carrier_use": "VERIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "AFFILIATED_CARRIER_ENTITY",
+      "broker_friendly_status": "UNKNOWN",
+      "opportunity_tier": "TIER_A_PRIORITY",
+      "broker_status_label": "Priority Prospect"
+    },
+    {
+      "company_id": 26,
+      "operating_brand": "Heidtman Steel Products, Inc.",
+      "qualifying_facility_id": 25,
+      "qualifying_facility_name": "Toledo Headquarters & Processing Facility",
+      "location": "Toledo, OH",
+      "physical_address": "2401 Front St.",
+      "equipment_categories": [
+        "FLATBED"
+      ],
+      "commercial_carrier_use": "VERIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "opportunity_tier": "TIER_A_PRIORITY",
+      "broker_status_label": "Priority Prospect"
+    },
+    {
+      "company_id": 42,
+      "operating_brand": "Bemis Manufacturing Company",
+      "qualifying_facility_id": 41,
+      "qualifying_facility_name": "Sheboygan Falls Dedicated Shipping & Receiving Center (HQ: 300 Mill St)",
+      "location": "Sheboygan Falls, WI",
+      "physical_address": "W2940 Old County Road PP",
+      "equipment_categories": [
+        "DRY_VAN"
+      ],
+      "commercial_carrier_use": "VERIFIED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "opportunity_tier": "TIER_A_PRIORITY",
+      "broker_status_label": "Priority Prospect"
+    }
+  ],
+  "tier_diff_from_pre_task_backup": [],
+  "all_20_final_states": [
+    {
+      "company_id": 1,
+      "operating_brand": "Beasley Forest Products",
+      "facility_id": 1,
+      "facility_name": "Hazlehurst Sawmill",
+      "physical_address": "770 Uvalda Hwy",
+      "city": "Hazlehurst",
+      "state_prov": "GA",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "AFFILIATED_CARRIER_ENTITY",
+      "commercial_carrier_use": "VERIFIED",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_A_PRIORITY",
+      "final_tier_label": "Priority Prospect",
+      "contact_status": "[Sawmill Manager] (912) 375-5174 ext 4317 (email: None [UNKNOWN]); [Logistics Manager] (912) 347-5930 (email: None [UNKNOWN])",
+      "contacts": [
+        {
+          "id": 1,
+          "person_name": "Phil Clements",
+          "department": "Operations",
+          "exact_published_title": "Sawmill Manager",
+          "phone_number": "(912) 375-5174",
+          "phone_extension": "4317",
+          "email_address": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "UNKNOWN",
+          "role_category": "OPERATIONS"
+        },
+        {
+          "id": 2,
+          "person_name": "Mark Joiner",
+          "department": "Logistics",
+          "exact_published_title": "Logistics Manager",
+          "phone_number": "(912) 347-5930",
+          "phone_extension": null,
+          "email_address": null,
+          "phone_directness": "DIRECT_PERSON",
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "fleet_relationship_type",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Logistics is listed under Beasley Timber Company while BFP is a sibling group division; preserve group fleet without asserting BFP legal ownership."
+        },
+        {
+          "field": "contacts[1].phone_extension",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Published extension omitted."
+        }
+      ],
+      "sources": [
+        "https://www.beasleygroup.com/beasley-forest-products.cms",
+        "https://www.beasleygroup.com/beasleylogistics.cms",
+        "https://beasleyforestproducts.com/contactinfo.cms"
+      ]
+    },
+    {
+      "company_id": 7,
+      "operating_brand": "Custom Cut Timber Products",
+      "facility_id": 6,
+      "facility_name": "Forsyth Sawmill & Timber Yard",
+      "physical_address": "701 West Main Street (Mailing: PO Box 344, Smarr, GA 31086)",
+      "city": "Forsyth",
+      "state_prov": "GA",
+      "lifecycle_stage": "DISCOVERY",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_D_RESEARCH_NEEDED",
+      "final_tier_label": "Needs More Research",
+      "contact_status": "[CEO / Manager] (478) 214-8688 (email: custommats@yahoo.com [DEPARTMENT])",
+      "contacts": [
+        {
+          "id": 8,
+          "person_name": "Chris Yawn",
+          "department": null,
+          "exact_published_title": "CEO / Manager",
+          "phone_number": "(478) 214-8688",
+          "phone_extension": null,
+          "email_address": "custommats@yahoo.com",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "DEPARTMENT",
+          "role_category": "OPERATIONS"
+        }
+      ],
+      "correction_status": "VALIDATED_WITHOUT_CHANGE",
+      "corrections_applied": [],
+      "sources": [
+        "https://gatrees.org/wp-content/uploads/2022/04/2021-Wood-using-Industry-Directory.pdf"
+      ]
+    },
+    {
+      "company_id": 10,
+      "operating_brand": "Leslie Forest Products Ltd.",
+      "facility_id": 9,
+      "facility_name": "Delta Remanufacturing Mill & Timber Yard",
+      "physical_address": "7902 Progress Way",
+      "city": "Delta",
+      "state_prov": "BC",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_B_WORTH_CALLING",
+      "final_tier_label": "Worth Calling",
+      "contact_status": "[Mill Coordinator / Cedar Sales] (604) 952-4537 (email: james@leslieforest.com [DIRECT_PERSON]); [Shipping Department] (604) 952-4537 (email: shipping@leslieforest.com [DEPARTMENT])",
+      "contacts": [
+        {
+          "id": 11,
+          "person_name": "James Sangara",
+          "department": null,
+          "exact_published_title": "Mill Coordinator / Cedar Sales",
+          "phone_number": "(604) 952-4537",
+          "phone_extension": null,
+          "email_address": "james@leslieforest.com",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "DIRECT_PERSON",
+          "role_category": "COMMERCIAL_SALES"
+        },
+        {
+          "id": 12,
+          "person_name": null,
+          "department": "Shipping",
+          "exact_published_title": "Shipping Department",
+          "phone_number": "(604) 952-4537",
+          "phone_extension": null,
+          "email_address": "shipping@leslieforest.com",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "DEPARTMENT",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "contacts[11].email_address",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Official page publishes James personal email; shipping@ belongs to a separate shared mailbox."
+        }
+      ],
+      "sources": [
+        "https://www.leslieforest.com/contact"
+      ]
+    },
+    {
+      "company_id": 14,
+      "operating_brand": "Edwards Wood Products, Inc.",
+      "facility_id": 13,
+      "facility_name": "Marshville Multi-Mill & Pallet Complex",
+      "physical_address": "2215 Old Lawyers Rd",
+      "city": "Marshville",
+      "state_prov": "NC",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "IN_HOUSE_OWNED",
+      "commercial_carrier_use": "VERIFIED",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_A_PRIORITY",
+      "final_tier_label": "Priority Prospect",
+      "contact_status": "[General] (704) 624-3270 (email: None [UNKNOWN])",
+      "contacts": [
+        {
+          "id": 16,
+          "person_name": null,
+          "department": "General HQ / transportation referral",
+          "exact_published_title": null,
+          "phone_number": "(704) 624-3270",
+          "phone_extension": null,
+          "email_address": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "UNKNOWN",
+          "role_category": "UNKNOWN"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "commercial_carrier_use",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Edwards explicitly uses vetted external carriers beyond its regional fleet radius."
+        },
+        {
+          "field": "contacts[16].department",
+          "proposed_value": null,
+          "source": null,
+          "reason": "704-624-3270 is published as Marshville HQ, not a logistics desk."
+        },
+        {
+          "field": "opportunity_tier",
+          "proposed_value": null,
+          "source": null,
+          "reason": "v1.1 promotes a qualified, callable, FTL fit company when outside carrier use is verified."
+        }
+      ],
+      "sources": [
+        "https://ewpi.com/services/transportation/",
+        "https://ewpi.com/contact/"
+      ]
+    },
+    {
+      "company_id": 20,
+      "operating_brand": "H&D Steel Service Center, Inc.",
+      "facility_id": 19,
+      "facility_name": "North Royalton Metals Processing Center",
+      "physical_address": "9960 York Alpha Drive",
+      "city": "North Royalton",
+      "state_prov": "OH",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "IN_HOUSE_OWNED",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_C_SECONDARY",
+      "final_tier_label": "Secondary Prospect",
+      "contact_status": "[General] (440) 237-3390 (email: sales@hdsteel.com [DEPARTMENT])",
+      "contacts": [
+        {
+          "id": 23,
+          "person_name": null,
+          "department": "Sales Desk",
+          "exact_published_title": null,
+          "phone_number": "(440) 237-3390",
+          "phone_extension": null,
+          "email_address": "sales@hdsteel.com",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "DEPARTMENT",
+          "role_category": "UNKNOWN"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "physical_address",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Official current address conflicts with database street address; verify exact plant identity before outreach."
+        }
+      ],
+      "sources": [
+        "https://www.hdsteel.com/shipping-and-delivery",
+        "https://www.hdsteel.com/about-us"
+      ]
+    },
+    {
+      "company_id": 27,
+      "operating_brand": "Mack Industries, Inc.",
+      "facility_id": 26,
+      "facility_name": "Valley City Production Plant (HQ: 1321 Industrial Pkwy N, Brunswick, OH)",
+      "physical_address": "201 Columbia Rd",
+      "city": "Valley City",
+      "state_prov": "OH",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "IN_HOUSE_OWNED",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_C_SECONDARY",
+      "final_tier_label": "Secondary Prospect",
+      "contact_status": "[General] (330) 483-3111 (email: info@mackconcrete.com [GENERAL])",
+      "contacts": [
+        {
+          "id": 30,
+          "person_name": null,
+          "department": "Valley City Precast Plant Line",
+          "exact_published_title": null,
+          "phone_number": "(330) 483-3111",
+          "phone_extension": null,
+          "email_address": "info@mackconcrete.com",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_directness": "GENERAL",
+          "role_category": "UNKNOWN"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "physical_address",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Official Valley City precast plant address conflicts with database 1900 Station Road."
+        },
+        {
+          "field": "contacts[30].facility_scope",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Recorded 330-460-7005 belongs to Brunswick corporate office, not the Valley City plant."
+        }
+      ],
+      "sources": [
+        "https://www.mackconcrete.com/precast-concrete-walls/",
+        "https://www.mackconcrete.com/contact/"
+      ]
+    },
+    {
+      "company_id": 30,
+      "operating_brand": "High Concrete Group LLC",
+      "facility_id": 29,
+      "facility_name": "Denver Precast Plant & Operations",
+      "physical_address": "125 Denver Road",
+      "city": "Denver",
+      "state_prov": "PA",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "AFFILIATED_CARRIER_ENTITY",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_B_WORTH_CALLING",
+      "final_tier_label": "Worth Calling",
+      "contact_status": "[VP of Sales] (717) 824-1542 (email: jsweigart@high.net [DIRECT_PERSON]); [Business Development] (717) 538-8078 (email: aclayton@high.net [DIRECT_PERSON]); [Sales Representative] (717) 336-9300 (email: erowits@high.net [DIRECT_PERSON]); [Inquiry Desk] (717) 336-9300 (email: concrete.answers@high.net [DEPARTMENT])",
+      "contacts": [
+        {
+          "id": 33,
+          "person_name": "Jamie Sweigart",
+          "department": null,
+          "exact_published_title": "VP of Sales",
+          "phone_number": "(717) 824-1542",
+          "phone_extension": null,
+          "email_address": "jsweigart@high.net",
+          "phone_directness": "DIRECT_PERSON",
+          "email_directness": "DIRECT_PERSON",
+          "role_category": "COMMERCIAL_SALES"
+        },
+        {
+          "id": 34,
+          "person_name": "Alexandra \"Ace\" Clayton",
+          "department": "Sales",
+          "exact_published_title": "Business Development",
+          "phone_number": "(717) 538-8078",
+          "phone_extension": null,
+          "email_address": "aclayton@high.net",
+          "phone_directness": "DIRECT_PERSON",
+          "email_directness": "DIRECT_PERSON",
+          "role_category": "COMMERCIAL_SALES"
+        },
+        {
+          "id": 35,
+          "person_name": "Eric Rowits",
+          "department": "Sales",
+          "exact_published_title": "Sales Representative",
+          "phone_number": "(717) 336-9300",
+          "phone_extension": null,
+          "email_address": "erowits@high.net",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "DIRECT_PERSON",
+          "role_category": "COMMERCIAL_SALES"
+        },
+        {
+          "id": 36,
+          "person_name": null,
+          "department": "Sales",
+          "exact_published_title": "Inquiry Desk",
+          "phone_number": "(717) 336-9300",
+          "phone_extension": null,
+          "email_address": "concrete.answers@high.net",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "DEPARTMENT",
+          "role_category": "COMMERCIAL_SALES"
+        }
+      ],
+      "correction_status": "VALIDATED_WITHOUT_CHANGE",
+      "corrections_applied": [],
+      "sources": [
+        "https://www.high.net/our-company/our-businesses/high-transit/",
+        "https://www.high.net/contentassets/a9d04888b7854301b0cfc934cc1574ce/htl-backgrounder.pdf",
+        "https://www.highconcrete.com/about-us/sales-representatives/jsweigart/",
+        "https://www.highconcrete.com/about-us/sales-representatives/aclayton/",
+        "https://www.highconcrete.com/about-us/sales-representatives/erowits/",
+        "https://www.highconcrete.com/contact-us/"
+      ]
+    },
+    {
+      "company_id": 33,
+      "operating_brand": "Norwalk Concrete Industries",
+      "facility_id": 32,
+      "facility_name": "Norwalk Production Plant",
+      "physical_address": "80 Commerce Drive",
+      "city": "Norwalk",
+      "state_prov": "OH",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_C_SECONDARY",
+      "final_tier_label": "Secondary Prospect",
+      "contact_status": "[General] (419) 668-8167 (email: info@nciprecast.com [GENERAL])",
+      "contacts": [
+        {
+          "id": 42,
+          "person_name": null,
+          "department": "General Office Desk",
+          "exact_published_title": null,
+          "phone_number": "(419) 668-8167",
+          "phone_extension": null,
+          "email_address": "info@nciprecast.com",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "GENERAL",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "fleet_relationship_type",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Official delivery document shows truck operations but does not prove legal ownership; current relationship claim relies on disallowed SAFER."
+        }
+      ],
+      "sources": [
+        "https://nciprecast.com/wp-content/uploads/nci-accessories.pdf",
+        "https://nciprecast.com/services/"
+      ]
+    },
+    {
+      "company_id": 34,
+      "operating_brand": "E.C. Babbert, Inc.",
+      "facility_id": 33,
+      "facility_name": "Canal Winchester Precast Plant",
+      "physical_address": "7415 Diley Rd. (Mailing: PO Box 203)",
+      "city": "Canal Winchester",
+      "state_prov": "OH",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_B_WORTH_CALLING",
+      "final_tier_label": "Worth Calling",
+      "contact_status": "[General] (614) 837-8444 (email: sales@ecbabbert.com [DEPARTMENT])",
+      "contacts": [
+        {
+          "id": 43,
+          "person_name": null,
+          "department": "Sales Desk",
+          "exact_published_title": null,
+          "phone_number": "(614) 837-8444",
+          "phone_extension": null,
+          "email_address": "sales@ecbabbert.com",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "DEPARTMENT",
+          "role_category": "UNKNOWN"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "private_fleet_present",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Delivery-driver hiring and a service pump truck do not establish owned freight delivery fleet."
+        },
+        {
+          "field": "fleet_relationship_type",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Only SAFER-based relationship support; no allowed ownership proof."
+        },
+        {
+          "field": "opportunity_tier",
+          "proposed_value": null,
+          "source": null,
+          "reason": "v1.1 reclassifies shortlisted callable FTL fit company when fleet is UNKNOWN and outside carrier use UNKNOWN."
+        }
+      ],
+      "sources": [
+        "https://www.ecbabbert.com/careers/",
+        "https://www.ecbabbert.com/contact/"
+      ]
+    },
+    {
+      "company_id": 38,
+      "operating_brand": "Integrity Tool & Mold, Inc.",
+      "facility_id": 37,
+      "facility_name": "Oldcastle Headquarters & Advanced Manufacturing Complex",
+      "physical_address": "5015 O'Neil Drive",
+      "city": "Oldcastle",
+      "state_prov": "ON",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_B_WORTH_CALLING",
+      "final_tier_label": "Worth Calling",
+      "contact_status": "[Canadian Headquarters General Line] (519) 737-2650 (email: None [UNKNOWN])",
+      "contacts": [
+        {
+          "id": 47,
+          "person_name": null,
+          "department": "Canadian headquarters general line",
+          "exact_published_title": "Canadian Headquarters General Line",
+          "phone_number": "(519) 737-2650",
+          "phone_extension": null,
+          "email_address": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "UNKNOWN",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "contacts[47].department",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Official contact page does not label 519-737-2650 a Logistics & Customs desk."
+        }
+      ],
+      "sources": [
+        "https://teamintegrity.com/contact-canada/"
+      ]
+    },
+    {
+      "company_id": 40,
+      "operating_brand": "Cascade Engineering",
+      "facility_id": 39,
+      "facility_name": "Grand Rapids World Headquarters & Manufacturing Complex",
+      "physical_address": "5050 33rd Street SE",
+      "city": "Grand Rapids",
+      "state_prov": "MI",
+      "lifecycle_stage": "DISCOVERY",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "VERIFIED",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_D_RESEARCH_NEEDED",
+      "final_tier_label": "Needs More Research",
+      "contact_status": "[Director of Supply Chain and Purchasing] 574-304-0625 (email: danielle.flores@cascadeng.com [DIRECT_PERSON])",
+      "contacts": [
+        {
+          "id": 49,
+          "person_name": "Danielle Flores",
+          "department": null,
+          "exact_published_title": "Director of Supply Chain and Purchasing",
+          "phone_number": "574-304-0625",
+          "phone_extension": null,
+          "email_address": "danielle.flores@cascadeng.com",
+          "phone_directness": "DIRECT_PERSON",
+          "email_directness": "DIRECT_PERSON",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ],
+      "correction_status": "VALIDATED_WITHOUT_CHANGE",
+      "corrections_applied": [],
+      "sources": [
+        "https://www.cascadeng.com/sites/default/files/foclog-0010_-_foc_routing_guide_-_rev_8_-_07-10-2023_0.pdf",
+        "https://www.cascadeng.com/supply-chain-contact-information/"
+      ]
+    },
+    {
+      "company_id": 44,
+      "operating_brand": "SyBridge Technologies",
+      "facility_id": 43,
+      "facility_name": "Lakeshore Advanced Tooling Center",
+      "physical_address": "465 Jutras Drive South",
+      "city": "Lakeshore",
+      "state_prov": "ON",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_B_WORTH_CALLING",
+      "final_tier_label": "Worth Calling",
+      "contact_status": "[General] +1 (833) 824-1116 (email: info@sybridge.com [GENERAL])",
+      "contacts": [
+        {
+          "id": 53,
+          "person_name": null,
+          "department": "Company-Wide Inquiries",
+          "exact_published_title": null,
+          "phone_number": "+1 (833) 824-1116",
+          "phone_extension": null,
+          "email_address": "info@sybridge.com",
+          "phone_directness": "TOLL_FREE",
+          "email_directness": "GENERAL",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "fleet_relationship_type",
+          "proposed_value": null,
+          "source": null,
+          "reason": "No allowed official source supports a SyBridge carrier affiliate; existing relationship claim is SAFER-derived."
+        },
+        {
+          "field": "contacts[53].person_name",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Official page does not corroborate Ryan J. Hurley as current SyBridge contact."
+        },
+        {
+          "field": "contacts[53].exact_published_title",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Official page does not corroborate Logistics Manager title."
+        },
+        {
+          "field": "contacts[53].phone_number",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Use published global contact rather than uncorroborated 519-727-9949."
+        },
+        {
+          "field": "contacts[53].facility_scope",
+          "proposed_value": null,
+          "source": null,
+          "reason": "info@sybridge.com is general company contact, not a personal or Lakeshore logistics route."
+        }
+      ],
+      "sources": [
+        "https://sybridge.com/contact/locations/"
+      ]
+    },
+    {
+      "company_id": 63,
+      "operating_brand": "Scotch Plywood Company",
+      "facility_id": 68,
+      "facility_name": "Fulton Plywood Plant",
+      "physical_address": "385 Plywood Road",
+      "city": "Fulton",
+      "state_prov": "AL",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_B_WORTH_CALLING",
+      "final_tier_label": "Worth Calling",
+      "contact_status": "[General] 334-636-2731 (email: None [UNKNOWN])",
+      "contacts": [
+        {
+          "id": 78,
+          "person_name": null,
+          "department": "Shipping & Reception Desk",
+          "exact_published_title": null,
+          "phone_number": "334-636-2731",
+          "phone_extension": null,
+          "email_address": null,
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ],
+      "correction_status": "VALIDATED_WITHOUT_CHANGE",
+      "corrections_applied": [],
+      "sources": [
+        "https://www.scotchplywood.com/scotch-plywood/shipping/",
+        "https://www.scotchplywood.com/"
+      ]
+    },
+    {
+      "company_id": 68,
+      "operating_brand": "Troy Lumber Company",
+      "facility_id": 73,
+      "facility_name": "Troy Sawmill",
+      "physical_address": "110 Leslie Street",
+      "city": "Troy",
+      "state_prov": "NC",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_B_WORTH_CALLING",
+      "final_tier_label": "Worth Calling",
+      "contact_status": "[General] 910-576-4489 (email: None [UNKNOWN])",
+      "contacts": [
+        {
+          "id": 83,
+          "person_name": null,
+          "department": "Shipping Desk",
+          "exact_published_title": null,
+          "phone_number": "910-576-4489",
+          "phone_extension": null,
+          "email_address": null,
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_directness": "UNKNOWN",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ],
+      "correction_status": "VALIDATED_WITHOUT_CHANGE",
+      "corrections_applied": [],
+      "sources": [
+        "https://troy-lumber.com/contact-us/"
+      ]
+    },
+    {
+      "company_id": 77,
+      "operating_brand": "Vanderwell Contractors",
+      "facility_id": 90,
+      "facility_name": "Mitsue Sawmill",
+      "physical_address": "44061 W Mitsue Ind Road",
+      "city": "Slave Lake",
+      "state_prov": "AB",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_B_WORTH_CALLING",
+      "final_tier_label": "Worth Calling",
+      "contact_status": "[General] 780-805-3050 (email: general@vanderwell.com [GENERAL])",
+      "contacts": [
+        {
+          "id": 100,
+          "person_name": null,
+          "department": "Lumber & Shipping Desk",
+          "exact_published_title": null,
+          "phone_number": "780-805-3050",
+          "phone_extension": null,
+          "email_address": "general@vanderwell.com",
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_directness": "GENERAL",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ],
+      "correction_status": "VALIDATED_WITHOUT_CHANGE",
+      "corrections_applied": [],
+      "sources": [
+        "https://www.vanderwell.com/home/contact/"
+      ]
+    },
+    {
+      "company_id": 86,
+      "operating_brand": "Scott Steel",
+      "facility_id": 102,
+      "facility_name": "Scott Steel - Piqua Processing Facility",
+      "physical_address": "915 S Downing St",
+      "city": "Piqua",
+      "state_prov": "OH",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_B_WORTH_CALLING",
+      "final_tier_label": "Worth Calling",
+      "contact_status": "[General] 937-606-2805 (email: None [DEPARTMENT])",
+      "contacts": [
+        {
+          "id": 112,
+          "person_name": null,
+          "department": "Traffic & Shipping Desk",
+          "exact_published_title": null,
+          "phone_number": "937-606-2805",
+          "phone_extension": null,
+          "email_address": null,
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_directness": "DEPARTMENT",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "contacts[112].email_address",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Exact address hidden by site email protection and not independently confirmed; preserve verified shipping phone."
+        }
+      ],
+      "sources": [
+        "https://www.scottsteelllc.com/contact-us/"
+      ]
+    },
+    {
+      "company_id": 114,
+      "operating_brand": "Anchor Concrete Products",
+      "facility_id": 143,
+      "facility_name": "Kingston Precast Production Facility",
+      "physical_address": "1645 Sydenham Road",
+      "city": "Kingston",
+      "state_prov": "ON",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_B_WORTH_CALLING",
+      "final_tier_label": "Worth Calling",
+      "contact_status": "[General] (613) 546-6683 ext 250 (email: logistics@anchorconcrete.com [DEPARTMENT])",
+      "contacts": [
+        {
+          "id": 153,
+          "person_name": null,
+          "department": "Logistics Desk",
+          "exact_published_title": null,
+          "phone_number": "(613) 546-6683",
+          "phone_extension": "250",
+          "email_address": "logistics@anchorconcrete.com",
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "DEPARTMENT",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "contacts[153].phone_extension",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Official shipping inquiry extension omitted."
+        }
+      ],
+      "sources": [
+        "https://anchorconcrete.com/contact/"
+      ]
+    },
+    {
+      "company_id": 155,
+      "operating_brand": "AarKel Tool and Die Inc.",
+      "facility_id": 184,
+      "facility_name": "AarKel Wallaceburg Tooling & Shipping Facility",
+      "physical_address": "760 Lowe Ave",
+      "city": "Wallaceburg",
+      "state_prov": "ON",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_B_WORTH_CALLING",
+      "final_tier_label": "Worth Calling",
+      "contact_status": "[General] 519-627-7960 ext 205 (email: None [DEPARTMENT])",
+      "contacts": [
+        {
+          "id": 194,
+          "person_name": null,
+          "department": "Shipping & Receiving Department",
+          "exact_published_title": null,
+          "phone_number": "519-627-7960",
+          "phone_extension": "205",
+          "email_address": null,
+          "phone_directness": "DEPARTMENT_LINE",
+          "email_directness": "DEPARTMENT",
+          "role_category": "FREIGHT_LOGISTICS"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "contacts[194].phone_extension",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Official shipping/receiving extension omitted."
+        },
+        {
+          "field": "contacts[194].email_address",
+          "proposed_value": null,
+          "source": null,
+          "reason": "diecastsales@ is published for Die Cast Sampling, not shipping."
+        }
+      ],
+      "sources": [
+        "https://www.aarkel.com/contact/"
+      ]
+    },
+    {
+      "company_id": 300,
+      "operating_brand": "Cole Hardwood Inc.",
+      "facility_id": 386,
+      "facility_name": "Logansport Hardwood Facility & Concentration Yard",
+      "physical_address": "1611 W Market St",
+      "city": "Logansport",
+      "state_prov": "IN",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "VERIFIED_PRESENT",
+      "fleet_relationship_type": "IN_HOUSE_OWNED",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_C_SECONDARY",
+      "final_tier_label": "Secondary Prospect",
+      "contact_status": "[General main line] (574) 753-3151 (email: None [DEPARTMENT])",
+      "contacts": [
+        {
+          "id": 396,
+          "person_name": null,
+          "department": "Commercial Sales",
+          "exact_published_title": "General main line",
+          "phone_number": "(574) 753-3151",
+          "phone_extension": null,
+          "email_address": null,
+          "phone_directness": "GENERAL_SWITCHBOARD",
+          "email_directness": "DEPARTMENT",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "contacts[396].email_address",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Exact sales@ email was not substantiated by current official contact page; retain main published phone."
+        },
+        {
+          "field": "contacts[396].exact_published_title",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Published page gives a general contact number, not a Sales & Shipping Switchboard."
+        }
+      ],
+      "sources": [
+        "https://colehardwood.com/about-us/",
+        "https://colehardwood.com/employee-contact/"
+      ]
+    },
+    {
+      "company_id": 321,
+      "operating_brand": "Yoder Lumber Co.",
+      "facility_id": 408,
+      "facility_name": "Berlin Sawmill & Millwork Facility",
+      "physical_address": "4515 Township Road 367",
+      "city": "Millersburg",
+      "state_prov": "OH",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "AFFILIATED_CARRIER_ENTITY",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "final_tier": "TIER_B_WORTH_CALLING",
+      "final_tier_label": "Worth Calling",
+      "contact_status": "[Shipping Manager]  (email: None [GENERAL]); [Berlin Facility Main & Toll-Free Desk] (800) 531-1704 (email: None [GENERAL])",
+      "contacts": [
+        {
+          "id": 418,
+          "person_name": "Wayne Yoder",
+          "department": "Shipping",
+          "exact_published_title": "Shipping Manager",
+          "phone_number": null,
+          "phone_extension": null,
+          "email_address": null,
+          "phone_directness": "UNKNOWN",
+          "email_directness": "GENERAL",
+          "role_category": "FREIGHT_LOGISTICS"
+        },
+        {
+          "id": 627,
+          "person_name": null,
+          "department": "Shipping & Sales",
+          "exact_published_title": "Berlin Facility Main & Toll-Free Desk",
+          "phone_number": "(800) 531-1704",
+          "phone_extension": null,
+          "email_address": null,
+          "phone_directness": "TOLL_FREE",
+          "email_directness": "GENERAL",
+          "role_category": "GENERAL_FACILITY"
+        }
+      ],
+      "correction_status": "APPLIED",
+      "corrections_applied": [
+        {
+          "field": "fleet_relationship_type",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Official history identifies Yoder Lumber Logistics as a corporation/division, rather than the Berlin plant-owned fleet."
+        },
+        {
+          "field": "contacts[418].email_address",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Do not attach unsubstantiated general info@ address to Wayne Yoder; keep his published role."
+        },
+        {
+          "field": "contacts[627].email_address",
+          "proposed_value": null,
+          "source": null,
+          "reason": "Berlin page verifies phone but not this exact general email."
+        }
+      ],
+      "sources": [
+        "https://yoderlumber.com/about/",
+        "https://yoderlumber.com/berlin-location/",
+        "https://yoderlumber.com/content/Product-Offering-Whitepaper.pdf"
+      ]
+    }
+  ],
+  "lifecycle_diff": [],
+  "lifecycle_diff_count": 0,
+  "test_result": "383 passed, 0 failed",
+  "pragma_result": {
+    "integrity_check": "ok",
+    "foreign_key_violations": 0
+  },
+  "synthetic_counts": {
+    "outreach": 0,
+    "loads": 0,
+    "demand_signals": 0,
+    "capacity_postings": 0,
+    "matches": 0
+  },
+  "verdict": "CLOSED"
+}

@@ -1,0 +1,13 @@
+{
+  "campaign": "TIER_A_ACCELERATION",
+  "phase": "PHASE_A",
+  "wave": "B",
+  "created_at_utc": "2026-09-29T05:58:43Z",
+  "companies_researched_count": 25,
+  "total_change_proposals_count": 0,
+  "accepted_changes": [],
+  "downgraded_changes": [],
+  "rejected_changes": [],
+  "tier_movement_forecast": [],
+  "notes": "All 25 companies in Wave B maintain conservative factual UNKNOWN for unproven carrier/broker fields. Zero speculative promotions."
+}

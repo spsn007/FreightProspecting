@@ -1,0 +1,650 @@
+[CID 8 | FID 7] Lamb Brothers Lumber Company, Inc. | Wrens, GA | Web: None
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hardwood rough lumber, dimension/stud lumber, pallets, crossties, furniture stock, cants, blocking
+   Contacts: NoName (NoTitle) phone=(706) 547-2519 (GENERAL_SWITCHBOARD)
+
+[CID 9 | FID 8] Shearouse Lumber Company | Pooler, GA | Web: http://www.shearouselumber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Rough lumber, treated lumber, poles, pilings, tongue-and-groove flooring
+   Contacts: NoName (NoTitle) phone=(912) 748-7244 (GENERAL_SWITCHBOARD)
+
+[CID 11 | FID 10] Andersen Pacific Forest Products Ltd. | Maple Ridge, BC | Web: https://andersenpacific.ca
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Vertical-grain Douglas Fir, Hemlock, Western Red & Yellow Cedar, Timber Frame timbers
+   Contacts: NoName (NoTitle) phone=(604) 462-7316 (GENERAL_SWITCHBOARD)
+
+[CID 12 | FID 11] Mill & Timber Products Ltd. / AP Group | Surrey, BC | Web: http://www.millandtimber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Western Red Cedar clears, decking, fascia, posts, beams, custom-cut timbers
+   Contacts: NoName (NoTitle) phone=(604) 580-2781 (GENERAL_SWITCHBOARD)
+
+[CID 13 | FID 12] Jordan Forest Products, LLC | Barnesville, GA | Web: http://www.jordanlumber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimension lumber, curve-sawn lumber, framing lumber
+   Contacts: Larry Spillers (Mill Manager / Sales Manager) phone=(770) 358-5931 (GENERAL_SWITCHBOARD)
+
+[CID 14 | FID 13] Edwards Wood Products, Inc. | Marshville, NC | Web: https://ewpi.com
+   Carrier=UNKNOWN, Fleet=VERIFIED_PRESENT
+   Equip/Products: FLATBED(INFERRED): Industrial hardwood pallets, crane mats, railroad crossties, pipeline skids, grade lumber
+   Contacts: NoName (NoTitle) phone=(704) 624-3270 (GENERAL_SWITCHBOARD)
+
+[CID 15 | FID 14] The Universal Steel Company | Cleveland, OH | Web: https://www.univsteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hot-rolled, cold-rolled, coated steel master coils, slitting, cut-to-length sheets, blanking
+   Contacts: NoName (NoTitle) phone=(216) 883-4972 (GENERAL_SWITCHBOARD)
+
+[CID 20 | FID 19] H&D Steel Service Center, Inc. | North Royalton, OH | Web: http://www.hdsteel.com
+   Carrier=UNKNOWN, Fleet=VERIFIED_PRESENT
+   Equip/Products: FLATBED(INFERRED): Coated carbon coil and sheet, stainless steel, aluminum, red metals, rod, bar, tubing
+   Contacts: NoName (NoTitle) phone=(440) 237-3390 (GENERAL_SWITCHBOARD)
+
+[CID 22 | FID 21] Janco Steel Ltd. | Stoney Creek, ON | Web: https://jancosteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Slitting, cut-to-length, stretcher leveling, sheet and plate, master coils
+   Contacts: NoName (NoTitle) phone=(905) 643-3535 (GENERAL_SWITCHBOARD)
+
+[CID 23 | FID 22] Imperial Metal Services | Etobicoke, ON | Web: https://www.imperialms.ca
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Master coils, slit coils, leveled sheets, blanking
+   Contacts: NoName (NoTitle) phone=(416) 744-9988 (GENERAL_SWITCHBOARD)
+
+[CID 24 | FID 23] AmeriSteel | Warren, MI | Web: https://www.ameristeel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Processed sheet and plate, laser cutting blanks, formed shapes, welded fabrications
+   Contacts: NoName (NoTitle) phone=(586) 585-5250 (GENERAL_SWITCHBOARD)
+
+[CID 27 | FID 26] Mack Industries, Inc. | Valley City, OH | Web: http://www.mackconcrete.com
+   Carrier=UNKNOWN, Fleet=VERIFIED_PRESENT
+   Equip/Products: FLATBED(INFERRED): Utility vaults, drainage manholes, box culverts, bridge beams, retaining walls
+   Contacts: NoName (NoTitle) phone=(330) 460-7005 (GENERAL_SWITCHBOARD)
+
+[CID 28 | FID 27] Lindsay Precast | Canal Fulton, OH | Web: https://lindsayprecast.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Utility vaults, solar foundations, security barriers, box culverts, precast pump stations
+   Contacts: NoName (NoTitle) phone=(330) 854-6282 (GENERAL_SWITCHBOARD)
+
+[CID 29 | FID 28] Tindall Corporation | Spartanburg, SC | Web: https://tindallcorp.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Precast parking garage members, bridge girders, architectural wall panels, utility vaults
+   Contacts: NoName (NoTitle) phone=(864) 576-3230 (GENERAL_SWITCHBOARD)
+
+[CID 36 | FID 35] Cavalier Tool & Manufacturing Ltd. | Windsor, ON | Web: https://www.cavaliertool.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Medium-to-large plastic injection molds for automotive, commercial, and recreational vehicle sectors
+   Contacts: NoName (NoTitle) phone=(519) 944-2144 (GENERAL_SWITCHBOARD)
+
+[CID 37 | FID 36] Crest Mold Technology Inc. | Oldcastle, ON | Web: https://crestmold.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): High-precision plastic injection molds, tooling, prototype tooling
+   Contacts: NoName (NoTitle) phone=(519) 737-1546 (GENERAL_SWITCHBOARD)
+
+[CID 38 | FID 37] Integrity Tool & Mold, Inc. | Oldcastle, ON | Web: http://www.teamintegrity.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Injection molds, multi-shot rotary tools, compression molds up to approximately 90,000 lbs
+   Contacts: NoName (NoTitle) phone=(519) 737-2650 (GENERAL_SWITCHBOARD)
+
+[CID 39 | FID 38] Omega Tool Corp. | Oldcastle, ON | Web: https://omegatoolcorp.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Large injection molds (frequently exceeding 50 tons) for automotive fascia, heavy truck, and consumer products
+   Contacts: NoName (NoTitle) phone=(519) 737-1201 (GENERAL_SWITCHBOARD)
+
+[CID 41 | FID 40] PTI Engineered Plastics | Macomb, MI | Web: https://teampti.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: DRY_VAN(INFERRED): Injection-molded medical device components, automotive assemblies, aerospace plastic housings
+   Contacts: NoName (NoTitle) phone=(586) 263-5100 (GENERAL_SWITCHBOARD)
+
+[CID 43 | FID 42] Jones Plastic & Engineering Company, LLC | Jeffersontown, KY | Web: http://www.jonesplastic.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: DRY_VAN(INFERRED): Injection-molded appliance components, automotive interior/exterior assemblies, medical devices
+   Contacts: NoName (NoTitle) phone=(502) 491-3785 (GENERAL_SWITCHBOARD)
+
+[CID 45 | FID 44] Canfor | Moultrie, GA | Web: https://www.canfor.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber
+   Contacts: NoName (NoTitle) phone=229-985-6996 (GENERAL_SWITCHBOARD)
+
+[CID 45 | FID 45] Canfor | Thomasville, GA | Web: https://www.canfor.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber
+   Contacts: NoName (NoTitle) phone=229-226-0611 (GENERAL_SWITCHBOARD)
+
+[CID 45 | FID 76] Canfor | Radium Hot Springs, BC | Web: https://www.canfor.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Kiln-dried SPF dimension lumber and studs
+   Contacts: NoName (NoTitle) phone=250-347-9611 (GENERAL_SWITCHBOARD)
+
+[CID 45 | FID 87] Canfor | Grande Prairie, AB | Web: https://www.canfor.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): SPF dimension lumber, studs
+   Contacts: NoName (NoTitle) phone=780-538-7756 (GENERAL_SWITCHBOARD)
+
+[CID 45 | FID 243] Canfor | Grande Prairie, AB | Web: https://www.canfor.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Dimensional SPF lumber and wood chips
+   Contacts: NoName (NoTitle) phone=780-538-7700 (GENERAL_SWITCHBOARD)
+
+[CID 46 | FID 46] Georgia-Pacific | Albany, GA | Web: https://www.gp.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber
+   Contacts: NoName (NoTitle) phone=229-338-7353 (GENERAL_SWITCHBOARD)
+
+[CID 46 | FID 47] Georgia-Pacific | Rome, GA | Web: https://www.gp.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Pine dimensional lumber
+   Contacts: NoName (NoTitle) phone=706-291-5459 (GENERAL_SWITCHBOARD)
+
+[CID 46 | FID 48] Georgia-Pacific | Madison, GA | Web: https://www.gp.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Pine structural plywood panels
+   Contacts: NoName (NoTitle) phone=706-342-4300 (GENERAL_SWITCHBOARD)
+
+[CID 46 | FID 49] Georgia-Pacific | Warrenton, GA | Web: https://www.gp.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Pine dimensional lumber
+   Contacts: NoName (NoTitle) phone=706-465-3236 (GENERAL_SWITCHBOARD)
+
+[CID 47 | FID 50] Huber Engineered Woods | Commerce, GA | Web: https://www.huberwood.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Oriented strand board (OSB), ZIP System sheathing, AdvanTech panels
+   Contacts: NoName (NoTitle) phone=706-335-7661 (GENERAL_SWITCHBOARD)
+
+[CID 48 | FID 51] Interfor | Baxley, GA | Web: https://interfor.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber, timbers
+   Contacts: NoName (NoTitle) phone=912-367-3671 (GENERAL_SWITCHBOARD)
+
+[CID 48 | FID 64] Interfor | Perry, GA | Web: https://interfor.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber
+   Contacts: NoName (NoTitle) phone=478-987-2105 (GENERAL_SWITCHBOARD)
+
+[CID 48 | FID 79] Interfor | Grand Forks, BC | Web: https://interfor.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Douglas fir, Western larch, and SPF dimension lumber
+   Contacts: NoName (NoTitle) phone=250-443-2400 (GENERAL_SWITCHBOARD)
+
+[CID 48 | FID 80] Interfor | Castlegar, BC | Web: https://interfor.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Western red cedar, Douglas fir, and hemlock lumber and timbers
+   Contacts: NoName (NoTitle) phone=250-365-4400 (GENERAL_SWITCHBOARD)
+
+[CID 49 | FID 52] Langdale Forest Products | Valdosta, GA | Web: https://langdaleforest.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Pressure-treated SYP lumber, utility poles, marine pilings
+   Contacts: NoName (NoTitle) phone=229-333-2500 (GENERAL_SWITCHBOARD)
+
+[CID 50 | FID 53] South Georgia Sawmill & Timber Frames | Pembroke, GA | Web: https://southgeorgiasawmill.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Rough-sawn pine and cypress lumber, heavy timbers
+   Contacts: NoName (NoTitle) phone=912-823-3223 (GENERAL_SWITCHBOARD)
+
+[CID 51 | FID 54] Sparks Lumber Company | Ellijay, GA | Web: https://gatrees.org
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hardwood & softwood lumber, cross ties, pallet lumber
+   Contacts: NoName (NoTitle) phone=706-635-4047 (GENERAL_SWITCHBOARD)
+
+[CID 52 | FID 55] Varn Wood Products | Hoboken, GA | Web: https://varnwood.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Yellow pine dimension lumber, timbers, export lumber
+   Contacts: NoName (NoTitle) phone=912-458-2187 (GENERAL_SWITCHBOARD)
+
+[CID 53 | FID 56] Woodstar Timber Products | Clarkesville, GA | Web: https://woodstartimber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Rough-cut and kiln-dried hardwood & softwood lumber, heavy timbers
+   Contacts: Mill Operations (NoTitle) phone=706-768-5025 (GENERAL_SWITCHBOARD)
+
+[CID 54 | FID 57] H.V. & T.G. Thompson Lumber Co. | Ailey, GA | Web: https://pineandcypress.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Heart pine and cypress lumber, timbers, flooring, siding
+   Contacts: NoName (NoTitle) phone=912-583-2236 (GENERAL_SWITCHBOARD)
+
+[CID 55 | FID 58] Burt Lumber Company | Washington, GA | Web: https://burtlumbercompany.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine small timbers (4x4), dimension lumber, boards
+   Contacts: NoName (NoTitle) phone=706-678-1531 (GENERAL_SWITCHBOARD)
+
+[CID 56 | FID 59] T&S Hardwoods | Milledgeville, GA | Web: https://tshardwoods.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hardwood lumber (Red Oak, White Oak, Ash, Poplar), dry kiln lumber
+   Contacts: NoName (NoTitle) phone=478-454-3400 (GENERAL_SWITCHBOARD)
+
+[CID 57 | FID 60] Oakcrest Lumber | Buena Vista, GA | Web: https://oakcrestlumber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hardwood lumber, crane mat timbers, pallet cants, railroad ties
+   Contacts: NoName (NoTitle) phone=229-649-9328 (GENERAL_SWITCHBOARD)
+
+[CID 58 | FID 61] Pollard Lumber Company | Appling, GA | Web: https://gatrees.org
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber (2x4 to 2x12), decking
+   Contacts: NoName (NoTitle) phone=706-541-1343 (GENERAL_SWITCHBOARD)
+
+[CID 59 | FID 62] West Fraser | Dudley, GA | Web: https://www.westfraser.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber
+   Contacts: NoName (NoTitle) phone=478-676-3692 (GENERAL_SWITCHBOARD)
+
+[CID 59 | FID 63] West Fraser | Blackshear, GA | Web: https://www.westfraser.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber
+   Contacts: NoName (NoTitle) phone=912-449-6605 (GENERAL_SWITCHBOARD)
+
+[CID 59 | FID 77] West Fraser | Quesnel, BC | Web: https://www.westfraser.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): SPF dimension lumber, studs, wood chips
+   Contacts: NoName (NoTitle) phone=250-992-9254 (GENERAL_SWITCHBOARD)
+
+[CID 59 | FID 78] West Fraser | Williams Lake, BC | Web: https://www.westfraser.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): SPF dimension lumber and wood chips
+   Contacts: NoName (NoTitle) phone=250-392-7731 (GENERAL_SWITCHBOARD)
+
+[CID 59 | FID 88] West Fraser | Edson, AB | Web: https://www.westfraser.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): SPF dimension lumber and wood chips
+   Contacts: NoName (NoTitle) phone=780-723-3977 (GENERAL_SWITCHBOARD)
+
+[CID 59 | FID 241] West Fraser | Edson, AB | Web: https://www.westfraser.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): SPF dimensional framing lumber
+   Contacts: NoName (NoTitle) phone=780-723-5525 (GENERAL_SWITCHBOARD)
+
+[CID 59 | FID 242] West Fraser | Sundre, AB | Web: https://www.westfraser.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): SPF lumber, wood chips, and residual wood biomass
+   Contacts: NoName (NoTitle) phone=403-638-3580 (GENERAL_SWITCHBOARD)
+
+[CID 61 | FID 66] Boise Cascade | Havana, FL | Web: https://www.bc.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Pine plywood panels, exterior siding, sanded panels
+   Contacts: NoName (NoTitle) phone=850-539-6432 (GENERAL_SWITCHBOARD)
+
+[CID 62 | FID 67] The Westervelt Company | Moundville, AL | Web: https://westerveltlumber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber
+   Contacts: NoName (NoTitle) phone=205-562-5800 (GENERAL_SWITCHBOARD)
+
+[CID 64 | FID 69] Two Rivers Lumber Co. | Demopolis, AL | Web: https://tworiverslumber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber
+   Contacts: NoName (NoTitle) phone=334-654-8077 (GENERAL_SWITCHBOARD)
+
+[CID 65 | FID 70] Charles Ingram Lumber Co. | Effingham, SC | Web: https://cilumber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber, timbers (4x4 to 6x6), decking
+   Contacts: NoName (NoTitle) phone=843-662-1483 (GENERAL_SWITCHBOARD)
+
+[CID 66 | FID 71] Collum's Lumber Products | Allendale, SC | Web: https://collumlumber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber, utility poles, treated wood
+   Contacts: NoName (NoTitle) phone=803-584-3451 (GENERAL_SWITCHBOARD)
+
+[CID 67 | FID 72] Jordan Lumber & Supply Co. | Mount Gilead, NC | Web: https://jordanlumber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine dimensional lumber, timbers, decking
+   Contacts: NoName (NoTitle) phone=910-439-8116 (GENERAL_SWITCHBOARD)
+
+[CID 69 | FID 74] Morgan Lumber Company | Red Oak, VA | Web: https://morganlumber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Southern Yellow Pine lumber (1x4, 1x6, 5/4 radius edge decking)
+   Contacts: NoName (NoTitle) phone=434-735-8151 (GENERAL_SWITCHBOARD)
+
+[CID 70 | FID 75] Triple J Tie & Timber | Weir, MS | Web: https://triplejtimber.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Solid 3-ply timber mats, crane mats, pipeline mats, ground mats
+   Contacts: NoName (NoTitle) phone=662-547-6600 (GENERAL_SWITCHBOARD)
+
+[CID 71 | FID 81] Tolko Industries | Armstrong, BC | Web: https://www.tolko.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): SPF dimension lumber, studs, softwood plywood panels
+   Contacts: NoName (NoTitle) phone=250-546-3171 (GENERAL_SWITCHBOARD)
+
+[CID 71 | FID 89] Tolko Industries | High Level, AB | Web: https://www.tolko.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): SPF dimension lumber and studs
+   Contacts: NoName (NoTitle) phone=780-926-3781 (GENERAL_SWITCHBOARD)
+
+[CID 85 | FID 101] Metal Master / Performance Master | Crawfordsville, IN | Web: https://metalmaster.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hot-rolled, cold-rolled, and galvanized slit coils, cut-to-length sheet, blanking
+   Contacts: NoName (NoTitle) phone=765-364-1300 (GENERAL_SWITCHBOARD)
+
+[CID 87 | FID 103] Harbor Steel & Supply | Muskegon, MI | Web: https://www.harborsteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Plate burning, laser cutting, structural beams, tubing, flat sheet
+   Contacts: NoName (NoTitle) phone=231-739-7152 (GENERAL_SWITCHBOARD)
+
+[CID 87 | FID 104] Harbor Steel & Supply | Holland, MI | Web: https://www.harborsteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Plate burning, beam cutting, saw cutting, sheet and plate shearing
+   Contacts: NoName (NoTitle) phone=616-786-0002 (GENERAL_SWITCHBOARD)
+
+[CID 87 | FID 105] Harbor Steel & Supply | Manistee, MI | Web: https://www.harborsteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Cut plate, merchant bars, structural shapes, tubing
+   Contacts: NoName (NoTitle) phone=231-723-2597 (GENERAL_SWITCHBOARD)
+
+[CID 88 | FID 106] Griggs Steel | Troy, MI | Web: https://www.griggssteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): High-speed steel plate, PM steel blocks, flats, custom cut-to-size plate
+   Contacts: NoName (NoTitle) phone=248-298-0540 (GENERAL_SWITCHBOARD)
+
+[CID 89 | FID 107] H&H Metal Source | Grand Rapids, MI | Web: https://www.hhmetalsource.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Cold rolled, HRPO, galvanized slit steel coils, cut-to-length sheets and blanks
+   Contacts: NoName (NoTitle) phone=616-364-0113 (GENERAL_SWITCHBOARD)
+
+[CID 90 | FID 108] Olympic Steel | Gary, IN | Web: https://olysteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hot rolled, P&O, cold rolled coils, temper mill cut-to-length sheet, strip mill plate
+   Contacts: NoName (NoTitle) phone=219-359-3900 (GENERAL_SWITCHBOARD)
+
+[CID 90 | FID 109] Olympic Steel | Chambersburg, PA | Web: https://olysteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Oxyfuel & plasma plate burning, flat-rolled carbon sheet, CNC machined plate parts
+   Contacts: NoName (NoTitle) phone=717-709-1515 (GENERAL_SWITCHBOARD)
+
+[CID 90 | FID 110] Olympic Steel | Dover, OH | Web: https://olysteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hot-rolled, cold-rolled carbon sheet and coil, cut-to-length plate
+   Contacts: NoName (NoTitle) phone=330-602-6279 (GENERAL_SWITCHBOARD)
+
+[CID 91 | FID 111] Worthington Steel | Delta, OH | Web: https://worthingtonsteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Pickling, coil slitting, cold rolling, cut-to-length flat rolled sheet
+   Contacts: NoName (NoTitle) phone=419-822-2500 (GENERAL_SWITCHBOARD)
+
+[CID 91 | FID 112] Worthington Steel | Porter, IN | Web: https://worthingtonsteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Precision slit coil, cold-rolled, galvanized, temper-rolled strip steel
+   Contacts: NoName (NoTitle) phone=219-929-4000 (GENERAL_SWITCHBOARD)
+
+[CID 91 | FID 113] Worthington Steel | Monroe, OH | Web: https://worthingtonsteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Precision slitting, cold-rolled coil, galvanized slit strip, configured blanks
+   Contacts: NoName (NoTitle) phone=513-539-9291 (GENERAL_SWITCHBOARD)
+
+[CID 92 | FID 114] Ratner Steel Supply | Portage, IN | Web: https://ratnersteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Stretcher leveled hot rolled and HRPO sheet, laser quality plates, master coils
+   Contacts: NoName (NoTitle) phone=219-787-6700 (GENERAL_SWITCHBOARD)
+
+[CID 93 | FID 115] Lapham-Hickey Steel | Bedford Park, IL | Web: https://lapham-hickey.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Cold rolled strip steel, spring steel, slit coil, sheet leveling, edging
+   Contacts: NoName (NoTitle) phone=708-496-6111 (GENERAL_SWITCHBOARD)
+
+[CID 93 | FID 116] Lapham-Hickey Steel | Columbus, OH | Web: https://lapham-hickey.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hot rolled and cold finished carbon sheet, plate cutting, tubing, saw cutting
+   Contacts: NoName (NoTitle) phone=614-443-4881 (GENERAL_SWITCHBOARD)
+
+[CID 94 | FID 117] Feralloy Corporation | Portage, IN | Web: https://www.feralloy.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Coil slitting, cut-to-length, temper passing, stretcher leveling
+   Contacts: NoName (NoTitle) phone=219-787-9698 (GENERAL_SWITCHBOARD)
+
+[CID 95 | FID 118] Steel Warehouse | South Bend, IN | Web: https://www.steelwarehouse.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Temper pass cut-to-length leveling, coil slitting, pickling, laser quality plate
+   Contacts: NoName (NoTitle) phone=574-236-5100 (GENERAL_SWITCHBOARD)
+
+[CID 96 | FID 119] Mill Steel Co. | Grand Rapids, MI | Web: https://www.millsteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Automotive-grade slit coil, cut-to-length sheets, master coil processing
+   Contacts: NoName (NoTitle) phone=800-247-6455 (TOLL_FREE)
+
+[CID 96 | FID 120] Mill Steel Co. | Jeffersonville, IN | Web: https://www.millsteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Slit coil, blanking, cut-to-length carbon and galvanized sheet
+   Contacts: NoName (NoTitle) phone=800-247-6455 (TOLL_FREE)
+
+[CID 97 | FID 121] Alro Steel | Jackson, MI | Web: https://www.alro.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Heavy plate burning, plasma cutting, Blanchard grinding, thermal stress relieving
+   Contacts: NoName (NoTitle) phone=517-787-5500 (GENERAL_SWITCHBOARD)
+
+[CID 97 | FID 122] Alro Steel | Potterville, MI | Web: https://www.alro.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Structural beams, carbon tubing, merchant bar, sheet, saw cutting and shearing
+   Contacts: NoName (NoTitle) phone=517-645-9900 (GENERAL_SWITCHBOARD)
+
+[CID 98 | FID 123] Russel Metals | London, ON | Web: https://www.russelmetals.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): High-definition plasma cutting, plate burning, structural steel, tubing
+   Contacts: NoName (NoTitle) phone=519-451-1140 (GENERAL_SWITCHBOARD)
+
+[CID 99 | FID 124] Samuel, Son & Co. | Mississauga, ON | Web: https://www.samuel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Coil slitting, cut-to-length sheet, blanking, plate processing
+   Contacts: NoName (NoTitle) phone=800-267-2683 (TOLL_FREE)
+
+[CID 99 | FID 125] Samuel, Son & Co. | Toledo, OH | Web: https://www.samuel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Automotive-grade slit coil, cold rolled and galvanized strip, blanking
+   Contacts: NoName (NoTitle) phone=419-470-7070 (GENERAL_SWITCHBOARD)
+
+[CID 100 | FID 126] Ryerson | Columbus, OH | Web: https://www.ryerson.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Laser cutting, sheet shearing, precision sawing, structural shapes
+   Contacts: NoName (NoTitle) phone=614-456-2082 (GENERAL_SWITCHBOARD)
+
+[CID 100 | FID 127] Ryerson | Ambridge, PA | Web: https://www.ryerson.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Plate burning, plasma cutting, flame cutting, beveling, heavy bar sawing
+   Contacts: NoName (NoTitle) phone=724-251-4350 (GENERAL_SWITCHBOARD)
+
+[CID 100 | FID 128] Ryerson | Green Bay, WI | Web: https://www.ryerson.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Plate cutting, sheet shearing, bar sawing, structural tubing
+   Contacts: NoName (NoTitle) phone=920-336-9500 (GENERAL_SWITCHBOARD)
+
+[CID 101 | FID 129] Leeco Steel | Portage, IN | Web: https://www.leecosteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Heavy discrete steel plate, plasma burning, oxy-fuel flame cutting, beveling, drilling
+   Contacts: NoName (NoTitle) phone=219-787-6640 (GENERAL_SWITCHBOARD)
+
+[CID 101 | FID 130] Leeco Steel | Oshkosh, WI | Web: https://www.leecosteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Carbon, HSLA, alloy and abrasion-resistant steel plate burning and distribution
+   Contacts: NoName (NoTitle) phone=920-230-6820 (GENERAL_SWITCHBOARD)
+
+[CID 101 | FID 285] Leeco Steel | Portage, IN | Web: https://www.leecosteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Heavy carbon steel plate, high-strength low-alloy structural plate
+   Contacts: NoName (NoTitle) phone=219-763-7400 (GENERAL_SWITCHBOARD)
+
+[CID 102 | FID 131] FerrouSouth | Iuka, MS | Web: https://ferrousouth.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Heavy-gauge coil slitting, stretcher leveling cut-to-length plate up to 96-in wide
+   Contacts: NoName (NoTitle) phone=662-424-0115 (GENERAL_SWITCHBOARD)
+
+[CID 103 | FID 132] Kloeckner Metals | Cincinnati, OH | Web: https://www.kloecknermetals.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Coil slitting, cut-to-length sheet, blanking, carbon and stainless coils
+   Contacts: NoName (NoTitle) phone=513-769-4000 (GENERAL_SWITCHBOARD)
+
+[CID 104 | FID 133] Target Steel | Flat Rock, MI | Web: https://targetsteel.net
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Five coil slitting lines (up to 72-in width), Red Bud CTL leveling, shearing
+   Contacts: NoName (NoTitle) phone=734-789-9700 (GENERAL_SWITCHBOARD)
+
+[CID 105 | FID 134] Precision Strip | Minster, OH | Web: https://www.precision-strip.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Slitting, cut-to-length sheet, blanking, oscillating of carbon steel, aluminum, stainless
+   Contacts: NoName (NoTitle) phone=419-628-2343 (GENERAL_SWITCHBOARD)
+
+[CID 106 | FID 135] Acier Leroux | Boucherville, QC | Web: https://www.russelmetals.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Flat-rolled sheet, plate burning, beams, merchant bar, structural tubing
+   Contacts: NoName (NoTitle) phone=450-641-2280 (GENERAL_SWITCHBOARD)
+
+[CID 107 | FID 136] Advanced Precast Inc. | Bolton, ON | Web: https://www.advancedprecastinc.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Architectural precast concrete wall panels, spandrels, column covers, cornices, plinths
+   Contacts: NoName (NoTitle) phone=(905) 857-6111 (GENERAL_SWITCHBOARD)
+
+[CID 108 | FID 137] AE Concrete Products Ltd. | Langley, BC | Web: https://aeconcrete.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Electrical chambers, BC Hydro vaults, switchgear pads, streetlight bases, communication vaults, EV pads
+   Contacts: NoName (NoTitle) phone=(604) 576-1808 (GENERAL_SWITCHBOARD)
+
+[CID 109 | FID 138] Coldstream Concrete Ltd. | Ilderton, ON | Web: https://www.coldstreamconcrete.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Reinforced concrete pipe, catch basins, box culverts, skewed concrete culverts, maintenance holes
+   Contacts: NoName (NoTitle) phone=(519) 666-0604 (GENERAL_SWITCHBOARD)
+
+[CID 110 | FID 139] Con-Force Structures Ltd. | Delta, BC | Web: https://conforcestructures.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: STEP_DECK(INFERRED): Prestressed bridge girders, precast parking structures, stadium risers, hollowcore slabs, structural columns
+   Contacts: NoName (NoTitle) phone=(604) 242-1968 (GENERAL_SWITCHBOARD)
+
+[CID 111 | FID 140] Facca Incorporated | Ruscom Station, ON | Web: https://www.facca.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Precast bridge systems, full-depth deck panels, UHPC structural precast components, heavy segmental elements
+   Contacts: NoName (NoTitle) phone=(519) 975-0377 (GENERAL_SWITCHBOARD)
+
+[CID 112 | FID 141] Fritz-Alder Precast | Chepstow, ON | Web: http://www.faprecast.ca
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Extruded prestressed hollowcore slabs, insulated sandwich wall panels, shear walls, stairwells
+   Contacts: NoName (NoTitle) phone=(519) 366-2253 (GENERAL_SWITCHBOARD)
+
+[CID 113 | FID 142] Rainbow Concrete Industries Ltd. / Granite Prestressed | Sudbury, ON | Web: https://rcil.ca
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Prestressed hollowcore slabs, insulated sandwich wall panels, manholes, catch basins, precast barriers, septic tanks
+   Contacts: NoName (NoTitle) phone=(705) 566-1740 (GENERAL_SWITCHBOARD)
+
+[CID 114 | FID 143] Anchor Concrete Products | Kingston, ON | Web: https://anchorconcrete.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Retaining wall blocks, traffic barriers, utility tanks, crane counterweights, precast modular buildings
+   Contacts: NoName (NoTitle) phone=(613) 546-6683 (GENERAL_SWITCHBOARD)
+
+[CID 115 | FID 144] Brooklin Concrete Products | Lindsay, ON | Web: https://www.brooklin.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Stormwater management structures, commercial retaining wall systems, precast utility and storage buildings
+   Contacts: NoName (NoTitle) phone=(905) 655-3311 (GENERAL_SWITCHBOARD)
+
+[CID 116 | FID 145] Central Precast Inc. | Ottawa, ON | Web: https://www.centralprecast.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Precast modular buildings, architectural and structural panels, stadium bleachers, retaining wall blocks
+   Contacts: NoName (NoTitle) phone=(613) 225-9510 (GENERAL_SWITCHBOARD)
+
+[CID 117 | FID 146] Ed's Concrete Products Ltd. | Stratford, ON | Web: https://edsconcrete.ca
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): MagnumStone retaining wall blocks, precast steps and stair systems, architectural precast elements
+   Contacts: NoName (NoTitle) phone=(519) 271-6590 (GENERAL_SWITCHBOARD)
+
+[CID 118 | FID 147] IECS Group Inc. | Rodney, ON | Web: https://iecs.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Cable concrete articulated erosion control mats, precast box culverts, open-bottom culverts, headwalls
+   Contacts: NoName (NoTitle) phone=(519) 785-4327 (GENERAL_SWITCHBOARD)
+
+[CID 119 | FID 148] Kustom PreCast Koncrete Ltd. | Kanata, ON | Web: https://kustomprecast.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Custom precast concrete panels, commercial precast architectural components, ready-to-install structural units
+   Contacts: NoName (NoTitle) phone=(613) 839-5251 (GENERAL_SWITCHBOARD)
+
+[CID 120 | FID 149] Modular Precast Systems Inc. | Bradford West Gwillimbury, ON | Web: http://www.modularprecastsystems.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Precast concrete facade panels, structural load-bearing precast elements, modular precast components
+   Contacts: NoName (NoTitle) phone=(647) 368-7688 (GENERAL_SWITCHBOARD)
+
+[CID 121 | FID 150] Bre-Cast, Inc. | Lucasville, OH | Web: https://ohioprecast.org
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Precast septic tanks, aeration systems, dosing chambers, wastewater pre-treatment units
+   Contacts: NoName (NoTitle) phone=(740) 259-4455 (GENERAL_SWITCHBOARD)
+
+[CID 122 | FID 151] Encore Precast LLC | Seven Mile, OH | Web: https://encoreprecastllc.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): 3-sided bridge arches, box culverts, catch basins, manholes, MSE retaining walls, JJ-Hook concrete barriers
+   Contacts: NoName (NoTitle) phone=(513) 726-5678 (GENERAL_SWITCHBOARD)
+
+[CID 123 | FID 152] Everly Concrete Products Inc. | Adena, OH | Web: https://everlyconcrete.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Precast septic tanks, concrete manholes, holding tanks, catch basins, custom reinforced concrete structures
+   Contacts: NoName (NoTitle) phone=(740) 635-1415 (GENERAL_SWITCHBOARD)
+
+[CID 131 | FID 160] M CON Products Inc. | Carp, ON | Web: https://mconproducts.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Reinforced concrete pipe, maintenance holes, box culverts, catch basins, highway barriers, oil grit separators
+   Contacts: NoName (NoTitle) phone=(613) 831-1736 (GENERAL_SWITCHBOARD)
+
+[CID 134 | FID 163] Northern Concrete Pipe, Inc. | Bay City, MI | Web: https://www.ncp-inc.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Reinforced concrete pipe, manholes, catch basins, box culverts, 3-sided bridges, retention systems
+   Contacts: Thomas Washabaugh (NoTitle) phone=(989) 892-3545 (GENERAL_SWITCHBOARD)
+
+[CID 142 | FID 171] Camcar Plastics, Inc. | Muskegon, MI | Web: https://www.ccplasticparts.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: DRY_VAN(INFERRED): Custom plastic injection molded parts, insert molding, and tooling
+   Contacts: NoName (NoTitle) phone=231-726-5000 (GENERAL_SWITCHBOARD)
+
+[CID 143 | FID 172] Dunnage Engineering | Brighton, MI | Web: https://www.dunnage-eng.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: DRY_VAN(INFERRED): Custom thermoplastic dunnage, protective shipping trays, automotive molded protectors
+   Contacts: NoName (NoTitle) phone=810-229-9501 (GENERAL_SWITCHBOARD)
+
+[CID 144 | FID 173] Stone Plastics & Manufacturing, Inc. | Zeeland, MI | Web: https://stoneplasticsmfg.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: DRY_VAN(INFERRED): Precision custom injection molded plastic components
+   Contacts: NoName (NoTitle) phone=616-748-9740 (GENERAL_SWITCHBOARD)
+
+[CID 145 | FID 174] Champion Plastics, Inc. | Auburn Hills, MI | Web: https://championplastics.net
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: DRY_VAN(INFERRED): Precision automotive injection molded components and assemblies
+   Contacts: NoName (NoTitle) phone=248-373-8995 (GENERAL_SWITCHBOARD)
+
+[CID 146 | FID 175] Delta Technologies LLC | Auburn Hills, MI | Web: https://deltatechgroup.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Large plastic injection molds, compression tooling, check fixtures
+   Contacts: NoName (NoTitle) phone=248-391-6800 (GENERAL_SWITCHBOARD)
+
+[CID 147 | FID 176] Romeo RIM, Inc. | Romeo, MI | Web: https://romeorim.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: DRY_VAN(INFERRED): Reaction injection molded (RIM) and long-fiber injection (LFI) composite panels and bumper assemblies
+   Contacts: NoName (NoTitle) phone=586-336-5800 (GENERAL_SWITCHBOARD)
+
+[CID 196 | FID 231] Appling County Pallet Co. | Baxley, GA | Web: https://gatrees.org
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: DRY_VAN(INFERRED): Industrial wooden pallets and skids
+   Contacts: NoName (NoTitle) phone=912-367-7756 (GENERAL_SWITCHBOARD)
+
+[CID 203 | FID 245] Domtar | Dryden, ON | Web: https://www.domtar.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: DRY_VAN(INFERRED): Northern bleached softwood kraft pulp bales
+   Contacts: NoName (NoTitle) phone=807-223-9000 (GENERAL_SWITCHBOARD)
+
+[CID 216 | FID 261] Reliance Steel & Aluminum | Arlington, TX | Web: https://www.reliance.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Carbon steel plate, structural steel shapes, sheet
+   Contacts: NoName (NoTitle) phone=817-274-1681 (GENERAL_SWITCHBOARD)
+
+[CID 217 | FID 262] O'Neal Steel | Birmingham, AL | Web: https://www.onealsteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Carbon and alloy steel beams, plate, tubing, and bar
+   Contacts: NoName (NoTitle) phone=205-599-8000 (GENERAL_SWITCHBOARD)
+
+[CID 217 | FID 263] O'Neal Steel | Shelbyville, IN | Web: https://www.onealsteel.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Structural steel shapes, tubing, and processed plate
+   Contacts: NoName (NoTitle) phone=317-398-3333 (GENERAL_SWITCHBOARD)
+
+[CID 218 | FID 264] Metals USA | Theodore, AL | Web: https://www.metalsusa.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Carbon plate, structural steel, marine alloys
+   Contacts: NoName (NoTitle) phone=251-653-0660 (GENERAL_SWITCHBOARD)
+
+[CID 218 | FID 265] Metals USA | Wooster, OH | Web: https://www.metalsusa.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Structural tubing, steel angles, channel, plate
+   Contacts: NoName (NoTitle) phone=330-264-8848 (GENERAL_SWITCHBOARD)
+
+[CID 219 | FID 266] Steel Dynamics | Butler, IN | Web: https://www.steeldynamics.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Hot rolled, cold rolled, galvanized steel coils
+   Contacts: NoName (NoTitle) phone=260-868-8000 (GENERAL_SWITCHBOARD)
+
+[CID 219 | FID 267] Steel Dynamics | Columbia City, IN | Web: https://www.steeldynamics.com
+   Carrier=UNKNOWN, Fleet=UNKNOWN
+   Equip/Products: FLATBED(INFERRED): Structural steel wide-flange beams, pilings, standard rail
+   Contacts: NoName (NoTitle) phone=260-625-8100 (GENERAL_SWITCHBOARD)
+

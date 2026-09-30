@@ -1,0 +1,1153 @@
+<USER_REQUEST>
+/boost STAGE 3C — FIRST FIX BLANK MASTER DIRECTORY, THEN IMPLEMENT FREIGHT-BROKER CALL WORKFLOW / OUTREACH CRM
+
+WORKSPACE:
+D:\FreightProspecting
+
+THIS TASK HAS TWO PHASES.
+
+PHASE 1 IS BLOCKING AND MUST PASS FIRST:
+
+FIX THE CURRENT BLANK MASTER DIRECTORY /prospects REGRESSION.
+
+ONLY AFTER /prospects IS VISIBLY WORKING IN A REAL BROWSER:
+
+PROCEED TO PHASE 2:
+
+IMPLEMENT THE FREIGHT-BROKER CALL / FEEDBACK / FOLLOW-UP CRM WORKFLOW.
+
+Do NOT skip Phase 1.
+
+Do NOT implement CRM on top of a broken directory.
+
+==================================================
+CURRENT ACCEPTED BASELINE
+==================================================
+
+Company grouping / broker-friction truth correction is accepted.
+
+Expected current data:
+
+Operating company groups = 285
+Physical facilities = 372
+
+Lifecycle:
+
+SHORTLISTED = 4
+DISCOVERY = 368
+QUALIFIED = 0
+ARCHIVED = 0
+
+Current expected test baseline:
+
+129 passing tests
+
+Company View should:
+
+- be default
+- show Georgia-Pacific once
+- show 4 child facilities
+- preserve Companies | Facilities toggle
+- preserve grouping
+- preserve filters
+- preserve Dark Mode
+- preserve truth-corrected Broker Access Friction
+
+==================================================
+PHASE 1 — BLANK MASTER DIRECTORY IS PRIORITY #1
+==================================================
+
+The user currently reports:
+
+Clicking Master Directory results in a BLANK SCREEN.
+
+This is a production-blocking UI regression.
+
+Diagnose the actual running application.
+
+Do not assume automated TestClient HTTP 200 means the page works.
+
+Use the real browser/runtime.
+
+==================================================
+1. REPRODUCE THE FAILURE
+==================================================
+
+Launch the app exactly as the user normally does.
+
+Prefer:
+
+run_app.bat
+
+or the normal supported local launcher.
+
+Open:
+
+http://127.0.0.1:8000/prospects
+
+Use browser inspection.
+
+Verify whether the page is:
+
+- completely blank
+- loading shell/sidebar but not content
+- JavaScript exception
+- Alpine initialization failure
+- malformed JSON/data island
+- template rendering issue
+- CSS visibility issue
+- endless loading
+- server-side 500 hidden by frontend
+- browser console error
+- oversized HTML / parsing problem
+- invalid HTML introduced by Company View
+- null/undefined property referenced by filters
+- localStorage/theme failure
+- escaped/unescaped JSON problem
+- DOM expression error
+
+Capture the exact root cause.
+
+==================================================
+2. INSPECT BROWSER CONSOLE
+==================================================
+
+Check the actual browser developer-console/runtime errors.
+
+Do not fix by guessing.
+
+Report:
+
+- first relevant JavaScript error
+- file/template/function responsible
+- why automated tests missed it
+
+If multiple errors exist, fix the root cause first.
+
+==================================================
+3. CHECK NETWORK / SERVER
+==================================================
+
+Verify:
+
+GET /prospects
+GET /api/companies?stage=ALL
+GET /api/prospects?stage=ALL
+
+Confirm:
+
+HTTP status
+payload validity
+JSON validity
+rendering time
+
+Browser must successfully consume the payload.
+
+==================================================
+4. COMPANY DATA SAFETY
+==================================================
+
+Do NOT delete/recreate prospect data merely to repair the screen.
+
+Preserve:
+
+285 company groups
+372 facilities
+368 Discovery
+4 Shortlisted
+0 Qualified
+
+No company/facility data reset.
+
+==================================================
+5. FIX THE ACTUAL ROOT CAUSE
+==================================================
+
+Apply the smallest robust fix.
+
+Do NOT remove successful Company View functionality merely to make the page render.
+
+Preserve:
+
+Companies default view
+Facilities alternate view
+company grouping
+facility badges
+expand/collapse
+unified search
+filters
+pagination
+Dark Mode
+Broker Access Friction
+child facility links
+
+If any feature is the direct source of the failure:
+
+repair it rather than silently deleting it unless absolutely necessary.
+
+==================================================
+6. REAL BROWSER ACCEPTANCE — MUST PASS BEFORE PHASE 2
+==================================================
+
+After the fix:
+
+Open /prospects in the browser.
+
+Acceptance criteria:
+
+- visible page, not blank
+- sidebar visible
+- summary metrics visible
+- Companies tab/view visible
+- company rows visible
+- Georgia-Pacific appears exactly once
+- [4 Facilities] badge visible
+- expand Georgia-Pacific
+- all four child facilities render
+- switch Companies → Facilities
+- switch back
+- search works
+- filters work
+- pagination works
+- Dark Mode works
+- refresh page
+- no blank screen
+- no uncaught browser-console exception
+
+DO NOT START PHASE 2 UNTIL THIS PASSES.
+
+==================================================
+PHASE 2 — FREIGHT-BROKER OUTREACH CRM
+==================================================
+
+Once Phase 1 is proven clean, implement a lightweight phone-first CRM designed for the user's real freight-broker workflow.
+
+Typical workflow:
+
+1. Open Master Directory.
+2. Choose company.
+3. Inspect facility/contact.
+4. Call.
+5. Record result.
+6. Add feedback.
+7. Schedule follow-up if required.
+8. Continue to next prospect.
+9. Revisit companies by call status.
+
+==================================================
+7. KEEP TWO CONCEPTS COMPLETELY SEPARATE
+==================================================
+
+PROSPECT LIFECYCLE:
+
+DISCOVERY
+QUALIFIED
+SHORTLISTED
+ARCHIVED
+
+is NOT the same as:
+
+OUTREACH WORKFLOW:
+
+UNCONTACTED
+INTERESTED
+NO_ANSWER
+NOT_INTERESTED
+CALL_BACK / FOLLOW_UP
+
+Never auto-change lifecycle because of a phone-call outcome.
+
+Interested != Qualified.
+
+Not Interested != Archived.
+
+No Answer != bad prospect.
+
+==================================================
+8. REQUIRED CALL OUTCOMES
+==================================================
+
+Provide compact predefined call outcomes:
+
+INTERESTED
+NOT_INTERESTED
+NO_ANSWER
+CALL_BACK
+
+If the schema needs FOLLOW_UP as a scheduling state, preserve the underlying disposition separately.
+
+Do not force every follow-up into a replacement outcome.
+
+Example:
+
+Outcome:
+INTERESTED
+
+Follow-up:
+2026-10-03 10:30
+
+The company should appear in both:
+
+Interested
+and
+Follow-Ups.
+
+==================================================
+9. NOT INTERESTED != DNC
+==================================================
+
+Critical rule:
+
+NOT_INTERESTED
+
+must NOT create:
+
+suppression
+DNC
+archive
+
+A shipper saying:
+
+"Not interested right now"
+
+is different from:
+
+"Do not call again."
+
+If DO NOT CONTACT is exposed:
+
+make it a separate explicit action.
+
+Require confirmation.
+
+Use existing suppression architecture.
+
+DIRECT_ONLY remains separate.
+
+==================================================
+10. LOG CALL QUICK ACTION
+==================================================
+
+Add a compact:
+
+Log Call
+
+action in Company View.
+
+Do not clutter the directory.
+
+Example company row:
+
+Georgia-Pacific
+4 Facilities
+High Access Friction
+Outreach: NO ANSWER
+Last contact: Albany • Sep 27
+[Log Call]
+
+For an untouched prospect:
+
+Outreach: UNCONTACTED
+[Log Call]
+
+==================================================
+11. LOG CALL MODAL / DRAWER
+==================================================
+
+Click:
+
+Log Call
+
+Open a compact modal/drawer.
+
+Fields:
+
+Company
+Facility Contacted
+Contact / Person
+Phone Number
+Outcome
+Feedback / Notes
+Follow-Up Date
+Follow-Up Time
+Contacted At
+
+For multi-facility companies:
+
+Facility Contacted:
+
+Corporate / Company-Level
+Albany Lumber Mill
+Rome Lumber Mill
+Madison Plywood Plant
+Warrenton Lumber Facility
+etc.
+
+Populate dynamically from DB.
+
+Do not hardcode Georgia-Pacific.
+
+==================================================
+12. PHONE-FIRST UX
+==================================================
+
+Where phone exists:
+
+display:
+
+Call
+Copy Number
+Log Call
+
+Call may use:
+
+tel:
+
+where supported.
+
+No Twilio.
+
+No paid telephony.
+
+No automatic dialing.
+
+No external API dependency.
+
+==================================================
+13. FEEDBACK NOTES
+==================================================
+
+Allow free-text notes.
+
+Examples:
+
+"Shipping manager unavailable. Call after 3 PM."
+
+"Asked me to call first week of next month."
+
+"Current carrier setup locked until December."
+
+"Interested. Asked for company packet."
+
+"Reception transferred me but logistics did not answer."
+
+Store exactly as USER-ENTERED outreach information.
+
+Do NOT automatically turn notes into research claims.
+
+==================================================
+14. OUTREACH LOG MUST BE APPEND-ONLY
+==================================================
+
+Do not overwrite previous calls.
+
+Example:
+
+Sep 27
+NO ANSWER
+Albany Lumber Mill
+
+Sep 29
+CALL BACK
+Reception said shipping manager returns Monday.
+
+Oct 02
+INTERESTED
+Requested carrier packet.
+Follow-up Oct 05.
+
+Preserve the entire timeline.
+
+Newest first in UI.
+
+==================================================
+15. AUDIT EXISTING outreach_logs FIRST
+==================================================
+
+Before schema work:
+
+inspect the existing outreach_logs table.
+
+Reuse/extend it where sensible.
+
+Do NOT create a parallel duplicate concept if the existing schema can support this cleanly.
+
+Required persisted information should support:
+
+company_id
+facility_id nullable
+contact_id nullable
+channel
+disposition
+feedback_notes
+contacted_at
+follow_up_at nullable
+created_at
+
+Use canonical UTC ISO timestamps.
+
+==================================================
+16. CURRENT ENGAGEMENT STATE
+==================================================
+
+For fast filters, a small current-state projection is acceptable.
+
+Suggested:
+
+prospect_engagement_state
+
+One current row per COMPANY.
+
+Possible fields:
+
+company_id
+current_outreach_status
+status_source_outreach_log_id
+last_contacted_at
+next_follow_up_at
+last_facility_id
+updated_at
+
+But outreach_logs remains authoritative history.
+
+Insert outreach log + update current state in one transaction.
+
+==================================================
+17. COMPANY VS FACILITY CONTEXT
+==================================================
+
+Critical:
+
+Calling one facility does NOT automatically mean all facilities had that conversation.
+
+Example:
+
+Georgia-Pacific:
+Outreach Status = INTERESTED
+Last Contact Context = Albany Lumber Mill
+
+Do not phrase:
+
+"Georgia-Pacific is interested"
+
+as a universal corporate statement.
+
+UI should make facility context visible.
+
+==================================================
+18. WORKFLOW VIEWS
+==================================================
+
+Add prospecting views:
+
+MASTER DIRECTORY
+UNCONTACTED
+INTERESTED
+FOLLOW-UPS
+NO ANSWER
+NOT INTERESTED
+
+These should be filtered views of existing companies.
+
+Do NOT copy companies into separate duplicate tables.
+
+==================================================
+19. INTERESTED VIEW
+==================================================
+
+Show:
+
+Company
+Facility/context
+Contact
+Phone
+Email
+Last Feedback
+Last Contact Date
+Next Follow-Up
+Broker Access Friction
+Facility Count
+Log Call
+
+Interested does NOT auto-qualify.
+
+==================================================
+20. NO ANSWER VIEW
+==================================================
+
+Show:
+
+Company
+Facility last attempted
+Phone
+Attempt Count
+Last Attempt
+Next Follow-Up
+Log Call
+
+Attempt Count must be based on actual PHONE outreach records.
+
+Example:
+
+NO ANSWER
+2 attempts
+Last Sep 27
+
+==================================================
+21. NOT INTERESTED VIEW
+==================================================
+
+Show:
+
+Company
+Facility/context
+Last Contact
+Feedback
+
+Do NOT create DNC.
+
+Do NOT archive.
+
+User may call again later.
+
+==================================================
+22. FOLLOW-UP VIEW
+==================================================
+
+Very important.
+
+Sections:
+
+OVERDUE
+TODAY
+UPCOMING
+
+Sort:
+
+overdue oldest/most urgent
+today chronological
+upcoming chronological
+
+Show:
+
+Company
+Facility
+Current disposition
+Feedback snippet
+Phone
+Scheduled time
+Log Call
+
+No background notifications required in this stage.
+
+==================================================
+23. VIEWED / REVIEWED STATE
+==================================================
+
+User also wants to know which prospects have already been inspected.
+
+Implement a subtle Viewed state.
+
+When user intentionally opens:
+
+View Company / Company detail
+
+record:
+
+first_viewed_at
+last_viewed_at
+
+or a minimal equivalent.
+
+Show:
+
+Viewed ✓
+
+Add:
+
+Unreviewed Only
+
+filter.
+
+DO NOT create a giant Viewed primary section.
+
+Viewed != Contacted.
+
+Viewing does NOT create outreach_logs.
+
+==================================================
+24. MASTER DIRECTORY STATUS BADGES
+==================================================
+
+In Company View add a small explicit outreach badge:
+
+UNCONTACTED
+INTERESTED
+NO ANSWER
+NOT INTERESTED
+FOLLOW-UP DUE
+
+Do not display full feedback inline.
+
+Optional compact context:
+
+NO ANSWER • 2 attempts
+INTERESTED • follow-up Oct 3
+NOT INTERESTED • Sep 27
+
+Keep row height controlled.
+
+==================================================
+25. SIDEBAR RESTRUCTURE
+==================================================
+
+The user says Loads & Margins and Carriers & Capacity currently create unnecessary clutter.
+
+Do NOT delete those features.
+
+Reorganize sidebar:
+
+PROSPECTING
+
+Master Directory
+Interested
+Follow-Ups
+No Answer
+Not Interested
+
+FREIGHT & OPERATIONS ▸
+
+Loads & Margins
+Carriers & Capacity
+
+RESEARCH & DATA ▸
+
+Evidence Ledger
+
+Settings remains utility item.
+
+Freight & Operations:
+
+COLLAPSED BY DEFAULT.
+
+Research & Data may also be collapsible if clean.
+
+Persist expanded/collapsed preference in localStorage if simple.
+
+==================================================
+26. VISUAL DESIGN
+==================================================
+
+Keep it minimal.
+
+Do not turn Master Directory into a giant CRM dashboard.
+
+Suggested outreach colors:
+
+Interested = green
+Follow-Up = teal/blue
+No Answer = amber
+Not Interested = muted red
+Uncontacted = neutral
+
+Labels must be explicit.
+
+Do not confuse with:
+
+VERIFIED
+INFERRED
+UNKNOWN
+
+Dark Mode must remain fully functional.
+
+==================================================
+27. EXISTING FILTERS MUST STILL WORK
+==================================================
+
+Preserve:
+
+Company Structure
+Facility Count
+Broker Access Friction
+Equipment
+Private Fleet
+Commercial Carrier Use
+Freight Procurement
+Search
+Companies | Facilities
+pagination
+
+Combine with outreach filters.
+
+Important workflow example:
+
+Single Facility
++
+Low/Unknown Friction
++
+Uncontacted
++
+Flatbed
+
+must work.
+
+==================================================
+28. REVIEW AND CALL STATUS ON MASTER DIRECTORY
+==================================================
+
+The user wants to visually know:
+
+already viewed
+already called
+outcome
+
+without opening every profile.
+
+Display small indicators:
+
+Viewed ✓
+
+and:
+
+Interested
+No Answer
+Not Interested
+Follow-Up
+Uncontacted
+
+Master Directory status must stay synchronized with backend data.
+
+No browser-only fake state.
+
+==================================================
+29. OUTREACH NOTES ARE NOT RESEARCH EVIDENCE
+==================================================
+
+Critical separation:
+
+User note:
+"They told me they use their own trucks."
+
+does NOT automatically update:
+
+private_fleet_present = VERIFIED_PRESENT
+
+User note:
+"They said no brokers."
+
+does NOT automatically update:
+
+broker_friendly_status
+
+unless a future explicit evidence-review workflow promotes the observation.
+
+For Stage 3C:
+
+outreach stays outreach.
+
+==================================================
+30. WRITE API SAFETY
+==================================================
+
+Use explicit mutation endpoints.
+
+POST /api/outreach
+or equivalent.
+
+No state-changing GET.
+
+Validate:
+
+company exists
+facility belongs to company
+contact belongs to company/facility
+valid disposition
+valid timestamps
+feedback length
+follow-up date
+
+Use transactions.
+
+==================================================
+31. DATABASE BACKUP
+==================================================
+
+Before any Stage 3C schema/data migration:
+
+create timestamped DB backup.
+
+Report path and size.
+
+Do not modify old backups.
+
+==================================================
+32. ZERO FAKE BUSINESS DATA
+==================================================
+
+Do not create fake:
+
+calls
+feedback
+interested companies
+no-answer attempts
+follow-up records
+
+just to make UI look populated.
+
+Production DB begins with genuine user outreach state only.
+
+For browser QA/tests:
+
+use isolated temporary/test data and clean it up.
+
+Current real production outreach should remain 0 unless the user has actually logged calls.
+
+==================================================
+33. TEST REQUIREMENTS
+==================================================
+
+Preserve existing:
+
+129 passing tests
+
+Add tests for Phase 1 blank-screen regression:
+
+/prospects renders successfully
+company data island valid
+no fatal JS structure regression where testable
+Georgia-Pacific grouping intact
+Companies/Facilities toggle intact
+
+Then add CRM tests:
+
+Log Call creates one outreach row.
+
+Second call appends, does not overwrite.
+
+Interested updates current state.
+
+No Answer increments real attempt count.
+
+Not Interested does not create DNC.
+
+Interested does not auto-qualify.
+
+Viewed does not create outreach.
+
+Follow-up persists.
+
+Follow-Up view classifications work.
+
+Company/facility relationship validation works.
+
+Multi-facility company retains facility context.
+
+Company timeline aggregates branch calls.
+
+Facility timeline retains relevant calls.
+
+DNC remains separate.
+
+DIRECT_ONLY remains separate.
+
+Lifecycle remains:
+4 Shortlisted
+368 Discovery
+0 Qualified
+
+No fake production calls after tests.
+
+Dark Mode still passes.
+
+Sidebar collapse works.
+
+==================================================
+34. REAL BROWSER QA — REQUIRED, NOT JUST TESTCLIENT
+==================================================
+
+This task started because the REAL UI became blank.
+
+Therefore final acceptance requires actual browser visual QA.
+
+Use the browser.
+
+Test all of:
+
+A. MASTER DIRECTORY
+
+Open /prospects.
+
+Must visibly render.
+
+No blank screen.
+
+Company rows visible.
+
+Georgia-Pacific visible once.
+
+Expand GP.
+
+Companies/Facilities toggle.
+
+Search.
+
+Filters.
+
+Pagination.
+
+Dark Mode.
+
+Refresh.
+
+Console clean of blocking errors.
+
+--------------------------------------------------
+B. TEST CRM USING TEMP / TEST DATA SAFELY
+
+Do not pollute production DB with fake business calls.
+
+Use isolated test DB or rollbackable test workflow.
+
+Single-facility prospect:
+
+Log NO ANSWER.
+
+Verify:
+No Answer view
+attempt count = 1.
+
+Log again:
+attempt count = 2.
+
+--------------------------------------------------
+C. INTERESTED
+
+Another test prospect:
+
+Log INTERESTED.
+
+Feedback:
+"Asked for carrier packet."
+
+Follow-up date.
+
+Verify:
+
+appears in Interested
+appears in Follow-Ups
+remains DISCOVERY.
+
+--------------------------------------------------
+D. NOT INTERESTED
+
+Log NOT_INTERESTED.
+
+Verify:
+
+Not Interested view.
+
+No suppression created.
+
+No archive.
+
+--------------------------------------------------
+E. GEORGIA-PACIFIC
+
+Choose one GP facility.
+
+Log test call in isolated test DB.
+
+Verify:
+
+company history records correct facility context.
+
+Sibling facilities remain distinct.
+
+--------------------------------------------------
+F. SIDEBAR
+
+Prospecting section visible.
+
+Freight & Operations collapsed by default.
+
+Click expands:
+
+Loads & Margins
+Carriers & Capacity
+
+Collapse again.
+
+Refresh behavior as designed.
+
+--------------------------------------------------
+G. DARK MODE
+
+Light → Dark
+
+refresh
+
+Dark persists
+
+Dark → Light
+
+No unreadable outreach badges.
+
+==================================================
+35. FINAL REPORT
+==================================================
+
+Return two separate sections:
+
+PHASE 1 — BLANK SCREEN REPAIR
+
+1. exact root cause
+2. browser/console error found
+3. files changed
+4. fix applied
+5. real-browser proof
+6. why previous automated tests missed it
+
+PHASE 2 — STAGE 3C CRM
+
+7. DB backup path
+8. schema changes
+9. outreach history model
+10. current engagement state model
+11. dispositions implemented
+12. Log Call UI
+13. feedback UI
+14. follow-up workflow
+15. Interested view
+16. No Answer view
+17. Not Interested view
+18. Viewed/Unreviewed functionality
+19. attempt counter
+20. multi-facility handling
+21. sidebar restructuring
+22. API/write endpoints
+23. Dark Mode regression
+24. browser QA
+25. full pytest result
+
+FINAL INVARIANT CONFIRMATION:
+
+- Master Directory no longer blank
+- Georgia-Pacific remains one company group with 4 child facilities
+- 285 operating company groups preserved
+- 372 facilities preserved
+- 368 Discovery preserved
+- 4 Shortlisted preserved
+- 0 Qualified preserved
+- Interested != Qualified
+- Not Interested != DNC
+- Viewed != Contacted
+- company call != all sibling facilities contacted
+- no fake production outreach records
+- no fake loads/signals
+- no prospect data deleted
+
+STOP after blank-screen repair + Stage 3C Outreach CRM.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-27T08:23:16+05:30.
+</ADDITIONAL_METADATA>

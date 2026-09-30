@@ -1,0 +1,784 @@
+{
+  "title": "FreightProspecting V1 \u2014 Tier A Acceleration Campaign Phase B Final Result",
+  "generated_at_utc": "2026-09-29T09:58:42Z",
+  "campaign_objective": "Increase authoritative Tier A from 14 to >= 100 companies using 445 Tier D companies",
+  "phase_b_execution_status": "PHASE_B_EXHAUSTED_ALL_445_TIER_D_COMPANIES",
+  "stop_conditions": {
+    "stop_condition_1": {
+      "criteria": "Authoritative Tier A reaches >= 100 after any committed wave",
+      "evaluated": false,
+      "detail": "Final Tier A reached 19 (target >= 100, remaining gap: 81)"
+    },
+    "stop_condition_2": {
+      "criteria": "All 445 Tier D companies exhausted and Tier A < 100",
+      "evaluated": true,
+      "detail": "All 445 Tier D candidates were systematically researched across Waves A-I. Phase B concluded."
+    }
+  },
+  "database_hashes": {
+    "pre_phase_b_freeze_baseline": "FE73DC3F051A7AEE7FC83ED7E0D7DF2CA05EFEE9C9C2629001327B551AF104DF",
+    "final_phase_b_candidate_hash": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+    "hash_matches_clean_freeze": true
+  },
+  "authoritative_distributions": {
+    "starting_baseline": {
+      "TIER_A_PRIORITY": 14,
+      "TIER_B_WORTH_CALLING": 99,
+      "TIER_C_SECONDARY": 7,
+      "TIER_D_RESEARCH_NEEDED": 445,
+      "RESTRICTED": 0,
+      "TOTAL": 565
+    },
+    "final_authoritative": {
+      "TIER_A_PRIORITY": 19,
+      "TIER_B_WORTH_CALLING": 489,
+      "TIER_C_SECONDARY": 10,
+      "TIER_D_RESEARCH_NEEDED": 47,
+      "RESTRICTED": 0,
+      "TOTAL": 565
+    },
+    "net_movements": {
+      "TIER_A_PRIORITY": 5,
+      "TIER_B_WORTH_CALLING": 390,
+      "TIER_C_SECONDARY": 3,
+      "TIER_D_RESEARCH_NEEDED": -398,
+      "RESTRICTED": 0
+    }
+  },
+  "promotions_to_tier_a": [
+    {
+      "company_id": 128,
+      "operating_brand": "Bush Concrete Products, Inc.",
+      "qualifying_facility_id": 157,
+      "starting_lifecycle": "DISCOVERY",
+      "final_lifecycle": "QUALIFIED",
+      "pre_tier": "TIER_D_RESEARCH_NEEDED",
+      "post_tier": "TIER_A_PRIORITY",
+      "qualification_transition_details": "DISCOVERY -> QUALIFIED (Wave A)",
+      "a_trigger": "COMMERCIAL_CARRIER_VERIFIED",
+      "supporting_claim_ids": [
+        701,
+        702,
+        2781
+      ],
+      "evidence_source_ids": [
+        211,
+        764
+      ],
+      "source_urls": [
+        "http://www.bushconcreteproducts.com",
+        "https://bushconcreteproducts.com/delivery-trucking/"
+      ],
+      "scope": "FACILITY",
+      "reason_codes": [
+        "VERIFIED_EXTERNAL_CAPACITY_READY",
+        "COMMERCIAL_CARRIER_CONFIRMED"
+      ],
+      "promoted_at_utc": "2026-09-29T08:00:24Z"
+    },
+    {
+      "company_id": 331,
+      "operating_brand": "Swanson Group",
+      "qualifying_facility_id": 418,
+      "starting_lifecycle": "DISCOVERY",
+      "final_lifecycle": "QUALIFIED",
+      "pre_tier": "TIER_D_RESEARCH_NEEDED",
+      "post_tier": "TIER_A_PRIORITY",
+      "qualification_transition_details": "DISCOVERY -> QUALIFIED (Wave A)",
+      "a_trigger": "COMMERCIAL_CARRIER_VERIFIED",
+      "supporting_claim_ids": [
+        1745,
+        1746,
+        2730
+      ],
+      "evidence_source_ids": [
+        472,
+        744
+      ],
+      "source_urls": [
+        "https://swansongroup.biz/locations/",
+        "https://swansongroup.biz/shipping-and-receiving/"
+      ],
+      "scope": "FACILITY",
+      "reason_codes": [
+        "VERIFIED_EXTERNAL_CAPACITY_READY",
+        "COMMERCIAL_CARRIER_CONFIRMED"
+      ],
+      "promoted_at_utc": "2026-09-29T08:00:24Z"
+    },
+    {
+      "company_id": 395,
+      "operating_brand": "Peerless Steel Co.",
+      "qualifying_facility_id": 482,
+      "starting_lifecycle": "DISCOVERY",
+      "final_lifecycle": "QUALIFIED",
+      "pre_tier": "TIER_D_RESEARCH_NEEDED",
+      "post_tier": "TIER_A_PRIORITY",
+      "qualification_transition_details": "DISCOVERY -> QUALIFIED (Wave A)",
+      "a_trigger": "COMMERCIAL_CARRIER_VERIFIED",
+      "supporting_claim_ids": [
+        2001,
+        2002,
+        2751,
+        2752,
+        2753,
+        2760
+      ],
+      "evidence_source_ids": [
+        536,
+        755
+      ],
+      "source_urls": [
+        "https://peerlesssteel.com",
+        "https://peerlesssteel.com/locations/"
+      ],
+      "scope": "FACILITY",
+      "reason_codes": [
+        "VERIFIED_EXTERNAL_CAPACITY_READY",
+        "COMMERCIAL_CARRIER_CONFIRMED",
+        "PRIVATE_FLEET_AND_CARRIER_CONFIRMED"
+      ],
+      "promoted_at_utc": "2026-09-29T08:00:24Z"
+    },
+    {
+      "company_id": 187,
+      "operating_brand": "Pike Lumber Company",
+      "qualifying_facility_id": 221,
+      "starting_lifecycle": "DISCOVERY",
+      "final_lifecycle": "QUALIFIED",
+      "pre_tier": "TIER_D_RESEARCH_NEEDED",
+      "post_tier": "TIER_A_PRIORITY",
+      "qualification_transition_details": "DISCOVERY -> QUALIFIED (Wave B)",
+      "a_trigger": "COMMERCIAL_CARRIER_VERIFIED",
+      "supporting_claim_ids": [
+        957,
+        958,
+        2782
+      ],
+      "evidence_source_ids": [
+        275,
+        765
+      ],
+      "source_urls": [
+        "https://pikelumber.com/shipping-your-hardwoods/",
+        "https://www.pikelumber.com/contact"
+      ],
+      "scope": "FACILITY",
+      "reason_codes": [
+        "VERIFIED_EXTERNAL_CAPACITY_READY",
+        "COMMERCIAL_CARRIER_CONFIRMED"
+      ],
+      "promoted_at_utc": "2026-09-29T08:16:32Z"
+    },
+    {
+      "company_id": 396,
+      "operating_brand": "Bull Moose Tube Co.",
+      "qualifying_facility_id": 483,
+      "starting_lifecycle": "DISCOVERY",
+      "final_lifecycle": "QUALIFIED",
+      "pre_tier": "TIER_D_RESEARCH_NEEDED",
+      "post_tier": "TIER_A_PRIORITY",
+      "qualification_transition_details": "DISCOVERY -> QUALIFIED (Wave F)",
+      "a_trigger": "COMMERCIAL_CARRIER_VERIFIED",
+      "supporting_claim_ids": [
+        2005,
+        2006,
+        2784
+      ],
+      "evidence_source_ids": [
+        537,
+        767
+      ],
+      "source_urls": [
+        "https://www.bullmoosetube.com/company/carrier-onboarding-application/",
+        "https://www.bullmoosetube.com/contact/"
+      ],
+      "scope": "FACILITY",
+      "reason_codes": [
+        "VERIFIED_EXTERNAL_CAPACITY_READY",
+        "COMMERCIAL_CARRIER_CONFIRMED"
+      ],
+      "promoted_at_utc": "2026-09-29T08:59:42Z"
+    }
+  ],
+  "secondary_movements_to_tier_c": [
+    {
+      "wave": "D",
+      "company_id": 316,
+      "operating_brand": "Rutland Lumber Co.",
+      "facility_id": 403,
+      "trigger_field": "private_fleet_present",
+      "trigger_value": "VERIFIED_PRESENT",
+      "source_url": "https://rutlandlumber.com/about-us/",
+      "evidence_rationale": "our own fleet of tractor-trailers, we have the most reliable shipping in the industry."
+    },
+    {
+      "wave": "F",
+      "company_id": 412,
+      "operating_brand": "G&G Steel Inc.",
+      "facility_id": 499,
+      "trigger_field": "private_fleet_present",
+      "trigger_value": "VERIFIED_PRESENT",
+      "source_url": "https://ggsteel.com",
+      "evidence_rationale": "our own fleet of trucks and specialized trailers."
+    },
+    {
+      "wave": "H",
+      "company_id": 497,
+      "operating_brand": "Permatile Concrete Products",
+      "facility_id": 584,
+      "trigger_field": "private_fleet_present",
+      "trigger_value": "VERIFIED_PRESENT",
+      "source_url": "https://permatile.com/about-us/",
+      "evidence_rationale": "our own fleet of trucks."
+    }
+  ],
+  "lifecycle_summary": {
+    "total_transitions": 398,
+    "transition_type": "DISCOVERY -> QUALIFIED",
+    "facilities_qualified": 398,
+    "facilities_maintained_in_discovery": 47
+  },
+  "wave_checkpoints": {
+    "A": {
+      "wave": "A",
+      "executed_at_utc": "2026-09-29T08:00:24Z",
+      "starting_hash": "FE73DC3F051A7AEE7FC83ED7E0D7DF2CA05EFEE9C9C2629001327B551AF104DF",
+      "ending_hash": "160688627B44A0A6F1C0616ACC26C9D5CC12486052EFDE3E1653AE6593AC8C24",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_A_20260929_080024.db",
+      "companies_researched": 48,
+      "companies_qualified": 48,
+      "companies_remaining_discovery": 0,
+      "new_a": 3,
+      "new_b": 45,
+      "new_c": 0,
+      "restricted_changes": 0,
+      "tier_a_before": 14,
+      "tier_a_after": 17,
+      "gap_to_100": 83,
+      "full_engine_distribution": {
+        "TIER_A_PRIORITY": 17,
+        "TIER_B_WORTH_CALLING": 144,
+        "TIER_C_SECONDARY": 7,
+        "TIER_D_RESEARCH_NEEDED": 397,
+        "RESTRICTED": 0
+      },
+      "metadata_distribution": {
+        "TIER_A_PRIORITY": 17,
+        "TIER_B_WORTH_CALLING": 144,
+        "TIER_C_SECONDARY": 7,
+        "TIER_D_RESEARCH_NEEDED": 397,
+        "RESTRICTED": 0
+      },
+      "directory_distribution": {
+        "TIER_A_PRIORITY": 17,
+        "TIER_B_WORTH_CALLING": 144,
+        "TIER_C_SECONDARY": 7,
+        "TIER_D_RESEARCH_NEEDED": 397,
+        "RESTRICTED": 0
+      },
+      "engine_equals_metadata_equals_directory": true,
+      "claim_counts": {
+        "total_claims": 2770,
+        "total_evidence_sources": 763,
+        "total_claim_evidence_links": 2773
+      },
+      "lifecycle_transitions_count": 48,
+      "outside_wave_mutations": 0,
+      "safer_only_claims": 0,
+      "orphan_claims": 0,
+      "duplicate_current_claims": 0,
+      "operational_table_counts": {
+        "outreach_logs": 0,
+        "load_opportunities": 0,
+        "freight_demand_signals": 0,
+        "capacity_postings": 0,
+        "load_capacity_matches": 0
+      },
+      "pragma_status": {
+        "integrity_check": "ok",
+        "foreign_key_check": 0
+      }
+    },
+    "B": {
+      "wave": "B",
+      "executed_at_utc": "2026-09-29T08:16:32Z",
+      "starting_hash": "160688627B44A0A6F1C0616ACC26C9D5CC12486052EFDE3E1653AE6593AC8C24",
+      "ending_hash": "CFE0E8ACD8A4D424D57DD3A7B9E167E3F9F63AEAC0A1E2BE9FEB5908A1838E80",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_B_20260929_081632.db",
+      "companies_researched": 50,
+      "companies_qualified": 50,
+      "companies_remaining_discovery": 0,
+      "new_a": 1,
+      "new_b": 49,
+      "new_c": 0,
+      "restricted_changes": 0,
+      "tier_a_before": 17,
+      "tier_a_after": 18,
+      "gap_to_100": 82,
+      "full_engine_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 193,
+        "TIER_C_SECONDARY": 7,
+        "TIER_D_RESEARCH_NEEDED": 347,
+        "RESTRICTED": 0
+      },
+      "metadata_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 193,
+        "TIER_C_SECONDARY": 7,
+        "TIER_D_RESEARCH_NEEDED": 347,
+        "RESTRICTED": 0
+      },
+      "directory_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 193,
+        "TIER_C_SECONDARY": 7,
+        "TIER_D_RESEARCH_NEEDED": 347,
+        "RESTRICTED": 0
+      },
+      "engine_equals_metadata_equals_directory": true,
+      "claim_counts": {
+        "total_claims": 2771,
+        "total_evidence_sources": 764,
+        "total_claim_evidence_links": 2774
+      },
+      "lifecycle_transitions_count": 50,
+      "outside_wave_mutations": 0,
+      "safer_only_claims": 0,
+      "orphan_claims": 0,
+      "duplicate_current_claims": 0,
+      "operational_table_counts": {
+        "outreach_logs": 0,
+        "load_opportunities": 0,
+        "freight_demand_signals": 0,
+        "capacity_postings": 0,
+        "load_capacity_matches": 0
+      },
+      "pragma_status": {
+        "integrity_check": "ok",
+        "foreign_key_check": 0
+      }
+    },
+    "C": {
+      "wave": "C",
+      "executed_at_utc": "2026-09-29T08:29:22Z",
+      "starting_hash": "CFE0E8ACD8A4D424D57DD3A7B9E167E3F9F63AEAC0A1E2BE9FEB5908A1838E80",
+      "ending_hash": "BE265FA8C1E1A5E4B4CCAE38B9B5F87AE61B28D79678B63D0450F1EC8818F07D",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_C_20260929_082922.db",
+      "companies_researched": 50,
+      "companies_qualified": 50,
+      "companies_remaining_discovery": 0,
+      "new_a": 0,
+      "new_b": 50,
+      "new_c": 0,
+      "restricted_changes": 0,
+      "tier_a_before": 18,
+      "tier_a_after": 18,
+      "gap_to_100": 82,
+      "full_engine_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 243,
+        "TIER_C_SECONDARY": 7,
+        "TIER_D_RESEARCH_NEEDED": 297,
+        "RESTRICTED": 0
+      },
+      "metadata_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 243,
+        "TIER_C_SECONDARY": 7,
+        "TIER_D_RESEARCH_NEEDED": 297,
+        "RESTRICTED": 0
+      },
+      "directory_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 243,
+        "TIER_C_SECONDARY": 7,
+        "TIER_D_RESEARCH_NEEDED": 297,
+        "RESTRICTED": 0
+      },
+      "engine_equals_metadata_equals_directory": true,
+      "claim_counts": {
+        "total_claims": 2771,
+        "total_evidence_sources": 764,
+        "total_claim_evidence_links": 2774
+      },
+      "lifecycle_transitions_count": 50,
+      "outside_wave_mutations": 0,
+      "safer_only_claims": 0,
+      "orphan_claims": 0,
+      "duplicate_current_claims": 0,
+      "operational_table_counts": {
+        "outreach_logs": 0,
+        "load_opportunities": 0,
+        "freight_demand_signals": 0,
+        "capacity_postings": 0,
+        "load_capacity_matches": 0
+      },
+      "pragma_status": {
+        "integrity_check": "ok",
+        "foreign_key_check": 0
+      }
+    },
+    "D": {
+      "wave": "D",
+      "executed_at_utc": "2026-09-29T08:35:44Z",
+      "starting_hash": "BE265FA8C1E1A5E4B4CCAE38B9B5F87AE61B28D79678B63D0450F1EC8818F07D",
+      "ending_hash": "D908312EF4C4C9979BF97FC96153616EE8336356F47BC0E1154E40DB3B9E3ED7",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_D_20260929_083544.db",
+      "companies_researched": 50,
+      "companies_qualified": 50,
+      "companies_remaining_discovery": 0,
+      "new_a": 0,
+      "new_b": 49,
+      "new_c": 1,
+      "restricted_changes": 0,
+      "tier_a_before": 18,
+      "tier_a_after": 18,
+      "gap_to_100": 82,
+      "full_engine_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 292,
+        "TIER_C_SECONDARY": 8,
+        "TIER_D_RESEARCH_NEEDED": 247,
+        "RESTRICTED": 0
+      },
+      "metadata_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 292,
+        "TIER_C_SECONDARY": 8,
+        "TIER_D_RESEARCH_NEEDED": 247,
+        "RESTRICTED": 0
+      },
+      "directory_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 292,
+        "TIER_C_SECONDARY": 8,
+        "TIER_D_RESEARCH_NEEDED": 247,
+        "RESTRICTED": 0
+      },
+      "engine_equals_metadata_equals_directory": true,
+      "claim_counts": {
+        "total_claims": 2772,
+        "total_evidence_sources": 765,
+        "total_claim_evidence_links": 2775
+      },
+      "lifecycle_transitions_count": 50,
+      "outside_wave_mutations": 0,
+      "safer_only_claims": 0,
+      "orphan_claims": 0,
+      "duplicate_current_claims": 0,
+      "operational_table_counts": {
+        "outreach_logs": 0,
+        "load_opportunities": 0,
+        "freight_demand_signals": 0,
+        "capacity_postings": 0,
+        "load_capacity_matches": 0
+      },
+      "pragma_status": {
+        "integrity_check": "ok",
+        "foreign_key_check": 0
+      }
+    },
+    "E": {
+      "wave": "E",
+      "executed_at_utc": "2026-09-29T08:47:22Z",
+      "starting_hash": "D908312EF4C4C9979BF97FC96153616EE8336356F47BC0E1154E40DB3B9E3ED7",
+      "ending_hash": "97E356EA32028714122879692F3D61BE447FF0FB7348885951EE73553631AC75",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_E_20260929_084722.db",
+      "companies_researched": 50,
+      "companies_qualified": 50,
+      "companies_remaining_discovery": 0,
+      "new_a": 0,
+      "new_b": 50,
+      "new_c": 0,
+      "restricted_changes": 0,
+      "tier_a_before": 18,
+      "tier_a_after": 18,
+      "gap_to_100": 82,
+      "full_engine_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 342,
+        "TIER_C_SECONDARY": 8,
+        "TIER_D_RESEARCH_NEEDED": 197,
+        "RESTRICTED": 0
+      },
+      "metadata_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 342,
+        "TIER_C_SECONDARY": 8,
+        "TIER_D_RESEARCH_NEEDED": 197,
+        "RESTRICTED": 0
+      },
+      "directory_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 342,
+        "TIER_C_SECONDARY": 8,
+        "TIER_D_RESEARCH_NEEDED": 197,
+        "RESTRICTED": 0
+      },
+      "engine_equals_metadata_equals_directory": true,
+      "claim_counts": {
+        "total_claims": 2772,
+        "total_evidence_sources": 765,
+        "total_claim_evidence_links": 2775
+      },
+      "lifecycle_transitions_count": 50,
+      "outside_wave_mutations": 0,
+      "safer_only_claims": 0,
+      "orphan_claims": 0,
+      "duplicate_current_claims": 0,
+      "operational_table_counts": {
+        "outreach_logs": 0,
+        "load_opportunities": 0,
+        "freight_demand_signals": 0,
+        "capacity_postings": 0,
+        "load_capacity_matches": 0
+      },
+      "pragma_status": {
+        "integrity_check": "ok",
+        "foreign_key_check": 0
+      }
+    },
+    "F": {
+      "wave": "F",
+      "executed_at_utc": "2026-09-29T08:59:42Z",
+      "starting_hash": "97E356EA32028714122879692F3D61BE447FF0FB7348885951EE73553631AC75",
+      "ending_hash": "B66D83A9CBB4E66C4D0CE7213D43C8447C0325460EF4E4248A72EBA42A8D359E",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_F_20260929_085942.db",
+      "companies_researched": 50,
+      "companies_qualified": 50,
+      "companies_remaining_discovery": 0,
+      "new_a": 1,
+      "new_b": 48,
+      "new_c": 1,
+      "restricted_changes": 0,
+      "tier_a_before": 18,
+      "tier_a_after": 19,
+      "gap_to_100": 81,
+      "full_engine_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 390,
+        "TIER_C_SECONDARY": 9,
+        "TIER_D_RESEARCH_NEEDED": 147,
+        "RESTRICTED": 0
+      },
+      "metadata_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 390,
+        "TIER_C_SECONDARY": 9,
+        "TIER_D_RESEARCH_NEEDED": 147,
+        "RESTRICTED": 0
+      },
+      "directory_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 390,
+        "TIER_C_SECONDARY": 9,
+        "TIER_D_RESEARCH_NEEDED": 147,
+        "RESTRICTED": 0
+      },
+      "engine_equals_metadata_equals_directory": true,
+      "claim_counts": {
+        "total_claims": 2774,
+        "total_evidence_sources": 767,
+        "total_claim_evidence_links": 2777
+      },
+      "lifecycle_transitions_count": 50,
+      "outside_wave_mutations": 0,
+      "safer_only_claims": 0,
+      "orphan_claims": 0,
+      "duplicate_current_claims": 0,
+      "operational_table_counts": {
+        "outreach_logs": 0,
+        "load_opportunities": 0,
+        "freight_demand_signals": 0,
+        "capacity_postings": 0,
+        "load_capacity_matches": 0
+      },
+      "pragma_status": {
+        "integrity_check": "ok",
+        "foreign_key_check": 0
+      }
+    },
+    "G": {
+      "wave": "G",
+      "executed_at_utc": "2026-09-29T09:10:45Z",
+      "starting_hash": "B66D83A9CBB4E66C4D0CE7213D43C8447C0325460EF4E4248A72EBA42A8D359E",
+      "ending_hash": "CEFA11DADA8DBAC8E6EC45BACF169688969A32DB1FA5BBC3C8831903068A41AE",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_G_20260929_091045.db",
+      "companies_researched": 50,
+      "companies_qualified": 50,
+      "companies_remaining_discovery": 0,
+      "new_a": 0,
+      "new_b": 50,
+      "new_c": 0,
+      "restricted_changes": 0,
+      "tier_a_before": 19,
+      "tier_a_after": 19,
+      "gap_to_100": 81,
+      "full_engine_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 440,
+        "TIER_C_SECONDARY": 9,
+        "TIER_D_RESEARCH_NEEDED": 97,
+        "RESTRICTED": 0
+      },
+      "metadata_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 440,
+        "TIER_C_SECONDARY": 9,
+        "TIER_D_RESEARCH_NEEDED": 97,
+        "RESTRICTED": 0
+      },
+      "directory_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 440,
+        "TIER_C_SECONDARY": 9,
+        "TIER_D_RESEARCH_NEEDED": 97,
+        "RESTRICTED": 0
+      },
+      "engine_equals_metadata_equals_directory": true,
+      "claim_counts": {
+        "total_claims": 2774,
+        "total_evidence_sources": 767,
+        "total_claim_evidence_links": 2777
+      },
+      "lifecycle_transitions_count": 50,
+      "outside_wave_mutations": 0,
+      "safer_only_claims": 0,
+      "orphan_claims": 0,
+      "duplicate_current_claims": 0,
+      "operational_table_counts": {
+        "outreach_logs": 0,
+        "load_opportunities": 0,
+        "freight_demand_signals": 0,
+        "capacity_postings": 0,
+        "load_capacity_matches": 0
+      },
+      "pragma_status": {
+        "integrity_check": "ok",
+        "foreign_key_check": 0
+      }
+    },
+    "H": {
+      "wave": "H",
+      "executed_at_utc": "2026-09-29T09:20:46Z",
+      "starting_hash": "CEFA11DADA8DBAC8E6EC45BACF169688969A32DB1FA5BBC3C8831903068A41AE",
+      "ending_hash": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_H_20260929_092046.db",
+      "companies_researched": 50,
+      "companies_qualified": 50,
+      "companies_remaining_discovery": 0,
+      "new_a": 0,
+      "new_b": 49,
+      "new_c": 1,
+      "restricted_changes": 0,
+      "tier_a_before": 19,
+      "tier_a_after": 19,
+      "gap_to_100": 81,
+      "full_engine_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 489,
+        "TIER_C_SECONDARY": 10,
+        "TIER_D_RESEARCH_NEEDED": 47,
+        "RESTRICTED": 0
+      },
+      "metadata_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 489,
+        "TIER_C_SECONDARY": 10,
+        "TIER_D_RESEARCH_NEEDED": 47,
+        "RESTRICTED": 0
+      },
+      "directory_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 489,
+        "TIER_C_SECONDARY": 10,
+        "TIER_D_RESEARCH_NEEDED": 47,
+        "RESTRICTED": 0
+      },
+      "engine_equals_metadata_equals_directory": true,
+      "claim_counts": {
+        "total_claims": 2775,
+        "total_evidence_sources": 768,
+        "total_claim_evidence_links": 2778
+      },
+      "lifecycle_transitions_count": 50,
+      "outside_wave_mutations": 0,
+      "safer_only_claims": 0,
+      "orphan_claims": 0,
+      "duplicate_current_claims": 0,
+      "operational_table_counts": {
+        "outreach_logs": 0,
+        "load_opportunities": 0,
+        "freight_demand_signals": 0,
+        "capacity_postings": 0,
+        "load_capacity_matches": 0
+      },
+      "pragma_status": {
+        "integrity_check": "ok",
+        "foreign_key_check": 0
+      }
+    },
+    "I": {
+      "wave": "I",
+      "executed_at_utc": "2026-09-29T09:37:49Z",
+      "starting_hash": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+      "ending_hash": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_I_20260929_093749.db",
+      "companies_researched": 0,
+      "companies_qualified": 0,
+      "companies_remaining_discovery": 0,
+      "new_a": 0,
+      "new_b": 0,
+      "new_c": 0,
+      "restricted_changes": 0,
+      "tier_a_before": 19,
+      "tier_a_after": 19,
+      "gap_to_100": 81,
+      "full_engine_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 489,
+        "TIER_C_SECONDARY": 10,
+        "TIER_D_RESEARCH_NEEDED": 47,
+        "RESTRICTED": 0
+      },
+      "metadata_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 489,
+        "TIER_C_SECONDARY": 10,
+        "TIER_D_RESEARCH_NEEDED": 47,
+        "RESTRICTED": 0
+      },
+      "directory_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 489,
+        "TIER_C_SECONDARY": 10,
+        "TIER_D_RESEARCH_NEEDED": 47,
+        "RESTRICTED": 0
+      },
+      "engine_equals_metadata_equals_directory": true,
+      "claim_counts": {
+        "total_claims": 2775,
+        "total_evidence_sources": 768,
+        "total_claim_evidence_links": 2778
+      },
+      "lifecycle_transitions_count": 0,
+      "outside_wave_mutations": 0,
+      "safer_only_claims": 0,
+      "orphan_claims": 0,
+      "duplicate_current_claims": 0,
+      "operational_table_counts": {
+        "outreach_logs": 0,
+        "load_opportunities": 0,
+        "freight_demand_signals": 0,
+        "capacity_postings": 0,
+        "load_capacity_matches": 0
+      },
+      "pragma_status": {
+        "integrity_check": "ok",
+        "foreign_key_check": 0
+      }
+    }
+  }
+}

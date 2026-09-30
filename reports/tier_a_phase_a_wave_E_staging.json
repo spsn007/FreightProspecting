@@ -1,0 +1,308 @@
+[
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "E",
+    "campaign_position": 101,
+    "company_id": 203,
+    "operating_brand": "Domtar",
+    "research_focus_facility_id": 245,
+    "research_focus_facility_name": "Dryden Pulp Mill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance beyond current status. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "E",
+    "campaign_position": 102,
+    "company_id": 216,
+    "operating_brand": "Reliance Steel & Aluminum",
+    "research_focus_facility_id": 261,
+    "research_focus_facility_name": "Arlington Steel Service Center",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 30,
+      "successful_200": 12,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 30 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance beyond current status. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.reliance.com",
+          "source_title": "Reliance, Inc | Global Diversified Metal Solutions &amp; Processing",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.reliance.com/about/leadership/",
+          "source_title": "Leadership Team &amp; Board of Directors | Reliance, Inc",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.reliance.com/contact",
+          "source_title": "Contact Us | Reliance, Inc",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "E",
+    "campaign_position": 103,
+    "company_id": 217,
+    "operating_brand": "O'Neal Steel",
+    "research_focus_facility_id": 262,
+    "research_focus_facility_name": "Birmingham Service Center",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 36,
+      "successful_200": 24,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 36 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance beyond current status. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.onealsteel.com",
+          "source_title": "Metal Service Center - Industrial Metal Supplier | O&#039;Neal Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.onealsteel.com/contact-us/",
+          "source_title": "Contact Us | O&#039;Neal Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.onealsteel.com/locations/",
+          "source_title": "Our Locations | National Steel Distribution | O&#039;Neal Steel",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "E",
+    "campaign_position": 104,
+    "company_id": 218,
+    "operating_brand": "Metals USA",
+    "research_focus_facility_id": 264,
+    "research_focus_facility_name": "Mobile Service Center",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 27,
+      "successful_200": 11,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "carrier_evidence": "Official capabilities page explicitly documents commercial carrier freight: 'Metals USA works in conjunction with some of the nation\u2019s largest freight carriers to deliver their material quickly and on-time. A team of common carriers also help transport the material longer distances to accommodate customers in any geographical location.'",
+      "broker_evidence": "Broker acceptance unmentioned; preserved UNKNOWN.",
+      "fleet_evidence": "Private fleet presence unmentioned; preserved UNKNOWN.",
+      "sources": [
+        {
+          "source_url": "https://www.metalsusa.com/metal-shipping-services/",
+          "source_title": "Metal Shipping Services | Metals USA",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200,
+          "is_primary": true
+        }
+      ]
+    },
+    "evaluation_decision": "PROMOTE_TO_TIER_A",
+    "proposed_changes": [
+      {
+        "company_id": 218,
+        "operating_brand": "Metals USA",
+        "facility_id": 264,
+        "field": "commercial_carrier_use",
+        "subject_type": "facility",
+        "action": "ACCEPT",
+        "old_value": "UNKNOWN",
+        "proposed_value": "VERIFIED",
+        "verification_status": "VERIFIED",
+        "source_url": "https://www.metalsusa.com/metal-shipping-services/",
+        "source_title": "Metal Shipping Services | Metals USA",
+        "source_type": "COMPANY_WEBSITE",
+        "rationale": "Official website explicitly documents partnership with freight carriers and common carriers for customer shipments."
+      }
+    ]
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "E",
+    "campaign_position": 105,
+    "company_id": 289,
+    "operating_brand": "Kepley-Frank Hardwood Co.",
+    "research_focus_facility_id": 375,
+    "research_focus_facility_name": "Lexington Hardwood Sawmill",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 22,
+      "successful_200": 2,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 22 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance beyond current status. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://kepleyfrank.us",
+          "source_title": "Kepley-Frank Hardwood Co., Inc.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://kepleyfrank.us/ContactUs.html",
+          "source_title": "Kepley-Frank Hardwood Co., Inc.",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "E",
+    "campaign_position": 106,
+    "company_id": 321,
+    "operating_brand": "Yoder Lumber Co.",
+    "research_focus_facility_id": 408,
+    "research_focus_facility_name": "Berlin Sawmill & Millwork Facility",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "SHORTLISTED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "AFFILIATED_CARRIER_ENTITY",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 2
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 21,
+      "successful_200": 0,
+      "inaccessible_or_blocked": 21
+    },
+    "findings": {
+      "summary": "Public website inspected across 21 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance beyond current status. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": []
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  },
+  {
+    "campaign": "TIER_A_ACCELERATION",
+    "phase": "PHASE_A",
+    "wave": "E",
+    "campaign_position": 107,
+    "company_id": 219,
+    "operating_brand": "Steel Dynamics",
+    "research_focus_facility_id": 267,
+    "research_focus_facility_name": "Columbia City Structural & Rail",
+    "current_state": {
+      "opportunity_tier": "TIER_B_WORTH_CALLING",
+      "lifecycle_stage": "QUALIFIED",
+      "private_fleet_present": "UNKNOWN",
+      "fleet_relationship_type": "UNKNOWN",
+      "commercial_carrier_use": "UNKNOWN",
+      "broker_friendly_status": "UNKNOWN",
+      "existing_contacts_count": 1
+    },
+    "crawler_provenance_summary": {
+      "total_attempts": 26,
+      "successful_200": 11,
+      "inaccessible_or_blocked": 0
+    },
+    "findings": {
+      "summary": "Public website inspected across 26 attempted URLs. Insufficient primary evidence to verify outside commercial carrier contracts or broker acceptance beyond current status. Maintained UNKNOWN per zero-hallucination standards.",
+      "sources": [
+        {
+          "source_url": "https://www.steeldynamics.com",
+          "source_title": "Steel Dynamics | Steel Dynamics",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.steeldynamics.com/contact-us/",
+          "source_title": "Contact Us | Steel Dynamics",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.steeldynamics.com/leadership/",
+          "source_title": "Leadership | Steel Dynamics",
+          "source_type": "COMPANY_WEBSITE",
+          "http_status": 200
+        }
+      ]
+    },
+    "evaluation_decision": "MAINTAIN_CURRENT_TIER",
+    "proposed_changes": []
+  }
+]

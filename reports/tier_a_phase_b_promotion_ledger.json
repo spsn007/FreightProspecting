@@ -1,0 +1,156 @@
+[
+  {
+    "company_id": 128,
+    "operating_brand": "Bush Concrete Products, Inc.",
+    "qualifying_facility_id": 157,
+    "starting_lifecycle": "DISCOVERY",
+    "final_lifecycle": "QUALIFIED",
+    "pre_tier": "TIER_D_RESEARCH_NEEDED",
+    "post_tier": "TIER_A_PRIORITY",
+    "qualification_transition_details": "DISCOVERY -> QUALIFIED (Wave A)",
+    "a_trigger": "COMMERCIAL_CARRIER_VERIFIED",
+    "supporting_claim_ids": [
+      701,
+      702,
+      2781
+    ],
+    "evidence_source_ids": [
+      211,
+      764
+    ],
+    "source_urls": [
+      "http://www.bushconcreteproducts.com",
+      "https://bushconcreteproducts.com/delivery-trucking/"
+    ],
+    "scope": "FACILITY",
+    "reason_codes": [
+      "VERIFIED_EXTERNAL_CAPACITY_READY",
+      "COMMERCIAL_CARRIER_CONFIRMED"
+    ],
+    "promoted_at_utc": "2026-09-29T08:00:24Z"
+  },
+  {
+    "company_id": 331,
+    "operating_brand": "Swanson Group",
+    "qualifying_facility_id": 418,
+    "starting_lifecycle": "DISCOVERY",
+    "final_lifecycle": "QUALIFIED",
+    "pre_tier": "TIER_D_RESEARCH_NEEDED",
+    "post_tier": "TIER_A_PRIORITY",
+    "qualification_transition_details": "DISCOVERY -> QUALIFIED (Wave A)",
+    "a_trigger": "COMMERCIAL_CARRIER_VERIFIED",
+    "supporting_claim_ids": [
+      1745,
+      1746,
+      2730
+    ],
+    "evidence_source_ids": [
+      472,
+      744
+    ],
+    "source_urls": [
+      "https://swansongroup.biz/locations/",
+      "https://swansongroup.biz/shipping-and-receiving/"
+    ],
+    "scope": "FACILITY",
+    "reason_codes": [
+      "VERIFIED_EXTERNAL_CAPACITY_READY",
+      "COMMERCIAL_CARRIER_CONFIRMED"
+    ],
+    "promoted_at_utc": "2026-09-29T08:00:24Z"
+  },
+  {
+    "company_id": 395,
+    "operating_brand": "Peerless Steel Co.",
+    "qualifying_facility_id": 482,
+    "starting_lifecycle": "DISCOVERY",
+    "final_lifecycle": "QUALIFIED",
+    "pre_tier": "TIER_D_RESEARCH_NEEDED",
+    "post_tier": "TIER_A_PRIORITY",
+    "qualification_transition_details": "DISCOVERY -> QUALIFIED (Wave A)",
+    "a_trigger": "COMMERCIAL_CARRIER_VERIFIED",
+    "supporting_claim_ids": [
+      2001,
+      2002,
+      2751,
+      2752,
+      2753,
+      2760
+    ],
+    "evidence_source_ids": [
+      536,
+      755
+    ],
+    "source_urls": [
+      "https://peerlesssteel.com",
+      "https://peerlesssteel.com/locations/"
+    ],
+    "scope": "FACILITY",
+    "reason_codes": [
+      "VERIFIED_EXTERNAL_CAPACITY_READY",
+      "COMMERCIAL_CARRIER_CONFIRMED",
+      "PRIVATE_FLEET_AND_CARRIER_CONFIRMED"
+    ],
+    "promoted_at_utc": "2026-09-29T08:00:24Z"
+  },
+  {
+    "company_id": 187,
+    "operating_brand": "Pike Lumber Company",
+    "qualifying_facility_id": 221,
+    "starting_lifecycle": "DISCOVERY",
+    "final_lifecycle": "QUALIFIED",
+    "pre_tier": "TIER_D_RESEARCH_NEEDED",
+    "post_tier": "TIER_A_PRIORITY",
+    "qualification_transition_details": "DISCOVERY -> QUALIFIED (Wave B)",
+    "a_trigger": "COMMERCIAL_CARRIER_VERIFIED",
+    "supporting_claim_ids": [
+      957,
+      958,
+      2782
+    ],
+    "evidence_source_ids": [
+      275,
+      765
+    ],
+    "source_urls": [
+      "https://pikelumber.com/shipping-your-hardwoods/",
+      "https://www.pikelumber.com/contact"
+    ],
+    "scope": "FACILITY",
+    "reason_codes": [
+      "VERIFIED_EXTERNAL_CAPACITY_READY",
+      "COMMERCIAL_CARRIER_CONFIRMED"
+    ],
+    "promoted_at_utc": "2026-09-29T08:16:32Z"
+  },
+  {
+    "company_id": 396,
+    "operating_brand": "Bull Moose Tube Co.",
+    "qualifying_facility_id": 483,
+    "starting_lifecycle": "DISCOVERY",
+    "final_lifecycle": "QUALIFIED",
+    "pre_tier": "TIER_D_RESEARCH_NEEDED",
+    "post_tier": "TIER_A_PRIORITY",
+    "qualification_transition_details": "DISCOVERY -> QUALIFIED (Wave F)",
+    "a_trigger": "COMMERCIAL_CARRIER_VERIFIED",
+    "supporting_claim_ids": [
+      2005,
+      2006,
+      2784
+    ],
+    "evidence_source_ids": [
+      537,
+      767
+    ],
+    "source_urls": [
+      "https://www.bullmoosetube.com/company/carrier-onboarding-application/",
+      "https://www.bullmoosetube.com/contact/"
+    ],
+    "scope": "FACILITY",
+    "reason_codes": [
+      "VERIFIED_EXTERNAL_CAPACITY_READY",
+      "COMMERCIAL_CARRIER_CONFIRMED"
+    ],
+    "promoted_at_utc": "2026-09-29T08:59:42Z"
+  }
+]

@@ -1,0 +1,3 @@
+"""
+FreightProspecting Test Suite Package
+"""

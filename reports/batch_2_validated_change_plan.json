@@ -1,0 +1,298 @@
+{
+  "title": "FreightProspecting V1 \u2014 Broker Research Batch 2 Validated Change Plan",
+  "generated_at_utc": "2026-09-29T01:05:00Z",
+  "rule_version": "1.1",
+  "total_batch_companies": 20,
+  "validation_criteria": [
+    "1. correct company",
+    "2. correct facility or legitimate company-wide scope",
+    "3. working permitted source (HTTP 200 confirmed)",
+    "4. claim actually supported by source text",
+    "5. no sibling-facility leakage",
+    "6. no carrier -> broker inference",
+    "7. no affiliate -> private-fleet inference",
+    "8. contact exactness (personal email -> DIRECT_PERSON, dept mailbox -> DEPARTMENT)",
+    "9. no SAFER-only evidence",
+    "10. no conflict with another source"
+  ],
+  "proposals": [
+    {
+      "proposal_id": 1,
+      "company_id": 104,
+      "operating_brand": "Target Steel",
+      "facility_id": 133,
+      "field": "fleet_relationship_type",
+      "old_value": "UNKNOWN",
+      "proposed_value": "AFFILIATED_CARRIER_ENTITY",
+      "claim_level": "VERIFIED",
+      "source_url": "https://www.targetsteel.net/about.html",
+      "source_title": "Target Steel - About Us",
+      "source_type": "COMPANY_WEBSITE",
+      "validation_checks": {
+        "correct_company": true,
+        "correct_scope": true,
+        "working_permitted_source": true,
+        "claim_actually_supported": true,
+        "no_sibling_leakage": true,
+        "no_carrier_to_broker_inference": true,
+        "no_affiliate_to_private_fleet_inference": true,
+        "contact_exactness": "N/A",
+        "no_safer_evidence": true,
+        "no_source_conflict": true
+      },
+      "verdict": "ACCEPT",
+      "verdict_rationale": "Official About Us page explicitly confirms affiliate carrier SST Trucking operating 25 Conestoga flatbeds. Preserves private_fleet_present as UNKNOWN."
+    },
+    {
+      "proposal_id": 2,
+      "company_id": 32,
+      "operating_brand": "Coreslab Structures (ONT) Inc.",
+      "facility_id": 31,
+      "target_contact_id": 38,
+      "field": "contacts[38].email_address",
+      "old_value": "SalesOntario@coreslab.com",
+      "proposed_value": "jdavidson@coreslab.com",
+      "claim_level": "VERIFIED",
+      "source_url": "https://www.coreslab.com/locations/dundas-ontario-canada-precast-concrete/",
+      "source_title": "Coreslab Structures (ONT) Inc. Dundas Location",
+      "source_type": "COMPANY_WEBSITE",
+      "validation_checks": {
+        "correct_company": true,
+        "correct_scope": true,
+        "working_permitted_source": true,
+        "claim_actually_supported": true,
+        "no_sibling_leakage": true,
+        "no_carrier_to_broker_inference": true,
+        "no_affiliate_to_private_fleet_inference": true,
+        "contact_exactness": true,
+        "no_safer_evidence": true,
+        "no_source_conflict": true
+      },
+      "verdict": "ACCEPT",
+      "verdict_rationale": "Official Dundas location page publishes Jordan Davidson's personal corporate email address."
+    },
+    {
+      "proposal_id": 3,
+      "company_id": 32,
+      "operating_brand": "Coreslab Structures (ONT) Inc.",
+      "facility_id": 31,
+      "target_contact_id": 38,
+      "field": "contacts[38].email_directness",
+      "old_value": "DEPARTMENT",
+      "proposed_value": "DIRECT_PERSON",
+      "claim_level": "VERIFIED",
+      "source_url": "https://www.coreslab.com/locations/dundas-ontario-canada-precast-concrete/",
+      "source_title": "Coreslab Structures (ONT) Inc. Dundas Location",
+      "source_type": "COMPANY_WEBSITE",
+      "validation_checks": {
+        "correct_company": true,
+        "correct_scope": true,
+        "working_permitted_source": true,
+        "claim_actually_supported": true,
+        "no_sibling_leakage": true,
+        "no_carrier_to_broker_inference": true,
+        "no_affiliate_to_private_fleet_inference": true,
+        "contact_exactness": true,
+        "no_safer_evidence": true,
+        "no_source_conflict": true
+      },
+      "verdict": "ACCEPT",
+      "verdict_rationale": "Direct personal email for named sales manager conforms to DIRECT_PERSON standards."
+    },
+    {
+      "proposal_id": 4,
+      "company_id": 48,
+      "operating_brand": "Interfor",
+      "facility_id": 51,
+      "field": "commercial_carrier_use",
+      "old_value": "UNKNOWN",
+      "proposed_value": "VERIFIED",
+      "claim_level": "VERIFIED",
+      "source_url": "https://interfor.com/terms-and-conditions/",
+      "source_title": "Interfor Carrier Terms and Conditions",
+      "source_type": "COMPANY_WEBSITE",
+      "validation_checks": {
+        "correct_company": true,
+        "correct_scope": true,
+        "working_permitted_source": true,
+        "claim_actually_supported": true,
+        "no_sibling_leakage": true,
+        "no_carrier_to_broker_inference": true,
+        "no_affiliate_to_private_fleet_inference": true,
+        "contact_exactness": "N/A",
+        "no_safer_evidence": true,
+        "no_source_conflict": true
+      },
+      "verdict": "ACCEPT",
+      "verdict_rationale": "Interfor officially publishes Carrier Terms and Conditions governing commercial motor carriers for freight transportation on rate confirmations. Applied to focus facility 51 with 0 sibling-facility leakage to facilities 64, 79, 80."
+    },
+    {
+      "proposal_id": 5,
+      "company_id": 134,
+      "operating_brand": "Northern Concrete Pipe, Inc.",
+      "facility_id": 163,
+      "field": "private_fleet_present",
+      "old_value": "UNKNOWN",
+      "proposed_value": "VERIFIED_PRESENT",
+      "claim_level": "VERIFIED",
+      "source_url": "https://www.ncp-inc.com/delivery-policy/",
+      "source_title": "Northern Concrete Pipe Delivery Policy",
+      "source_type": "COMPANY_WEBSITE",
+      "validation_checks": {
+        "correct_company": true,
+        "correct_scope": true,
+        "working_permitted_source": true,
+        "claim_actually_supported": true,
+        "no_sibling_leakage": true,
+        "no_carrier_to_broker_inference": true,
+        "no_affiliate_to_private_fleet_inference": true,
+        "contact_exactness": "N/A",
+        "no_safer_evidence": true,
+        "no_source_conflict": true
+      },
+      "verdict": "ACCEPT",
+      "verdict_rationale": "Official delivery policy states deliveries are made via company motor trucks with 50-ft boom flatbed trailers, maintaining an operated fleet."
+    },
+    {
+      "proposal_id": 6,
+      "company_id": 134,
+      "operating_brand": "Northern Concrete Pipe, Inc.",
+      "facility_id": 163,
+      "field": "fleet_relationship_type",
+      "old_value": "UNKNOWN",
+      "proposed_value": "IN_HOUSE_OWNED",
+      "claim_level": "VERIFIED",
+      "source_url": "https://www.ncp-inc.com/delivery-policy/",
+      "source_title": "Northern Concrete Pipe Delivery Policy",
+      "source_type": "COMPANY_WEBSITE",
+      "validation_checks": {
+        "correct_company": true,
+        "correct_scope": true,
+        "working_permitted_source": true,
+        "claim_actually_supported": true,
+        "no_sibling_leakage": true,
+        "no_carrier_to_broker_inference": true,
+        "no_affiliate_to_private_fleet_inference": true,
+        "contact_exactness": "N/A",
+        "no_safer_evidence": true,
+        "no_source_conflict": true
+      },
+      "verdict": "ACCEPT",
+      "verdict_rationale": "Official policy states 'We maintain and operate our fleet of specialized delivery vehicles', meeting IN_HOUSE_OWNED standard."
+    },
+    {
+      "proposal_id": 7,
+      "company_id": 331,
+      "operating_brand": "Swanson Group",
+      "facility_id": 418,
+      "field": "commercial_carrier_use",
+      "old_value": "UNKNOWN",
+      "proposed_value": "VERIFIED",
+      "claim_level": "VERIFIED",
+      "source_url": "https://swansongroup.biz/shipping-and-receiving/",
+      "source_title": "Swanson Group Shipping and Receiving Instructions",
+      "source_type": "COMPANY_WEBSITE",
+      "validation_checks": {
+        "correct_company": true,
+        "correct_scope": true,
+        "working_permitted_source": true,
+        "claim_actually_supported": true,
+        "no_sibling_leakage": true,
+        "no_carrier_to_broker_inference": true,
+        "no_affiliate_to_private_fleet_inference": true,
+        "contact_exactness": "N/A",
+        "no_safer_evidence": true,
+        "no_source_conflict": true
+      },
+      "verdict": "ACCEPT",
+      "verdict_rationale": "Official Glendale Mill shipping instructions mandate outside commercial carriers schedule pickup/delivery appointments via Opendock. Broker friendly status strictly remains UNKNOWN."
+    }
+  ],
+  "unchanged_companies": [
+    {
+      "company_id": 43,
+      "operating_brand": "Jones Plastic & Engineering Company, LLC",
+      "rationale": "Direct executive contact discovered; fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 36,
+      "operating_brand": "Cavalier Tool & Manufacturing Ltd.",
+      "rationale": "Heavy-haul molds and US warehouse documented; fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 24,
+      "operating_brand": "AmeriSteel",
+      "rationale": "Processing confirmed; fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 11,
+      "operating_brand": "Andersen Pacific Forest Products Ltd.",
+      "rationale": "Specialty sawmill confirmed; fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 92,
+      "operating_brand": "Ratner Steel Supply",
+      "rationale": "Portage steel facility confirmed; fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 108,
+      "operating_brand": "AE Concrete Products Ltd.",
+      "rationale": "Precast infrastructure products confirmed; fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 12,
+      "operating_brand": "Mill & Timber Products Ltd. / AP Group",
+      "rationale": "Surrey cedar sawmill confirmed; fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 41,
+      "operating_brand": "PTI Engineered Plastics",
+      "rationale": "Molding facility confirmed; fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 115,
+      "operating_brand": "Brooklin Concrete Products",
+      "rationale": "Precast delivery operations noted; linehaul fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 52,
+      "operating_brand": "Varn Wood Products",
+      "rationale": "Lumber shipping manager discovered; fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 143,
+      "operating_brand": "Dunnage Engineering",
+      "rationale": "Returnable packaging confirmed; fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 89,
+      "operating_brand": "H&H Metal Source",
+      "rationale": "Grand Rapids distribution center confirmed; fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 146,
+      "operating_brand": "Delta Technologies LLC",
+      "rationale": "Tooling plant confirmed; fleet, carrier, and broker remain UNKNOWN."
+    },
+    {
+      "company_id": 379,
+      "operating_brand": "Benjamin Steel Company",
+      "rationale": "Website returned HTTP 403. Zero hallucination invariant: all fields remain UNKNOWN."
+    },
+    {
+      "company_id": 130,
+      "operating_brand": "Stubbe's Precast",
+      "rationale": "Website returned HTTP 403. Zero hallucination invariant: all fields remain UNKNOWN."
+    }
+  ],
+  "summary": {
+    "total_proposals": 7,
+    "accepted": 7,
+    "downgraded_to_inferred": 0,
+    "kept_unknown": 0,
+    "rejected": 0,
+    "outside_roster_mutations": 0,
+    "lifecycle_mutations": 0,
+    "safer_claims_introduced": 0
+  }
+}

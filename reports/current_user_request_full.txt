@@ -1,0 +1,1376 @@
+<USER_REQUEST>
+/teamwork-preview
+
+FREIGHTPROSPECTING — TIER A ACCELERATION CAMPAIGN
+PHASE B — DISCOVERY → QUALIFIED + TIER A EVIDENCE
+AUTONOMOUS MASTER EXECUTION
+
+WORKSPACE:
+D:\FreightProspecting
+
+==========================================================
+CAMPAIGN GOAL
+==========================================================
+
+The highest-priority project objective remains:
+
+AUTHORITATIVE TIER A >= 100 COMPANIES
+
+Current independently frozen production state:
+
+Tier A = 14
+Tier B = 99
+Tier C = 7
+Tier D = 445
+Restricted = 0
+Total operating companies = 565
+
+Required additional Tier A companies:
+
+86
+
+Current frozen production SHA-256:
+
+FE73DC3F051A7AEE7FC83ED7E0D7DF2CA05EFEE9C9C2629001327B551AF104DF
+
+Phase A:
+CLOSED / INDEPENDENTLY AUDITED / FROZEN
+
+Phase B may now begin.
+
+==========================================================
+PHASE B OBJECTIVE
+==========================================================
+
+Use the current 445 Tier D companies as the research universe.
+
+The objective is NOT:
+
+"promote 86 companies."
+
+The objective is:
+
+research enough current Tier D companies so that truthful lifecycle
+qualification + truthful carrier/broker evidence causes the AUTHORITATIVE
+ENGINE to reach Tier A >= 100.
+
+Tier A must always remain an OUTPUT.
+
+Never assign Tier A manually.
+
+Never weaken Qualification rules.
+
+Never weaken evidence standards.
+
+Never make a company Qualified merely because Tier A needs to grow.
+
+==========================================================
+STOP CONDITIONS
+==========================================================
+
+STOP CONDITION 1:
+
+After a safely committed wave, authoritative Tier A >= 100.
+
+If reached:
+
+STOP Phase B immediately.
+
+Do not research remaining companies merely to exceed 100.
+
+
+STOP CONDITION 2:
+
+All frozen Phase B Tier D companies exhausted and Tier A < 100.
+
+If reached:
+
+finish Phase B and report exact remaining gap.
+
+Do NOT automatically start new-company discovery / Phase C.
+
+==========================================================
+BASELINE VALIDATION
+==========================================================
+
+Before any work:
+
+calculate:
+
+SHA-256(data/prospects.db)
+
+Required:
+
+FE73DC3F051A7AEE7FC83ED7E0D7DF2CA05EFEE9C9C2629001327B551AF104DF
+
+Run:
+
+PRAGMA integrity_check;
+PRAGMA foreign_key_check;
+
+Required:
+
+ok
+0
+
+Run authoritative opportunity classification.
+
+Required:
+
+A 14
+B 99
+C 7
+D 445
+Restricted 0
+ALL 565
+
+Verify exact tier ID-set equality across:
+
+authoritative engine
+get_universe_metadata
+Master Directory
+
+If any starting invariant fails:
+
+STOP WITHOUT MUTATION.
+
+==========================================================
+FREEZE THE PHASE B UNIVERSE
+==========================================================
+
+Freeze exactly every company that is:
+
+TIER_D_RESEARCH_NEEDED
+
+at the Phase B starting baseline.
+
+Expected:
+
+445 unique companies.
+
+Create:
+
+reports/tier_a_acceleration_phase_b_roster.json
+reports/tier_a_acceleration_phase_b_roster.csv
+
+No Tier A/B/C/Restricted companies may enter this roster.
+
+No new company discovery.
+
+No universe expansion.
+
+==========================================================
+USE EXISTING PHASE B ANALYSIS
+==========================================================
+
+Existing artifact:
+
+reports/tier_a_acceleration_phase_b_candidate_analysis.json
+
+may be used as planning context.
+
+However:
+
+recompute the authoritative current Tier D universe from the newly frozen
+FE73DC... baseline.
+
+Do not blindly trust stale counts or rankings.
+
+==========================================================
+FIRST TASK — FREEZE THE QUALIFICATION GATE
+==========================================================
+
+Before researching companies, determine the EXACT CURRENT lifecycle
+Qualification rules already established by this project.
+
+Inspect:
+
+production code
+lifecycle services
+existing tests
+frozen project semantics
+
+Do NOT invent a new Qualification definition.
+
+Create:
+
+reports/tier_a_phase_b_qualification_gate.json
+
+Document:
+
+- exact factual criteria required for DISCOVERY → QUALIFIED
+- source/code/test authority for each criterion
+- facts that are NOT required
+- conditions that block qualification
+- whether any criterion is facility-specific
+- how exclusions/restrictions apply
+
+The campaign must use this frozen gate for every company.
+
+Do NOT change Qualification semantics during Phase B.
+
+==========================================================
+NO AUTOMATIC SHORTLISTING
+==========================================================
+
+Phase B may advance:
+
+DISCOVERY → QUALIFIED
+
+when the factual gate passes.
+
+DO NOT automatically advance:
+
+QUALIFIED → SHORTLISTED.
+
+Shortlisted means active outreach selection.
+
+It is unnecessary for this research campaign.
+
+Expected lifecycle transitions in Phase B are therefore primarily:
+
+DISCOVERY → QUALIFIED
+
+or:
+
+DISCOVERY remains DISCOVERY.
+
+==========================================================
+DUAL-GATE RESEARCH MODEL
+==========================================================
+
+Each company is evaluated against TWO independent gates.
+
+--------------------------------
+GATE 1 — QUALIFICATION READINESS
+--------------------------------
+
+Determine whether the company/focus facility satisfies the existing frozen
+Qualification gate.
+
+Use existing accepted evidence where adequate.
+
+Research missing or stale facts only when necessary.
+
+Examples of relevant readiness truth may include, according to the existing
+project rules:
+
+- current operating facility
+- eligible geography
+- target industrial commodity
+- FTL equipment fit
+- callable/public outreach route
+- meaningful provenance
+- exclusion status
+- exact facility identity
+
+BUT:
+
+the authoritative project Qualification rules control.
+
+Do not substitute this example list for the actual rules.
+
+
+--------------------------------
+GATE 2 — TIER A TRIGGER
+--------------------------------
+
+Research:
+
+commercial_carrier_use
+
+and:
+
+broker_friendly_status
+
+at the correct scope.
+
+Priority is FACILITY-SPECIFIC evidence because current opportunity semantics
+are facility-driven.
+
+Company-level truth is still valuable and should be stored correctly, but
+must NOT be narrowed to a facility merely to trigger Tier A.
+
+==========================================================
+RESEARCH PRIORITY
+==========================================================
+
+Rank the frozen 445 companies deterministically.
+
+Do NOT use an AI probability score.
+
+Highest priority should be companies whose CURRENT database state indicates
+the shortest truthful path to A.
+
+Suggested priority classes:
+
+PRIORITY 0
+
+Tier D companies where a facility already has:
+
+commercial_carrier_use = VERIFIED
+
+or:
+
+broker_friendly_status = VERIFIED_ACCEPTS
+
+but remains Discovery.
+
+These may need primarily lifecycle qualification.
+
+PRIORITY 1
+
+Companies where the Qualification gate appears already satisfied from
+existing supported truth but lifecycle is still Discovery.
+
+Revalidate truth and lifecycle eligibility.
+
+PRIORITY 2
+
+Companies missing only one Qualification fact and where facility-specific
+shipping/carrier sources are available.
+
+PRIORITY 3
+
+Companies with:
+
+official facility web presence
+strong FTL fit
+usable route
+clear industrial shipping activity
+
+but unresolved carrier/broker truth.
+
+PRIORITY 4
+
+remaining Tier D companies.
+
+Stable tie-break:
+
+company_id ascending.
+
+Create explicit:
+
+priority_class
+missing_qualification_items
+existing_A_trigger_facts
+research_reason
+
+in the roster.
+
+==========================================================
+WAVE STRUCTURE
+==========================================================
+
+This is one campaign, not nine independent business batches.
+
+Engineering checkpoints:
+
+Wave A = positions 1–50
+Wave B = 51–100
+Wave C = 101–150
+Wave D = 151–200
+Wave E = 201–250
+Wave F = 251–300
+Wave G = 301–350
+Wave H = 351–400
+Wave I = 401–445
+
+After EACH safely committed wave:
+
+recompute authoritative Tier A.
+
+If A >= 100:
+
+STOP.
+
+Do not start the next wave.
+
+==========================================================
+SAFE PARALLEL RESEARCH
+==========================================================
+
+MAXIMIZE SAFE PARALLELISM, NOT AGENT COUNT.
+
+For a 50-company wave use approximately:
+
+10 research tracks × 5 companies
+
+when useful.
+
+Each track may:
+
+browse
+search
+read official pages
+inspect official PDFs
+inspect evidence already in SQLite
+prepare staged factual proposals
+
+Parallel tracks MUST NOT mutate production SQLite.
+
+One serialized validation/integration process performs production writes.
+
+==========================================================
+PER-COMPANY RESEARCH ORDER
+==========================================================
+
+For every company:
+
+FIRST:
+inspect current SQLite and current accepted evidence.
+
+Do not rediscover facts already supported.
+
+
+SECOND:
+resolve Qualification-gate gaps.
+
+
+THIRD:
+research facility-specific A-trigger evidence.
+
+
+FOURTH:
+only if facility-specific evidence cannot be found, research company-level
+carrier/broker context and store it at company scope.
+
+Never narrow it artificially.
+
+==========================================================
+FACILITY-FIRST A-TRIGGER SEARCH
+==========================================================
+
+Prioritize official sources that explicitly identify the focus facility:
+
+facility location page
+shipping/receiving page
+truck appointment page
+routing guide
+dock instructions
+carrier onboarding page
+carrier scheduling system
+vendor routing PDF
+traffic department page
+facility logistics PDF
+plant-specific terms
+pickup/delivery instructions
+
+Useful concepts:
+
+carrier
+common carrier
+contract carrier
+outside carrier
+third-party carrier
+motor carrier
+freight
+truckload
+routing
+dispatch
+shipping
+receiving
+traffic
+carrier appointment
+carrier onboarding
+broker
+3PL
+
+==========================================================
+COMMERCIAL CARRIER STANDARD
+==========================================================
+
+Set:
+
+commercial_carrier_use = VERIFIED
+
+only when evidence establishes actual usage of:
+
+outside carriers
+common carriers
+commercial carriers
+contract carriers
+third-party motor carriers
+
+or clearly equivalent commercial capacity.
+
+Strong:
+
+"We use common carriers"
+
+"approved carriers"
+
+"carrier onboarding"
+
+"carrier scheduling"
+
+"outside carrier"
+
+"contracted carriers"
+
+facility routing instructions directed to carriers
+
+Weak and insufficient alone:
+
+freight charges
+FOB terms
+generic truck references
+customer pickup
+buyer-selected carrier
+risk-of-loss clauses
+generic shipping language
+
+==========================================================
+BROKER ACCEPTANCE STANDARD
+==========================================================
+
+Set:
+
+broker_friendly_status = VERIFIED_ACCEPTS
+
+only if evidence explicitly supports:
+
+freight broker
+brokerage
+broker
+3PL
+third-party logistics provider
+
+as an ACCEPTED/USED capacity type.
+
+Do NOT infer broker acceptance from:
+
+common carrier
+commercial carrier
+motor carrier
+outside trucker
+transport company
+
+Carrier != broker.
+
+Providing 3PL service != accepting a 3PL.
+
+==========================================================
+DIRECT-ONLY STANDARD
+==========================================================
+
+If primary evidence says:
+
+no brokers
+asset only
+direct carrier only
+no 3PL
+
+record exact supported scope.
+
+FACILITY DIRECT_ONLY
+!=
+COMPANY DIRECT_ONLY.
+
+Do not contaminate siblings.
+
+==========================================================
+PRIVATE FLEET
+==========================================================
+
+Do not treat private fleet as automatic exclusion.
+
+If source shows:
+
+company-owned trucks
+our own fleet
+our own trucks
+
+verify private fleet truth at supported scope.
+
+Then separately determine whether outside carrier use also exists.
+
+Private fleet + outside carriers can still be a strong prospect.
+
+==========================================================
+COMPANY VS FACILITY — ABSOLUTE RULE
+==========================================================
+
+Never repeat the Worthington/Metals Phase A error.
+
+Company-wide source:
+
+supports company truth.
+
+It DOES NOT automatically support:
+
+one facility
+
+or:
+
+every facility.
+
+Facility field becomes VERIFIED only when:
+
+A)
+source explicitly names/applies to facility
+
+OR
+
+B)
+policy clearly states it applies to all relevant facilities.
+
+Otherwise:
+
+store company-level claim only.
+
+If current engine does not consume that company-level claim:
+
+accept the resulting lower tier.
+
+DO NOT change engine semantics to inflate A.
+
+==========================================================
+LIFECYCLE QUALIFICATION
+==========================================================
+
+When Gate 1 passes:
+
+stage a proposed lifecycle transition:
+
+DISCOVERY → QUALIFIED
+
+The transition must include:
+
+facility_id
+old_stage
+new_stage
+qualification_gate_results
+supporting claim IDs
+supporting evidence IDs
+validation result
+reason
+
+Do not write lifecycle immediately.
+
+It must pass the serialized validation gate.
+
+==========================================================
+QUALIFICATION MUST NOT DEPEND ON A-TIER SUCCESS
+==========================================================
+
+A company may legitimately become:
+
+DISCOVERY → QUALIFIED → Tier B
+
+or:
+
+DISCOVERY → QUALIFIED → Tier C
+
+if Qualification succeeds but A evidence does not.
+
+That is acceptable.
+
+Do not keep a genuinely Qualified company in Discovery simply because it
+failed to reach Tier A.
+
+Likewise:
+
+do not qualify a company merely because strong carrier evidence exists.
+
+The gates are independent.
+
+==========================================================
+EXCLUSIONS
+==========================================================
+
+Preserve project exclusions:
+
+hazmat
+jewelry
+live animals
+fish/seafood
+reefer/temp-controlled target businesses
+Mexico
+Hawaii
+Alaska default V1
+
+If research reveals a candidate actually violates scope:
+
+do not qualify it.
+
+Record exclusion truth carefully.
+
+==========================================================
+CONTACT RESEARCH — MINIMAL
+==========================================================
+
+Do not spend campaign time hunting named executives unless needed.
+
+The current D universe already has callable routes.
+
+Contacts are secondary.
+
+Add/update contact only when:
+
+- official source directly publishes it
+- it materially improves freight/logistics outreach
+- exact title/directness can be supported
+
+Never guess:
+
+email
+extension
+directness
+decision authority
+broker procurement responsibility
+
+==========================================================
+RESEARCH BUDGET
+==========================================================
+
+Keep research bounded.
+
+Default per company:
+
+existing evidence inspection
++
+targeted search queries
++
+roughly 8–12 meaningful official page/PDF fetches
+
+unless a clearly promising evidence chain justifies more.
+
+If no qualifying evidence appears:
+
+preserve UNKNOWN
+continue.
+
+Do not let one company stall the wave.
+
+==========================================================
+PROVENANCE
+==========================================================
+
+Every new VERIFIED fact must have machine-auditable provenance.
+
+Capture:
+
+attempted_url
+requested_at_utc
+http_status
+final_url
+dns_status
+access_status
+content_type
+response_length
+page_title
+content_sha256
+source_type
+result
+
+Failed fetch:
+
+NOT evidence.
+
+Search snippet:
+
+NOT evidence.
+
+Google:
+
+SEARCH_DISCOVERY only.
+
+==========================================================
+STAGING
+==========================================================
+
+Create for every wave:
+
+reports/tier_a_phase_b_wave_A_staging.json
+...
+reports/tier_a_phase_b_wave_I_staging.json
+
+Each company must include:
+
+campaign_position
+company_id
+operating_brand
+focus_facility_id
+pre_lifecycle
+pre_tier
+
+qualification_gate:
+criterion-by-criterion result
+
+qualification_proposal
+
+commercial_carrier_before
+commercial_carrier_proposed
+
+broker_before
+broker_proposed
+
+private_fleet_before
+private_fleet_proposed
+
+company_scope_findings
+facility_scope_findings
+
+sources_attempted
+sources_fetched
+sources_blocked
+
+proposed_claims
+proposed_contacts
+
+expected_engine_effect
+
+Do not manually assign expected Tier A.
+
+==========================================================
+VALIDATION GATE
+==========================================================
+
+After parallel research:
+
+one serialized validation pass.
+
+Each factual proposal:
+
+ACCEPT
+KEEP_UNKNOWN
+DOWNGRADE_TO_INFERRED
+REJECT
+CONTRADICTION_REVIEW
+
+Each lifecycle proposal:
+
+QUALIFY
+KEEP_DISCOVERY
+BLOCKED_BY_MISSING_FACT
+EXCLUDED
+
+Validate:
+
+correct company
+correct facility
+correct source scope
+working source
+exact factual support
+carrier != broker
+company != facility
+sibling truth separated
+no false contact directness
+no SAFER-only verification
+no unsupported lifecycle criterion
+
+Create:
+
+reports/tier_a_phase_b_wave_<X>_change_plan.json
+
+==========================================================
+BACKUPS
+==========================================================
+
+Before every wave mutation create:
+
+data/backups/
+prospects_backup_pre_tier_a_phase_b_wave_<X>_<timestamp>.db
+
+Verify backup SHA == active DB SHA.
+
+==========================================================
+ATOMIC SERIALIZED INTEGRATION
+==========================================================
+
+Only validated ACCEPT/QUALIFY entries may mutate SQLite.
+
+Use:
+
+append-only claims
+append-only evidence
+correct source scope
+atomic transaction
+
+Lifecycle changes must be exact:
+
+DISCOVERY → QUALIFIED only
+
+unless a pre-existing project rule explicitly requires something else.
+
+NO automatic Shortlisted.
+
+==========================================================
+TIER A PROMOTION LEDGER
+==========================================================
+
+Maintain:
+
+reports/tier_a_phase_b_promotion_ledger.json
+reports/tier_a_phase_b_promotion_ledger.csv
+
+Only include companies whose authoritative post-wave result is:
+
+TIER_A_PRIORITY
+
+For every promotion:
+
+company_id
+operating_brand
+qualifying_facility_id
+
+starting_lifecycle
+final_lifecycle
+
+pre_tier
+post_tier
+
+qualification_transition_id/details
+
+A trigger:
+COMMERCIAL_CARRIER_VERIFIED
+BROKER_ACCEPTS
+BOTH
+
+supporting claim IDs
+evidence IDs
+source URLs
+
+scope
+
+authoritative engine reason codes
+
+==========================================================
+LIFECYCLE TRANSITION LEDGER
+==========================================================
+
+Maintain separately:
+
+reports/tier_a_phase_b_lifecycle_ledger.json
+reports/tier_a_phase_b_lifecycle_ledger.csv
+
+Every DISCOVERY → QUALIFIED transition:
+
+company
+facility
+criteria passed
+claim IDs
+evidence IDs
+timestamp
+resulting opportunity tier
+
+This will let OpenCode audit lifecycle changes without re-researching every
+unchanged company.
+
+==========================================================
+NON-A RESULTS
+==========================================================
+
+Track separately:
+
+QUALIFIED_TO_B
+QUALIFIED_TO_C
+REMAINS_DISCOVERY
+EXCLUDED
+RESTRICTED
+NO_NEW_EVIDENCE
+
+Do not hide non-A outcomes.
+
+==========================================================
+WAVE CHECKPOINTS
+==========================================================
+
+After every wave create:
+
+reports/tier_a_phase_b_wave_<X>_checkpoint.json
+
+Include:
+
+starting hash
+ending hash
+backup path
+
+companies researched
+companies qualified
+companies remaining Discovery
+
+new A
+new B
+new C
+Restricted changes
+
+Tier A before
+Tier A after
+gap to 100
+
+full engine distribution
+metadata distribution
+directory distribution
+
+engine == metadata == directory
+
+claim counts
+lifecycle transitions
+outside-wave mutations
+SAFER-only claims
+orphans
+duplicates
+operational counts
+PRAGMA
+
+==========================================================
+EARLY STOP
+==========================================================
+
+After each safely integrated wave:
+
+if authoritative A >= 100:
+
+STOP.
+
+Do not execute remaining waves.
+
+Mark unresearched roster companies as:
+
+NOT_RESEARCHED_TARGET_REACHED
+
+==========================================================
+FAILURE RECOVERY
+==========================================================
+
+If any wave causes:
+
+DB corruption
+unexpected lifecycle transition
+scope leakage
+engine-directory mismatch
+outside-roster mutation
+claim invariant failure
+
+restore pre-wave backup.
+
+Correct plan.
+
+Retry maximum twice.
+
+If still unsafe:
+
+BLOCKED_SAFE
+
+Do not continue from an unsafe DB.
+
+==========================================================
+NO UNIVERSE EXPANSION
+==========================================================
+
+Phase B uses current 445 Tier D companies only.
+
+Do NOT:
+
+add companies
+add discovery facilities for new companies
+start Stage 3H expansion
+start Phase C
+
+If D pool is exhausted and A < 100:
+
+finish Phase B and report remaining gap.
+
+==========================================================
+PRODUCTION CODE FREEZE
+==========================================================
+
+Do NOT modify opportunity-engine semantics to increase Tier A.
+
+Do NOT modify directory semantics.
+
+Do NOT modify lifecycle rules.
+
+Prefer ZERO production-code changes.
+
+If genuine code defect blocks execution:
+
+record:
+
+PRODUCTION_CODE_BLOCKER
+
+and stop that path.
+
+Do not silently refactor.
+
+==========================================================
+TEST POLICY
+==========================================================
+
+Do not rewrite old frozen tests simply because counts changed.
+
+Prior Batch 1/2/3 and Phase A frozen tests must continue to run against
+their frozen backups.
+
+Create new Phase B tests separately.
+
+Test:
+
+new factual claims
+lifecycle transition rules
+scope correctness
+new A promotions
+engine/metadata/directory parity
+tier exclusivity
+operational zeros
+
+Run full:
+
+.venv\Scripts\pytest -q
+
+Current frozen baseline:
+
+459 passed
+0 failed
+
+==========================================================
+GLOBAL INVARIANTS
+==========================================================
+
+After every wave and final run:
+
+PRAGMA integrity_check = ok
+foreign_key_check = 0
+
+SAFER-only active VERIFIED claims = 0
+
+orphan claims = 0
+orphan claim_evidence = 0
+
+duplicate current accepted groups = 0
+
+outside Phase B roster factual mutations = 0
+
+operational tables = 0
+
+engine == metadata == directory
+
+all 565 companies in exactly one opportunity tier
+
+==========================================================
+FINAL PHASE B ARTIFACTS
+==========================================================
+
+Generate:
+
+reports/tier_a_acceleration_phase_b_result.json
+reports/tier_a_acceleration_phase_b_result.csv
+
+reports/tier_a_acceleration_phase_b_audit_ledger.json
+
+reports/tier_a_phase_b_promotion_ledger.json
+reports/tier_a_phase_b_promotion_ledger.csv
+
+reports/tier_a_phase_b_lifecycle_ledger.json
+reports/tier_a_phase_b_lifecycle_ledger.csv
+
+If A < 100 after all 445:
+
+create:
+
+reports/tier_a_acceleration_phase_c_gap_analysis.json
+
+using current SQLite only.
+
+NO Phase C research.
+
+==========================================================
+FINAL REPORT
+==========================================================
+
+Return:
+
+TIER A ACCELERATION CAMPAIGN — PHASE B
+
+STATUS:
+TARGET REACHED / D POOL EXHAUSTED / PARTIAL / BLOCKED
+
+STARTING FROZEN HASH:
+
+FE73DC3F051A7AEE7FC83ED7E0D7DF2CA05EFEE9C9C2629001327B551AF104DF
+
+FINAL CANDIDATE HASH
+
+STARTING DISTRIBUTION:
+
+A 14
+B 99
+C 7
+D 445
+Restricted 0
+
+FROZEN PHASE B ROSTER:
+445
+
+RESEARCHED:
+x / 445
+
+QUALIFIED:
+x
+
+REMAINED DISCOVERY:
+x
+
+NEW TIER A:
+x
+
+NEW TIER B:
+x
+
+NEW TIER C:
+x
+
+FINAL TIER A:
+x
+
+TARGET 100 REACHED:
+YES / NO
+
+GAP TO 100:
+x
+
+For each NEW Tier A:
+
+company
+facility
+starting lifecycle
+final lifecycle
+pre-tier
+post-tier
+carrier trigger
+broker trigger
+claim IDs
+evidence IDs
+source URLs
+
+LIFECYCLE TRANSITIONS:
+count
+
+DISCOVERY → QUALIFIED:
+count
+
+QUALIFIED BUT NOT A:
+count
+
+COMPANY-SCOPE CARRIER FINDINGS:
+count
+
+FACILITY-SCOPE CARRIER FINDINGS:
+count
+
+BROKER ACCEPTS FINDINGS:
+count
+
+DIRECT_ONLY FINDINGS:
+count
+
+PRIVATE FLEET FINDINGS:
+count
+
+EXCLUDED:
+count
+
+NO-NEW-EVIDENCE:
+count
+
+ACCESS BLOCKED:
+count
+
+WAVE A through Wave I:
+researched
+qualified
+new A
+new B
+new C
+hash before
+hash after
+status
+
+FINAL ENGINE DISTRIBUTION
+
+FINAL METADATA DISTRIBUTION
+
+FINAL DIRECTORY DISTRIBUTION
+
+ENGINE == METADATA == DIRECTORY:
+YES / NO
+
+OVERLAP:
+count
+
+LIFECYCLE LEDGER PATH
+
+PROMOTION LEDGER PATH
+
+OUTSIDE-SCOPE MUTATIONS
+
+SAFER-ONLY CLAIMS
+
+ORPHANS
+
+DUPLICATE CURRENT CLAIMS
+
+OPERATIONAL TABLE COUNTS
+
+PYTEST
+
+PRAGMA
+
+ALL BACKUP PATHS
+
+FINAL CANDIDATE SHA-256
+
+If target not reached:
+
+PHASE C GAP ANALYSIS PATH
+
+==========================================================
+FINAL CONFIRMATIONS
+==========================================================
+
+Confirm:
+
+Tier A was never manually assigned.
+
+Qualification rules were not weakened.
+
+No automatic Shortlisting occurred.
+
+Carrier did not imply broker.
+
+Company evidence was not narrowed to facility scope.
+
+Sibling facility truth remained separate.
+
+Every lifecycle transition passed the frozen Qualification gate.
+
+No new companies were added.
+
+Stage 3H was not started.
+
+Phase C was not started.
+
+No fake operational data was created.
+
+Opportunity-engine semantics were not changed.
+
+OpenCode audit was NOT performed.
+
+Then answer:
+
+1. How many Tier A companies exist now?
+2. How many net new Tier A companies did Phase B create?
+3. Was Tier A >= 100 reached?
+4. If not, what exact gap remains?
+5. How many Discovery companies became Qualified?
+6. Is the candidate ready for independent OpenCode audit?
+7. What exact SHA-256 should OpenCode audit?
+8. Should Phase C remain blocked until OpenCode passes?
+
+STOP.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-29T12:56:08+05:30.
+</ADDITIONAL_METADATA>

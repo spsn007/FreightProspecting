@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+
+{% block title %}Follow-Up Schedule — FreightProspecting V1{% endblock %}
+
+{% block content %}
+<div class="view-header" style="margin-bottom: 1.5rem;">
+  <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+    <div>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <h1 class="section-title" style="font-size: 1.5rem; font-weight: 700; color: var(--color-text-main, #0f172a); margin: 0;">Follow-Up Schedule & Call Backs</h1>
+        <span class="badge badge-followup" style="font-size: 0.8125rem; padding: 0.25rem 0.65rem;">
+          {{ follow_ups.total_count }} Scheduled
+        </span>
+      </div>
+      <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0.35rem 0 0 0;">
+        Chronological follow-up workflow organized by Overdue, Today, and Upcoming commitments.
+      </p>
+    </div>
+
+    <!-- Quick Navigation -->
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <a href="/prospects" class="btn btn-secondary btn-sm" style="font-size: 0.8125rem;">
+        &larr; Master Directory
+      </a>
+      <a href="/crm/interested" class="btn btn-secondary btn-sm" style="font-size: 0.8125rem;">
+        Interested ({{ counts.crm_interested if counts else 0 }})
+      </a>
+    </div>
+  </div>
+</div>
+
+<script id="crm-followups-data" type="application/json">{{ follow_ups|tojson|safe }}</script>
+
+<div x-data="{
+  followUps: JSON.parse(document.getElementById('crm-followups-data').textContent),
+  init() {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const urlParams = new URLSearchParams(window.location.search);
+      if (tz && !urlParams.get('tz')) {
+        urlParams.set('tz', tz);
+        window.location.search = urlParams.toString();
+      }
+    } catch (e) {}
+  },
+  formatFollowUp(item) {
+    if (!item) return '';
+    if (item.next_follow_up_formatted) return item.next_follow_up_formatted;
+    if (item.next_follow_up_local) return item.next_follow_up_local;
+    if (item.next_follow_up_at) {
+      try {
+        const d = new Date(item.next_follow_up_at);
+        if (!isNaN(d.getTime())) {
+          return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) + ' ' +
+                 d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+        }
+      } catch (e) {}
+      return item.next_follow_up_at.replace('T', ' ');
+    }
+    return '';
+  },
+  openLogCall(item) {
+    window.dispatchEvent(new CustomEvent('open-log-call', {
+      detail: {
+        companyId: item.company_id,
+        companyName: item.operating_brand,
+        facilityId: item.last_facility_id,
+        facilityName: item.facility_name,
+        contactName: item.contact_name,
+        phoneNumber: item.phone_number,
+        defaultDisposition: item.current_outreach_status,
+      }
+    }));
+  },
+  copyPhone(phone) {
+    if (!phone) return;
+    navigator.clipboard.writeText(phone);
+  }
+}">
+
+  <!-- Empty State -->
+  <template x-if="followUps.total_count === 0">
+    <div class="card" style="text-align: center; padding: 3rem 1.5rem;">
+      <div style="width: 48px; height: 48px; margin: 0 auto 1rem auto; border-radius: 50%; background: rgba(14, 165, 233, 0.12); display: flex; align-items: center; justify-content: center; color: #0284c7;">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+      <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">
+        No Scheduled Follow-Ups
+      </h3>
+      <p style="font-size: 0.875rem; color: var(--text-muted); max-width: 500px; margin: 0 auto 1.5rem auto;">
+        When logging a call in Master Directory or CRM queues, select a follow-up date and time to keep track of promised call-backs here.
+      </p>
+      <a href="/prospects" class="btn btn-primary btn-sm">
+        Browse Master Directory &rarr;
+      </a>
+    </div>
+  </template>
+
+  <!-- Content when follow-ups exist -->
+  <div x-show="followUps.total_count > 0" style="display: grid; gap: 2rem;">
+
+    <!-- 1. OVERDUE SECTION -->
+    <div x-show="followUps.overdue && followUps.overdue.length > 0">
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; border-bottom: 2px solid #ef4444; padding-bottom: 0.4rem;">
+        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #ef4444;"></span>
+        <h2 style="font-size: 1.05rem; font-weight: 700; color: #ef4444; margin: 0;">
+          OVERDUE (<span x-text="followUps.overdue.length"></span>)
+        </h2>
+        <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">Action needed — past scheduled date</span>
+      </div>
+
+      <div style="display: grid; gap: 0.75rem;">
+        <template x-for="item in followUps.overdue" :key="'overdue-' + item.company_id">
+          <div class="card" style="padding: 1rem 1.25rem; border-left: 4px solid #ef4444; border-radius: var(--radius-md);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
+              
+              <div style="flex: 1; min-width: 260px;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.25rem;">
+                  <span style="background: rgba(239, 68, 68, 0.15); color: #ef4444; font-weight: 700; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: var(--radius-sm);" x-text="formatFollowUp(item)"></span>
+                  <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: var(--text-main);" x-text="item.operating_brand"></h3>
+                  <span class="badge badge-facility-count" style="font-size: 0.7rem;" x-text="item.facility_count + ' Plants'"></span>
+                  <span class="badge badge-no-answer" x-show="item.current_outreach_status === 'NO_ANSWER'">NO ANSWER</span>
+                  <span class="badge badge-interested" x-show="item.current_outreach_status === 'INTERESTED'">INTERESTED</span>
+                  <span class="badge badge-callback" x-show="item.current_outreach_status === 'CALL_BACK'">CALL BACK</span>
+                </div>
+
+                <div style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 0.4rem;">
+                  <template x-if="item.facility_name">
+                    <span><strong>Context:</strong> <span x-text="item.facility_name + ' (' + (item.facility_city || '') + ', ' + (item.facility_state || '') + ')'"></span></span>
+                  </template>
+                  <template x-if="!item.facility_name">
+                    <span><strong>Context:</strong> Corporate Desk / General HQ</span>
+                  </template>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.8125rem;">
+                  <template x-if="item.contact_name">
+                    <span>Contact: <strong x-text="item.contact_name"></strong></span>
+                  </template>
+                  <template x-if="item.phone_number">
+                    <div style="display: flex; align-items: center; gap: 0.35rem;">
+                      <a :href="'tel:' + item.phone_number.replace(/[^0-9+]/g, '')" style="color: var(--color-primary); font-weight: 600; text-decoration: none;" x-text="item.phone_number"></a>
+                      <button type="button" @click="copyPhone(item.phone_number)" class="btn btn-secondary btn-sm" style="font-size: 0.65rem; padding: 0.05rem 0.35rem;">Copy</button>
+                    </div>
+                  </template>
+                </div>
+
+                <template x-if="item.last_feedback_notes">
+                  <div style="background: rgba(148, 163, 184, 0.08); padding: 0.35rem 0.6rem; border-radius: var(--radius-sm); font-size: 0.8125rem; margin-top: 0.4rem; color: var(--text-main);">
+                    <strong style="color: var(--text-muted); font-size: 0.72rem;">Last Note:</strong> <span x-text="item.last_feedback_notes"></span>
+                  </div>
+                </template>
+              </div>
+
+              <div>
+                <button type="button" @click="openLogCall(item)" class="btn btn-primary btn-sm" style="background: #ef4444; border-color: #ef4444; font-size: 0.8125rem;">
+                  Call Now &rarr;
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <!-- 2. TODAY SECTION -->
+    <div x-show="followUps.today && followUps.today.length > 0">
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; border-bottom: 2px solid #f59e0b; padding-bottom: 0.4rem;">
+        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #f59e0b;"></span>
+        <h2 style="font-size: 1.05rem; font-weight: 700; color: #f59e0b; margin: 0;">
+          TODAY (<span x-text="followUps.today.length"></span>)
+        </h2>
+        <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">Scheduled for today</span>
+      </div>
+
+      <div style="display: grid; gap: 0.75rem;">
+        <template x-for="item in followUps.today" :key="'today-' + item.company_id">
+          <div class="card" style="padding: 1rem 1.25rem; border-left: 4px solid #f59e0b; border-radius: var(--radius-md);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
+              
+              <div style="flex: 1; min-width: 260px;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.25rem;">
+                  <span style="background: rgba(245, 158, 11, 0.15); color: #d97706; font-weight: 700; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: var(--radius-sm);" x-text="formatFollowUp(item)"></span>
+                  <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: var(--text-main);" x-text="item.operating_brand"></h3>
+                  <span class="badge badge-facility-count" style="font-size: 0.7rem;" x-text="item.facility_count + ' Plants'"></span>
+                  <span class="badge badge-callback" x-show="item.current_outreach_status === 'CALL_BACK'">CALL BACK</span>
+                  <span class="badge badge-interested" x-show="item.current_outreach_status === 'INTERESTED'">INTERESTED</span>
+                </div>
+
+                <div style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 0.4rem;">
+                  <template x-if="item.facility_name">
+                    <span><strong>Context:</strong> <span x-text="item.facility_name"></span></span>
+                  </template>
+                  <template x-if="!item.facility_name">
+                    <span>Corporate Desk / General HQ</span>
+                  </template>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.8125rem;">
+                  <template x-if="item.contact_name">
+                    <span>Contact: <strong x-text="item.contact_name"></strong></span>
+                  </template>
+                  <template x-if="item.phone_number">
+                    <div style="display: flex; align-items: center; gap: 0.35rem;">
+                      <a :href="'tel:' + item.phone_number.replace(/[^0-9+]/g, '')" style="color: var(--color-primary); font-weight: 600; text-decoration: none;" x-text="item.phone_number"></a>
+                      <button type="button" @click="copyPhone(item.phone_number)" class="btn btn-secondary btn-sm" style="font-size: 0.65rem; padding: 0.05rem 0.35rem;">Copy</button>
+                    </div>
+                  </template>
+                </div>
+
+                <template x-if="item.last_feedback_notes">
+                  <div style="background: rgba(148, 163, 184, 0.08); padding: 0.35rem 0.6rem; border-radius: var(--radius-sm); font-size: 0.8125rem; margin-top: 0.4rem; color: var(--text-main);">
+                    <strong style="color: var(--text-muted); font-size: 0.72rem;">Last Note:</strong> <span x-text="item.last_feedback_notes"></span>
+                  </div>
+                </template>
+              </div>
+
+              <div>
+                <button type="button" @click="openLogCall(item)" class="btn btn-primary btn-sm" style="font-size: 0.8125rem;">
+                  Log Call &rarr;
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <!-- 3. UPCOMING SECTION -->
+    <div x-show="followUps.upcoming && followUps.upcoming.length > 0">
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; border-bottom: 2px solid #0ea5e9; padding-bottom: 0.4rem;">
+        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #0ea5e9;"></span>
+        <h2 style="font-size: 1.05rem; font-weight: 700; color: #0ea5e9; margin: 0;">
+          UPCOMING (<span x-text="followUps.upcoming.length"></span>)
+        </h2>
+        <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">Scheduled in the future</span>
+      </div>
+
+      <div style="display: grid; gap: 0.75rem;">
+        <template x-for="item in followUps.upcoming" :key="'upcoming-' + item.company_id">
+          <div class="card" style="padding: 1rem 1.25rem; border-left: 4px solid #0ea5e9; border-radius: var(--radius-md);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
+              
+              <div style="flex: 1; min-width: 260px;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.25rem;">
+                  <span style="background: rgba(14, 165, 233, 0.15); color: #0284c7; font-weight: 700; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: var(--radius-sm);" x-text="formatFollowUp(item)"></span>
+                  <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: var(--text-main);" x-text="item.operating_brand"></h3>
+                  <span class="badge badge-facility-count" style="font-size: 0.7rem;" x-text="item.facility_count + ' Plants'"></span>
+                  <span class="badge badge-callback" x-show="item.current_outreach_status === 'CALL_BACK'">CALL BACK</span>
+                  <span class="badge badge-interested" x-show="item.current_outreach_status === 'INTERESTED'">INTERESTED</span>
+                </div>
+
+                <div style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 0.4rem;">
+                  <template x-if="item.facility_name">
+                    <span><strong>Context:</strong> <span x-text="item.facility_name"></span></span>
+                  </template>
+                  <template x-if="!item.facility_name">
+                    <span>Corporate Desk / General HQ</span>
+                  </template>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.8125rem;">
+                  <template x-if="item.contact_name">
+                    <span>Contact: <strong x-text="item.contact_name"></strong></span>
+                  </template>
+                  <template x-if="item.phone_number">
+                    <div style="display: flex; align-items: center; gap: 0.35rem;">
+                      <a :href="'tel:' + item.phone_number.replace(/[^0-9+]/g, '')" style="color: var(--color-primary); font-weight: 600; text-decoration: none;" x-text="item.phone_number"></a>
+                      <button type="button" @click="copyPhone(item.phone_number)" class="btn btn-secondary btn-sm" style="font-size: 0.65rem; padding: 0.05rem 0.35rem;">Copy</button>
+                    </div>
+                  </template>
+                </div>
+
+                <template x-if="item.last_feedback_notes">
+                  <div style="background: rgba(148, 163, 184, 0.08); padding: 0.35rem 0.6rem; border-radius: var(--radius-sm); font-size: 0.8125rem; margin-top: 0.4rem; color: var(--text-main);">
+                    <strong style="color: var(--text-muted); font-size: 0.72rem;">Last Note:</strong> <span x-text="item.last_feedback_notes"></span>
+                  </div>
+                </template>
+              </div>
+
+              <div>
+                <button type="button" @click="openLogCall(item)" class="btn btn-secondary btn-sm" style="font-size: 0.8125rem;">
+                  Log Call &rarr;
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
