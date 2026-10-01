@@ -1,0 +1,138 @@
+{
+  "title": "FreightProspecting V1 — Tier A Acceleration Phase B Test Remediation Audit",
+  "generated_at_utc": "2026-10-01T03:56:00Z",
+  "summary": {
+    "total_test_files_audited": 27,
+    "total_tests_collected": 466,
+    "total_tests_passed": 466,
+    "total_tests_failed": 0,
+    "total_tests_errors": 0,
+    "total_modified_test_files": 10,
+    "historical_frozen_files_repinned": 8,
+    "current_production_files_updated": 1,
+    "test_infrastructure_files_updated": 1,
+    "semantic_assertions_weakened_count": 0
+  },
+  "remediated_tests": [
+    {
+      "file": "tests/test_broker_first_ui.py",
+      "test_name": "test_universe_metadata_counts",
+      "classification": "CURRENT_PRODUCTION",
+      "previous_behavior": "Asserted pre-Phase-B lifecycle counts: QUALIFIED (companies: 91, facilities: 124) and DISCOVERY (companies: 445, facilities: 500).",
+      "new_behavior": "Asserts validated Phase B production truth: QUALIFIED (companies: 489, facilities: 522), DISCOVERY (companies: 47, facilities: 102), SHORTLISTED (companies: 29, facilities: 29), ALL (companies: 565, facilities: 653).",
+      "fixture_database_used": "session_test_db (_TEST_DB_PATH, isolated copy of production prospects.db)",
+      "reason": "Live integration test validating master directory metadata endpoint reflects the current production database post Phase B (398 Discovery -> Qualified transitions).",
+      "semantic_assertion_weakened": "NO"
+    },
+    {
+      "file": "tests/test_broker_first_ui.py",
+      "test_name": "test_paginated_company_grouped_prospects_metadata",
+      "classification": "CURRENT_PRODUCTION",
+      "previous_behavior": "Asserted pre-Phase-B lifecycle counts in pagination metadata dictionary: QUALIFIED=91, DISCOVERY=445.",
+      "new_behavior": "Asserts validated Phase B production truth in pagination metadata: QUALIFIED=489, DISCOVERY=47.",
+      "fixture_database_used": "session_test_db (_TEST_DB_PATH, isolated copy of production prospects.db)",
+      "reason": "Live integration test verifying get_company_grouped_prospects pagination metadata dictionary accurately reflects current production counts.",
+      "semantic_assertion_weakened": "NO"
+    },
+    {
+      "file": "tests/conftest.py",
+      "test_name": "pytest_configure & use_historical_stage3_db fixture",
+      "classification": "TEST_INFRASTRUCTURE",
+      "previous_behavior": "Created only a single session-wide test database copy (_TEST_DB_PATH) from production data/prospects.db.",
+      "new_behavior": "Also creates an isolated copy of the pre-Tier-A frozen baseline (data/backups/prospects_backup_pre_tier_a_phase_a_final_remediation_20260929_065851.db) into _HISTORICAL_DB_PATH and provides use_historical_stage3_db fixture with strict teardown restoration.",
+      "fixture_database_used": "Temporary directory isolated copy of pre-Tier-A frozen baseline",
+      "reason": "Provides clean, isolated test fixture for historical regression tests protecting earlier milestones without altering live production test database or mutating backup files.",
+      "semantic_assertion_weakened": "NO"
+    },
+    {
+      "file": "tests/test_stage3a_lifecycle.py",
+      "test_name": "test_cockpit_displays_strictly_four_shortlisted_seeds",
+      "classification": "HISTORICAL_FROZEN",
+      "previous_behavior": "Unbounded string search 'assert brand [not] in text' against ~8 MB rendered HTML payload caused pytest assertion diff introspection to spin CPU indefinitely upon mismatch; also ran against current DB instead of Stage 3 baseline.",
+      "new_behavior": "Runs against isolated historical baseline (where strictly 29 prospects are shortlisted and Discovery candidates are excluded); uses bounded boolean assertion 'is_present = brand in text; assert is_present, msg' preventing expensive string diffing while verifying exact same brand presence/absence invariants.",
+      "fixture_database_used": "use_historical_stage3_db",
+      "reason": "Resolves Blocker 2 pytest hang; preserves strict Cockpit isolation testing without difflib O(N^2) overhead.",
+      "semantic_assertion_weakened": "NO"
+    },
+    {
+      "file": "tests/test_stage3a_lifecycle.py",
+      "test_name": "module-level pin_historical_db fixture",
+      "classification": "HISTORICAL_FROZEN",
+      "previous_behavior": "All 43 tests executed against live test database, failing on historical summary counts and seed commercial carrier use.",
+      "new_behavior": "Autouse module fixture attaches all 43 tests to isolated pre-Tier-A historical baseline.",
+      "fixture_database_used": "use_historical_stage3_db",
+      "reason": "Protects historical Stage 3A lifecycle, import, readiness, and seed facts against baseline drift.",
+      "semantic_assertion_weakened": "NO"
+    },
+    {
+      "file": "tests/test_stage3e_expansion.py",
+      "test_name": "module-level pin_historical_db fixture",
+      "classification": "HISTORICAL_FROZEN",
+      "previous_behavior": "test_stage3e_company_expansion_targets evaluated 445 discovery / 91 qualified companies against live database (which has 47 discovery / 489 qualified).",
+      "new_behavior": "Module pinned to isolated historical baseline; all 10 tests pass verifying Stage 3E targets (565 operating companies, 29 shortlisted, 91 qualified, 445 discovery).",
+      "fixture_database_used": "use_historical_stage3_db",
+      "reason": "Protects historical Stage 3E milestone invariants without rewriting historical numbers.",
+      "semantic_assertion_weakened": "NO"
+    },
+    {
+      "file": "tests/test_stage3f_lifecycle.py",
+      "test_name": "module-level pin_historical_db fixture",
+      "classification": "HISTORICAL_FROZEN",
+      "previous_behavior": "test_stage3f_final_lifecycle_counts evaluated 500 discovery / 124 qualified facilities against live database.",
+      "new_behavior": "Module pinned to isolated historical baseline; all 14 tests pass verifying Stage 3F lifecycle partition.",
+      "fixture_database_used": "use_historical_stage3_db",
+      "reason": "Protects historical Stage 3F lifecycle review milestone truth.",
+      "semantic_assertion_weakened": "NO"
+    },
+    {
+      "file": "tests/test_stage3g_taxonomy.py",
+      "test_name": "module-level pin_historical_db fixture",
+      "classification": "HISTORICAL_FROZEN",
+      "previous_behavior": "test_baseline_lifecycle_counts_unchanged failed against live database.",
+      "new_behavior": "Module pinned to isolated historical baseline; all 26 tests pass verifying commodity taxonomy, families, and baseline counts.",
+      "fixture_database_used": "use_historical_stage3_db",
+      "reason": "Protects Stage 3G taxonomy structure and baseline lifecycle integrity.",
+      "semantic_assertion_weakened": "NO"
+    },
+    {
+      "file": "tests/test_stage3h_expansion.py",
+      "test_name": "module-level pin_historical_db fixture",
+      "classification": "HISTORICAL_FROZEN",
+      "previous_behavior": "test_stage3h_summary_counts failed expecting 500 discovery / 124 qualified facilities.",
+      "new_behavior": "Module pinned to isolated historical baseline; all 7 tests pass verifying Stage 3H expansion summary counts.",
+      "fixture_database_used": "use_historical_stage3_db",
+      "reason": "Protects Stage 3H seasonal/specialty shipper discovery expansion counts.",
+      "semantic_assertion_weakened": "NO"
+    },
+    {
+      "file": "tests/test_audit_remediation_d.py",
+      "test_name": "module-level pin_historical_db fixture & test_baseline_lifecycle_counts",
+      "classification": "HISTORICAL_FROZEN",
+      "previous_behavior": "test_baseline_lifecycle_counts hardcoded create_connection(DEFAULT_DB_PATH) and asserted 124 qualified / 500 discovery facilities against live production DB.",
+      "new_behavior": "Module pinned to isolated historical baseline; test_baseline_lifecycle_counts updated to create_connection(get_db_path()) ensuring test isolation.",
+      "fixture_database_used": "use_historical_stage3_db",
+      "reason": "Protects Remediation D baseline counts while eliminating unsafe direct production DB access during test runs.",
+      "semantic_assertion_weakened": "NO"
+    },
+    {
+      "file": "tests/test_audit_remediation_d1.py",
+      "test_name": "module-level pin_historical_db fixture",
+      "classification": "HISTORICAL_FROZEN",
+      "previous_behavior": "test_qualified_facilities_100_percent_ready expected exactly 124 qualified facilities, failing against live DB which has 522.",
+      "new_behavior": "Module pinned to isolated historical baseline; all 16 tests pass verifying 100% readiness across 29 shortlisted and 124 qualified facilities.",
+      "fixture_database_used": "use_historical_stage3_db",
+      "reason": "Protects Remediation D.1 readiness invariants on the 124-facility qualification pool.",
+      "semantic_assertion_weakened": "NO"
+    },
+    {
+      "file": "tests/test_batch1_final_corrections.py",
+      "test_name": "module-level pin_historical_db fixture",
+      "classification": "HISTORICAL_FROZEN",
+      "previous_behavior": "test_13_lifecycle_table_unchanged compared ACTIVE_DB (live DB) against pre-corrections backup, failing due to 398 Phase B lifecycle transitions.",
+      "new_behavior": "Module pinned to isolated historical baseline; all 13 tests pass verifying Batch 1 final closure regression invariants.",
+      "fixture_database_used": "use_historical_stage3_db",
+      "reason": "Protects Batch 1 final closure invariants without conflating Phase B lifecycle transitions.",
+      "semantic_assertion_weakened": "NO"
+    }
+  ]
+}

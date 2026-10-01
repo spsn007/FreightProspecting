@@ -34,6 +34,13 @@ from src.backend.db.opportunity import (
 ACTIVE_DB = get_db_path()
 BACKUP_PRE_CORRECTIONS = Path("data/backups/prospects_backup_pre_batch1_final_corrections_20260928_234545.db")
 
+@pytest.fixture(autouse=True, scope="module")
+def pin_historical_db(use_historical_stage3_db):
+    global ACTIVE_DB
+    ACTIVE_DB = use_historical_stage3_db
+    yield
+    ACTIVE_DB = get_db_path()
+
 
 def test_1_edwards_outside_carrier_verified_does_not_imply_broker_acceptance():
     """Edwards Wood Products (Co 14, Fac 13) has verified outside carrier use, broker UNKNOWN, and is Tier A."""

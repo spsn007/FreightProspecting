@@ -37,6 +37,13 @@ from src.backend.db.queries import get_summary_counts, get_company_grouped_prosp
 
 DB_PATH = get_db_path()
 
+@pytest.fixture(autouse=True, scope="module")
+def pin_historical_db(use_historical_stage3_db):
+    global DB_PATH
+    DB_PATH = use_historical_stage3_db
+    yield
+    DB_PATH = get_db_path()
+
 def test_stage3h_summary_counts():
     """Verify exact post-Stage-3H counts across companies, facilities, and lifecycle stages."""
     counts = get_summary_counts(DB_PATH)

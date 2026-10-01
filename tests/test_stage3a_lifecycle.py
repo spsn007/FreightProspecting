@@ -42,6 +42,13 @@ from src.backend.db.import_batch1 import import_batch1
 client = TestClient(app)
 DB_PATH = get_db_path()
 
+@pytest.fixture(autouse=True, scope="module")
+def pin_historical_db(use_historical_stage3_db):
+    global DB_PATH
+    DB_PATH = use_historical_stage3_db
+    yield
+    DB_PATH = get_db_path()
+
 
 # ============================================================================
 # 1. Schema: prospect_lifecycle Table & Constraints
@@ -271,15 +278,15 @@ def test_cockpit_displays_strictly_four_shortlisted_seeds():
     assert response.status_code == 200
     text = response.text
 
-    # Shortlisted seed brands present in Cockpit
-    assert "Beasley Forest Products" in text
-    assert "Kenwal Steel Corp." in text
-    assert "DECAST Ltd." in text
+    # Shortlisted seed brands present in Cockpit (bounded assertions preventing multi-megabyte string diffs)
+    for brand in ["Beasley Forest Products", "Kenwal Steel Corp.", "DECAST Ltd."]:
+        is_present = brand in text
+        assert is_present, f"Expected shortlisted brand '{brand}' to be present in Cockpit HTML"
 
     # Discovery pool candidates must NOT be rendered in the Cockpit prospect stack
-    assert "Western Forest Products" not in text
-    assert "Sinclar Group Forest Products" not in text
-    assert "Dunkley Lumber" not in text
+    for brand in ["Western Forest Products", "Sinclar Group Forest Products", "Dunkley Lumber"]:
+        is_not_present = brand not in text
+        assert is_not_present, f"Expected discovery candidate '{brand}' NOT to be present in Cockpit HTML"
 
     # Helper get_prospects_list() defaults to SHORTLISTED (len == 29)
     prospects = get_prospects_list(lifecycle_stage="SHORTLISTED")

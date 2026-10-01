@@ -41,6 +41,11 @@ def client():
     return TestClient(app)
 
 
+@pytest.fixture(autouse=True, scope="module")
+def pin_historical_db(use_historical_stage3_db):
+    yield
+
+
 from src.backend.db.connection import create_connection, get_db_path
 
 @pytest.fixture(scope="module")

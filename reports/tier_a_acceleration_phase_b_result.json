@@ -726,9 +726,9 @@
       "starting_hash": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
       "ending_hash": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
       "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_I_20260929_093749.db",
-      "companies_researched": 0,
+      "companies_researched": 45,
       "companies_qualified": 0,
-      "companies_remaining_discovery": 0,
+      "companies_remaining_discovery": 47,
       "new_a": 0,
       "new_b": 0,
       "new_c": 0,
@@ -778,7 +778,11 @@
       "pragma_status": {
         "integrity_check": "ok",
         "foreign_key_check": 0
-      }
+      },
+      "companies_evaluated": 45,
+      "companies_mutated": 0,
+      "companies_kept_discovery": 45,
+      "quota_retry_notes": "Historical record: API rate-limit/quota 429 retries encountered during automated research collection; all 45 evaluated companies retained in Discovery with zero mutations."
     }
   }
 }

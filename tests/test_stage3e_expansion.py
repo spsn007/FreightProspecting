@@ -6,6 +6,13 @@ from src.backend.db.queries import get_summary_counts, get_company_grouped_prosp
 
 DB_PATH = get_db_path()
 
+@pytest.fixture(autouse=True, scope="module")
+def pin_historical_db(use_historical_stage3_db):
+    global DB_PATH
+    DB_PATH = use_historical_stage3_db
+    yield
+    DB_PATH = get_db_path()
+
 # ============================================================================
 # 1. Target Invariants Post-Audit & Deduplication
 # ============================================================================

@@ -17,15 +17,15 @@
   },
   "database_hash_progression": {
     "baseline": "FE73DC3F051A7AEE7FC83ED7E0D7DF2CA05EFEE9C9C2629001327B551AF104DF",
-    "post_wave_A": null,
-    "post_wave_B": null,
-    "post_wave_C": null,
-    "post_wave_D": null,
-    "post_wave_E": null,
-    "post_wave_F": null,
-    "post_wave_G": null,
-    "post_wave_H": null,
-    "post_wave_I": null,
+    "post_wave_A": "160688627B44A0A6F1C0616ACC26C9D5CC12486052EFDE3E1653AE6593AC8C24",
+    "post_wave_B": "CFE0E8ACD8A4D424D57DD3A7B9E167E3F9F63AEAC0A1E2BE9FEB5908A1838E80",
+    "post_wave_C": "BE265FA8C1E1A5E4B4CCAE38B9B5F87AE61B28D79678B63D0450F1EC8818F07D",
+    "post_wave_D": "D908312EF4C4C9979BF97FC96153616EE8336356F47BC0E1154E40DB3B9E3ED7",
+    "post_wave_E": "97E356EA32028714122879692F3D61BE447FF0FB7348885951EE73553631AC75",
+    "post_wave_F": "B66D83A9CBB4E66C4D0CE7213D43C8447C0325460EF4E4248A72EBA42A8D359E",
+    "post_wave_G": "CEFA11DADA8DBAC8E6EC45BACF169688969A32DB1FA5BBC3C8831903068A41AE",
+    "post_wave_H": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+    "post_wave_I": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
     "final_freeze_hash": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9"
   },
   "tier_a_promotions": [
@@ -633,5 +633,188 @@
     "exact_one_subject_constraint": true,
     "single_current_accepted_claim": true,
     "exact_three_surface_parity": true
-  }
+  },
+  "wave_progression": [
+    {
+      "wave": "A",
+      "executed_at_utc": "2026-09-29T08:00:24Z",
+      "starting_hash": "FE73DC3F051A7AEE7FC83ED7E0D7DF2CA05EFEE9C9C2629001327B551AF104DF",
+      "ending_hash": "160688627B44A0A6F1C0616ACC26C9D5CC12486052EFDE3E1653AE6593AC8C24",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_A_20260929_080024.db",
+      "companies_evaluated": 48,
+      "companies_qualified": 48,
+      "companies_kept_discovery": 0,
+      "new_A": 3,
+      "new_B": 45,
+      "new_C": 0,
+      "post_wave_distribution": {
+        "TIER_A_PRIORITY": 17,
+        "TIER_B_WORTH_CALLING": 144,
+        "TIER_C_SECONDARY": 7,
+        "TIER_D_RESEARCH_NEEDED": 397,
+        "RESTRICTED": 0
+      }
+    },
+    {
+      "wave": "B",
+      "executed_at_utc": "2026-09-29T08:16:32Z",
+      "starting_hash": "160688627B44A0A6F1C0616ACC26C9D5CC12486052EFDE3E1653AE6593AC8C24",
+      "ending_hash": "CFE0E8ACD8A4D424D57DD3A7B9E167E3F9F63AEAC0A1E2BE9FEB5908A1838E80",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_B_20260929_081632.db",
+      "companies_evaluated": 50,
+      "companies_qualified": 50,
+      "companies_kept_discovery": 0,
+      "new_A": 1,
+      "new_B": 49,
+      "new_C": 0,
+      "post_wave_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 193,
+        "TIER_C_SECONDARY": 7,
+        "TIER_D_RESEARCH_NEEDED": 347,
+        "RESTRICTED": 0
+      }
+    },
+    {
+      "wave": "C",
+      "executed_at_utc": "2026-09-29T08:29:22Z",
+      "starting_hash": "CFE0E8ACD8A4D424D57DD3A7B9E167E3F9F63AEAC0A1E2BE9FEB5908A1838E80",
+      "ending_hash": "BE265FA8C1E1A5E4B4CCAE38B9B5F87AE61B28D79678B63D0450F1EC8818F07D",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_C_20260929_082922.db",
+      "companies_evaluated": 50,
+      "companies_qualified": 50,
+      "companies_kept_discovery": 0,
+      "new_A": 0,
+      "new_B": 50,
+      "new_C": 0,
+      "post_wave_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 243,
+        "TIER_C_SECONDARY": 7,
+        "TIER_D_RESEARCH_NEEDED": 297,
+        "RESTRICTED": 0
+      }
+    },
+    {
+      "wave": "D",
+      "executed_at_utc": "2026-09-29T08:35:44Z",
+      "starting_hash": "BE265FA8C1E1A5E4B4CCAE38B9B5F87AE61B28D79678B63D0450F1EC8818F07D",
+      "ending_hash": "D908312EF4C4C9979BF97FC96153616EE8336356F47BC0E1154E40DB3B9E3ED7",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_D_20260929_083544.db",
+      "companies_evaluated": 50,
+      "companies_qualified": 50,
+      "companies_kept_discovery": 0,
+      "new_A": 0,
+      "new_B": 49,
+      "new_C": 1,
+      "post_wave_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 292,
+        "TIER_C_SECONDARY": 8,
+        "TIER_D_RESEARCH_NEEDED": 247,
+        "RESTRICTED": 0
+      }
+    },
+    {
+      "wave": "E",
+      "executed_at_utc": "2026-09-29T08:47:22Z",
+      "starting_hash": "D908312EF4C4C9979BF97FC96153616EE8336356F47BC0E1154E40DB3B9E3ED7",
+      "ending_hash": "97E356EA32028714122879692F3D61BE447FF0FB7348885951EE73553631AC75",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_E_20260929_084722.db",
+      "companies_evaluated": 50,
+      "companies_qualified": 50,
+      "companies_kept_discovery": 0,
+      "new_A": 0,
+      "new_B": 50,
+      "new_C": 0,
+      "post_wave_distribution": {
+        "TIER_A_PRIORITY": 18,
+        "TIER_B_WORTH_CALLING": 342,
+        "TIER_C_SECONDARY": 8,
+        "TIER_D_RESEARCH_NEEDED": 197,
+        "RESTRICTED": 0
+      }
+    },
+    {
+      "wave": "F",
+      "executed_at_utc": "2026-09-29T08:59:42Z",
+      "starting_hash": "97E356EA32028714122879692F3D61BE447FF0FB7348885951EE73553631AC75",
+      "ending_hash": "B66D83A9CBB4E66C4D0CE7213D43C8447C0325460EF4E4248A72EBA42A8D359E",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_F_20260929_085942.db",
+      "companies_evaluated": 50,
+      "companies_qualified": 50,
+      "companies_kept_discovery": 0,
+      "new_A": 1,
+      "new_B": 48,
+      "new_C": 1,
+      "post_wave_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 390,
+        "TIER_C_SECONDARY": 9,
+        "TIER_D_RESEARCH_NEEDED": 147,
+        "RESTRICTED": 0
+      }
+    },
+    {
+      "wave": "G",
+      "executed_at_utc": "2026-09-29T09:10:45Z",
+      "starting_hash": "B66D83A9CBB4E66C4D0CE7213D43C8447C0325460EF4E4248A72EBA42A8D359E",
+      "ending_hash": "CEFA11DADA8DBAC8E6EC45BACF169688969A32DB1FA5BBC3C8831903068A41AE",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_G_20260929_091045.db",
+      "companies_evaluated": 50,
+      "companies_qualified": 50,
+      "companies_kept_discovery": 0,
+      "new_A": 0,
+      "new_B": 50,
+      "new_C": 0,
+      "post_wave_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 440,
+        "TIER_C_SECONDARY": 9,
+        "TIER_D_RESEARCH_NEEDED": 97,
+        "RESTRICTED": 0
+      }
+    },
+    {
+      "wave": "H",
+      "executed_at_utc": "2026-09-29T09:20:46Z",
+      "starting_hash": "CEFA11DADA8DBAC8E6EC45BACF169688969A32DB1FA5BBC3C8831903068A41AE",
+      "ending_hash": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_H_20260929_092046.db",
+      "companies_evaluated": 50,
+      "companies_qualified": 50,
+      "companies_kept_discovery": 0,
+      "new_A": 0,
+      "new_B": 49,
+      "new_C": 1,
+      "post_wave_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 489,
+        "TIER_C_SECONDARY": 10,
+        "TIER_D_RESEARCH_NEEDED": 47,
+        "RESTRICTED": 0
+      }
+    },
+    {
+      "wave": "I",
+      "executed_at_utc": "2026-09-29T09:37:49Z",
+      "starting_hash": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+      "ending_hash": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+      "backup_path": "data\\backups\\prospects_backup_pre_tier_a_phase_b_wave_I_20260929_093749.db",
+      "companies_evaluated": 45,
+      "companies_qualified": 0,
+      "companies_kept_discovery": 45,
+      "new_A": 0,
+      "new_B": 0,
+      "new_C": 0,
+      "post_wave_distribution": {
+        "TIER_A_PRIORITY": 19,
+        "TIER_B_WORTH_CALLING": 489,
+        "TIER_C_SECONDARY": 10,
+        "TIER_D_RESEARCH_NEEDED": 47,
+        "RESTRICTED": 0
+      },
+      "notes": "Historical record: API rate-limit/quota 429 retries encountered during automated research collection; all 45 evaluated companies retained in Discovery with zero mutations."
+    }
+  ]
 }

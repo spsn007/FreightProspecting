@@ -36,16 +36,16 @@ def test_universe_metadata_counts():
     comp_lc = meta["lifecycle_counts"]
     assert comp_lc["ALL"] == 565
     assert comp_lc["SHORTLISTED"] == 29
-    assert comp_lc["QUALIFIED"] == 91
-    assert comp_lc["DISCOVERY"] == 445
+    assert comp_lc["QUALIFIED"] == 489
+    assert comp_lc["DISCOVERY"] == 47
     assert comp_lc["SHORTLISTED"] + comp_lc["QUALIFIED"] + comp_lc["DISCOVERY"] == 565
 
     # Facility lifecycle breakdown
     fac_lc = meta["facility_lifecycle_counts"]
     assert fac_lc["ALL"] == 653
     assert fac_lc["SHORTLISTED"] == 29
-    assert fac_lc["QUALIFIED"] == 124
-    assert fac_lc["DISCOVERY"] == 500
+    assert fac_lc["QUALIFIED"] == 522
+    assert fac_lc["DISCOVERY"] == 102
     assert fac_lc["SHORTLISTED"] + fac_lc["QUALIFIED"] + fac_lc["DISCOVERY"] == 653
 
 
@@ -66,8 +66,8 @@ def test_paginated_company_grouped_prospects_metadata():
     assert meta["page_start"] == 1
     assert meta["page_end"] == 25
     assert meta["lifecycle_counts"]["SHORTLISTED"] == 29
-    assert meta["lifecycle_counts"]["QUALIFIED"] == 91
-    assert meta["lifecycle_counts"]["DISCOVERY"] == 445
+    assert meta["lifecycle_counts"]["QUALIFIED"] == 489
+    assert meta["lifecycle_counts"]["DISCOVERY"] == 47
 
 
 def test_server_side_search_single_char():

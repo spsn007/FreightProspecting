@@ -13,7 +13,7 @@ from pathlib import Path
 from decimal import Decimal
 from fastapi.testclient import TestClient
 
-from src.backend.db.connection import create_connection, check_database_health, DEFAULT_DB_PATH
+from src.backend.db.connection import create_connection, check_database_health, DEFAULT_DB_PATH, get_db_path
 from src.backend.db.queries import (
     get_prospects_list,
     get_company_grouped_prospects,
@@ -33,6 +33,10 @@ from src.backend.db.validators import (
 from src.backend.main import app
 
 client = TestClient(app)
+
+@pytest.fixture(autouse=True, scope="module")
+def pin_historical_db(use_historical_stage3_db):
+    yield
 
 
 # ============================================================================
@@ -560,7 +564,7 @@ def test_baseline_zero_fake_records():
 
 def test_baseline_lifecycle_counts():
     """Verify lifecycle baseline counts (567 companies, 653 facilities)."""
-    conn = create_connection(DEFAULT_DB_PATH)
+    conn = create_connection(get_db_path())
     try:
         cur = conn.cursor()
         total_co = cur.execute("SELECT count(*) FROM companies").fetchone()[0]

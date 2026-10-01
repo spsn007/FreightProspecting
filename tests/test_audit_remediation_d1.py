@@ -36,6 +36,13 @@ from src.backend.main import app
 client = TestClient(app)
 DB_PATH = get_db_path()
 
+@pytest.fixture(autouse=True, scope="module")
+def pin_historical_db(use_historical_stage3_db):
+    global DB_PATH
+    DB_PATH = use_historical_stage3_db
+    yield
+    DB_PATH = get_db_path()
+
 
 @pytest.fixture
 def isolated_db(tmp_path):
