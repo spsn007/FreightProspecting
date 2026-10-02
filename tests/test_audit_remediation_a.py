@@ -17,7 +17,7 @@ import hashlib
 from pathlib import Path
 import sqlite3
 import pytest
-from fastapi.testclient import TestClient
+from tests.authenticated_client import TestClient
 
 from src.backend.db.connection import create_connection, get_db_path
 from src.backend.db.queries import (
@@ -55,6 +55,8 @@ def cleanup_test_mutations(db_conn):
     db_conn.execute("DELETE FROM suppressions WHERE assigned_by = 'TEST_RUNNER'")
     db_conn.execute("DELETE FROM facilities WHERE facility_name = 'Hypothetical Test Plant'")
     db_conn.execute("DROP TRIGGER IF EXISTS trg_outreach_logs_no_delete")
+    if db_conn.execute("SELECT 1 FROM sqlite_master WHERE name='outreach_authors'").fetchone():
+        db_conn.execute("DELETE FROM outreach_authors")
     db_conn.execute("DELETE FROM outreach_logs")
     db_conn.execute("""
         CREATE TRIGGER IF NOT EXISTS trg_outreach_logs_no_delete
@@ -78,6 +80,8 @@ def cleanup_test_mutations(db_conn):
     db_conn.execute("DELETE FROM suppressions WHERE assigned_by = 'TEST_RUNNER'")
     db_conn.execute("DELETE FROM facilities WHERE facility_name = 'Hypothetical Test Plant'")
     db_conn.execute("DROP TRIGGER IF EXISTS trg_outreach_logs_no_delete")
+    if db_conn.execute("SELECT 1 FROM sqlite_master WHERE name='outreach_authors'").fetchone():
+        db_conn.execute("DELETE FROM outreach_authors")
     db_conn.execute("DELETE FROM outreach_logs")
     db_conn.execute("""
         CREATE TRIGGER IF NOT EXISTS trg_outreach_logs_no_delete

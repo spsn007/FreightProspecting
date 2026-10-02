@@ -11,11 +11,18 @@
 {% endblock %}
 
 {% block content %}
+
 <a href="{{ return_to }}" id="back-to-results" class="btn btn-secondary btn-sm"
    style="margin-bottom:1rem;"
    onclick="if (history.length > 1 && document.referrer === this.href) { history.back(); return false; }">
   ← Back to Results
 </a>
+{% set team_company_id = prospect.company_id %}{% include 'partials/team_company.html' %}
+<section class="team-panel"><details><summary>Team assignment history ({{ prospect.assignment_history|length }})</summary>
+{% for h in prospect.assignment_history %}<p><strong>{{ h.actor_name }}</strong> · {{ h.action|replace('_',' ')|title }} · {{ h.created_at[:16]|replace('T',' ') }}<br>{{ h.from_name or 'Unassigned' }} → {{ h.to_name or 'Available to team' }}{% if h.note %}<br>{{ h.note }}{% endif %}</p>{% else %}<p>No assignments yet.</p>{% endfor %}
+</details><details style="margin-top:0.75rem"><summary>Shared company call history ({{ prospect.team_history|length }})</summary>
+{% for call in prospect.team_history %}<p><strong>{{ call.broker_name }}</strong> · {{ outreach_labels.get(call.disposition,call.disposition) }} · {{ call.contacted_at[:16]|replace('T',' ') }}{% if call.facility_name %}<br>{{ call.facility_name }}{% endif %}{% if call.feedback_notes %}<br>{{ call.feedback_notes }}{% endif %}</p>{% else %}<p>No calls logged yet.</p>{% endfor %}
+</details></section>
 <script id="profile-workflow-data" type="application/json">{{ {'facilityId': prospect.facility_id, 'companyId': prospect.company_id, 'name': prospect.operating_brand, 'returnTo': return_to}|tojson|safe }}</script>
 <div x-data="{
   profile: JSON.parse(document.getElementById('profile-workflow-data').textContent),
@@ -106,7 +113,7 @@
       </a>
       {% endif %}
 
-      <button type="button" class="btn btn-primary"
+      <button :disabled="!$store.team.mine({{ prospect.company_id }})" type="button" class="btn btn-primary"
               @click="$dispatch('open-log-call', {
                 companyId: {{ prospect.company_id }},
                 companyName: '{{ prospect.operating_brand }}',
@@ -236,7 +243,7 @@
           📞 Call Now
         </a>
         {% endif %}
-        <button type="button" class="btn btn-primary btn-sm" style="flex:1; justify-content:center;"
+        <button :disabled="!$store.team.mine({{ prospect.company_id }})" type="button" class="btn btn-primary btn-sm" style="flex:1; justify-content:center;"
                 @click="$dispatch('open-log-call', {
                   companyId: {{ prospect.company_id }},
                   companyName: '{{ prospect.operating_brand }}',
@@ -651,7 +658,7 @@
               📞 Call Now
             </a>
             {% endif %}
-            <button type="button" class="btn btn-secondary btn-sm" style="flex:1; justify-content:center;"
+            <button :disabled="!$store.team.mine({{ prospect.company_id }})" type="button" class="btn btn-secondary btn-sm" style="flex:1; justify-content:center;"
                     @click="$dispatch('open-log-call', {
                       companyId: {{ prospect.company_id }},
                       companyName: '{{ prospect.operating_brand }}',
@@ -689,7 +696,7 @@
             <div class="section-num-badge" style="background:#0284c7;">📞</div>
             <h2 class="detail-section-title">Outreach & Call Log History</h2>
           </div>
-          <button type="button" class="btn btn-call btn-sm"
+          <button :disabled="!$store.team.mine({{ prospect.company_id }})" type="button" class="btn btn-call btn-sm"
                   @click="$dispatch('open-log-call', {
                     companyId: {{ prospect.company_id }},
                     companyName: '{{ prospect.operating_brand }}',
@@ -742,7 +749,7 @@
                   {{ outreach_labels.get(log.disposition or log.outcome, log.disposition or log.outcome) }}
                 </span>
                 <span style="font-size:0.75rem; font-weight:600; color:var(--color-text-main);">
-                  {{ log.contact_name or 'General Line' }}
+                  {{ log.contact_name or 'General Line' }} · Logged by {{ log.broker_name }}
                 </span>
               </div>
               <span style="font-size:0.6875rem; color:var(--color-text-muted);">
@@ -846,7 +853,7 @@
       <span x-text="techOpen ? 'Hide Technical Details ▲' : 'View Technical Details ▼'" style="font-size:0.8125rem; color:var(--color-primary); font-weight:600;"></span>
     </button>
 
-    <div x-show="techOpen" x-transition style="padding:1.25rem;">
+    <div x-show="techOpen" x-cloak x-transition style="padding:1.25rem;">
       <div style="display:grid; grid-template-columns: 1fr; gap:1.25rem;">
         <!-- Technical Section 1: WHO IS THIS? -->
         <div class="detail-section-card">

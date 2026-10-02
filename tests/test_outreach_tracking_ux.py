@@ -5,7 +5,7 @@ import subprocess
 import sys
 
 import pytest
-from fastapi.testclient import TestClient
+from tests.authenticated_client import TestClient
 
 from src.backend.main import app, OUTREACH_LABELS
 from src.backend.db.queries import log_outreach_call, get_outreach_history

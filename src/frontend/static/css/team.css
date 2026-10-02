@@ -1,0 +1,12 @@
+.team-company,.team-panel{padding:1rem;border:1px solid var(--color-border);border-radius:8px;background:var(--color-surface);margin:0.75rem 0}
+.team-actions,.team-create{display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;margin-top:0.6rem}
+.team-muted{font-size:0.8rem;color:var(--color-text-muted)}
+.team-warning{color:#b45309;font-size:0.85rem}.team-error{color:#dc2626;padding:0.5rem 0}
+.team-transfer label,.team-panel label,.team-login label{display:block;margin:0.75rem 0;font-weight:600}
+.team-transfer .form-input,.team-panel .form-input,.team-login .form-input{display:block;width:100%;padding:0.65rem;margin-top:0.3rem;border:1px solid var(--color-border,#cbd5e1);border-radius:6px;background:var(--color-surface,#fff);color:var(--color-text-main,#1e293b);font:inherit}
+.team-table{width:100%;border-collapse:collapse;text-align:left}.team-table th,.team-table td{padding:0.8rem;border-bottom:1px solid var(--color-border)}
+.team-login{min-height:100vh;display:grid;place-items:center;background:#f1f5f9;padding:1rem}.team-login-card{width:min(100%,440px);background:white;border:1px solid #e2e8f0;border-radius:12px;padding:2rem;box-shadow:0 12px 30px #0f172a12}.team-login h1{font-size:1.4rem;margin:1.2rem 0 0.5rem}.team-login p{color:#64748b}.team-login .btn{width:100%;justify-content:center;margin-top:0.5rem}
+.team-account{padding:0.6rem 1.4rem;color:#cbd5e1;font-size:0.85rem}.team-account form{margin-top:0.4rem}
+.team-views{display:flex;gap:0.5rem;flex-wrap:wrap;margin:1rem 0}.team-views .active{background:var(--color-primary);color:white}
+.app-sidebar>div:first-child{min-height:0;overflow-y:auto;flex:1}.sidebar-bottom{flex-shrink:0}
+@media(max-width:800px){.team-account{padding:0.4rem;font-size:0.65rem;overflow-wrap:anywhere}.team-account .btn{padding:0.3rem 0.15rem;font-size:0.65rem;max-width:100%;white-space:normal}.team-account p{margin:0.4rem 0}}

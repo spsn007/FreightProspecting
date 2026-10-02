@@ -25,7 +25,7 @@ from pathlib import Path
 import re
 import sqlite3
 import pytest
-from fastapi.testclient import TestClient
+from tests.authenticated_client import TestClient
 
 from src.backend.main import app
 from src.backend.db.connection import create_connection, get_db_path
@@ -335,21 +335,21 @@ def test_project_stage2_invariants_remain_intact():
     tables = {name for name, t in objs.items() if t == "table"}
     views = {name for name, t in objs.items() if t == "view"}
 
-    assert len(tables) in (17, 19, 20, 23), f"Expected 17 (Stage 2), 19 (Stage 3A), 20 (Stage 3C), or 23 (Stage 3G) tables, got {len(tables)}: {tables}"
+    assert len(tables) in (17, 19, 20, 23, 29), f"Expected 17 (Stage 2), 19 (Stage 3A), 20 (Stage 3C), 23 (Stage 3G), or 29 (team workflow) tables, got {len(tables)}: {tables}"
     assert len(views) == 0, f"Expected 0 views, got {len(views)}: {views}"
     assert "suppressions" in tables
     assert "suppression_status_records" not in tables
-    if len(tables) in (19, 20, 23):
+    if len(tables) in (19, 20, 23, 29):
         assert "prospect_lifecycle" in tables
         assert "discovery_intake_audit" in tables
-    if len(tables) in (20, 23):
+    if len(tables) in (20, 23, 29):
         assert "prospect_engagement_state" in tables
-    if len(tables) == 23:
+    if len(tables) in (23, 29):
         assert "commodity_families" in tables
         assert "commodity_categories" in tables
         assert "facility_commodity_mappings" in tables
 
-    if len(tables) in (19, 20, 23):
+    if len(tables) in (19, 20, 23, 29):
         # In Stage 3A with Batch #1 (39 discovery candidates imported), verify seed claims remain exactly 20
         seed_claims_cnt = conn.execute("SELECT count(*) FROM claims WHERE id <= 20").fetchone()[0]
         assert seed_claims_cnt == 20

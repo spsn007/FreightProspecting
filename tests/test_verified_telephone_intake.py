@@ -9,7 +9,7 @@ import shutil
 import sqlite3
 import pytest
 from pathlib import Path
-from fastapi.testclient import TestClient
+from tests.authenticated_client import TestClient
 
 from src.backend.main import app
 from src.backend.db.connection import get_db_path, create_connection

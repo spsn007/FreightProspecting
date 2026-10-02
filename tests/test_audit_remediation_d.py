@@ -11,7 +11,7 @@ from datetime import datetime, timezone, timedelta
 from zoneinfo import ZoneInfo
 from pathlib import Path
 from decimal import Decimal
-from fastapi.testclient import TestClient
+from tests.authenticated_client import TestClient
 
 from src.backend.db.connection import create_connection, check_database_health, DEFAULT_DB_PATH, get_db_path
 from src.backend.db.queries import (

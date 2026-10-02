@@ -3,6 +3,14 @@
    Pure Local CSS • Zero CDN • System Font Stack • Desktop Optimized
    ========================================================================== */
 
+/* Hide Alpine dialogs and initial state until their component is ready. */
+[x-cloak] { display: none !important; }
+
+/* Keep the outgoing page until the next page has initialized, then swap directly. */
+@view-transition { navigation: auto; }
+::view-transition-group(root) { animation-duration: 0s; }
+::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+
 :root {
   /* Brand & Shell Colors */
   --sidebar-bg: #0f172a;           /* Dark Slate/Navy */
@@ -883,5 +891,3 @@ body {
 [data-theme="dark"] .child-facilities-table tr:hover td {
   background-color: #24354d;
 }
-
-

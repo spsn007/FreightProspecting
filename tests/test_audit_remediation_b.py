@@ -10,7 +10,7 @@ import sqlite3
 import pytest
 from pathlib import Path
 from decimal import Decimal
-from fastapi.testclient import TestClient
+from tests.authenticated_client import TestClient
 
 from src.backend.db.connection import create_connection, check_database_health
 from src.backend.db.queries import (

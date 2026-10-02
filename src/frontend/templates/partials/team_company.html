@@ -1,0 +1,23 @@
+<section class="team-company" x-data="teamCompany({{ team_company_id }})" @click.stop aria-label="Company assignment" x-cloak>
+  <div class="team-owner"><strong x-text="state.owner_name ? 'Working with: ' + state.owner_name : 'Unassigned — available to the team'"></strong></div>
+  <p x-show="state.owner_id && !mine" class="team-muted" x-cloak>Review history here. Only the assigned broker can log calls or change call status.</p>
+  <p x-show="state.outreach_status === 'NOT_INTERESTED'" class="team-warning" x-cloak>Previously Not Interested — review the shared history before contacting.</p>
+  <p x-show="state.is_suppressed" class="team-error" x-cloak>Outreach restricted — check the company’s suppression policy.</p>
+  <p class="team-muted"><span x-text="teamLabel(state.outreach_status)"></span><span x-show="state.attempt_count"> · <span x-text="state.attempt_count"></span> call attempts</span></p>
+  <p class="team-muted" x-show="state.last_contacted_at" x-cloak>Last call by <span x-text="state.last_broker_name"></span> · <span x-text="freightWorkflow.date(state.last_contacted_at)"></span></p>
+  <p class="team-muted" x-show="state.next_follow_up_at" x-cloak>Next follow-up: <span x-text="freightWorkflow.date(state.next_follow_up_at)"></span></p>
+  <p class="team-muted" x-show="state.last_feedback_notes" x-cloak>Latest call note: <span x-text="state.last_feedback_notes" style="white-space:pre-wrap"></span></p>
+  <p class="team-muted" x-show="state.handoff_note" x-cloak>Handoff note: <span x-text="state.handoff_note" style="white-space:pre-wrap"></span></p>
+  <div class="team-actions">
+    <button type="button" class="btn btn-primary btn-sm" x-show="!state.owner_id" :disabled="busy" @click="act('claim')">Start Working</button>
+    <span x-show="mine" class="badge badge-interested" x-cloak>Assigned to you</span>
+    <button type="button" class="btn btn-secondary btn-sm" x-show="state.owner_id && canManage" :disabled="busy" @click="act('release')" x-cloak>Release Company</button>
+    <button type="button" class="btn btn-secondary btn-sm" x-show="canManage" :disabled="busy" @click="transferring = !transferring" x-cloak>Transfer Company</button>
+  </div>
+  <form x-show="transferring" @submit.prevent="act('transfer')" class="team-transfer" x-cloak>
+    <label>Transfer to<select aria-label="Transfer to" x-model="targetId" required class="form-input"><option value="">Choose broker</option><template x-for="u in $store.team.users.filter(u => u.role === 'BROKER' && u.id !== state.owner_id)" :key="u.id"><option :value="u.id" x-text="u.username"></option></template></select></label>
+    <label>Handoff note (optional)<textarea x-model="note" maxlength="2000" rows="2" class="form-input" placeholder="What should the next broker know?"></textarea></label>
+    <div class="team-actions"><button class="btn btn-primary btn-sm" :disabled="busy || !targetId">Confirm Transfer</button><button type="button" class="btn btn-secondary btn-sm" @click="transferring=false">Cancel</button></div>
+  </form>
+  <p x-show="error" x-text="error" class="team-error" role="alert" x-cloak></p>
+</section>

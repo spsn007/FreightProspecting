@@ -20,7 +20,7 @@ Verifies:
 import sqlite3
 from pathlib import Path
 import pytest
-from fastapi.testclient import TestClient
+from tests.authenticated_client import TestClient
 
 from src.backend.db.connection import create_connection
 from src.backend.db.queries import (

@@ -390,7 +390,7 @@ def test_queries_opportunity_tier_filtering():
 
 def test_fastapi_endpoints_opportunity_integration():
     """Verify HTTP endpoints reflect broker opportunity tiers."""
-    from starlette.testclient import TestClient
+    from tests.authenticated_client import TestClient
     from src.backend.main import app
 
     client = TestClient(app)
@@ -601,7 +601,7 @@ def test_audit_obsolete_disclaimer_removed():
     """
     Audit Test: Verify obsolete disclaimer is replaced on Cockpit (/).
     """
-    from starlette.testclient import TestClient
+    from tests.authenticated_client import TestClient
     from src.backend.main import app
 
     client = TestClient(app)
@@ -617,7 +617,7 @@ def test_audit_ui_truth_panel_rendered():
     """
     Audit Test: Verify Truth Panel elements are rendered on Cockpit and Directory.
     """
-    from starlette.testclient import TestClient
+    from tests.authenticated_client import TestClient
     from src.backend.main import app
 
     client = TestClient(app)

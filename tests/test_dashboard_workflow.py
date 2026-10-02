@@ -5,8 +5,9 @@ from pathlib import Path
 import shutil
 import sqlite3
 import subprocess
+from html.parser import HTMLParser
 
-from fastapi.testclient import TestClient
+from tests.authenticated_client import TestClient
 from src.backend.main import app
 from src.backend.db.queries import log_outreach_call
 
@@ -56,21 +57,32 @@ def test_browser_workflow_logic():
     workflow = (root / "src/frontend/static/js/workflow.js").read_text(encoding="utf-8")
     modal = (root / "src/frontend/templates/partials/log_call_modal.html").read_text(encoding="utf-8")
     modal_script = modal.split("<script>", 1)[1].split("</script>", 1)[0]
+    class DirectoryParser(HTMLParser):
+        component = ""
+        def handle_starttag(self, tag, attributes):
+            attributes = dict(attributes)
+            if attributes.get("id") == "prospect-directory":
+                self.component = attributes["x-data"]
+    parser = DirectoryParser()
+    parser.feed((root / "src/frontend/templates/prospects.html").read_text(encoding="utf-8"))
     script = r'''
 const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const values = new Map(), listeners = {}, events = [];
-let focused = '', copied = '', fetched = '';
+let focused = '', copied = '', fetched = '', restoredY = null, navigationType = 'navigate';
 const context = {
-  window: {location: {origin:'http://localhost', pathname:'/prospects'}, URL,
+  Alpine: {store:()=>({mine:()=>true,user:{id:1}})},
+  window: {location: {origin:'http://localhost', pathname:'/prospects', search:''}, URL,
+    scrollTo: (x,y)=>restoredY=y,
     addEventListener: (name, handler) => listeners[name] = handler,
     dispatchEvent: e => events.push(e)},
-  sessionStorage: {getItem: key => values.get(key) || null, setItem: (key, value) => values.set(key, value)},
+  sessionStorage: {getItem: key => values.get(key) || null, setItem: (key, value) => values.set(key, value), removeItem:key=>values.delete(key)},
   navigator: {clipboard: {writeText: async value => copied = value}},
   CustomEvent: class {constructor(type, options={}) {this.type=type; this.detail=options.detail;}},
-  document: {activeElement:null, getElementById: id => ({focus: () => focused=id,
+  document: {activeElement:null, referrer:'http://localhost/prospects?outreach=INTERESTED', getElementById: id => ({focus: () => focused=id,
     textContent: '{"INTERESTED":"Interested"}'})},
   URLSearchParams, Date, setTimeout: () => {}, clearTimeout: () => {},
+  performance: {getEntriesByType:()=>[{type:navigationType}]}, requestAnimationFrame:callback=>callback(),
   fetch: async url => {fetched=url; return {ok:true, text:async()=>'', json:async()=>({data:{disposition:'INTERESTED', follow_up_at:null}})};},
   DOMParser: class {parseFromString() {return {getElementById:()=>({textContent:JSON.stringify([
     {company_id:3, primary_facility_id:30, operating_brand:'Third'}])})};}}
@@ -81,6 +93,17 @@ vm.runInContext(MODAL, context);
 (async () => {
   const workflow = context.window.freightWorkflow;
   context.freightWorkflow = workflow;
+  const originalDocument = context.document;
+  context.document = {getElementById:()=>({textContent:'[]'})};
+  const directory = vm.runInContext('(' + DIRECTORY + ')', context);
+  context.document = originalDocument;
+  directory.companies=[{company_id:1,operating_brand:'First',opportunity_tier:'TIER_A_PRIORITY'}];
+  directory.selectedTiers=['TIER_B_WORTH_CALLING'];
+  assert.equal(directory.sortedCompanies().length,0);
+  directory.navigateWithFilters(1);
+  assert.equal(directory.navigating,true);
+  assert.equal(directory.sortedCompanies().length,1);
+  assert.ok(context.window.location.href.includes('tier=TIER_B_WORTH_CALLING'));
   for(let id=1; id<=6; id++) workflow.remember({facilityId:id, name:'Company '+id});
   workflow.remember({facilityId:3, name:'Third'});
   assert.deepEqual(Array.from(workflow.recentProfiles(), x=>x.facilityId), [3,6,5,4,2]);
@@ -101,6 +124,18 @@ vm.runInContext(MODAL, context);
   assert.equal(neighbors.next.name,'Third');
   assert.equal(neighbors.next.context.anchorId,null);
   assert.match(fetched,/q=steel.*page=2/);
+  workflow.store('fp_directory_position',{url:'/prospects',scrollY:123});
+  directory.$nextTick=callback=>callback();
+  directory.restoreDirectoryPosition();
+  assert.equal(restoredY,null);
+  context.document.referrer='http://localhost/prospects/10';
+  directory.restoreDirectoryPosition();
+  assert.equal(restoredY,123);
+  restoredY=null;
+  context.document.referrer='http://localhost/prospects?outreach=INTERESTED';
+  navigationType='back_forward';
+  directory.restoreDirectoryPosition();
+  assert.equal(restoredY,123);
   const modal=context.logCallModalComponent();
   modal.$nextTick = callback=>callback();
   modal.init();
@@ -126,7 +161,7 @@ vm.runInContext(MODAL, context);
   assert.equal(workflow.read('fp_saved_call'),'Saved — First: Interested. No follow-up scheduled.');
   assert.equal(events.at(-1).type,'outreach-logged');
 })().catch(error=>{console.error(error);process.exitCode=1;});
-'''.replace("WORKFLOW", json.dumps(workflow)).replace("MODAL", json.dumps(modal_script))
+'''.replace("WORKFLOW", json.dumps(workflow)).replace("MODAL", json.dumps(modal_script)).replace("DIRECTORY", json.dumps(parser.component))
     node = shutil.which("node") or r"C:\Program Files\nodejs\node.exe"
     result = subprocess.run([node, "-"], input=script, encoding="utf-8", capture_output=True)
     assert result.returncode == 0, result.stderr

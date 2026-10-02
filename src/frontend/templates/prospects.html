@@ -18,7 +18,13 @@
 <script id="commodity-families-data" type="application/json">{{ (commodity_families or [])|tojson|safe }}</script>
 <script id="commodity-categories-data" type="application/json">{{ (commodity_categories or [])|tojson|safe }}</script>
 
-<div x-data="{
+<nav class="team-views" aria-label="Company ownership views">
+  {% for value,label in [('all','All Companies'),('mine','My Companies'),('available','Available Companies')] %}
+  <a class="btn btn-secondary btn-sm {{ 'active' if team_view == value else '' }}" href="{{ request.url.include_query_params(team_view=value,page=1,view='companies') if request else '/prospects?team_view=' + value }}">{{ label }}</a>
+  {% endfor %}
+</nav>
+<div id="prospect-directory" x-cloak :aria-busy="navigating" x-data="{
+  navigating: false,
   viewMode: new URLSearchParams(window.location.search).get('view') === 'facilities' ? 'FACILITIES' : 'COMPANIES',
   searchQuery: '',
   followUpWindow: new URLSearchParams(window.location.search).get('follow_up') || 'all',
@@ -183,6 +189,8 @@
         }
       }
     });
+    window.addEventListener('team-results-changing', () => { this.saveDirectoryPosition(); sessionStorage.setItem('fp_team_refresh', '1'); });
+    window.addEventListener('team-updated', e => { this.companies.forEach(c => { if (e.detail[c.company_id]) Object.assign(c, e.detail[c.company_id]); }); });
     this.restoreDirectoryPosition();
   },
 
@@ -208,6 +216,11 @@
   },
   restoreDirectoryPosition() {
     try {
+      const fromProfile = new window.URL(document.referrer || '/', window.location.origin).pathname.startsWith('/prospects/');
+      const fromHistory = performance.getEntriesByType('navigation')[0]?.type === 'back_forward';
+      const fromTeam = sessionStorage.getItem('fp_team_refresh') === '1';
+      sessionStorage.removeItem('fp_team_refresh');
+      if (!fromProfile && !fromHistory && !fromTeam) return;
       const saved = JSON.parse(sessionStorage.getItem('fp_directory_position') || 'null');
       if (!saved || saved.url !== window.location.pathname + window.location.search) return;
       this.expandedCompanies = saved.expandedCompanies || {};
@@ -220,10 +233,13 @@
   },
 
   navigateWithFilters(targetPage = 1) {
+    this.navigating = true;
     if (!this.searchQuery.trim() && this.sortOption === 'relevance') {
       this.sortOption = 'name_asc';
     }
     const params = new URLSearchParams();
+    const teamView = new URLSearchParams(window.location.search).get('team_view');
+    if (teamView) params.set('team_view', teamView);
     if (this.viewMode === 'COMPANIES' && this.selectedOutreach.length === 1 && ['FOLLOW_UP', 'FOLLOW_UPS'].includes(this.selectedOutreach[0])) {
       params.set('follow_up', this.followUpWindow);
       params.set('tz', Intl.DateTimeFormat().resolvedOptions().timeZone);
@@ -404,6 +420,7 @@
   clearingCompanyId: null,
   trackingError: '',
   async clearTracking(c, action) {
+    if (!Alpine.store('team').mine(c.company_id)) { freightWorkflow.notice('Only the assigned broker can change call status.'); return; }
     const message = action === 'cancel_follow_up'
       ? 'Cancel the next call for ' + c.operating_brand + '? Its call status and history will stay saved.'
       : 'Clear the active call status and next call for ' + c.operating_brand + '? Its call history will stay saved.';
@@ -477,6 +494,7 @@
   },
 
   openLogCall(c, f = null) {
+    if (!Alpine.store('team').mine(c.company_id)) { freightWorkflow.notice('Start Working first, or choose an available company.'); return; }
     const childFacs = (c.facilities || []).map(fac => ({
       id: fac.facility_id,
       name: fac.facility_name,
@@ -535,6 +553,9 @@
 
   // Company filtering
   matchesCompanyFilter(c) {
+    const teamView = new URLSearchParams(window.location.search).get('team_view');
+    if (teamView === 'mine' && c.owner_id !== Alpine.store('team').user.id) return false;
+    if (teamView === 'available' && (c.owner_id || c.outreach_status === 'NOT_INTERESTED')) return false;
     // 1. Opportunity tier multi-select (OR within group)
     if (this.selectedTiers.length > 0 && !this.selectedTiers.includes(c.opportunity_tier)) {
       return false;
@@ -618,7 +639,7 @@
 
   // Company sorting & pagination
   sortedCompanies() {
-    const list = this.companies.filter(c => this.matchesCompanyFilter(c));
+    const list = this.navigating ? this.companies.slice() : this.companies.filter(c => this.matchesCompanyFilter(c));
     return freightWorkflow.sortCompanies(list, this.sortOption);
   },
   filteredCompanies() {
@@ -1423,7 +1444,8 @@
   <!-- ======================================================================== -->
   <div x-show="viewMode === 'COMPANIES'">
     <template x-for="c in paginatedCompanies()" :key="c.company_id">
-      <div class="company-card">
+      <div class="company-card" :data-company-id="c.company_id">
+        {% set team_company_id = 'c.company_id' %}{% include 'partials/team_company.html' %}
         <!-- Company Card Header (Broker-First Simplified Layout) -->
         <div class="company-card-header" @click="toggleCompany(c.company_id)">
           <!-- 1. FULL-WIDTH HEADER ZONE -->
@@ -1507,6 +1529,7 @@
 
             <div style="font-size:0.8125rem; line-height:1.5; margin:0.5rem 0;">
               <template x-if="c.last_contacted_at"><div><strong>Last call:</strong> <span x-text="freightWorkflow.date(c.last_contacted_at)"></span><template x-if="c.last_call_outcome"><span> · <span x-text="outreachLabel(c.last_call_outcome)"></span></span></template></div></template>
+              <template x-if="c.last_contacted_at"><div><strong>Logged by:</strong> <span x-text="c.last_broker_name"></span></div></template>
               <template x-if="c.last_feedback_notes"><div style="white-space:pre-wrap; overflow-wrap:anywhere;"><strong>Latest note:</strong> <span x-text="c.last_feedback_notes"></span></div></template>
               <template x-if="c.next_follow_up_at"><div><strong>Next follow-up:</strong> <span x-text="freightWorkflow.date(c.next_follow_up_at)"></span></div></template>
             </div>
@@ -1601,18 +1624,18 @@
             <!-- Col C: ACTIONS (Right Column) -->
             <div class="broker-card-actions">
               <template x-if="c.best_phone">
-                <a :href="'tel:' + c.best_phone_clean" class="btn btn-call btn-sm" @click.stop style="width:100%; justify-content:center; font-weight:700;">
+                <a :href="'tel:' + c.best_phone_clean" class="btn btn-call btn-sm" @click.stop="if (!$store.team.mine(c.company_id)) { $event.preventDefault(); freightWorkflow.notice('Start Working before calling.'); }" :aria-disabled="!$store.team.mine(c.company_id)" style="width:100%; justify-content:center; font-weight:700;">
                   📞 Call Now
                 </a>
               </template>
-              <button type="button" class="btn btn-primary btn-sm" @click.stop="openLogCall(c, null)" style="width:100%; justify-content:center;">
+              <button type="button" class="btn btn-primary btn-sm" @click.stop="openLogCall(c, null)" :disabled="!$store.team.mine(c.company_id)" style="width:100%; justify-content:center;">
                 📝 Log Call
               </button>
               <template x-if="c.outreach_status && c.outreach_status !== 'UNCONTACTED'">
-                <button type="button" class="btn btn-secondary btn-sm" @click.stop="clearTracking(c, 'clear_status')" :disabled="clearingCompanyId !== null" style="width:100%; justify-content:center;">Clear Call Status</button>
+                <button type="button" class="btn btn-secondary btn-sm" @click.stop="clearTracking(c, 'clear_status')" :disabled="clearingCompanyId !== null || !$store.team.mine(c.company_id)" style="width:100%; justify-content:center;">Clear Call Status</button>
               </template>
               <template x-if="c.next_follow_up_at">
-                <button type="button" class="btn btn-secondary btn-sm" @click.stop="clearTracking(c, 'cancel_follow_up')" :disabled="clearingCompanyId !== null" style="width:100%; justify-content:center;">Cancel Follow-Up</button>
+                <button type="button" class="btn btn-secondary btn-sm" @click.stop="clearTracking(c, 'cancel_follow_up')" :disabled="clearingCompanyId !== null || !$store.team.mine(c.company_id)" style="width:100%; justify-content:center;">Cancel Follow-Up</button>
               </template>
               <template x-if="c.primary_facility_id">
                 <a :id="'review-company-' + c.company_id" :href="reviewProspectUrl(c.primary_facility_id)" class="btn btn-secondary btn-sm" @click.stop="saveDirectoryPosition($event)" @auxclick="saveDirectoryPosition($event)" style="width:100%; justify-content:center;">
@@ -1766,7 +1789,7 @@
                     <td style="text-align:right;">
                       <div style="display:flex; justify-content:flex-end; gap:0.35rem; align-items:center;">
                         <button type="button" class="btn btn-secondary btn-sm" style="font-size:0.75rem; padding:0.25rem 0.5rem;"
-                                @click.stop="openLogCall(c, f)">
+                                @click.stop="openLogCall(c, f)" :disabled="!$store.team.mine(c.company_id)">
                           📞 Call
                         </button>
                         <a :id="'review-child-' + f.facility_id" :href="reviewProspectUrl(f.facility_id)" @click.stop="saveDirectoryPosition($event)" @auxclick="saveDirectoryPosition($event)" class="btn btn-primary btn-sm" style="font-size:0.75rem; padding:0.25rem 0.6rem;">
@@ -1784,10 +1807,10 @@
     </template>
 
     <!-- Empty State for Company Mode -->
-    <div class="empty-state-card" x-show="filteredCompanies().length === 0">
+    <div class="empty-state-card" x-show="!navigating && filteredCompanies().length === 0">
       <div class="empty-state-icon-box">🏢</div>
-      <div class="empty-state-title">No companies match your filters</div>
-      <div class="empty-state-desc">Try a different search or remove one or more filters.</div>
+      <div class="empty-state-title">{{ "No assigned companies here" if team_view == "mine" else "No companies match your filters" }}</div>
+      <div class="empty-state-desc">{{ "Choose Available Companies to start working, or adjust your filters." if team_view == "mine" else "Try a different search or remove one or more filters." }}</div>
       <button class="btn btn-secondary btn-sm"
               @click="clearAllFilters()">
         Reset All Filters
@@ -1816,11 +1839,12 @@
           </thead>
           <tbody>
             <template x-for="p in paginatedProspects()" :key="p.facility_id">
-              <tr>
+              <tr :data-company-id="p.company_id">
                 <!-- Company & Facility -->
                 <td>
                   <div style="font-weight:700; color:var(--color-text-main); font-size:0.875rem;" x-text="p.operating_brand"></div>
                   <div style="font-size:0.75rem; color:var(--color-text-muted);" x-text="p.facility_name"></div>
+                  <div class="team-muted" x-text="$store.team.state[p.company_id]?.owner_name ? 'Working with: ' + $store.team.state[p.company_id].owner_name : 'Unassigned — open profile to Start Working'"></div>
                   <div style="font-size:0.6875rem; color:#0284c7;" x-show="p.parent_info"
                        x-text="'TI Automotive Group (Acquired 2023) • Hierarchy: UNKNOWN'"></div>
                 </td>
@@ -1956,7 +1980,7 @@
                 <td style="text-align:right;">
                   <div style="display:flex; justify-content:flex-end; gap:0.35rem; align-items:center;">
                     <button type="button" class="btn btn-secondary btn-sm" style="font-size:0.75rem; padding:0.25rem 0.5rem;"
-                            @click.stop="openLogCall({company_id: p.company_id, operating_brand: p.operating_brand, legal_name: p.operating_brand, facilities: [p]}, p)">
+                             :disabled="!$store.team.mine(p.company_id)" @click.stop="openLogCall({company_id: p.company_id, operating_brand: p.operating_brand, legal_name: p.operating_brand, facilities: [p]}, p)">
                       📞 Call
                     </button>
                     <a :id="'review-facility-' + p.facility_id" :href="reviewProspectUrl(p.facility_id)" @click="saveDirectoryPosition($event)" @auxclick="saveDirectoryPosition($event)" class="btn btn-primary btn-sm">
@@ -1967,7 +1991,7 @@
               </tr>
             </template>
             <!-- Empty State for Facilities Mode -->
-            <tr x-show="filteredProspects().length === 0">
+            <tr x-show="!navigating && filteredProspects().length === 0">
               <td colspan="8" style="text-align:center; padding:3rem 1rem; color:var(--color-text-muted);">
                 <div style="font-size:1.125rem; font-weight:600; color:var(--color-text-main); margin-bottom:0.5rem;">No prospects match your search criteria</div>
                 <div style="font-size:0.875rem;">Try a different search or remove one or more filters.</div>

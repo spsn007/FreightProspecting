@@ -16,13 +16,18 @@
     })();
   </script>
   <!-- Local Offline CSS (Zero CDN / Zero External Network Calls) -->
-  <link rel="stylesheet" href="/static/css/app.css">
+  <link rel="stylesheet" href="/static/css/app.css?v=20261002-ready-paint">
   <link rel="stylesheet" href="/static/css/components.css?v=20261002-ui3">
+  <link rel="stylesheet" href="/static/css/team.css?v=20261002-team-final2">
+  <script src="/static/js/team.js?v=20261002-team-final2"></script>
   <!-- Local Vendored Alpine.js v3.14.8 -->
   <script src="/static/js/workflow.js?v=20261002-workflow1"></script>
-  <script defer src="/static/js/vendor/alpine.min.js"></script>
+  <script defer blocking="render" src="/static/js/vendor/alpine.min.js"></script>
 </head>
 <body>
+  {% set team_user = request.state.user if request else {"id":0,"username":"Preview","role":"BROKER"} %}
+  <script id="team-user-data" type="application/json">{{ team_user|tojson|safe }}</script>
+  <script id="team-initial-data" type="application/json">{{ (team_snapshot() if request else {})|tojson|safe }}</script>
   <div class="app-layout" x-data="{ globalSearch: '' }">
     <!-- Left Navigation Sidebar (Dark Slate Shell) -->
     <aside class="app-sidebar">
@@ -51,36 +56,28 @@
               <a href="/prospects?outreach=INTERESTED" class="sidebar-link {% if active_nav == 'crm_interested' %}active{% endif %}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <span>Interested</span>
-                {% if counts and counts.get('crm_interested', 0) > 0 %}
-                <span class="pill-counter" style="background:#10b981; color:#fff;">{{ counts.get('crm_interested') }}</span>
-                {% endif %}
+                <span class="pill-counter" style="background:#10b981; color:#fff;" x-cloak x-show="$store.team.count('INTERESTED') > 0" x-text="$store.team.count('INTERESTED')"></span>
               </a>
             </li>
             <li>
               <a href="/prospects?outreach=FOLLOW_UP" class="sidebar-link {% if active_nav == 'crm_follow_ups' %}active{% endif %}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <span>Follow-Ups</span>
-                {% if counts and counts.get('crm_follow_ups', 0) > 0 %}
-                <span class="pill-counter" style="background:#0ea5e9; color:#fff;">{{ counts.get('crm_follow_ups') }}</span>
-                {% endif %}
+                <span class="pill-counter" style="background:#0ea5e9; color:#fff;" x-cloak x-show="$store.team.count('FOLLOW_UP') > 0" x-text="$store.team.count('FOLLOW_UP')"></span>
               </a>
             </li>
             <li>
               <a href="/prospects?outreach=NO_ANSWER" class="sidebar-link {% if active_nav == 'crm_no_answer' %}active{% endif %}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                 <span>No Answer</span>
-                {% if counts and counts.get('crm_no_answer', 0) > 0 %}
-                <span class="pill-counter" style="background:#f59e0b; color:#fff;">{{ counts.get('crm_no_answer') }}</span>
-                {% endif %}
+                <span class="pill-counter" style="background:#f59e0b; color:#fff;" x-cloak x-show="$store.team.count('NO_ANSWER') > 0" x-text="$store.team.count('NO_ANSWER')"></span>
               </a>
             </li>
             <li>
               <a href="/prospects?outreach=NOT_INTERESTED" class="sidebar-link {% if active_nav == 'crm_not_interested' %}active{% endif %}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
                 <span>Not Interested</span>
-                {% if counts and counts.get('crm_not_interested', 0) > 0 %}
-                <span class="pill-counter" style="background:#64748b; color:#fff;">{{ counts.get('crm_not_interested') }}</span>
-                {% endif %}
+                <span class="pill-counter" style="background:#64748b; color:#fff;" x-cloak x-show="$store.team.count('NOT_INTERESTED') > 0" x-text="$store.team.count('NOT_INTERESTED')"></span>
               </a>
             </li>
           </ul>
@@ -135,6 +132,10 @@
 
       <!-- Secondary Utility Navigation & System Status -->
       <div class="sidebar-bottom">
+        <div class="team-account"><strong>{{ team_user.username }}</strong> · {{ team_user.role|title }}
+          {% if team_user.role == 'ADMIN' %}<p><a href="/admin" style="color:inherit">Manage Team</a></p>{% endif %}
+          <form method="post" action="/logout" onsubmit="sessionStorage.clear()"><button class="btn btn-secondary btn-sm" type="submit">Sign Out</button></form>
+        </div>
         <div class="sidebar-utility" style="padding:0.75rem 1rem 0.25rem 1rem; border-top:1px solid var(--sidebar-border);">
           <div style="font-size:0.6875rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.25rem; padding-left:0.5rem;">
             Configuration
@@ -217,6 +218,7 @@
 
   <script id="outreach-labels-global" type="application/json">{{ outreach_labels|tojson|safe }}</script>
   <!-- Reusable Stage 3C Log Call Modal -->
+  <p x-data x-show="$store.team.refreshError" x-text="$store.team.refreshError" class="team-error" role="status" style="position:fixed;bottom:0;right:1rem;background:var(--color-surface);padding:0.75rem;z-index:1000" x-cloak></p>
   {% include "partials/log_call_modal.html" %}
 
   {% block scripts %}{% endblock %}

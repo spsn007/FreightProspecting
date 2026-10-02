@@ -27,7 +27,7 @@ from pathlib import Path
 import sqlite3
 import pytest
 from decimal import Decimal
-from fastapi.testclient import TestClient
+from tests.authenticated_client import TestClient
 
 from src.backend.db.connection import (
     DEFAULT_DB_PATH,

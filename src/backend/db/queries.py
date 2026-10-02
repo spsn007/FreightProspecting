@@ -1129,6 +1129,7 @@ def get_prospects_list(
     opportunity_tier: Optional[str] = None,
     facility_ids: Optional[List[int]] = None,
     company_ids: Optional[List[int]] = None,
+    allowed_company_ids: Optional[List[int]] = None,
 ) -> Any:
     """
     Returns the list of prospect facilities filtered by lifecycle stage.
@@ -1176,6 +1177,9 @@ def get_prospects_list(
                 procurement=procurement,
                 tier=effective_tier,
             )
+            if allowed_company_ids is not None:
+                w_sql += (" AND " if w_sql else " WHERE ") + ("c.id IN (" + ",".join("?" for _ in allowed_company_ids) + ")" if allowed_company_ids else "0")
+                p_params = list(p_params) + list(allowed_company_ids)
             count_sql = f"""
                 SELECT count(DISTINCT f.id)
                 FROM facilities f
@@ -1972,6 +1976,9 @@ def get_prospects_list(
                 prospects = []
 
 
+        if allowed_company_ids is not None:
+            allowed = set(allowed_company_ids)
+            prospects = [p for p in prospects if p["company_id"] in allowed]
         if page is not None and page_size is not None:
             if paged_two_phase:
                 total_pages = max(1, (total_count + page_size - 1) // page_size)
@@ -2831,6 +2838,7 @@ def get_company_grouped_prospects(
     procurement: Optional[str] = None,
     tier: Optional[str] = None,
     opportunity_tier: Optional[str] = None,
+    allowed_company_ids: Optional[List[int]] = None,
 ) -> Any:
     """
     Returns prospects grouped at the company level.
@@ -2870,6 +2878,9 @@ def get_company_grouped_prospects(
                 db_path=db_path,
                 universe_context=universe_context,
             )
+            if allowed_company_ids is not None:
+                w_sql += (" AND " if w_sql else " WHERE ") + ("c.id IN (" + ",".join("?" for _ in allowed_company_ids) + ")" if allowed_company_ids else "0")
+                p_params = list(p_params) + list(allowed_company_ids)
             count_sql = f"""
                 SELECT count(DISTINCT c.id)
                 FROM companies c
@@ -3007,6 +3018,9 @@ def get_company_grouped_prospects(
                     db_path=db_path,
                     universe_context=universe_context,
                 )
+                if allowed_company_ids is not None:
+                    w_sql += (" AND " if w_sql else " WHERE ") + ("c.id IN (" + ",".join("?" for _ in allowed_company_ids) + ")" if allowed_company_ids else "0")
+                    p_params = list(p_params) + list(allowed_company_ids)
                 if search and search.strip():
                     q_raw = search.strip().lower()
                     q_exact = q_raw
@@ -3084,6 +3098,9 @@ def get_company_grouped_prospects(
                 prospects = get_prospects_list(lifecycle_stage=lifecycle_stage, db_path=db_path, conn=conn)
 
         groups = _assemble_company_groups(prospects, conn=conn, universe_context=universe_context)
+        if allowed_company_ids is not None:
+            allowed = set(allowed_company_ids)
+            groups = [g for g in groups if g["company_id"] in allowed]
         # Optional Python-level filtering
         outreach_items = _parse_filter_list(outreach_filter)
         if outreach_items:
@@ -3962,6 +3979,7 @@ def log_outreach_call(
     conn: Optional[sqlite3.Connection] = None,
     verified_evidence: Optional[Dict[str, Any]] = None,
     client_request_id: Optional[str] = None,
+    broker_user_id: Optional[int] = None,
 ) -> Dict[str, Any]:
     """
     Stage 3C CRM: Records an outreach call.
@@ -3997,6 +4015,10 @@ def log_outreach_call(
     conn.row_factory = sqlite3.Row
     try:
         with conn:
+            if broker_user_id is not None:
+                from src.backend.team import assert_owner
+                conn.execute("BEGIN IMMEDIATE")
+                assert_owner(conn, company_id, broker_user_id)
             # 0. Check suppression (DNC / existing account / lane restrictions)
             sup_eval = evaluate_outreach_suppression(
                 company_id=company_id,
@@ -4139,6 +4161,8 @@ def log_outreach_call(
                 )
             )
             log_id = cur.lastrowid
+            if broker_user_id is not None:
+                conn.execute("INSERT INTO outreach_authors VALUES(?,?)", (log_id, broker_user_id))
 
             # 5. Compute real attempt count for phone calls
             attempts_cnt = conn.execute(
@@ -4571,6 +4595,7 @@ def clear_outreach_tracking(
     company_id: int,
     action: str = "clear_status",
     db_path: Optional[str | Path] = None,
+    broker_user_id: Optional[int] = None,
 ) -> Dict[str, Any]:
     """Clear the active CRM projection while keeping every historical call intact."""
     if action not in ("clear_status", "cancel_follow_up"):
@@ -4578,8 +4603,13 @@ def clear_outreach_tracking(
     conn = create_connection(db_path)
     try:
         with conn:
+            if broker_user_id is not None:
+                conn.execute("BEGIN IMMEDIATE")
             if not conn.execute("SELECT 1 FROM companies WHERE id = ?", (company_id,)).fetchone():
                 raise ValueError(f"Company {company_id} does not exist")
+            if broker_user_id is not None:
+                from src.backend.team import assert_owner
+                assert_owner(conn, company_id, broker_user_id)
             if action == "clear_status":
                 conn.execute(
                     """UPDATE prospect_engagement_state

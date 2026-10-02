@@ -2,7 +2,7 @@ import html
 import re
 
 import pytest
-from fastapi.testclient import TestClient
+from tests.authenticated_client import TestClient
 
 from src.backend.main import app
 

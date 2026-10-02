@@ -101,8 +101,10 @@ function logCallModalComponent() {
         }
       });
       window.addEventListener('open-log-call', (e) => {
-        this.resetForm();
         const d = e.detail || {};
+        const companyId = d.companyId || (d.company ? d.company.company_id : null);
+        if (!Alpine.store('team').mine(companyId)) { freightWorkflow.notice('Start Working on this company first. Another broker may already be handling it.'); return; }
+        this.resetForm();
         this.companyId = d.companyId || (d.company ? d.company.company_id : null);
         this.companyName = d.companyName || (d.company ? (d.company.operating_brand || d.company.company_name) : 'Prospect Company');
         this.facilities = d.childFacilities || (d.company && d.company.facilities ? d.company.facilities.map(f => ({

@@ -15,7 +15,7 @@ import shutil
 import sqlite3
 import pytest
 from pathlib import Path
-from fastapi.testclient import TestClient
+from tests.authenticated_client import TestClient
 
 from src.backend.db.connection import create_connection, get_db_path
 from src.backend.db.queries import (
@@ -134,7 +134,7 @@ def test_promotion_api_endpoint_rejects_failing_facility():
     resp = client.post(
         "/api/prospects/4/stage",
         json={"stage": "SHORTLISTED"},
-        headers={"Origin": "http://127.0.0.1:8000"}
+        headers={"Origin": "http://testserver"}
     )
     assert resp.status_code == 400
     data = resp.json()

@@ -5,6 +5,8 @@ Zero External CDN Dependencies • Zero Paid AI Keys • Local SQLite WAL
 """
 
 import logging
+import os
+from contextlib import closing
 from pathlib import Path
 from typing import Any, Dict, List, Literal, Optional
 import urllib.parse
@@ -15,7 +17,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, field_validator
 
-from src.backend.db.connection import check_database_health
+from src.backend import team
+from src.backend.db.connection import check_database_health, create_connection
 from src.backend.db.validators import normalize_to_utc_iso, validate_date_string, sanitize_url, validate_iso_timestamp
 from src.backend.db.queries import (
     SuppressionBlockedError,
@@ -44,7 +47,7 @@ from src.backend.db.queries import (
 logger = logging.getLogger("freightprospecting")
 
 # Project paths
-PROJECT_ROOT = Path("D:/FreightProspecting")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 STATIC_DIR = PROJECT_ROOT / "src" / "frontend" / "static"
 TEMPLATES_DIR = PROJECT_ROOT / "src" / "frontend" / "templates"
 
@@ -77,6 +80,7 @@ OUTREACH_LABELS = {
     "FOLLOW_UPS": "Follow-Up Scheduled",
 }
 templates.env.globals["outreach_labels"] = OUTREACH_LABELS
+templates.env.globals["team_snapshot"] = team.snapshot
 
 
 
@@ -108,62 +112,141 @@ async def file_not_found_exception_handler(request: Request, exc: FileNotFoundEr
 
 
 def verify_mutation_origin(request: Request) -> None:
-    """
-    AUD-013: Security boundary on mutating endpoints.
-    Protects against Cross-Site Request Forgery (CSRF) and untrusted origin calls.
-    Ensures mutating requests come from local loopback with matching Origin/Host.
-    Hardened against Host header injection / forgery.
-    """
-    client_host = request.client.host if request.client else "127.0.0.1"
-    is_loopback = client_host in ("127.0.0.1", "::1", "localhost", "testclient")
-    if not is_loopback:
-        raise HTTPException(status_code=403, detail="Mutating endpoints are restricted to local loopback access.")
+    """Same-origin writes only; configured hosts support a future shared deployment."""
+    if request.headers.get("sec-fetch-site", "").lower() == "cross-site":
+        raise HTTPException(403, "Cross-site requests are strictly prohibited.")
+    for name in ("origin", "referer"):
+        value = request.headers.get(name)
+        if value:
+            parsed = urllib.parse.urlsplit(value)
+            if parsed.scheme != request.url.scheme or parsed.netloc.lower() != request.headers.get("host", "").lower():
+                raise HTTPException(403, "Cross-origin referer rejected" if name == "referer" else "Cross-origin request rejected")
 
-    # Modern Fetch Metadata boundary: reject any request explicitly tagged cross-site
-    sec_fetch_site = request.headers.get("sec-fetch-site")
-    if sec_fetch_site and sec_fetch_site.lower() == "cross-site":
-        raise HTTPException(status_code=403, detail="Cross-site requests are strictly prohibited.")
 
-    LOOPBACK_HOSTS = {"localhost", "127.0.0.1", "[::1]", "::1", "testclient", "testserver"}
+@app.middleware("http")
+async def team_security(request: Request, call_next):
+    allowed = {h.strip().lower() for h in os.getenv("FP_ALLOWED_HOSTS", "localhost,127.0.0.1,::1,testserver,testclient").split(",")}
+    if (request.url.hostname or "").lower() not in allowed:
+        return JSONResponse({"detail": "Untrusted Host header"}, status_code=403)
+    if request.url.path.startswith("/static/") or request.url.path in ("/favicon.ico", "/api/health"):
+        return await call_next(request)
+    try:
+        team.initialize()
+        user = team.session_user(request.cookies.get(team.COOKIE))
+    except FileNotFoundError as exc:
+        return JSONResponse({"detail": str(exc), "healthy": False}, status_code=503)
+    request.state.user = user
+    public = request.url.path == "/login"
+    if not public and not user:
+        if request.url.path.startswith("/api/"):
+            return JSONResponse({"detail": "Please log in."}, status_code=401)
+        return RedirectResponse("/login", status_code=303)
+    try:
+        if request.method not in ("GET", "HEAD", "OPTIONS"):
+            verify_mutation_origin(request)
+        if request.url.path.startswith(("/admin", "/api/admin/")) or request.url.path.endswith("/stage"):
+            team.require_admin(user)
+    except HTTPException as exc:
+        return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
+    response = await call_next(request)
+    response.headers["Cache-Control"] = "no-store"
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["Referrer-Policy"] = "same-origin"
+    response.headers["Content-Security-Policy"] = "frame-ancestors 'none'"
+    return response
 
-    host = request.headers.get("host")
-    if host:
-        host_hostname = host.split(":")[0].strip().lower()
-        if host_hostname not in LOOPBACK_HOSTS:
-            raise HTTPException(
-                status_code=403,
-                detail=f"Untrusted Host header '{host}'. Mutating requests must target local loopback host."
-            )
 
-    origin = request.headers.get("origin")
-    if origin:
-        try:
-            origin_parsed = urllib.parse.urlparse(origin)
-            origin_hostname = (origin_parsed.hostname or origin.split("://")[-1].split(":")[0]).strip().lower()
-            if origin_hostname not in LOOPBACK_HOSTS:
-                raise HTTPException(
-                    status_code=403,
-                    detail=f"Cross-origin request rejected: Origin '{origin}' is not a local loopback origin."
-                )
-        except HTTPException:
-            raise
-        except Exception:
-            raise HTTPException(status_code=403, detail="Malformed origin header.")
+@app.get("/login", response_class=HTMLResponse)
+async def login_page(request: Request):
+    if request.state.user:
+        return RedirectResponse("/prospects", status_code=303)
+    return templates.TemplateResponse(request=request, name="login.html", context={})
 
-    referer = request.headers.get("referer")
-    if referer:
-        try:
-            ref_parsed = urllib.parse.urlparse(referer)
-            ref_hostname = (ref_parsed.hostname or referer.split("://")[-1].split(":")[0]).strip().lower()
-            if ref_hostname not in LOOPBACK_HOSTS:
-                raise HTTPException(
-                    status_code=403,
-                    detail=f"Cross-origin referer rejected: Referer '{referer}' is not a local loopback referer."
-                )
-        except HTTPException:
-            raise
-        except Exception:
-            raise HTTPException(status_code=403, detail="Malformed referer header.")
+
+@app.post("/login")
+async def login(request: Request):
+    form = await request.form()
+    username, password = str(form.get("username", "")), str(form.get("password", ""))
+    if len(username) > 50 or len(password) > 128:
+        raise HTTPException(400, "Invalid login details.")
+    try:
+        token = team.authenticate(username, password, request.client.host if request.client else "unknown")
+    except HTTPException as exc:
+        return templates.TemplateResponse(request=request, name="login.html", context={"error": exc.detail, "username": username}, status_code=exc.status_code)
+    response = RedirectResponse("/prospects", status_code=303)
+    response.set_cookie(team.COOKIE, token, max_age=team.SESSION_SECONDS, httponly=True,
+                        secure=request.url.scheme == "https" or os.getenv("FP_SECURE_COOKIES") == "1", samesite="lax")
+    return response
+
+
+@app.post("/logout")
+async def logout(request: Request):
+    with closing(create_connection()) as conn, conn:
+        conn.execute("DELETE FROM team_sessions WHERE token_hash=?", (team.token_digest(request.cookies.get(team.COOKIE, "")),))
+    response = RedirectResponse("/login", status_code=303)
+    response.delete_cookie(team.COOKIE)
+    return response
+
+
+@app.get("/admin", response_class=HTMLResponse)
+async def admin_page(request: Request):
+    state = team.snapshot()
+    accounts = team.users()
+    for account in accounts:
+        account["company_count"] = sum(s["owner_id"] == account["id"] for s in state.values())
+    return templates.TemplateResponse(request=request, name="admin.html", context={"users": accounts, "active_nav": "admin", "counts": {}})
+
+
+class CreateBrokerRequest(BaseModel):
+    username: str
+    password: str
+
+
+class UpdateBrokerRequest(BaseModel):
+    action: Literal["disable", "enable", "password"]
+    password: Optional[str] = None
+    target_id: Optional[int] = None
+
+
+@app.post("/api/admin/users", status_code=201)
+async def create_broker(req: CreateBrokerRequest):
+    team.create_user(req.username, req.password)
+    return {"status": "success"}
+
+
+@app.post("/api/admin/users/{user_id}")
+async def update_broker(request: Request, user_id: int, req: UpdateBrokerRequest):
+    team.update_user(request.state.user, user_id, req.action, req.password, req.target_id)
+    return {"status": "success"}
+
+
+class AssignmentRequest(BaseModel):
+    action: Literal["claim", "release", "transfer"]
+    target_id: Optional[int] = None
+    note: str = ""
+
+    @field_validator("note")
+    @classmethod
+    def check_note(cls, value):
+        if len(value) > 2000:
+            raise ValueError("Handoff note must be 2000 characters or less.")
+        return value.strip()
+
+
+@app.post("/api/team/companies/{company_id}")
+async def update_assignment(request: Request, company_id: int, req: AssignmentRequest):
+    team.assign(request.state.user, company_id, req.action, req.target_id, req.note)
+    return team.snapshot()[company_id]
+
+
+@app.get("/api/team/state")
+async def team_state():
+    return team.snapshot()
+
+
+@app.get("/api/team/users")
+async def team_users():
+    return team.users(active_only=True)
 
 
 # ============================================================================
@@ -213,6 +296,7 @@ async def master_directory_page(
     outreach: Optional[List[str]] = Query(None),
     sort: Optional[str] = None,
     unreviewed: bool = False,
+    team_view: Literal["all", "mine", "available"] = "all",
     follow_up: Optional[Literal["all", "today", "overdue", "upcoming"]] = None,
     tz: Optional[str] = None,
 ):
@@ -252,7 +336,10 @@ async def master_directory_page(
 
     counts = get_summary_counts()
     universe_meta = get_universe_metadata()
+    team_data = team.snapshot()
+    allowed_ids = team.allowed_company_ids(request.state.user, team_view, team_data)
     prospects = get_prospects_list(
+        allowed_company_ids=allowed_ids,
         lifecycle_stage=stage,
         tier=effective_tier,
         page=effective_page,
@@ -272,6 +359,7 @@ async def master_directory_page(
     )
     follow_up_counts = {}
     company_groups = get_company_grouped_prospects(
+        allowed_company_ids=allowed_ids,
         lifecycle_stage=stage,
         tier=effective_tier,
         outreach_filter=["FOLLOW_UP"] if follow_up_view else outreach,
@@ -290,6 +378,8 @@ async def master_directory_page(
         carrier=carrier,
         procurement=procurement,
     )
+    for group in company_groups["items"]:
+        group.update(team_data.get(group["company_id"], {}))
     if follow_up_view:
         schedule = get_crm_follow_ups(user_timezone=tz)
         groups = company_groups["items"]
@@ -329,6 +419,7 @@ async def master_directory_page(
             "counts": counts,
             "prospects": prospects_data,
             "company_groups": companies_data,
+            "team_view": team_view,
             "follow_up_counts": follow_up_counts,
             "follow_up_view": follow_up_view,
             "pagination": pagination_info,
@@ -397,6 +488,10 @@ async def prospect_detail_page(request: Request, facility_id: int, return_to: st
     if not prospect:
         raise HTTPException(status_code=404, detail=f"Prospect facility {facility_id} not found")
 
+    prospect["team"] = team.snapshot().get(prospect["company_id"], {})
+    team.add_authors(prospect.get("outreach_history", []))
+    prospect["assignment_history"] = team.assignment_history(prospect["company_id"])
+    prospect["team_history"] = team.add_authors(get_outreach_history(company_id=prospect["company_id"]))
     counts = get_summary_counts()
     try:
         return_parts = urllib.parse.urlsplit(return_to)
@@ -647,6 +742,8 @@ async def api_summary_counts():
 
 @app.get("/api/prospects", response_class=JSONResponse)
 async def api_prospects_list(
+    request: Request,
+    team_view: Literal["all", "mine", "available"] = "all",
     stage: Optional[str] = "SHORTLISTED",
     tier: Optional[List[str]] = Query(None),
     opportunity: Optional[List[str]] = Query(None),
@@ -663,7 +760,9 @@ async def api_prospects_list(
 ):
     """Returns prospect facilities filtered by lifecycle stage with pagination/search/filters."""
     effective_tier = tier or opportunity
+    state = team.snapshot()
     return get_prospects_list(
+        allowed_company_ids=team.allowed_company_ids(request.state.user, team_view, state),
         lifecycle_stage=stage,
         tier=effective_tier,
         page=page,
@@ -681,6 +780,8 @@ async def api_prospects_list(
 
 @app.get("/api/companies", response_class=JSONResponse)
 async def api_companies_list(
+    request: Request,
+    team_view: Literal["all", "mine", "available"] = "all",
     stage: Optional[str] = "ALL",
     tier: Optional[List[str]] = Query(None),
     opportunity: Optional[List[str]] = Query(None),
@@ -702,7 +803,9 @@ async def api_companies_list(
 ):
     """Returns company-grouped prospects with child facilities, facts, and pagination/search/filters."""
     effective_tier = tier or opportunity
-    return get_company_grouped_prospects(
+    state = team.snapshot()
+    result = get_company_grouped_prospects(
+        allowed_company_ids=team.allowed_company_ids(request.state.user, team_view, state),
         lifecycle_stage=stage,
         tier=effective_tier,
         outreach_filter=outreach,
@@ -721,6 +824,10 @@ async def api_companies_list(
         carrier=carrier,
         procurement=procurement,
     )
+
+    for group in result["items"] if isinstance(result, dict) else result:
+        group.update(state.get(group["company_id"], {}))
+    return result
 
 
 @app.get("/api/prospects/{facility_id}", response_class=JSONResponse)
@@ -744,7 +851,7 @@ async def api_prospect_qualification(facility_id: int):
 
 
 @app.post("/api/outreach", response_class=JSONResponse, dependencies=[Depends(verify_mutation_origin)])
-async def api_log_outreach_call(req: LogCallRequest):
+async def api_log_outreach_call(request: Request, req: LogCallRequest):
     """
     Stage 3C CRM: Log an outreach call (append-only history + engagement state projection).
     Blocks with HTTP 403 Forbidden if prospect is suppressed (DNC / protected / restricted)
@@ -758,6 +865,7 @@ async def api_log_outreach_call(req: LogCallRequest):
 
         res = log_outreach_call(
             company_id=req.company_id,
+            broker_user_id=request.state.user["id"],
             facility_id=req.facility_id,
             contact_id=req.contact_id,
             disposition=req.disposition,
@@ -772,6 +880,8 @@ async def api_log_outreach_call(req: LogCallRequest):
             verified_evidence=req.verified_evidence.model_dump() if req.verified_evidence else None,
         )
         return JSONResponse(status_code=201, content={"status": "success", "data": res})
+    except HTTPException:
+        raise
     except SuppressionBlockedError as e:
         raise HTTPException(status_code=403, detail=str(e))
     except ValueError as e:
@@ -785,9 +895,9 @@ class ClearOutreachRequest(BaseModel):
 
 
 @app.post("/api/outreach/{company_id}/clear", dependencies=[Depends(verify_mutation_origin)])
-async def api_clear_outreach_tracking(company_id: int, req: ClearOutreachRequest):
+async def api_clear_outreach_tracking(request: Request, company_id: int, req: ClearOutreachRequest):
     try:
-        return {"status": "success", "data": clear_outreach_tracking(company_id, req.action)}
+        return {"status": "success", "data": clear_outreach_tracking(company_id, req.action, broker_user_id=request.state.user["id"])}
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc))
 
@@ -796,7 +906,7 @@ async def api_clear_outreach_tracking(company_id: int, req: ClearOutreachRequest
 async def api_outreach_history(company_id: Optional[int] = None, facility_id: Optional[int] = None):
     """Returns append-only outreach timeline."""
     history = get_outreach_history(company_id=company_id, facility_id=facility_id)
-    return history
+    return team.add_authors(history)
 
 
 @app.post("/api/viewed/{company_id}", response_class=JSONResponse, dependencies=[Depends(verify_mutation_origin)])
