@@ -506,6 +506,51 @@ ALLOWED_CALL_DISPOSITIONS = {
 }
 
 
+class VerifiedTelephoneEvidenceInput(BaseModel):
+    confirmed_by_user: bool = False
+    source_person_name: Optional[str] = None
+    source_person_role: Optional[str] = None
+    source_role_other: Optional[str] = None
+    evidence_notes: Optional[str] = None
+    commercial_carrier_use: Optional[str] = "UNKNOWN"
+    broker_friendly_status: Optional[str] = "UNKNOWN"
+    private_fleet_present: Optional[str] = "UNKNOWN"
+    freight_procurement_level: Optional[str] = "UNKNOWN"
+    equipment_confirmed: Optional[List[str]] = None
+
+    @field_validator("commercial_carrier_use")
+    @classmethod
+    def validate_carrier_use(cls, v: Optional[str]) -> str:
+        clean = (v or "UNKNOWN").strip().upper()
+        if clean not in ("YES", "NO", "UNKNOWN"):
+            raise ValueError(f"Invalid commercial_carrier_use '{v}'. Allowed: YES, NO, UNKNOWN")
+        return clean
+
+    @field_validator("broker_friendly_status")
+    @classmethod
+    def validate_broker_status(cls, v: Optional[str]) -> str:
+        clean = (v or "UNKNOWN").strip().upper()
+        if clean not in ("YES", "NO", "ASSET_CARRIERS_ONLY", "UNKNOWN"):
+            raise ValueError(f"Invalid broker_friendly_status '{v}'. Allowed: YES, NO, ASSET_CARRIERS_ONLY, UNKNOWN")
+        return clean
+
+    @field_validator("private_fleet_present")
+    @classmethod
+    def validate_private_fleet(cls, v: Optional[str]) -> str:
+        clean = (v or "UNKNOWN").strip().upper()
+        if clean not in ("YES", "NO", "UNKNOWN"):
+            raise ValueError(f"Invalid private_fleet_present '{v}'. Allowed: YES, NO, UNKNOWN")
+        return clean
+
+    @field_validator("freight_procurement_level")
+    @classmethod
+    def validate_procurement_level(cls, v: Optional[str]) -> str:
+        clean = (v or "UNKNOWN").strip().upper()
+        if clean not in ("FACILITY_LOCAL", "CENTRAL_CORPORATE", "UNKNOWN"):
+            raise ValueError(f"Invalid freight_procurement_level '{v}'. Allowed: FACILITY_LOCAL, CENTRAL_CORPORATE, UNKNOWN")
+        return clean
+
+
 class LogCallRequest(BaseModel):
     company_id: int
     facility_id: Optional[int] = None
@@ -520,6 +565,8 @@ class LogCallRequest(BaseModel):
     origin_state_prov: Optional[str] = None
     dest_state_prov: Optional[str] = None
     user_timezone: Optional[str] = None
+    client_request_id: Optional[str] = None
+    verified_evidence: Optional[VerifiedTelephoneEvidenceInput] = None
 
     @field_validator("disposition")
     @classmethod
@@ -691,6 +738,8 @@ async def api_log_outreach_call(req: LogCallRequest):
             origin_state_prov=req.origin_state_prov,
             dest_state_prov=req.dest_state_prov,
             user_timezone=req.user_timezone,
+            client_request_id=req.client_request_id,
+            verified_evidence=req.verified_evidence.model_dump() if req.verified_evidence else None,
         )
         return JSONResponse(status_code=201, content={"status": "success", "data": res})
     except SuppressionBlockedError as e:

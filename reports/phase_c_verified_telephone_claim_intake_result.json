@@ -1,0 +1,155 @@
+{
+  "project": "FreightProspecting V1",
+  "phase": "Phase C Master Implementation",
+  "feature": "Structured Verified Telephone Evidence Intake",
+  "status": "COMPLETED",
+  "timestamp": "2026-10-01T21:54:00Z",
+  "production_db": {
+    "path": "data/prospects.db",
+    "sha256_before": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+    "sha256_after": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+    "byte_identical": true,
+    "integrity_check": "ok",
+    "foreign_key_violations": 0,
+    "production_outreach_rows": 0,
+    "production_claims_count": 2775,
+    "opportunity_distribution": {
+      "TIER_A_PRIORITY": 19,
+      "TIER_B_WORTH_CALLING": 489,
+      "TIER_C_SECONDARY": 10,
+      "TIER_D_RESEARCH_NEEDED": 47,
+      "RESTRICTED": 0
+    }
+  },
+  "architecture_decisions": {
+    "truth_model_separation": "Strictly preserves separation: Outreach Event != Evidence Record != Claim != Lifecycle != Opportunity Tier.",
+    "claims_engine_reuse": "100% reused existing append-only claims engine (record_evidence_source, record_claim, link_claim_evidence). Zero duplicate engines.",
+    "opportunity_engine_reuse": "100% reused existing deterministic opportunity engine (evaluate_broker_opportunity). Zero manual tier assignments.",
+    "migration_status": "NO DDL migration required. Existing SQLite DDL and prospects.db schema already support PHONE_OUTREACH evidence sources, outreach_log_id foreign keys, exact-1 subject claims, claim_evidence link table, and materialized facility columns.",
+    "facility_scope_guard": "Facility scope is strictly mandatory when recording verified telephone claims. Corporate switchboard calls cannot create facility claims without explicit facility context.",
+    "conflict_handling": "Conservative non-destructive behavior. If an existing claim is already VERIFIED with a different value, new telephone statement is recorded as an evidence source linked with relationship='CONTRADICTS' and flagged for review with '[CONTRADICTION REVIEW NEEDED]', preserving the prior accepted truth from accidental overwrite."
+  },
+  "files_modified": [
+    "src/backend/db/queries.py",
+    "src/backend/main.py",
+    "src/frontend/templates/partials/log_call_modal.html",
+    "tests/test_verified_telephone_intake.py"
+  ],
+  "claim_mappings": {
+    "commercial_carrier_use_YES": {
+      "claim_field": "commercial_carrier_use",
+      "claimed_value": "VERIFIED",
+      "verification_status": "VERIFIED",
+      "materialized_column": "facilities.commercial_carrier_use = 'VERIFIED'"
+    },
+    "commercial_carrier_use_NO": {
+      "action": "Recorded in evidence source notes (no unapproved enum invented in facilities check constraint)"
+    },
+    "broker_friendly_status_YES": {
+      "claim_field": "broker_friendly_status",
+      "claimed_value": "VERIFIED_ACCEPTS",
+      "verification_status": "VERIFIED",
+      "materialized_column": "facilities.broker_friendly_status = 'VERIFIED_ACCEPTS'"
+    },
+    "broker_friendly_status_ASSET_CARRIERS_ONLY": {
+      "claim_field": "broker_friendly_status",
+      "claimed_value": "VERIFIED_DIRECT_ONLY",
+      "verification_status": "VERIFIED",
+      "materialized_column": "facilities.broker_friendly_status = 'VERIFIED_DIRECT_ONLY'",
+      "effect": "Evaluates to RESTRICTED tier (policy restricted; NOT added to suppressions/DNC)"
+    },
+    "broker_friendly_status_NO": {
+      "action": "Recorded in evidence source notes"
+    },
+    "private_fleet_present_YES": {
+      "claim_field": "private_fleet_present",
+      "claimed_value": "VERIFIED_PRESENT",
+      "verification_status": "VERIFIED",
+      "materialized_column": "facilities.private_fleet_present = 'VERIFIED_PRESENT'"
+    },
+    "private_fleet_present_NO": {
+      "claim_field": "private_fleet_present",
+      "claimed_value": "VERIFIED_NO_FLEET",
+      "verification_status": "VERIFIED",
+      "materialized_column": "facilities.private_fleet_present = 'VERIFIED_NO_FLEET'"
+    },
+    "freight_procurement_level_FACILITY_LOCAL": {
+      "claim_field": "freight_procurement_level",
+      "claimed_value": "FACILITY_LEVEL",
+      "verification_status": "VERIFIED",
+      "materialized_column": "facilities.freight_procurement_level = 'FACILITY_LEVEL'"
+    },
+    "freight_procurement_level_CENTRAL_CORPORATE": {
+      "claim_field": "freight_procurement_level",
+      "claimed_value": "CORPORATE_PARENT",
+      "verification_status": "VERIFIED",
+      "materialized_column": "facilities.freight_procurement_level = 'CORPORATE_PARENT'"
+    },
+    "equipment_confirmed": {
+      "claim_field": "equipment_category",
+      "verification_status": "VERIFIED",
+      "allowed_values": ["FLATBED", "STEP_DECK", "DRY_VAN"],
+      "materialized_table": "facility_commodities.equipment_usage_status = 'VERIFIED'"
+    }
+  },
+  "ui_behavior": {
+    "default_state": "Verified facts section is initially collapsed / inactive (hasVerifiedFacts: false). Normal call logging requires zero extra interaction.",
+    "activation": "User explicitly checks 'Record verified facts learned during this call' to reveal the structured form.",
+    "default_values": "All structured factual dropdowns default to 'Not discussed / Unknown'. Never defaults to Yes.",
+    "confirmation_guard": "Explicit user confirmation checkbox is mandatory: 'I personally obtained this information during this call and the entries above accurately reflect what was stated.' Without this, verified claims are blocked from creation.",
+    "facility_notice": "Displays clear amber warning if no facility is selected, prompting operator to choose a facility context."
+  },
+  "api_behavior": {
+    "endpoint": "POST /api/outreach",
+    "request_model": "LogCallRequest with optional verified_evidence (VerifiedTelephoneEvidenceInput)",
+    "atomicity": "Single SQLite transaction (with conn:). If claim creation fails, transaction rolls back cleanly.",
+    "response_data": {
+      "normal_call": "Returns standard outreach log and engagement state dictionary (100% backwards compatible).",
+      "verified_call": "Enriched with evidence_source_id, claims_created, contradictions_detected, old_opportunity_tier, new_opportunity_tier, old_company_tier, new_company_tier."
+    }
+  },
+  "test_coverage": {
+    "targeted_suite": "tests/test_verified_telephone_intake.py",
+    "scenarios_tested": [
+      "1. ordinary call log unchanged",
+      "2. verified carrier-use YES claim",
+      "3. verified broker acceptance YES claim",
+      "4. asset-only response does not become broker acceptance",
+      "5. private fleet independent from carrier use",
+      "6. no confirmation checkbox = no claim",
+      "7. UNKNOWN / NOT DISCUSSED = no verified claim",
+      "8. invalid facility/company relationship rejected",
+      "9. invalid contact/facility relationship rejected",
+      "10. one facility claim does not leak to sibling facility",
+      "11. append-only historical claim preserved",
+      "12. contradictory verified truth handled conservatively",
+      "13. opportunity recomputation uses current engine",
+      "14. no lifecycle mutation",
+      "15. operational call disposition remains correct"
+    ],
+    "targeted_results": {
+      "collected": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0
+    },
+    "full_pytest_results": {
+      "collected": 481,
+      "passed": 481,
+      "failed": 0,
+      "errors": 0,
+      "warnings": 1
+    }
+  },
+  "browser_qa": {
+    "status": "PASS",
+    "shortlist_cockpit": "Renders 200 OK with modal and collapsible verified section intact.",
+    "master_directory": "Renders 200 OK with modal and collapsible verified section intact.",
+    "prospect_detail": "Renders 200 OK."
+  },
+  "known_limitations": [
+    "Corporate switchboard calls cannot create facility claims without selecting a specific facility context.",
+    "Negative statements without canonical SQLite schema enum mappings are preserved in evidence source notes rather than inventing unapproved claim enums.",
+    "Contradictory telephone statements against prior VERIFIED claims flag for review rather than overwriting accepted truth."
+  ]
+}

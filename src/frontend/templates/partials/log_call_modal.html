@@ -5,6 +5,7 @@ function logCallModalComponent() {
     open: false,
     saving: false,
     copied: false,
+    clientRequestId: '',
     companyId: null,
     companyName: '',
     facilities: [],
@@ -25,8 +26,59 @@ function logCallModalComponent() {
     laneWarningMessage: '',
     previousActiveElement: null,
 
+    // Phase C Structured Verified Telephone Evidence state
+    hasVerifiedFacts: false,
+    factCarrierUse: 'UNKNOWN',
+    factBrokerStatus: 'UNKNOWN',
+    factPrivateFleet: 'UNKNOWN',
+    factProcurementLevel: 'UNKNOWN',
+    factEquipmentFlatbed: false,
+    factEquipmentStepDeck: false,
+    factEquipmentDryVan: false,
+    sourcePersonName: '',
+    sourcePersonRole: '',
+    sourceRoleOther: '',
+    callEvidenceNote: '',
+    userConfirmedAccuracy: false,
+
+    isNonAuthoritativeRole() {
+      const r = (this.sourcePersonRole || '').trim().toUpperCase();
+      if (r === 'RECEPTION / GATEKEEPER' || r === 'RECEPTION' || r === 'GATEKEEPER') return true;
+      if (r === 'OTHER') {
+        const o = (this.sourceRoleOther || '').trim().toUpperCase();
+        if (['RECEPTION', 'RECEPTIONIST', 'GATEKEEPER', 'OPERATOR', 'SWITCHBOARD', 'SECURITY', 'SALES', 'UNKNOWN'].includes(o)) return true;
+      }
+      return false;
+    },
+
+    resetForm() {
+      this.clientRequestId = 'req_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+      this.saving = false;
+      this.errorMessage = '';
+      this.successMessage = '';
+      this.feedbackNotes = '';
+      this.followUpDate = '';
+      this.followUpTime = '09:00';
+      this.showLaneWarning = false;
+      this.laneWarningMessage = '';
+      this.hasVerifiedFacts = false;
+      this.factCarrierUse = 'UNKNOWN';
+      this.factBrokerStatus = 'UNKNOWN';
+      this.factPrivateFleet = 'UNKNOWN';
+      this.factProcurementLevel = 'UNKNOWN';
+      this.factEquipmentFlatbed = false;
+      this.factEquipmentStepDeck = false;
+      this.factEquipmentDryVan = false;
+      this.sourcePersonName = '';
+      this.sourcePersonRole = '';
+      this.sourceRoleOther = '';
+      this.callEvidenceNote = '';
+      this.userConfirmedAccuracy = false;
+    },
+
     init() {
       window.addEventListener('open-log-call', (e) => {
+        this.resetForm();
         const d = e.detail || {};
         this.companyId = d.companyId || (d.company ? d.company.company_id : null);
         this.companyName = d.companyName || (d.company ? (d.company.operating_brand || d.company.company_name) : 'Prospect Company');
@@ -44,16 +96,9 @@ function logCallModalComponent() {
         this.originStateProv = d.originStateProv || (this.facilities.length === 1 ? (this.facilities[0].state || '') : '');
         this.destStateProv = d.destStateProv || '';
         this.disposition = d.defaultDisposition || 'NO_ANSWER';
-        this.feedbackNotes = '';
-        this.followUpDate = '';
-        this.followUpTime = '09:00';
-        this.errorMessage = '';
-        this.successMessage = '';
         this.isSuppressed = d.isSuppressed || false;
         this.suppressionMessage = d.suppressionMessage || '';
-        this.showLaneWarning = false;
-        this.laneWarningMessage = '';
-        this.saving = false;
+        this.sourcePersonName = this.contactName || '';
         this.previousActiveElement = document.activeElement;
         this.open = true;
         this.checkLaneSuppression();
@@ -96,6 +141,7 @@ function logCallModalComponent() {
     closeModal() {
       if (this.saving) return;
       this.open = false;
+      this.resetForm();
       if (this.previousActiveElement && typeof this.previousActiveElement.focus === 'function') {
         this.previousActiveElement.focus();
       }
@@ -149,6 +195,7 @@ function logCallModalComponent() {
     },
 
     async submitCall() {
+      if (this.saving) return;
       if (!this.companyId) {
         this.errorMessage = 'Company ID missing';
         return;
@@ -156,6 +203,16 @@ function logCallModalComponent() {
       if (this.isSuppressed) {
         this.errorMessage = this.suppressionMessage || 'Outreach blocked: active suppression / Do Not Contact in effect.';
         return;
+      }
+      if (this.hasVerifiedFacts) {
+        if (!this.selectedFacilityId) {
+          this.errorMessage = 'Please select a specific facility in the Facility Context dropdown to record verified telephone evidence.';
+          return;
+        }
+        if (!this.userConfirmedAccuracy) {
+          this.errorMessage = 'Please confirm the accuracy of the telephone statements by checking the confirmation box below.';
+          return;
+        }
       }
       this.saving = true;
       this.errorMessage = '';
@@ -181,10 +238,31 @@ function logCallModalComponent() {
         follow_up_time: this.followUpTime || null,
         follow_up_at: followUpIso,
         user_timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+        client_request_id: this.clientRequestId || null,
         channel: 'PHONE',
         origin_state_prov: this.originStateProv ? this.originStateProv.trim().toUpperCase() : null,
         dest_state_prov: this.destStateProv ? this.destStateProv.trim().toUpperCase() : null,
       };
+
+      if (this.hasVerifiedFacts && this.userConfirmedAccuracy) {
+        const eqArr = [];
+        if (this.factEquipmentFlatbed) eqArr.push('FLATBED');
+        if (this.factEquipmentStepDeck) eqArr.push('STEP_DECK');
+        if (this.factEquipmentDryVan) eqArr.push('DRY_VAN');
+
+        payload.verified_evidence = {
+          confirmed_by_user: true,
+          source_person_name: this.sourcePersonName ? this.sourcePersonName.trim() : null,
+          source_person_role: this.sourcePersonRole || null,
+          source_role_other: this.sourceRoleOther ? this.sourceRoleOther.trim() : null,
+          evidence_notes: this.callEvidenceNote ? this.callEvidenceNote.trim() : null,
+          commercial_carrier_use: this.factCarrierUse,
+          broker_friendly_status: this.factBrokerStatus,
+          private_fleet_present: this.factPrivateFleet,
+          freight_procurement_level: this.factProcurementLevel,
+          equipment_confirmed: eqArr.length > 0 ? eqArr : null,
+        };
+      }
 
       try {
         const res = await fetch('/api/outreach', {
@@ -201,7 +279,20 @@ function logCallModalComponent() {
           throw new Error(data.detail || 'Failed to save call');
         }
 
-        this.successMessage = 'Call logged successfully!';
+        if (data.data) {
+          if (data.data.is_duplicate_replay) {
+            this.successMessage = 'Call record already processed (duplicate request ignored).';
+          } else if (data.data.authority_status === 'NON_AUTHORITATIVE') {
+            this.successMessage = 'Call logged! Contextual statement recorded (non-authoritative role; no verified claims minted).';
+          } else if (data.data.claims_created && data.data.claims_created.length > 0) {
+            const tierInfo = data.data.new_opportunity_tier ? ` [Tier: ${data.data.new_opportunity_tier}]` : '';
+            this.successMessage = `Call logged with ${data.data.claims_created.length} verified claim(s) recorded!${tierInfo}`;
+          } else {
+            this.successMessage = 'Call logged successfully!';
+          }
+        } else {
+          this.successMessage = 'Call logged successfully!';
+        }
         window.dispatchEvent(new CustomEvent('outreach-logged', { detail: data.data }));
 
         setTimeout(() => {
@@ -432,6 +523,169 @@ function logCallModalComponent() {
           </div>
           <div>
             <input type="time" id="call-follow-up-time" aria-label="Follow-up time" x-model="followUpTime" class="filter-select" style="width: 100%; font-size: 0.8125rem; padding: 0.35rem 0.5rem;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Optional Verified Telephone Evidence Intake Section (Phase C) -->
+      <div style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 0.85rem; margin-bottom: 1.25rem; background: var(--color-bg-subtle, rgba(255,255,255,0.02));">
+        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; user-select: none; margin: 0;">
+          <input type="checkbox" id="chk-has-verified-facts" x-model="hasVerifiedFacts" style="width: 16px; height: 16px; cursor: pointer; accent-color: var(--color-primary);">
+          <span style="font-size: 0.875rem; font-weight: 700; color: var(--color-text-main);">
+            Record verified facts learned during this call
+          </span>
+          <span style="font-size: 0.7rem; font-weight: 500; background: rgba(59, 130, 246, 0.15); color: var(--color-primary); padding: 0.15rem 0.4rem; border-radius: 9999px;">
+            Optional Factual Evidence
+          </span>
+        </label>
+        <div style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 0.25rem; margin-left: 1.5rem;">
+          Converts confirmed facts into auditable claims for the deterministic opportunity engine.
+        </div>
+
+        <!-- Collapsible Content -->
+        <div x-show="hasVerifiedFacts" x-transition style="margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px solid var(--color-border);">
+
+          <!-- Facility Notice -->
+          <div x-show="!selectedFacilityId" style="background: rgba(245, 158, 11, 0.15); color: #b45309; border: 1px solid rgba(245, 158, 11, 0.3); padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600; margin-bottom: 0.85rem;">
+            ⚠️ Facility context required: Select a specific facility in the "Facility Context" dropdown above to record facility-level facts.
+          </div>
+
+          <!-- Structured Questions Grid -->
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <!-- Question 1: Commercial Carrier Use -->
+            <div>
+              <label for="fact-carrier-use" style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); margin-bottom: 0.25rem;">
+                1. Outside Commercial Trucking Companies
+              </label>
+              <div style="font-size: 0.8rem; color: var(--color-text-main); margin-bottom: 0.35rem;">
+                Did they confirm this facility uses outside commercial motor carriers?
+              </div>
+              <select id="fact-carrier-use" x-model="factCarrierUse" class="filter-select" style="width: 100%; font-size: 0.8125rem; padding: 0.35rem 0.5rem;">
+                <option value="UNKNOWN">Not discussed / Unknown</option>
+                <option value="YES">Yes — Uses outside commercial carriers</option>
+                <option value="NO">No — Does not use outside carriers (Note only)</option>
+              </select>
+            </div>
+
+            <!-- Question 2: Broker / 3PL Acceptance -->
+            <div>
+              <label for="fact-broker-status" style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); margin-bottom: 0.25rem;">
+                2. Freight Broker / 3PL Acceptance
+              </label>
+              <div style="font-size: 0.8rem; color: var(--color-text-main); margin-bottom: 0.35rem;">
+                Did they confirm this facility works with freight brokers / 3PLs?
+              </div>
+              <select id="fact-broker-status" x-model="factBrokerStatus" class="filter-select" style="width: 100%; font-size: 0.8125rem; padding: 0.35rem 0.5rem;">
+                <option value="UNKNOWN">Not discussed / Unknown</option>
+                <option value="YES">Yes — Works with freight brokers / 3PLs</option>
+                <option value="ASSET_CARRIERS_ONLY">Direct / Asset carriers only (Restricted direct policy; not DNC)</option>
+                <option value="NO">No — Does not work with brokers (Note only)</option>
+              </select>
+            </div>
+
+            <!-- Question 3: Private Fleet -->
+            <div>
+              <label for="fact-private-fleet" style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); margin-bottom: 0.25rem;">
+                3. Private / Own Truck Fleet
+              </label>
+              <div style="font-size: 0.8rem; color: var(--color-text-main); margin-bottom: 0.35rem;">
+                Did they confirm this facility operates its own truck fleet?
+              </div>
+              <select id="fact-private-fleet" x-model="factPrivateFleet" class="filter-select" style="width: 100%; font-size: 0.8125rem; padding: 0.35rem 0.5rem;">
+                <option value="UNKNOWN">Not discussed / Unknown</option>
+                <option value="YES">Yes — Operates own / private truck fleet</option>
+                <option value="NO">No — Does not have a private fleet</option>
+              </select>
+            </div>
+
+            <!-- Question 4: Procurement Control -->
+            <div>
+              <label for="fact-procurement-level" style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); margin-bottom: 0.25rem;">
+                4. Transportation Decision Control
+              </label>
+              <div style="font-size: 0.8rem; color: var(--color-text-main); margin-bottom: 0.35rem;">
+                Where are freight procurement decisions made for this facility?
+              </div>
+              <select id="fact-procurement-level" x-model="factProcurementLevel" class="filter-select" style="width: 100%; font-size: 0.8125rem; padding: 0.35rem 0.5rem;">
+                <option value="UNKNOWN">Not discussed / Unknown</option>
+                <option value="FACILITY_LOCAL">Facility level — Handled locally at this plant / desk</option>
+                <option value="CENTRAL_CORPORATE">Corporate headquarters — Handled centrally</option>
+              </select>
+            </div>
+
+            <!-- Question 5: Equipment Actually Used -->
+            <div>
+              <label style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); margin-bottom: 0.25rem;">
+                5. Equipment Confirmed On Call (Only if explicitly stated)
+              </label>
+              <div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.35rem;">
+                <label style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8125rem; cursor: pointer;">
+                  <input type="checkbox" id="chk-eq-flatbed" x-model="factEquipmentFlatbed" style="accent-color: var(--color-primary);">
+                  Flatbed
+                </label>
+                <label style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8125rem; cursor: pointer;">
+                  <input type="checkbox" id="chk-eq-step-deck" x-model="factEquipmentStepDeck" style="accent-color: var(--color-primary);">
+                  Step Deck
+                </label>
+                <label style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8125rem; cursor: pointer;">
+                  <input type="checkbox" id="chk-eq-dry-van" x-model="factEquipmentDryVan" style="accent-color: var(--color-primary);">
+                  Dry Van
+                </label>
+              </div>
+            </div>
+
+            <!-- Provenance / Source Person & Role -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; background: var(--color-border-subtle); padding: 0.65rem; border-radius: var(--radius-sm);">
+              <div>
+                <label for="evidence-source-name" style="display: block; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.25rem;">
+                  Source Person / Contact
+                </label>
+                <input type="text" id="evidence-source-name" x-model="sourcePersonName" placeholder="e.g. John Doe or Shipping Desk" class="search-input" style="width: 100%; font-size: 0.8125rem; padding: 0.35rem 0.5rem;">
+              </div>
+              <div>
+                <label for="evidence-source-role" style="display: block; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.25rem;">
+                  Stated / Known Role
+                </label>
+                <select id="evidence-source-role" x-model="sourcePersonRole" class="filter-select" style="width: 100%; font-size: 0.8125rem; padding: 0.35rem 0.5rem;">
+                  <option value="">Select known role...</option>
+                  <option value="Shipping Manager">Shipping Manager</option>
+                  <option value="Logistics Coordinator">Logistics Coordinator</option>
+                  <option value="Traffic Manager">Traffic Manager</option>
+                  <option value="Shipping Department">Shipping Department</option>
+                  <option value="Plant Manager">Plant Manager</option>
+                  <option value="Reception / Gatekeeper">Reception / Gatekeeper</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div x-show="sourcePersonRole === 'Other'" style="grid-column: span 2;">
+                <input type="text" id="evidence-source-role-other" x-model="sourceRoleOther" placeholder="Specify other role title..." class="search-input" style="width: 100%; font-size: 0.8125rem; padding: 0.35rem 0.5rem;">
+              </div>
+              <div id="gatekeeper-warning-banner" x-show="isNonAuthoritativeRole()" style="grid-column: span 2; background: rgba(245, 158, 11, 0.12); color: #d97706; border: 1px solid rgba(245, 158, 11, 0.3); padding: 0.45rem 0.65rem; border-radius: var(--radius-sm); font-size: 0.72rem; line-height: 1.35; margin-top: 0.15rem;">
+                ℹ️ <strong>Context-Only Source:</strong> Statements from Reception / Gatekeeper are saved to call notes &amp; context evidence, but cannot create <code>VERIFIED</code> operational claims or alter opportunity tiers.
+              </div>
+            </div>
+
+            <!-- Short Factual Evidence Note -->
+            <div>
+              <label for="call-evidence-note" style="display: block; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.25rem;">
+                Short Factual Note (Evidence Record)
+              </label>
+              <input type="text" id="call-evidence-note" x-model="callEvidenceNote" placeholder="e.g. Spoke with shipping manager who confirmed they ship 4 flatbed loads/week via outside carriers." class="search-input" style="width: 100%; font-size: 0.8125rem; padding: 0.35rem 0.5rem;">
+            </div>
+
+            <!-- Mandatory User Confirmation Guard -->
+            <div style="background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: var(--radius-sm); padding: 0.65rem;">
+              <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer; user-select: none; margin: 0;">
+                <input type="checkbox" id="chk-confirm-accuracy" x-model="userConfirmedAccuracy" style="margin-top: 0.2rem; width: 16px; height: 16px; cursor: pointer; accent-color: var(--color-primary);">
+                <span style="font-size: 0.8rem; font-weight: 600; color: var(--color-text-main); line-height: 1.35;">
+                  I personally obtained this information during this call and the entries above accurately reflect what was stated.
+                </span>
+              </label>
+              <div style="font-size: 0.7rem; color: var(--color-text-muted); margin-top: 0.35rem; margin-left: 1.5rem;">
+                Required to create verified claims. Without this confirmation, call notes save normally but claims are not recorded.
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

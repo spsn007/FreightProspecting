@@ -1,0 +1,125 @@
+{
+  "phase": "PHASE_C_MASTER_REMEDIATION",
+  "feature": "STRUCTURED_VERIFIED_TELEPHONE_EVIDENCE_INTAKE",
+  "status": "COMPLETED",
+  "audit_remediation_target": "OPENCODE_AUDIT_PASS_WITH_NONBLOCKING_FINDINGS",
+  "timestamp": "2026-10-01T22:31:30+05:30",
+  "database_integrity": {
+    "baseline_sha256": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+    "current_sha256": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+    "byte_identical": true,
+    "production_outreach_logs_count": 0,
+    "production_claims_count": 2775,
+    "production_verified_claims_count": 1494,
+    "production_inferred_claims_count": 650,
+    "production_unknown_claims_count": 631,
+    "opportunity_tier_distribution": {
+      "TIER_A_PRIORITY": 19,
+      "TIER_B_WORTH_CALLING": 489,
+      "TIER_C_SECONDARY": 10,
+      "TIER_D_RESEARCH_NEEDED": 47,
+      "RESTRICTED": 0,
+      "operating_universe": 565
+    }
+  },
+  "remediation_findings_repaired": {
+    "high_speaker_authority": {
+      "status": "REPAIRED",
+      "rule": "Only authoritative roles (Shipping Manager, Logistics Manager/Coordinator, Traffic Manager, Transportation Manager, Plant Manager, Warehouse/Dock Manager, Shipping Desk/Dept) can create VERIFIED operational claims. Non-authoritative roles (Reception / Gatekeeper, Operator, Security, Sales) create context-only evidence sources with is_primary_source=False, relationship='CONTEXT', mint 0 claims, and do not mutate facility operational columns or opportunity tiers.",
+      "implementation": [
+        "Added AUTHORITATIVE_ROLES, AUTHORITATIVE_OTHER_ALLOWLIST, NON_AUTHORITATIVE_ROLES in src/backend/db/queries.py",
+        "Implemented is_role_authoritative_for_claims() helper",
+        "Non-authoritative path sets authority_status='NON_AUTHORITATIVE', records context-only evidence source, bypasses claim creation, appends clear audit note to outreach log",
+        "Frontend added id='gatekeeper-warning-banner' with reactive warning when non-authoritative role selected"
+      ],
+      "tests_covered": [
+        "test_16_gatekeeper_role_captures_context_only_and_mints_zero_claims",
+        "test_17_non_authoritative_other_role_rejected_for_claims",
+        "test_18_authoritative_other_role_allowed_for_claims"
+      ]
+    },
+    "medium_1_contact_facility_scope": {
+      "status": "REPAIRED",
+      "rule": "A contact belonging to sibling Facility B cannot be used as the verified source for Facility A. Contacts must belong to the target facility or corporate level (facility_id IS NULL). Departmental/desk outreach without a named contact remains supported.",
+      "implementation": [
+        "Updated contact validation in src/backend/db/queries.py:log_outreach_call to check owning facility and company",
+        "Raises ValueError('Invalid contact: Contact belongs to a different facility') on sibling contact mismatch",
+        "FastAPI handles ValueError as HTTP 400 Bad Request",
+        "Permits company-level contacts (facility_id IS NULL) and facility-specific contacts (facility_id == target_facility_id)"
+      ],
+      "tests_covered": [
+        "test_9_invalid_contact_facility_relationship_rejected",
+        "test_19_strict_contact_facility_scope_rejects_sibling_contact",
+        "test_20_company_level_contact_allowed_for_facility_call"
+      ]
+    },
+    "medium_2_equipment_evidence_path": {
+      "status": "REPAIRED",
+      "rule": "Equipment evidence must follow canonical relational truth: no arbitrary INSERT of filler 'General Freight' commodity rows. If facility has exactly 1 commodity record, update equipment_category and equipment_usage_status='VERIFIED' and create claim. If 0 or >1 commodities exist, log explicit note without minting ambiguous claims.",
+      "implementation": [
+        "Eliminated General Freight insert in src/backend/db/queries.py",
+        "Checked len(fac_comms) == 1 to target unambiguous facility commodity",
+        "Updates equipment_category and equipment_usage_status='VERIFIED' on facility_commodities without referencing non-existent updated_at column",
+        "Mints canonical facility_commodity claim with exact-1 FK constraint",
+        "Logs explicit audit note when commodities == 0 or > 1 without minting false claims"
+      ],
+      "tests_covered": [
+        "test_21_equipment_single_commodity_creates_verified_claim",
+        "test_22_equipment_zero_commodities_does_not_insert_fake_row",
+        "test_23_equipment_multiple_commodities_avoids_ambiguous_claim"
+      ]
+    },
+    "medium_3_duplicate_submission_idempotency": {
+      "status": "REPAIRED",
+      "rule": "Rapid duplicate POST submissions must not create duplicate outreach logs or duplicate evidence sources.",
+      "implementation": [
+        "Added client_request_id generation in src/frontend/templates/partials/log_call_modal.html resetForm()",
+        "Client disables submit button and guards submitCall() with saving flag",
+        "Backend indexes client_request_id in outreach_logs.notes as '[ClientRequestId: <token>]'",
+        "Server idempotency check searches recent outreach logs; if token matches, safely returns replay with is_duplicate_replay=True without inserting duplicate records"
+      ],
+      "tests_covered": [
+        "test_24_duplicate_submission_idempotency_guard"
+      ]
+    },
+    "medium_4_interactive_browser_qa": {
+      "status": "REPAIRED",
+      "rule": "Execute a real interactive browser QA session with headless Chrome using Chrome DevTools Protocol (CDP) and capture evidence screenshots.",
+      "implementation": [
+        "Created scripts/interactive_browser_qa.py running headless Chrome and temporary test database instance",
+        "Tested 6 full user flow stages with visual screenshots saved to reports/browser_qa_screenshots/",
+        "Verified modal open, Gatekeeper live warning banner, Shipping Manager fill, successful submission with Tier A recompute feedback, and clean cross-prospect form reset"
+      ],
+      "screenshots": [
+        "reports/browser_qa_screenshots/01_prospects_page_loaded.png",
+        "reports/browser_qa_screenshots/02_log_call_modal_opened.png",
+        "reports/browser_qa_screenshots/03_gatekeeper_warning_visible.png",
+        "reports/browser_qa_screenshots/04_verified_facts_filled_shipping_manager.png",
+        "reports/browser_qa_screenshots/05_call_submitted_success.png",
+        "reports/browser_qa_screenshots/06_second_prospect_modal_clean_reset.png"
+      ]
+    }
+  },
+  "test_execution_summary": {
+    "targeted_suite": {
+      "path": "tests/test_verified_telephone_intake.py",
+      "tests_run": 24,
+      "tests_passed": 24,
+      "tests_failed": 0,
+      "duration_seconds": 1.99
+    },
+    "full_regression_suite": {
+      "tests_run": 490,
+      "tests_passed": 490,
+      "tests_failed": 0,
+      "duration_seconds": 34.04
+    }
+  },
+  "uncommitted_files_modified": [
+    "src/backend/db/queries.py",
+    "src/backend/main.py",
+    "src/frontend/templates/partials/log_call_modal.html",
+    "tests/test_verified_telephone_intake.py",
+    "scripts/interactive_browser_qa.py"
+  ]
+}

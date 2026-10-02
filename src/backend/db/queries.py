@@ -40,6 +40,12 @@ from src.backend.db.opportunity import (
     get_opportunity_tier_company_ids,
     load_opportunity_universe_context,
 )
+from src.backend.db.claims_engine import (
+    record_evidence_source,
+    record_claim,
+    link_claim_evidence,
+    get_current_accepted_claims,
+)
 
 # Geographic boundary constants (Revision 4.1 / Confirmed Decision A)
 LOWER_48_STATES = {
@@ -3788,6 +3794,85 @@ def check_lane_suppression_warning(
             conn.close()
 
 
+# ============================================================================
+# Phase C Remediation: Speaker Authority & Role Classification
+# ============================================================================
+AUTHORITATIVE_ROLES = {
+    "SHIPPING MANAGER",
+    "LOGISTICS MANAGER",
+    "LOGISTICS COORDINATOR",
+    "TRAFFIC MANAGER",
+    "TRAFFIC COORDINATOR",
+    "TRANSPORTATION MANAGER",
+    "TRANSPORTATION COORDINATOR",
+    "SHIPPING DEPARTMENT",
+    "LOGISTICS DEPARTMENT",
+    "TRAFFIC DEPARTMENT",
+    "TRANSPORTATION DEPARTMENT",
+    "PLANT MANAGER",
+    "FACILITY MANAGER",
+}
+
+AUTHORITATIVE_OTHER_ALLOWLIST = {
+    "DISPATCHER",
+    "HEAD DISPATCHER",
+    "LEAD DISPATCHER",
+    "FREIGHT MANAGER",
+    "DIRECTOR OF TRANSPORTATION",
+    "DIRECTOR OF LOGISTICS",
+    "VP OF SUPPLY CHAIN",
+    "SUPPLY CHAIN MANAGER",
+    "WAREHOUSE MANAGER",
+    "SHIPPING SUPERVISOR",
+    "TERMINAL MANAGER",
+    "DOCK SUPERVISOR",
+    "OPERATIONS MANAGER",
+}
+
+NON_AUTHORITATIVE_ROLES = {
+    "RECEPTION",
+    "RECEPTIONIST",
+    "GATEKEEPER",
+    "RECEPTION / GATEKEEPER",
+    "OPERATOR",
+    "SWITCHBOARD",
+    "SECURITY",
+    "UNKNOWN",
+    "CUSTOMER SERVICE",
+    "GENERIC CUSTOMER SERVICE",
+    "SALES",
+    "COMMERCIAL SALES",
+    "BUSINESS DEVELOPMENT",
+}
+
+
+def is_role_authoritative_for_claims(role_name: Optional[str], other_role: Optional[str] = None) -> bool:
+    """
+    Server-side authority policy (Phase C Remediation).
+    Determines whether a telephone source person/role is authoritative enough
+    to mint VERIFIED transportation/operational claims.
+    """
+    if not role_name:
+        return False
+    norm = role_name.strip().upper()
+    if norm in NON_AUTHORITATIVE_ROLES:
+        return False
+    if norm in AUTHORITATIVE_ROLES:
+        return True
+    if norm == "OTHER":
+        if not other_role:
+            return False
+        clean_other = other_role.strip().upper()
+        if clean_other in NON_AUTHORITATIVE_ROLES:
+            return False
+        if clean_other in AUTHORITATIVE_ROLES or clean_other in AUTHORITATIVE_OTHER_ALLOWLIST:
+            return True
+        return False
+    if norm in AUTHORITATIVE_OTHER_ALLOWLIST:
+        return True
+    return False
+
+
 def log_outreach_call(
     company_id: int,
     facility_id: Optional[int] = None,
@@ -3802,6 +3887,8 @@ def log_outreach_call(
     user_timezone: Optional[str] = None,
     db_path: Optional[str | Path] = None,
     conn: Optional[sqlite3.Connection] = None,
+    verified_evidence: Optional[Dict[str, Any]] = None,
+    client_request_id: Optional[str] = None,
 ) -> Dict[str, Any]:
     """
     Stage 3C CRM: Records an outreach call.
@@ -3853,20 +3940,101 @@ def log_outreach_call(
             if not comp:
                 raise ValueError(f"Company {company_id} does not exist")
 
+            # 1b. Server-side Idempotency / Duplicate Submission Check (Phase C Remediation)
+            if client_request_id and client_request_id.strip():
+                clean_req_id = client_request_id.strip()
+                existing_log = conn.execute(
+                    """
+                    SELECT id, company_id, facility_id, contact_id, outreach_channel, outcome, disposition, feedback_notes, contacted_at, follow_up_at
+                    FROM outreach_logs
+                    WHERE company_id = ? AND notes LIKE ?
+                    ORDER BY id DESC LIMIT 1
+                    """,
+                    (company_id, f"%[ClientRequestId: {clean_req_id}]%")
+                ).fetchone()
+                if existing_log:
+                    dup_log_id = existing_log["id"]
+                    dup_ev_src = conn.execute(
+                        "SELECT id, notes FROM evidence_sources WHERE outreach_log_id = ? LIMIT 1",
+                        (dup_log_id,)
+                    ).fetchone()
+                    dup_ev_src_id = dup_ev_src["id"] if dup_ev_src else None
+
+                    dup_claims_created = []
+                    if dup_ev_src_id:
+                        c_rows = conn.execute(
+                            """
+                            SELECT c.id as claim_id, c.claim_field, c.claimed_value, c.verification_status, c.facility_id, c.facility_commodity_id
+                            FROM claims c
+                            JOIN claim_evidence ce ON c.id = ce.claim_id
+                            WHERE ce.evidence_source_id = ?
+                            ORDER BY c.id ASC
+                            """,
+                            (dup_ev_src_id,)
+                        ).fetchall()
+                        dup_claims_created = [dict(r) for r in c_rows]
+
+                    dup_eng = dict(conn.execute(
+                        "SELECT * FROM prospect_engagement_state WHERE company_id = ?",
+                        (company_id,)
+                    ).fetchone() or {})
+
+                    cur_fac_opp = evaluate_broker_opportunity(company_id=company_id, facility_id=facility_id, conn=conn) if facility_id else {}
+                    cur_comp_opp = evaluate_broker_opportunity(company_id=company_id, conn=conn)
+
+                    res = {
+                        "outreach_log_id": dup_log_id,
+                        "company_id": company_id,
+                        "facility_id": facility_id,
+                        "contact_id": contact_id,
+                        "channel": existing_log["outreach_channel"],
+                        "disposition": existing_log["disposition"],
+                        "feedback_notes": existing_log["feedback_notes"],
+                        "follow_up_at": existing_log["follow_up_at"],
+                        "contacted_at": existing_log["contacted_at"],
+                        "attempt_count": dup_eng.get("attempt_count", 1),
+                        "engagement_state": dup_eng,
+                        "is_duplicate_replay": True,
+                    }
+                    if dup_ev_src_id is not None:
+                        res["evidence_source_id"] = dup_ev_src_id
+                        res["authority_status"] = "AUTHORITATIVE" if (dup_ev_src and "[NON-AUTHORITATIVE" not in (dup_ev_src["notes"] or "")) else "NON_AUTHORITATIVE"
+                        res["claims_created"] = dup_claims_created
+                        res["contradictions_detected"] = []
+                        res["old_opportunity_tier"] = cur_fac_opp.get("opportunity_tier")
+                        res["new_opportunity_tier"] = cur_fac_opp.get("opportunity_tier")
+                        res["old_company_tier"] = cur_comp_opp.get("opportunity_tier")
+                        res["new_company_tier"] = cur_comp_opp.get("opportunity_tier")
+                    return res
+
             # 2. Validate facility if given
             if facility_id is not None:
                 fac = conn.execute("SELECT id, facility_name FROM facilities WHERE id = ? AND company_id = ?", (facility_id, company_id)).fetchone()
                 if not fac:
                     raise ValueError(f"Facility {facility_id} does not belong to company {company_id}")
 
-            # 3. Validate contact if given
+            # 3. Validate contact if given (Strict contact-facility scope)
             if contact_id is not None:
-                if facility_id is not None:
-                    ct = conn.execute("SELECT id FROM contacts WHERE id = ? AND (company_id = ? OR facility_id = ?)", (contact_id, company_id, facility_id)).fetchone()
-                else:
-                    ct = conn.execute("SELECT id FROM contacts WHERE id = ? AND company_id = ?", (contact_id, company_id)).fetchone()
+                ct = conn.execute(
+                    "SELECT id, company_id, facility_id FROM contacts WHERE id = ?",
+                    (contact_id,)
+                ).fetchone()
                 if not ct:
-                    raise ValueError(f"Contact {contact_id} does not belong to target company or facility")
+                    raise ValueError(f"Contact {contact_id} does not exist")
+
+                if ct["company_id"] is not None:
+                    if ct["company_id"] != company_id:
+                        raise ValueError(f"Contact {contact_id} does not belong to target company {company_id}")
+                elif ct["facility_id"] is not None:
+                    fac_owner = conn.execute("SELECT company_id FROM facilities WHERE id = ?", (ct["facility_id"],)).fetchone()
+                    if not fac_owner or fac_owner["company_id"] != company_id:
+                        raise ValueError(f"Contact {contact_id} belongs to facility {ct['facility_id']}, which does not belong to target company {company_id}")
+                    if facility_id is not None and ct["facility_id"] != facility_id:
+                        raise ValueError(
+                            f"Contact {contact_id} belongs to facility {ct['facility_id']}, not target facility {facility_id}. Sibling facility contacts cannot source facility claims."
+                        )
+                else:
+                    raise ValueError(f"Contact {contact_id} is not associated with a company or facility")
 
             # 4. Format lane context into immutable notes and feedback_notes columns
             if origin_state_prov and dest_state_prov:
@@ -3879,6 +4047,8 @@ def log_outreach_call(
                 lane_str = ""
 
             full_feedback = f"{lane_str} {feedback_notes or ''}".strip() if lane_str else feedback_notes
+            req_token = f"[ClientRequestId: {client_request_id.strip()}]" if client_request_id and client_request_id.strip() else ""
+            full_notes = f"{req_token} {full_feedback or ''}".strip() if req_token else full_feedback
 
             # Insert append-only outreach log
             cur = conn.execute(
@@ -3891,7 +4061,7 @@ def log_outreach_call(
                 """,
                 (
                     company_id, facility_id, contact_id, chan_clean,
-                    disp_clean, disp_clean, full_feedback, full_feedback,
+                    disp_clean, disp_clean, full_feedback, full_notes,
                     c_at, f_at, now_iso
                 )
             )
@@ -3935,7 +4105,278 @@ def log_outreach_call(
                 (company_id,)
             ).fetchone())
 
-            return {
+            # 7. Optional Structured Verified Telephone Evidence Intake (Phase C)
+            ev_src_id = None
+            authority_status = None
+            claims_created = []
+            contradictions_detected = []
+            old_facility_tier = None
+            new_facility_tier = None
+            old_company_tier = None
+            new_company_tier = None
+
+            if verified_evidence and verified_evidence.get("confirmed_by_user"):
+                # Scope validation: Verified telephone evidence for facility facts requires a specific facility
+                if facility_id is None:
+                    raise ValueError("Facility scope is required to record verified telephone evidence. Please select a specific facility.")
+
+                # Evaluate pre-intake baseline opportunity tiers
+                old_fac_opp = evaluate_broker_opportunity(company_id=company_id, facility_id=facility_id, conn=conn)
+                old_facility_tier = old_fac_opp.get("opportunity_tier")
+                old_comp_opp = evaluate_broker_opportunity(company_id=company_id, conn=conn)
+                old_company_tier = old_comp_opp.get("opportunity_tier")
+
+                # Extract provenance details
+                src_name = (verified_evidence.get("source_person_name") or "").strip()
+                src_role = (verified_evidence.get("source_person_role") or "").strip()
+                src_other = (verified_evidence.get("source_role_other") or "").strip()
+                if src_role == "Other" and src_other:
+                    stated_role = src_other
+                else:
+                    stated_role = src_role or "Unspecified Role"
+                stated_person = src_name or "Shipping Desk / Department"
+
+                is_auth = is_role_authoritative_for_claims(src_role, src_other)
+                authority_status = "AUTHORITATIVE" if is_auth else "NON_AUTHORITATIVE"
+                ev_notes = (verified_evidence.get("evidence_notes") or "").strip()
+
+                if not is_auth:
+                    # TASK 1: NON-AUTHORITATIVE SPEAKER (e.g. Reception / Gatekeeper / Security / Sales)
+                    # Policy: Capture statement for CONTEXT only. Do NOT mint VERIFIED operational truth.
+                    source_title = f"Phone Call [Context Only]: {stated_person} ({stated_role})"
+                    context_prefix = f"[NON-AUTHORITATIVE SPEAKER / CONTEXT ONLY - Role: {stated_role}]"
+                    full_context_notes = f"{context_prefix} {ev_notes}".strip()
+
+                    ev_src_id = record_evidence_source(
+                        conn=conn,
+                        source_type="PHONE_OUTREACH",
+                        source_title_publisher=source_title,
+                        observed_at=c_at,
+                        source_url=None,
+                        is_primary_source=False,
+                        source_published_at=None,
+                        event_at=c_at,
+                        outreach_log_id=log_id,
+                        notes=full_context_notes or None,
+                    )
+
+                    # Link existing facility claims with relationship = 'CONTEXT' only (no verification)
+                    curr_claims_list = get_current_accepted_claims(conn, "facility_id", facility_id)
+                    for c in curr_claims_list:
+                        link_claim_evidence(
+                            conn,
+                            c["id"],
+                            ev_src_id,
+                            relationship="CONTEXT",
+                            relationship_notes=f"Contextual statement by {stated_person} ({stated_role}); non-authoritative for operational verification.",
+                        )
+
+                    # Tiers remain unchanged because no claims were created
+                    new_facility_tier = old_facility_tier
+                    new_company_tier = old_company_tier
+
+                else:
+                    # AUTHORITATIVE SPEAKER: Proceed with canonical verified claims intake
+                    source_title = f"Phone Call: {stated_person} ({stated_role})"
+
+                    # Record primary evidence source linked directly to outreach log
+                    ev_src_id = record_evidence_source(
+                        conn=conn,
+                        source_type="PHONE_OUTREACH",
+                        source_title_publisher=source_title,
+                        observed_at=c_at,
+                        source_url=None,
+                        is_primary_source=True,
+                        source_published_at=None,
+                        event_at=c_at,
+                        outreach_log_id=log_id,
+                        notes=ev_notes or None,
+                    )
+
+                    # Retrieve current accepted claims for facility to support conservative conflict handling
+                    curr_claims_list = get_current_accepted_claims(conn, "facility_id", facility_id)
+                    current_claims = {c["claim_field"]: dict(c) for c in curr_claims_list}
+
+                    candidate_claims = []
+                    negative_notes = []
+
+                    # a. Commercial carrier use
+                    carrier_use = (verified_evidence.get("commercial_carrier_use") or "UNKNOWN").strip().upper()
+                    if carrier_use == "YES":
+                        candidate_claims.append(("commercial_carrier_use", "VERIFIED", "VERIFIED"))
+                    elif carrier_use == "NO":
+                        negative_notes.append("Caller confirmed: facility does NOT use outside commercial motor carriers.")
+
+                    # b. Broker / 3PL acceptance
+                    broker_status = (verified_evidence.get("broker_friendly_status") or "UNKNOWN").strip().upper()
+                    if broker_status == "YES":
+                        candidate_claims.append(("broker_friendly_status", "VERIFIED_ACCEPTS", "VERIFIED"))
+                    elif broker_status == "ASSET_CARRIERS_ONLY":
+                        candidate_claims.append(("broker_friendly_status", "VERIFIED_DIRECT_ONLY", "VERIFIED"))
+                    elif broker_status == "NO":
+                        negative_notes.append("Caller confirmed: facility does NOT accept freight brokers / 3PLs.")
+
+                    # c. Private truck fleet
+                    private_fleet = (verified_evidence.get("private_fleet_present") or "UNKNOWN").strip().upper()
+                    if private_fleet == "YES":
+                        candidate_claims.append(("private_fleet_present", "VERIFIED_PRESENT", "VERIFIED"))
+                    elif private_fleet == "NO":
+                        candidate_claims.append(("private_fleet_present", "VERIFIED_NO_FLEET", "VERIFIED"))
+
+                    # d. Transportation procurement control
+                    proc_level = (verified_evidence.get("freight_procurement_level") or "UNKNOWN").strip().upper()
+                    if proc_level == "FACILITY_LOCAL":
+                        candidate_claims.append(("freight_procurement_level", "FACILITY_LEVEL", "VERIFIED"))
+                    elif proc_level == "CENTRAL_CORPORATE":
+                        candidate_claims.append(("freight_procurement_level", "CORPORATE_PARENT", "VERIFIED"))
+
+                    # Ingest candidate claims using conservative supersession & conflict preservation
+                    for field, target_val, target_status in candidate_claims:
+                        existing = current_claims.get(field)
+                        if existing and existing["verification_status"] == "VERIFIED":
+                            if existing["claimed_value"] == target_val:
+                                link_claim_evidence(
+                                    conn,
+                                    existing["id"],
+                                    ev_src_id,
+                                    relationship="SUPPORTS",
+                                    relationship_notes="Reconfirmed via telephone outreach.",
+                                )
+                            else:
+                                # Contradiction: Prior verified claim exists with different value.
+                                link_claim_evidence(
+                                    conn,
+                                    existing["id"],
+                                    ev_src_id,
+                                    relationship="CONTRADICTS",
+                                    relationship_notes=f"[CONTRADICTION REVIEW NEEDED] Prior verified value '{existing['claimed_value']}' contradicted by telephone statement '{target_val}'.",
+                                )
+                                contradictions_detected.append({
+                                    "field": field,
+                                    "prior_verified_value": existing["claimed_value"],
+                                    "phone_statement_value": target_val,
+                                    "prior_claim_id": existing["id"],
+                                })
+                        else:
+                            # Prior claim was UNKNOWN or nonexistent: safe supersession
+                            new_cid = record_claim(
+                                conn=conn,
+                                claim_field=field,
+                                claimed_value=target_val,
+                                verification_status=target_status,
+                                is_current_accepted=True,
+                                claim_notes=f"Confirmed via telephone outreach: {stated_person} ({stated_role}).",
+                                facility_id=facility_id,
+                            )
+                            link_claim_evidence(conn, new_cid, ev_src_id, relationship="SUPPORTS")
+                            claims_created.append({
+                                "claim_id": new_cid,
+                                "claim_field": field,
+                                "claimed_value": target_val,
+                                "verification_status": target_status,
+                                "facility_id": facility_id,
+                            })
+
+                    # e. Equipment confirmed with canonical commodity model
+                    eq_confirmed = verified_evidence.get("equipment_confirmed") or []
+                    if eq_confirmed:
+                        fac_comms = conn.execute(
+                            "SELECT id, commodity_category, equipment_category, equipment_usage_status FROM facility_commodities WHERE facility_id = ?",
+                            (facility_id,)
+                        ).fetchall()
+
+                        if len(fac_comms) == 0:
+                            negative_notes.append(
+                                f"[EQUIPMENT_CLAIM_REQUIRES_COMMODITY_SCOPE] Equipment stated ({', '.join(eq_confirmed)}), but facility has no commodity records. No claim created."
+                            )
+                        elif len(fac_comms) > 1:
+                            negative_notes.append(
+                                f"[AMBIGUOUS_COMMODITY_SCOPE] Facility has multiple commodity records ({len(fac_comms)}); equipment statement cannot be unambiguously mapped. No claim created."
+                            )
+                        else:
+                            fc = fac_comms[0]
+                            for eq in eq_confirmed:
+                                eq_clean = (eq or "").strip().upper()
+                                if eq_clean in ("FLATBED", "STEP_DECK", "DRY_VAN"):
+                                    existing_eq = conn.execute(
+                                        "SELECT id, claimed_value, verification_status FROM claims WHERE facility_commodity_id = ? AND claim_field = 'equipment_category' AND is_current_accepted = 1",
+                                        (fc["id"],)
+                                    ).fetchone()
+
+                                    if existing_eq and existing_eq["verification_status"] == "VERIFIED":
+                                        if existing_eq["claimed_value"] == eq_clean:
+                                            link_claim_evidence(
+                                                conn,
+                                                existing_eq["id"],
+                                                ev_src_id,
+                                                relationship="SUPPORTS",
+                                                relationship_notes=f"Reconfirmed {eq_clean} equipment usage via telephone outreach.",
+                                            )
+                                        else:
+                                            link_claim_evidence(
+                                                conn,
+                                                existing_eq["id"],
+                                                ev_src_id,
+                                                relationship="CONTRADICTS",
+                                                relationship_notes=f"[CONTRADICTION REVIEW NEEDED] Prior verified equipment '{existing_eq['claimed_value']}' contradicted by telephone statement '{eq_clean}'.",
+                                            )
+                                            contradictions_detected.append({
+                                                "field": "equipment_category",
+                                                "prior_verified_value": existing_eq["claimed_value"],
+                                                "phone_statement_value": eq_clean,
+                                                "prior_claim_id": existing_eq["id"],
+                                            })
+                                    else:
+                                        conn.execute(
+                                            "UPDATE facility_commodities SET equipment_category = ?, equipment_usage_status = 'VERIFIED' WHERE id = ?",
+                                            (eq_clean, fc["id"])
+                                        )
+                                        fc_cid = record_claim(
+                                            conn=conn,
+                                            claim_field="equipment_category",
+                                            claimed_value=eq_clean,
+                                            verification_status="VERIFIED",
+                                            is_current_accepted=True,
+                                            claim_notes=f"Confirmed {eq_clean} equipment usage via telephone outreach from {stated_person} ({stated_role}).",
+                                            facility_commodity_id=fc["id"],
+                                        )
+                                        link_claim_evidence(conn, fc_cid, ev_src_id, relationship="SUPPORTS")
+                                        claims_created.append({
+                                            "claim_id": fc_cid,
+                                            "claim_field": "equipment_category",
+                                            "claimed_value": eq_clean,
+                                            "verification_status": "VERIFIED",
+                                            "facility_commodity_id": fc["id"],
+                                        })
+
+                    # Synchronize materialized operational columns on facilities table
+                    for field in ("commercial_carrier_use", "broker_friendly_status", "private_fleet_present", "freight_procurement_level"):
+                        acc = conn.execute(
+                            "SELECT claimed_value FROM claims WHERE facility_id = ? AND claim_field = ? AND is_current_accepted = 1",
+                            (facility_id, field)
+                        ).fetchone()
+                        if acc:
+                            conn.execute(
+                                f"UPDATE facilities SET {field} = ?, updated_at = ? WHERE id = ?",
+                                (acc["claimed_value"], now_iso, facility_id)
+                            )
+
+                    # Record negative / scope notes if present
+                    if negative_notes:
+                        notes_comb = " | ".join(negative_notes)
+                        full_ev_notes = f"{ev_notes} | {notes_comb}".strip(" |") if ev_notes else notes_comb
+                        conn.execute(
+                            "UPDATE evidence_sources SET notes = ? WHERE id = ?",
+                            (full_ev_notes, ev_src_id)
+                        )
+
+                    # Recompute deterministic broker opportunity tiers
+                    new_fac_opp = evaluate_broker_opportunity(company_id=company_id, facility_id=facility_id, conn=conn)
+                    new_facility_tier = new_fac_opp.get("opportunity_tier")
+                    new_comp_opp = evaluate_broker_opportunity(company_id=company_id, conn=conn)
+                    new_company_tier = new_comp_opp.get("opportunity_tier")
+
+            result = {
                 "outreach_log_id": log_id,
                 "company_id": company_id,
                 "facility_id": facility_id,
@@ -3948,6 +4389,17 @@ def log_outreach_call(
                 "attempt_count": attempts_cnt,
                 "engagement_state": eng_state,
             }
+            if ev_src_id is not None:
+                result["evidence_source_id"] = ev_src_id
+                result["authority_status"] = authority_status
+                result["claims_created"] = claims_created
+                result["contradictions_detected"] = contradictions_detected
+                result["old_opportunity_tier"] = old_facility_tier
+                result["new_opportunity_tier"] = new_facility_tier
+                result["old_company_tier"] = old_company_tier
+                result["new_company_tier"] = new_company_tier
+
+            return result
     finally:
         if should_close:
             conn.close()
