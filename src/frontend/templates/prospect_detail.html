@@ -48,11 +48,7 @@
         <!-- Outreach Status Badge -->
         {% set cur_outreach = prospect.engagement_state.current_outreach_status if prospect.engagement_state else 'UNCONTACTED' %}
         <span class="badge {% if cur_outreach == 'INTERESTED' %}badge-interested{% elif cur_outreach == 'CALL_BACK' %}badge-callback{% elif cur_outreach == 'NO_ANSWER' %}badge-no-answer{% elif cur_outreach == 'NOT_INTERESTED' %}badge-not-interested{% else %}badge-uncontacted{% endif %}" style="font-size:0.75rem;">
-          {% if cur_outreach == 'INTERESTED' %}🔥 Interested
-          {% elif cur_outreach == 'CALL_BACK' %}📞 Call Back
-          {% elif cur_outreach == 'NO_ANSWER' %}⏳ No Answer
-          {% elif cur_outreach == 'NOT_INTERESTED' %}⛔ Not Interested
-          {% else %}⚪ Uncontacted{% endif %}
+          {{ outreach_labels.get(cur_outreach, cur_outreach) }}
         </span>
 
         <!-- Reviewed Badge -->
@@ -694,7 +690,7 @@
           <div>
             <span style="font-size:0.75rem; color:var(--color-text-muted); font-weight:600;">Status:</span>
             <span class="badge {% if cur_outreach == 'INTERESTED' %}badge-interested{% elif cur_outreach == 'CALL_BACK' %}badge-callback{% elif cur_outreach == 'NO_ANSWER' %}badge-no-answer{% elif cur_outreach == 'NOT_INTERESTED' %}badge-not-interested{% else %}badge-uncontacted{% endif %}">
-              {{ cur_outreach|replace('_', ' ') }}
+              {{ outreach_labels.get(cur_outreach, cur_outreach) }}
             </span>
           </div>
           <div>
@@ -716,7 +712,7 @@
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
               <div style="display:flex; align-items:center; gap:0.4rem;">
                 <span class="badge {% if log.disposition == 'INTERESTED' %}badge-interested{% elif log.disposition == 'CALL_BACK' %}badge-callback{% elif log.disposition == 'NO_ANSWER' %}badge-no-answer{% elif log.disposition == 'NOT_INTERESTED' %}badge-not-interested{% else %}badge-uncontacted{% endif %}" style="font-size:0.6875rem;">
-                  {{ log.disposition|replace('_', ' ') }}
+                  {{ outreach_labels.get(log.disposition or log.outcome, log.disposition or log.outcome) }}
                 </span>
                 <span style="font-size:0.75rem; font-weight:600; color:var(--color-text-main);">
                   {{ log.contact_name or 'General Line' }}

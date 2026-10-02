@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block content %}
+<script id="outreach-labels-data" type="application/json">{{ outreach_labels|tojson|safe }}</script>
 <script id="company-groups-data" type="application/json">{{ (company_groups or [])|tojson|safe }}</script>
 <script id="prospects-data" type="application/json">{{ (prospects or [])|tojson|safe }}</script>
 <script id="pagination-data" type="application/json">{{ (pagination or {})|tojson|safe }}</script>
@@ -358,16 +359,31 @@
     return map[t] || t;
   },
 
+  clearingCompanyId: null,
+  trackingError: '',
+  async clearTracking(c, action) {
+    const message = action === 'cancel_follow_up'
+      ? 'Cancel the next call for ' + c.operating_brand + '? Its call status and history will stay saved.'
+      : 'Clear the active call status and next call for ' + c.operating_brand + '? Its call history will stay saved.';
+    if (!window.confirm(message)) return;
+    this.clearingCompanyId = c.company_id;
+    this.trackingError = '';
+    try {
+      const response = await fetch('/api/outreach/' + c.company_id + '/clear', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action })
+      });
+      if (!response.ok) throw new Error('Could not update the company. Please try again.');
+      window.location.reload();
+    } catch (error) {
+      this.trackingError = error.message;
+    } finally {
+      this.clearingCompanyId = null;
+    }
+  },
+
   outreachLabel(o) {
-    const map = {
-      'UNCONTACTED': '⚪ Uncontacted',
-      'INTERESTED': '🔥 Interested',
-      'CALL_BACK': '📞 Call Back',
-      'FOLLOW_UP': '📅 Follow-Up',
-      'FOLLOW_UPS': '📅 Follow-Up',
-      'NO_ANSWER': '⏳ No Answer',
-      'NOT_INTERESTED': '⛔ Not Interested',
-    };
+    const map = JSON.parse(document.getElementById('outreach-labels-data').textContent);
     return map[o] || o;
   },
 
@@ -810,6 +826,8 @@
     </div>
   </div>
 
+  <p role="alert" x-show="trackingError" x-text="trackingError" style="color:var(--color-danger);"></p>
+
   <!-- Lifecycle Guide Expandable Banner -->
   <div x-show="showLifecycleGuide" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.125rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-sm);">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
@@ -985,30 +1003,12 @@
                 Filter Outreach (OR)
               </div>
               <div style="display:flex; flex-direction:column; gap:0.25rem;">
+                {% for value, label in outreach_labels.items() if value != 'FOLLOW_UPS' %}
                 <label style="display:flex; align-items:center; gap:0.5rem; padding:0.25rem 0.4rem; border-radius:4px; cursor:pointer; font-size:0.8125rem;">
-                  <input type="checkbox" :checked="selectedOutreach.includes('UNCONTACTED')" @change="toggleOutreach('UNCONTACTED')" style="cursor:pointer;" />
-                  <span>⚪ Uncontacted</span>
+                  <input type="checkbox" :checked="selectedOutreach.includes('{{ value }}')" @change="toggleOutreach('{{ value }}')" style="cursor:pointer;" />
+                  <span>{{ label }}</span>
                 </label>
-                <label style="display:flex; align-items:center; gap:0.5rem; padding:0.25rem 0.4rem; border-radius:4px; cursor:pointer; font-size:0.8125rem;">
-                  <input type="checkbox" :checked="selectedOutreach.includes('INTERESTED')" @change="toggleOutreach('INTERESTED')" style="cursor:pointer;" />
-                  <span>🔥 Interested</span>
-                </label>
-                <label style="display:flex; align-items:center; gap:0.5rem; padding:0.25rem 0.4rem; border-radius:4px; cursor:pointer; font-size:0.8125rem;">
-                  <input type="checkbox" :checked="selectedOutreach.includes('CALL_BACK')" @change="toggleOutreach('CALL_BACK')" style="cursor:pointer;" />
-                  <span>📞 Call Back</span>
-                </label>
-                <label style="display:flex; align-items:center; gap:0.5rem; padding:0.25rem 0.4rem; border-radius:4px; cursor:pointer; font-size:0.8125rem;">
-                  <input type="checkbox" :checked="selectedOutreach.includes('FOLLOW_UP')" @change="toggleOutreach('FOLLOW_UP')" style="cursor:pointer;" />
-                  <span>📅 Follow-Up Scheduled</span>
-                </label>
-                <label style="display:flex; align-items:center; gap:0.5rem; padding:0.25rem 0.4rem; border-radius:4px; cursor:pointer; font-size:0.8125rem;">
-                  <input type="checkbox" :checked="selectedOutreach.includes('NO_ANSWER')" @change="toggleOutreach('NO_ANSWER')" style="cursor:pointer;" />
-                  <span>⏳ No Answer</span>
-                </label>
-                <label style="display:flex; align-items:center; gap:0.5rem; padding:0.25rem 0.4rem; border-radius:4px; cursor:pointer; font-size:0.8125rem;">
-                  <input type="checkbox" :checked="selectedOutreach.includes('NOT_INTERESTED')" @change="toggleOutreach('NOT_INTERESTED')" style="cursor:pointer;" />
-                  <span>⛔ Not Interested</span>
-                </label>
+                {% endfor %}
               </div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem; padding-top:0.4rem; border-top:1px solid var(--color-border); font-size:0.75rem;">
                 <button type="button" class="btn btn-ghost btn-xs" @click="selectedOutreach = []; navigateWithFilters(1)">Clear</button>
@@ -1411,7 +1411,7 @@
                       'badge-callback': c.outreach_status === 'CALL_BACK'
                     }"
                     style="font-size:0.6875rem;"
-                    x-text="c.outreach_status === 'INTERESTED' ? '🔥 Interested' : (c.outreach_status === 'CALL_BACK' ? '📞 Call Back' : (c.outreach_status === 'NO_ANSWER' ? '⏳ No Answer (' + (c.attempt_count || 1) + ')' : (c.outreach_status === 'NOT_INTERESTED' ? '⛔ Not Interested' : '⚪ Uncontacted')))">
+                    x-text="outreachLabel(c.outreach_status || 'UNCONTACTED') + (c.outreach_status === 'NO_ANSWER' ? ' (' + (c.attempt_count || 1) + ')' : '')">
               </span>
 
               <!-- Reviewed Badge -->
@@ -1557,6 +1557,12 @@
               <button type="button" class="btn btn-primary btn-sm" @click.stop="openLogCall(c, null)" style="width:100%; justify-content:center;">
                 📝 Log Call
               </button>
+              <template x-if="c.outreach_status && c.outreach_status !== 'UNCONTACTED'">
+                <button type="button" class="btn btn-secondary btn-sm" @click.stop="clearTracking(c, 'clear_status')" :disabled="clearingCompanyId !== null" style="width:100%; justify-content:center;">Clear Call Status</button>
+              </template>
+              <template x-if="c.next_follow_up_at">
+                <button type="button" class="btn btn-secondary btn-sm" @click.stop="clearTracking(c, 'cancel_follow_up')" :disabled="clearingCompanyId !== null" style="width:100%; justify-content:center;">Cancel Follow-Up</button>
+              </template>
               <template x-if="c.primary_facility_id">
                 <a :href="'/prospects/' + c.primary_facility_id" class="btn btn-secondary btn-sm" @click.stop style="width:100%; justify-content:center;">
                   Review Prospect →

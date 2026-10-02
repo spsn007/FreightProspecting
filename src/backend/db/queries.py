@@ -4563,6 +4563,39 @@ def mark_prospect_viewed(
         conn.close()
 
 
+def clear_outreach_tracking(
+    company_id: int,
+    action: str = "clear_status",
+    db_path: Optional[str | Path] = None,
+) -> Dict[str, Any]:
+    """Clear the active CRM projection while keeping every historical call intact."""
+    if action not in ("clear_status", "cancel_follow_up"):
+        raise ValueError("Choose clear_status or cancel_follow_up")
+    conn = create_connection(db_path)
+    try:
+        with conn:
+            if not conn.execute("SELECT 1 FROM companies WHERE id = ?", (company_id,)).fetchone():
+                raise ValueError(f"Company {company_id} does not exist")
+            if action == "clear_status":
+                conn.execute(
+                    """UPDATE prospect_engagement_state
+                       SET current_outreach_status = 'UNCONTACTED',
+                           status_source_outreach_log_id = NULL,
+                           next_follow_up_at = NULL, updated_at = ?
+                       WHERE company_id = ?""",
+                    (get_utc_now_iso(), company_id),
+                )
+            else:
+                conn.execute(
+                    "UPDATE prospect_engagement_state SET next_follow_up_at = NULL, updated_at = ? WHERE company_id = ?",
+                    (get_utc_now_iso(), company_id),
+                )
+            row = conn.execute("SELECT * FROM prospect_engagement_state WHERE company_id = ?", (company_id,)).fetchone()
+            return dict(row) if row else {"company_id": company_id, "current_outreach_status": "UNCONTACTED"}
+    finally:
+        conn.close()
+
+
 def get_crm_follow_ups(
     db_path: Optional[str | Path] = None,
     user_timezone: Optional[str] = None,

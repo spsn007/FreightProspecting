@@ -163,7 +163,7 @@
             <!-- Outreach Status Badge -->
             {% set os = prospect.outreach_status or 'UNCONTACTED' %}
             <span class="badge {% if os == 'INTERESTED' %}badge-interested{% elif os == 'CALL_BACK' %}badge-callback{% elif os == 'NO_ANSWER' %}badge-no-answer{% elif os == 'NOT_INTERESTED' %}badge-not-interested{% else %}badge-uncontacted{% endif %}" style="font-size:0.6875rem;">
-              {% if os == 'INTERESTED' %}🔥 Interested{% elif os == 'CALL_BACK' %}📞 Call Back{% elif os == 'NO_ANSWER' %}⏳ No Answer{% elif os == 'NOT_INTERESTED' %}⛔ Not Interested{% else %}⚪ Uncontacted{% endif %}
+              {{ outreach_labels.get(os, os) }}
             </span>
 
             {% if prospect.is_viewed %}

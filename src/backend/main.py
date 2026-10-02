@@ -6,7 +6,7 @@ Zero External CDN Dependencies • Zero Paid AI Keys • Local SQLite WAL
 
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 import urllib.parse
 
 from fastapi import Depends, FastAPI, HTTPException, Query, Request
@@ -34,6 +34,7 @@ from src.backend.db.queries import (
     get_commodity_families,
     get_commodity_categories,
     log_outreach_call,
+    clear_outreach_tracking,
     mark_prospect_viewed,
     promote_prospect_stage,
     check_lane_suppression_warning,
@@ -60,6 +61,23 @@ app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 # Mount Jinja2 Templates & Register Filters
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 templates.env.filters["safe_url"] = lambda u: sanitize_url(u) or ""
+
+# Shared display names for the existing outreach outcomes.
+OUTREACH_LABELS = {
+    "UNCONTACTED": "No Active Call Status",
+    "INTERESTED": "Interested",
+    "CALL_BACK": "Call Back",
+    "NO_ANSWER": "No Answer",
+    "NOT_INTERESTED": "Not Interested",
+    "CONNECTED_DECISION_MAKER": "Spoke to Shipping Contact",
+    "CONNECTED_GATEKEEPER": "Spoke to Reception",
+    "LEFT_VOICEMAIL": "Left Voicemail",
+    "WRONG_CONTACT": "Wrong Contact / Number",
+    "FOLLOW_UP": "Follow-Up Scheduled",
+    "FOLLOW_UPS": "Follow-Up Scheduled",
+}
+templates.env.globals["outreach_labels"] = OUTREACH_LABELS
+
 
 
 @app.exception_handler(FileNotFoundError)
@@ -723,6 +741,18 @@ async def api_log_outreach_call(req: LogCallRequest):
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to record call: {str(e)}")
+
+
+class ClearOutreachRequest(BaseModel):
+    action: Literal["clear_status", "cancel_follow_up"] = "clear_status"
+
+
+@app.post("/api/outreach/{company_id}/clear", dependencies=[Depends(verify_mutation_origin)])
+async def api_clear_outreach_tracking(company_id: int, req: ClearOutreachRequest):
+    try:
+        return {"status": "success", "data": clear_outreach_tracking(company_id, req.action)}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
 
 
 @app.get("/api/outreach/history", response_class=JSONResponse)

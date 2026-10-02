@@ -297,7 +297,7 @@ function logCallModalComponent() {
 
         setTimeout(() => {
           this.closeModal();
-          if (window.location.pathname.startsWith('/crm/')) {
+          if (window.location.pathname.startsWith('/crm/') || window.location.pathname.startsWith('/prospects') || window.location.pathname === '/') {
             window.location.reload();
           }
         }, 700);
@@ -421,79 +421,37 @@ function logCallModalComponent() {
         </div>
       </div>
 
-      <!-- Call Disposition / Outcome Pills (All 8 Canonical Dispositions) -->
+      <!-- Existing outcomes, with the same labels used throughout the directory. -->
       <div style="margin-bottom: 1rem;">
-        <label style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); margin-bottom: 0.45rem;">
-          Call Outcome / Disposition <span style="color:#ef4444;">*</span>
+        <label style="display:block; font-size:0.75rem; font-weight:600; margin-bottom:0.45rem;">
+          What happened on this call? <span style="color:#ef4444;">*</span>
         </label>
-        
-        <!-- Connected / Progress Dispositions -->
-        <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); margin-bottom: 0.35rem;">
-          Live Conversations & Progress
+        {% set outcome_groups = [
+          ('Main Call Results', [
+            ('INTERESTED', 'interested', 'Wants rates or broker information'),
+            ('CALL_BACK', 'callback', 'Asked you to call again'),
+            ('NO_ANSWER', 'no-answer', 'Nobody answered or the line was busy'),
+            ('NOT_INTERESTED', 'not-interested', 'Declined your offer')
+          ]),
+          ('Other Call Results', [
+            ('CONNECTED_DECISION_MAKER', 'connected-dm', 'Spoke, but no clear interest or refusal yet'),
+            ('CONNECTED_GATEKEEPER', 'connected-gatekeeper', 'Did not reach the shipping contact'),
+            ('LEFT_VOICEMAIL', 'left-voicemail', 'Left a recorded message'),
+            ('WRONG_CONTACT', 'wrong-contact', 'Need a different person or phone number')
+          ])
+        ] %}
+        {% for heading, outcomes in outcome_groups %}
+        <div style="font-size:0.75rem; font-weight:600; margin-bottom:0.35rem;">{{ heading }}</div>
+        <div role="radiogroup" aria-label="{{ heading }}" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.5rem; margin-bottom:0.65rem;">
+          {% for value, style_name, explanation in outcomes %}
+          <label class="disposition-pill" :class="disposition === '{{ value }}' ? 'selected-{{ style_name }}' : ''">
+            <input type="radio" name="disposition" value="{{ value }}" x-model="disposition" class="sr-only">
+            <span>{{ outreach_labels[value] }}</span>
+            <span style="font-size:0.6875rem; font-weight:400; opacity:0.85;">{{ explanation }}</span>
+          </label>
+          {% endfor %}
         </div>
-        <div role="radiogroup" aria-label="Live Conversations & Progress" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 0.65rem;">
-          <!-- INTERESTED -->
-          <label class="disposition-pill" :class="disposition === 'INTERESTED' ? 'selected-interested' : ''">
-            <input type="radio" name="disposition" value="INTERESTED" x-model="disposition" class="sr-only">
-            <span>Interested</span>
-            <span style="font-size: 0.6875rem; font-weight: 400; opacity: 0.85;">Quote/packet</span>
-          </label>
-
-          <!-- CONNECTED_DECISION_MAKER -->
-          <label class="disposition-pill" :class="disposition === 'CONNECTED_DECISION_MAKER' ? 'selected-connected-dm' : ''">
-            <input type="radio" name="disposition" value="CONNECTED_DECISION_MAKER" x-model="disposition" class="sr-only">
-            <span>Connected (DM)</span>
-            <span style="font-size: 0.6875rem; font-weight: 400; opacity: 0.85;">Shipping desk</span>
-          </label>
-
-          <!-- CONNECTED_GATEKEEPER -->
-          <label class="disposition-pill" :class="disposition === 'CONNECTED_GATEKEEPER' ? 'selected-connected-gatekeeper' : ''">
-            <input type="radio" name="disposition" value="CONNECTED_GATEKEEPER" x-model="disposition" class="sr-only">
-            <span>Gatekeeper</span>
-            <span style="font-size: 0.6875rem; font-weight: 400; opacity: 0.85;">Switchboard</span>
-          </label>
-
-          <!-- CALL_BACK -->
-          <label class="disposition-pill" :class="disposition === 'CALL_BACK' ? 'selected-callback' : ''">
-            <input type="radio" name="disposition" value="CALL_BACK" x-model="disposition" class="sr-only">
-            <span>Call Back</span>
-            <span style="font-size: 0.6875rem; font-weight: 400; opacity: 0.85;">Agreed time</span>
-          </label>
-        </div>
-
-        <!-- Attempts / Unconnected Dispositions -->
-        <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); margin-bottom: 0.35rem;">
-          Unconnected & Other Outcomes
-        </div>
-        <div role="radiogroup" aria-label="Unconnected & Other Outcomes" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
-          <!-- LEFT_VOICEMAIL -->
-          <label class="disposition-pill" :class="disposition === 'LEFT_VOICEMAIL' ? 'selected-left-voicemail' : ''">
-            <input type="radio" name="disposition" value="LEFT_VOICEMAIL" x-model="disposition" class="sr-only">
-            <span>Left Voicemail</span>
-            <span style="font-size: 0.6875rem; font-weight: 400; opacity: 0.85;">Desk VM</span>
-          </label>
-
-          <!-- NO_ANSWER -->
-          <label class="disposition-pill" :class="disposition === 'NO_ANSWER' ? 'selected-no-answer' : ''">
-            <input type="radio" name="disposition" value="NO_ANSWER" x-model="disposition" class="sr-only">
-            <span>No Answer</span>
-            <span style="font-size: 0.6875rem; font-weight: 400; opacity: 0.85;">Ring / busy</span>
-          </label>
-
-          <!-- NOT_INTERESTED -->
-          <label class="disposition-pill" :class="disposition === 'NOT_INTERESTED' ? 'selected-not-interested' : ''">
-            <input type="radio" name="disposition" value="NOT_INTERESTED" x-model="disposition" class="sr-only">
-            <span>Not Interested</span>
-            <span style="font-size: 0.6875rem; font-weight: 400; opacity: 0.85;">Not DNC</span>
-          </label>
-
-          <!-- WRONG_CONTACT -->
-          <label class="disposition-pill" :class="disposition === 'WRONG_CONTACT' ? 'selected-wrong-contact' : ''">
-            <input type="radio" name="disposition" value="WRONG_CONTACT" x-model="disposition" class="sr-only">
-            <span>Wrong Contact</span>
-            <span style="font-size: 0.6875rem; font-weight: 400; opacity: 0.85;">Outdated info</span>
-          </label>
-        </div>
+        {% endfor %}
       </div>
 
       <!-- Feedback / Conversation Notes -->
@@ -505,10 +463,11 @@ function logCallModalComponent() {
       </div>
 
       <!-- Follow-Up Scheduling -->
+      <p style="font-size:0.75rem; color:var(--color-text-muted);">Set a date below to put this company in Follow-Ups. You can schedule a next call after any result.</p>
       <div style="background: var(--color-border-subtle); border: 1px dashed var(--color-border); border-radius: var(--radius-md); padding: 0.75rem; margin-bottom: 1.25rem;">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
           <label style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); margin: 0;">
-            Schedule Next Follow-Up (Optional)
+            Schedule Your Next Call (Optional)
           </label>
           <div style="display: flex; gap: 0.35rem;">
             <button type="button" @click="setQuickFollowUp(1)" class="btn btn-secondary btn-sm" style="font-size: 0.7rem; padding: 0.15rem 0.45rem;">Tomorrow</button>
