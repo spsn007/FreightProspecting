@@ -590,6 +590,77 @@
   overflow: hidden;
 }
 
+.master-filter-card {
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+}
+
+.filter-caret {
+  width: 11px;
+  height: 11px;
+  flex: none;
+  transition: transform 0.15s ease;
+}
+
+.filter-caret.is-open {
+  transform: rotate(180deg);
+}
+
+.filter-popover {
+  max-height: min(280px, calc(100vh - 6rem));
+  overflow-y: auto;
+}
+
+.deep-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--color-border-subtle);
+  border-top: 1px solid var(--color-border);
+}
+
+.deep-filters-label {
+  flex-basis: 100%;
+}
+
+.deep-filters > .multi-select-dropdown,
+.deep-filters > .filter-select {
+  flex: 1 1 150px;
+  min-width: 0;
+}
+
+.deep-filters > .filter-select {
+  order: 1;
+}
+
+.deep-filters > .multi-select-dropdown {
+  order: 3;
+}
+
+.deep-filter-actions {
+  order: 4;
+}
+
+.deep-filter-row-break {
+  order: 2;
+  flex-basis: 100%;
+  height: 0;
+}
+
+.deep-filters > .multi-select-dropdown > .filter-select {
+  width: 100%;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.deep-filters > .multi-select-dropdown > .filter-popover {
+  min-width: max(100%, 220px);
+  max-width: min(320px, calc(100vw - 2rem));
+}
+
 .table-toolbar {
   padding: 0.875rem 1.25rem;
   display: flex;
@@ -2329,5 +2400,3 @@
 .tech-accordion-btn:hover {
   background: var(--color-surface-hover);
 }
-
-

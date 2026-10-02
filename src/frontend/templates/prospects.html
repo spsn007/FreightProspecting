@@ -18,7 +18,7 @@
 <script id="commodity-categories-data" type="application/json">{{ (commodity_categories or [])|tojson|safe }}</script>
 
 <div x-data="{
-  viewMode: 'COMPANIES',
+  viewMode: new URLSearchParams(window.location.search).get('view') === 'facilities' ? 'FACILITIES' : 'COMPANIES',
   searchQuery: '',
   selectedTiers: [],
   selectedOutreach: [],
@@ -41,6 +41,7 @@
   pageSize: 25,
   expandedCompanies: {},
   companies: JSON.parse(document.getElementById('company-groups-data').textContent),
+  prospects: JSON.parse(document.getElementById('prospects-data').textContent),
   pagination: JSON.parse(document.getElementById('pagination-data').textContent || 'null'),
   meta: JSON.parse(document.getElementById('metadata-data').textContent || '{}'),
   taxonomyOverview: JSON.parse(document.getElementById('taxonomy-overview-data').textContent || '[]'),
@@ -84,7 +85,7 @@
         if (clean && clean !== 'ALL' && !rawOutreach.includes(clean)) rawOutreach.push(clean);
       });
     });
-    this.selectedOutreach = rawOutreach;
+    this.selectedOutreach = this.viewMode === 'FACILITIES' ? [] : rawOutreach;
 
     // Multi-select Equipment
     const rawEq = [];
@@ -126,12 +127,12 @@
     });
     this.selectedCategories = rawCat;
 
-    if (p.has('structure')) this.structureFilter = p.get('structure');
-    if (p.has('facility_count')) this.facilityCountFilter = p.get('facility_count');
+    if (this.viewMode === 'COMPANIES' && p.has('structure')) this.structureFilter = p.get('structure');
+    if (this.viewMode === 'COMPANIES' && p.has('facility_count')) this.facilityCountFilter = p.get('facility_count');
     if (p.has('fleet')) this.fleetFilter = p.get('fleet');
     if (p.has('carrier')) this.carrierFilter = p.get('carrier');
     if (p.has('procurement')) this.procurementFilter = p.get('procurement');
-    if (p.has('unreviewed')) this.unreviewedOnly = p.get('unreviewed') === 'true';
+    if (this.viewMode === 'COMPANIES' && p.has('unreviewed')) this.unreviewedOnly = p.get('unreviewed') === 'true';
     if (p.has('sort')) this.sortOption = p.get('sort');
 
     if (p.has('q')) {
@@ -181,7 +182,13 @@
   },
 
   navigateWithFilters(targetPage = 1) {
+    if (!this.searchQuery.trim() && this.sortOption === 'relevance') {
+      this.sortOption = 'name_asc';
+    }
     const params = new URLSearchParams();
+    if (this.viewMode === 'FACILITIES') {
+      params.set('view', 'facilities');
+    }
     if (targetPage && targetPage > 1) {
       params.set('page', targetPage);
     }
@@ -194,7 +201,7 @@
     if (this.selectedTiers.length > 0) {
       params.set('tier', this.selectedTiers.join(','));
     }
-    if (this.selectedOutreach.length > 0) {
+    if (this.viewMode === 'COMPANIES' && this.selectedOutreach.length > 0) {
       params.set('outreach', this.selectedOutreach.join(','));
     }
     if (this.selectedEquipment.length > 0) {
@@ -209,10 +216,10 @@
     if (this.selectedCategories.length > 0) {
       params.set('category', this.selectedCategories.join(','));
     }
-    if (this.structureFilter && this.structureFilter !== 'ALL') {
+    if (this.viewMode === 'COMPANIES' && this.structureFilter && this.structureFilter !== 'ALL') {
       params.set('structure', this.structureFilter);
     }
-    if (this.facilityCountFilter && this.facilityCountFilter !== 'ALL') {
+    if (this.viewMode === 'COMPANIES' && this.facilityCountFilter && this.facilityCountFilter !== 'ALL') {
       params.set('facility_count', this.facilityCountFilter);
     }
     if (this.fleetFilter && this.fleetFilter !== 'ALL') {
@@ -224,10 +231,10 @@
     if (this.procurementFilter && this.procurementFilter !== 'ALL') {
       params.set('procurement', this.procurementFilter);
     }
-    if (this.unreviewedOnly) {
+    if (this.viewMode === 'COMPANIES' && this.unreviewedOnly) {
       params.set('unreviewed', 'true');
     }
-    if (this.sortOption && this.sortOption !== 'name_asc') {
+    if (this.sortOption && (this.sortOption !== 'name_asc' || this.searchQuery.trim())) {
       params.set('sort', this.sortOption);
     }
     window.location.href = '/prospects' + (params.toString() ? '?' + params.toString() : '');
@@ -396,13 +403,6 @@
   categoryLabel(c) {
     const item = this.commodityCategories.find(x => x.category_code === c);
     return item ? item.display_name : c;
-  },
-
-  get prospects() {
-    if (!this._allProspects) {
-      this._allProspects = this.companies.flatMap(c => c.facilities || []);
-    }
-    return this._allProspects;
   },
 
   activeSecondaryFiltersCount() {
@@ -663,6 +663,7 @@
     return true;
   },
   filteredProspects() {
+    if (this.pagination) return this.prospects;
     return this.prospects.filter(p => this.matchesProspectFilter(p));
   },
   paginatedProspects() {
@@ -771,10 +772,10 @@
       </div>
       <p class="section-subtitle" style="margin-top:0.25rem;">
         <template x-if="viewMode === 'COMPANIES'">
-          <span>Showing <strong style="color:var(--color-text-main);" x-text="meta.page_start || 1"></strong> to <strong style="color:var(--color-text-main);" x-text="meta.page_end || companies.length"></strong> of <strong style="color:var(--color-text-main);" x-text="meta.total_companies != null ? meta.total_companies : companies.length"></strong> Companies</span>
+          <span>Showing <strong style="color:var(--color-text-main);" x-text="meta.page_start ?? (companies.length ? 1 : 0)"></strong> to <strong style="color:var(--color-text-main);" x-text="meta.page_end ?? companies.length"></strong> of <strong style="color:var(--color-text-main);" x-text="meta.total_companies != null ? meta.total_companies : companies.length"></strong> Companies</span>
         </template>
         <template x-if="viewMode === 'FACILITIES'">
-          <span>Showing <strong style="color:var(--color-text-main);" x-text="meta.page_start || 1"></strong> to <strong style="color:var(--color-text-main);" x-text="meta.page_end || prospects.length"></strong> of <strong style="color:var(--color-text-main);" x-text="meta.total_facilities != null ? meta.total_facilities : prospects.length"></strong> Facilities</span>
+          <span>Showing <strong style="color:var(--color-text-main);" x-text="pagination ? (pagination.total_count ? ((pagination.page - 1) * pagination.page_size + 1) : 0) : (prospects.length ? 1 : 0)"></strong> to <strong style="color:var(--color-text-main);" x-text="pagination ? Math.min(pagination.page * pagination.page_size, pagination.total_count) : prospects.length"></strong> of <strong style="color:var(--color-text-main);" x-text="meta.total_facilities != null ? meta.total_facilities : prospects.length"></strong> Facilities</span>
         </template>
         <template x-if="searchQuery">
           <span style="color:var(--color-primary); font-weight:600;"> &bull; Filtered by search &ldquo;<span x-text="searchQuery"></span>&rdquo; (<span x-text="viewMode === 'COMPANIES' ? (meta.total_companies != null ? meta.total_companies : companies.length) : (meta.total_facilities != null ? meta.total_facilities : prospects.length)"></span> found)</span>
@@ -785,10 +786,10 @@
     <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
       <!-- View Mode Toggle -->
       <div class="view-toggle-group">
-        <button type="button" class="view-toggle-btn" :class="viewMode === 'COMPANIES' ? 'active' : ''" @click="viewMode = 'COMPANIES'; resetPage()">
+        <button type="button" class="view-toggle-btn" :class="viewMode === 'COMPANIES' ? 'active' : ''" @click="viewMode = 'COMPANIES'; navigateWithFilters(1)">
           🏢 Companies (<span x-text="meta.total_companies != null ? meta.total_companies : companies.length"></span>)
         </button>
-        <button type="button" class="view-toggle-btn" :class="viewMode === 'FACILITIES' ? 'active' : ''" @click="viewMode = 'FACILITIES'; resetPage()">
+        <button type="button" class="view-toggle-btn" :class="viewMode === 'FACILITIES' ? 'active' : ''" @click="viewMode = 'FACILITIES'; navigateWithFilters(1)">
           📍 Facilities (<span x-text="meta.total_facilities != null ? meta.total_facilities : prospects.length"></span>)
         </button>
       </div>
@@ -810,7 +811,7 @@
   </div>
 
   <!-- Lifecycle Guide Expandable Banner -->
-  <div x-show="showLifecycleGuide" x-collapse style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.125rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-sm);">
+  <div x-show="showLifecycleGuide" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.125rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-sm);">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
       <h3 style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin:0; display:flex; align-items:center; gap:0.5rem;">
         <span>📖 Prospect Readiness Lifecycle Standards</span>
@@ -861,7 +862,7 @@
   </div>
 
   <!-- Opportunity Categories Expandable Banner -->
-  <div x-show="showOpportunityModal" x-collapse style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-sm);">
+  <div x-show="showOpportunityModal" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-sm);">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.875rem; flex-wrap:wrap; gap:0.5rem;">
       <div>
         <h3 style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin:0; display:flex; align-items:center; gap:0.5rem;">
@@ -949,7 +950,7 @@
   </div>
 
   <!-- Filter & Search Toolbar -->
-  <div class="table-card" style="margin-bottom:1.25rem;">
+  <div class="table-card master-filter-card" style="margin-bottom:1.25rem;">
     <!-- Primary Toolbar Row -->
     <div class="table-toolbar">
       <!-- Unified Search Input -->
@@ -977,9 +978,9 @@
               <template x-if="selectedOutreach.length > 0">
                 <span class="pill-counter" style="background:var(--color-primary); color:#ffffff; font-size:0.625rem; padding:0.05rem 0.35rem;" x-text="selectedOutreach.length"></span>
               </template>
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px; height:11px; transition:transform 0.15s ease;" :style="open ? 'transform:rotate(180deg)' : ''"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              <svg class="filter-caret" :class="{ 'is-open': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
-            <div x-show="open" style="display:none; position:absolute; top:calc(100% + 4px); left:0; min-width:210px; z-index:100; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); box-shadow:var(--shadow-md); padding:0.5rem;" x-transition>
+            <div class="filter-popover" x-show="open" style="display:none; position:absolute; top:calc(100% + 4px); left:0; min-width:210px; z-index:100; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); box-shadow:var(--shadow-md); padding:0.5rem;" x-transition>
               <div style="font-size:0.6875rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; margin-bottom:0.4rem; padding:0 0.2rem;">
                 Filter Outreach (OR)
               </div>
@@ -1024,9 +1025,9 @@
             <template x-if="selectedEquipment.length > 0">
               <span class="pill-counter" style="background:var(--color-primary); color:#ffffff; font-size:0.625rem; padding:0.05rem 0.35rem;" x-text="selectedEquipment.length"></span>
             </template>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px; height:11px; transition:transform 0.15s ease;" :style="open ? 'transform:rotate(180deg)' : ''"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <svg class="filter-caret" :class="{ 'is-open': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </button>
-          <div x-show="open" style="display:none; position:absolute; top:calc(100% + 4px); left:0; min-width:180px; z-index:100; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); box-shadow:var(--shadow-md); padding:0.5rem;" x-transition>
+          <div class="filter-popover" x-show="open" style="display:none; position:absolute; top:calc(100% + 4px); left:0; min-width:180px; z-index:100; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); box-shadow:var(--shadow-md); padding:0.5rem;" x-transition>
             <div style="font-size:0.6875rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; margin-bottom:0.4rem; padding:0 0.2rem;">
               Filter Equipment (OR)
             </div>
@@ -1067,7 +1068,7 @@
             <template x-if="activeSecondaryFiltersCount() > 0">
               <span class="pill-counter" style="background:var(--color-primary); color:#ffffff; font-size:0.625rem; padding:0.05rem 0.35rem;" x-text="activeSecondaryFiltersCount()"></span>
             </template>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px; height:11px; transition:transform 0.15s ease;" :style="showMoreFilters ? 'transform:rotate(180deg)' : ''"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <svg class="filter-caret" :class="{ 'is-open': showMoreFilters }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </button>
         </template>
 
@@ -1206,8 +1207,8 @@
     </div>
 
     <!-- Secondary Filters Drawer (Collapsible) -->
-    <div x-show="showMoreFilters && viewMode === 'COMPANIES'" x-transition style="padding:0.75rem 1.25rem; background-color:var(--color-border-subtle); border-top:1px solid var(--color-border); display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
-      <span style="font-size:0.75rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.04em;">Deep Filters:</span>
+    <div class="deep-filters" x-show="showMoreFilters && viewMode === 'COMPANIES'" x-transition>
+      <span class="deep-filters-label" style="font-size:0.75rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.04em;">Deep Filters:</span>
 
       <!-- Commodity Family Multi-Select Filter -->
       <div class="multi-select-dropdown" x-data="{ open: false }" @click.outside="open = false" style="position:relative;">
@@ -1216,9 +1217,9 @@
           <template x-if="selectedFamilies.length > 0">
             <span class="pill-counter" style="background:var(--color-primary); color:#ffffff; font-size:0.625rem; padding:0.05rem 0.35rem;" x-text="selectedFamilies.length"></span>
           </template>
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px; height:11px; transition:transform 0.15s ease;" :style="open ? 'transform:rotate(180deg)' : ''"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          <svg class="filter-caret" :class="{ 'is-open': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
         </button>
-        <div x-show="open" style="display:none; position:absolute; top:calc(100% + 4px); left:0; min-width:260px; max-height:280px; overflow-y:auto; z-index:100; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); box-shadow:var(--shadow-md); padding:0.5rem;" x-transition>
+        <div class="filter-popover" x-show="open" style="display:none; position:absolute; top:calc(100% + 4px); left:0; min-width:260px; max-height:280px; overflow-y:auto; z-index:100; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); box-shadow:var(--shadow-md); padding:0.5rem;" x-transition>
           <div style="font-size:0.6875rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; margin-bottom:0.4rem; padding:0 0.2rem;">
             Commodity Family (OR)
           </div>
@@ -1244,9 +1245,9 @@
           <template x-if="selectedCategories.length > 0">
             <span class="pill-counter" style="background:var(--color-primary); color:#ffffff; font-size:0.625rem; padding:0.05rem 0.35rem;" x-text="selectedCategories.length"></span>
           </template>
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px; height:11px; transition:transform 0.15s ease;" :style="open ? 'transform:rotate(180deg)' : ''"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          <svg class="filter-caret" :class="{ 'is-open': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
         </button>
-        <div x-show="open" style="display:none; position:absolute; top:calc(100% + 4px); left:0; min-width:260px; max-height:280px; overflow-y:auto; z-index:100; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); box-shadow:var(--shadow-md); padding:0.5rem;" x-transition>
+        <div class="filter-popover" x-show="open" style="display:none; position:absolute; top:calc(100% + 4px); left:0; min-width:260px; max-height:280px; overflow-y:auto; z-index:100; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); box-shadow:var(--shadow-md); padding:0.5rem;" x-transition>
           <div style="font-size:0.6875rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; margin-bottom:0.4rem; padding:0 0.2rem;">
             Category (OR)
           </div>
@@ -1272,9 +1273,9 @@
           <template x-if="selectedSeasonality.length > 0">
             <span class="pill-counter" style="background:var(--color-primary); color:#ffffff; font-size:0.625rem; padding:0.05rem 0.35rem;" x-text="selectedSeasonality.length"></span>
           </template>
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px; height:11px; transition:transform 0.15s ease;" :style="open ? 'transform:rotate(180deg)' : ''"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          <svg class="filter-caret" :class="{ 'is-open': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
         </button>
-        <div x-show="open" style="display:none; position:absolute; top:calc(100% + 4px); left:0; min-width:200px; z-index:100; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); box-shadow:var(--shadow-md); padding:0.5rem;" x-transition>
+        <div class="filter-popover" x-show="open" style="display:none; position:absolute; top:calc(100% + 4px); left:0; min-width:200px; z-index:100; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); box-shadow:var(--shadow-md); padding:0.5rem;" x-transition>
           <div style="font-size:0.6875rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; margin-bottom:0.4rem; padding:0 0.2rem;">
             Seasonality (OR)
           </div>
@@ -1362,7 +1363,7 @@
       </select>
 
       <!-- Expand / Collapse All -->
-      <div style="display:inline-flex; gap:0.35rem; margin-left:auto;">
+      <div class="deep-filter-actions" style="display:inline-flex; gap:0.35rem; margin-left:auto;">
         <button class="btn btn-secondary btn-sm" @click="expandAll()" title="Expand all visible company facility trays">
           Expand All Trays
         </button>
@@ -1370,6 +1371,7 @@
           Collapse All
         </button>
       </div>
+      <span class="deep-filter-row-break" aria-hidden="true"></span>
     </div>
   </div>
 
@@ -1728,9 +1730,9 @@
     <div class="empty-state-card" x-show="filteredCompanies().length === 0">
       <div class="empty-state-icon-box">🏢</div>
       <div class="empty-state-title">No companies match your filters</div>
-      <div class="empty-state-desc">Try resetting your keyword search, lifecycle tab, friction, or structure filters.</div>
+      <div class="empty-state-desc">Try a different search or remove one or more filters.</div>
       <button class="btn btn-secondary btn-sm"
-              @click="searchQuery = ''; lifecycleTab = 'ALL'; structureFilter = 'ALL'; facilityCountFilter = 'ALL'; frictionFilter = 'ALL'; outreachFilter = 'ALL'; unreviewedOnly = false; equipmentFilter = 'ALL'; fleetFilter = 'ALL'; carrierFilter = 'ALL'; procurementFilter = 'ALL'; resetPage();">
+              @click="clearAllFilters()">
         Reset All Filters
       </button>
     </div>
@@ -1911,7 +1913,7 @@
             <tr x-show="filteredProspects().length === 0">
               <td colspan="8" style="text-align:center; padding:3rem 1rem; color:var(--color-text-muted);">
                 <div style="font-size:1.125rem; font-weight:600; color:var(--color-text-main); margin-bottom:0.5rem;">No prospects match your search criteria</div>
-                <div style="font-size:0.875rem;">Try adjusting your keyword search, lifecycle tab, or equipment filters.</div>
+                <div style="font-size:0.875rem;">Try a different search or remove one or more filters.</div>
               </td>
             </tr>
           </tbody>
@@ -1926,12 +1928,12 @@
       <div style="font-size:0.8125rem; color:var(--color-text-muted); font-weight:500;">
         <template x-if="viewMode === 'COMPANIES'">
           <span>
-            Showing <strong style="color:var(--color-text-main);" x-text="pagination ? ((pagination.page - 1) * pagination.page_size + 1) : (filteredCompanies().length === 0 ? 0 : ((currentPage - 1) * pageSize + 1))"></strong> to <strong style="color:var(--color-text-main);" x-text="pagination ? Math.min(pagination.page * pagination.page_size, pagination.total_count) : Math.min(currentPage * pageSize, filteredCompanies().length)"></strong> of <strong style="color:var(--color-text-main);" x-text="pagination ? pagination.total_count : filteredCompanies().length"></strong> filtered companies
+            Showing <strong style="color:var(--color-text-main);" x-text="pagination ? (pagination.total_count ? ((pagination.page - 1) * pagination.page_size + 1) : 0) : (filteredCompanies().length === 0 ? 0 : ((currentPage - 1) * pageSize + 1))"></strong> to <strong style="color:var(--color-text-main);" x-text="pagination ? Math.min(pagination.page * pagination.page_size, pagination.total_count) : Math.min(currentPage * pageSize, filteredCompanies().length)"></strong> of <strong style="color:var(--color-text-main);" x-text="pagination ? pagination.total_count : filteredCompanies().length"></strong> filtered companies
           </span>
         </template>
         <template x-if="viewMode === 'FACILITIES'">
           <span>
-            Showing <strong style="color:var(--color-text-main);" x-text="pagination ? ((pagination.page - 1) * pagination.page_size + 1) : (filteredProspects().length === 0 ? 0 : ((currentPage - 1) * pageSize + 1))"></strong> to <strong style="color:var(--color-text-main);" x-text="pagination ? Math.min(pagination.page * pagination.page_size, pagination.total_count) : Math.min(currentPage * pageSize, filteredProspects().length)"></strong> of <strong style="color:var(--color-text-main);" x-text="pagination ? pagination.total_count : filteredProspects().length"></strong> filtered facilities
+            Showing <strong style="color:var(--color-text-main);" x-text="pagination ? (pagination.total_count ? ((pagination.page - 1) * pagination.page_size + 1) : 0) : (filteredProspects().length === 0 ? 0 : ((currentPage - 1) * pageSize + 1))"></strong> to <strong style="color:var(--color-text-main);" x-text="pagination ? Math.min(pagination.page * pagination.page_size, pagination.total_count) : Math.min(currentPage * pageSize, filteredProspects().length)"></strong> of <strong style="color:var(--color-text-main);" x-text="pagination ? pagination.total_count : filteredProspects().length"></strong> filtered facilities
           </span>
         </template>
       </div>
@@ -1944,7 +1946,7 @@
             <option :value="25">25</option>
             <option :value="50">50</option>
             <option :value="100">100</option>
-            <option :value="500">All</option>
+            <option :value="500">500</option>
           </select>
         </div>
 

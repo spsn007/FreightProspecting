@@ -175,6 +175,7 @@ async def dashboard_cockpit_page(
 @app.get("/prospects", response_class=HTMLResponse)
 async def master_directory_page(
     request: Request,
+    view: str = "companies",
     page: Optional[int] = Query(None, ge=1),
     page_size: Optional[int] = Query(None, ge=1, le=500),
     q: Optional[str] = None,
@@ -204,6 +205,14 @@ async def master_directory_page(
     effective_page = page if page is not None else 1
     effective_page_size = page_size if page_size is not None else 25
     effective_tier = tier or opportunity
+
+    if view.lower() == "facilities":
+        company_only_filters = {"outreach", "unreviewed", "structure", "facility_count", "friction"}
+        if any(key in request.query_params for key in company_only_filters):
+            clean_query = urllib.parse.urlencode(
+                [(key, value) for key, value in request.query_params.multi_items() if key not in company_only_filters]
+            )
+            return RedirectResponse(f"/prospects?{clean_query}", status_code=302)
 
     # Compute active_nav for sidebar highlighting based on outreach filter
     active_nav = "prospects"
@@ -262,8 +271,11 @@ async def master_directory_page(
 
     prospects_data = prospects.get("items", prospects) if isinstance(prospects, dict) else prospects
     companies_data = company_groups.get("items", company_groups) if isinstance(company_groups, dict) else company_groups
-    pagination_info = company_groups if isinstance(company_groups, dict) else None
-    metadata_info = company_groups.get("metadata", {}) if isinstance(company_groups, dict) else {}
+    active_results = prospects if view.lower() == "facilities" else company_groups
+    pagination_info = active_results if isinstance(active_results, dict) else None
+    metadata_info = company_groups.get("metadata", {}).copy() if isinstance(company_groups, dict) else {}
+    if view.lower() == "facilities" and isinstance(prospects, dict):
+        metadata_info["total_facilities"] = prospects["total_count"]
 
     return templates.TemplateResponse(
         request=request,

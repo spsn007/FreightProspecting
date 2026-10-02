@@ -339,7 +339,7 @@ def test_master_directory_page_company_mode():
     assert 'id="prospects-data"' in html
 
     # Key UI elements present
-    assert "viewMode: 'COMPANIES'" in html
+    assert "get('view') === 'facilities' ? 'FACILITIES' : 'COMPANIES'" in html
     assert "Broker Access Friction" in html
     assert "🏢 Companies" in html
     assert "📍 Facilities" in html

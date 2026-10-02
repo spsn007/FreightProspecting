@@ -16,6 +16,10 @@ Tests Matrix Requirements A through M:
 - M: Sidebar Shortcuts & CRM Workflow Routing
 """
 
+import json
+import re
+from pathlib import Path
+
 import pytest
 from fastapi.testclient import TestClient
 from src.backend.main import app
@@ -28,6 +32,63 @@ from src.backend.db.queries import (
 )
 
 client = TestClient(app)
+
+
+def test_primary_filter_popovers_survive_collapsed_deep_filters():
+    html = client.get("/prospects").text
+    css = Path("src/frontend/static/css/components.css").read_text(encoding="utf-8")
+
+    assert 'class="table-card master-filter-card"' in html
+    assert '.master-filter-card {\n  position: relative;\n  z-index: 2;\n  overflow: visible;' in css
+    assert html.count('class="filter-popover"') == 5
+    assert 'max-height: min(280px, calc(100vh - 6rem));' in css
+    assert 'overflow-y: auto;' in css
+
+
+def test_deep_filter_layout_and_caret_use_stable_css_classes():
+    html = client.get("/prospects").text
+    css = Path("src/frontend/static/css/components.css").read_text(encoding="utf-8")
+
+    assert 'class="deep-filters" x-show="showMoreFilters' in html
+    assert 'class="deep-filter-row-break"' in html
+    assert html.count('class="filter-caret"') == 6
+    assert ':style="open ? \'transform:rotate(180deg)\' : \'\'"' not in html
+    assert '.deep-filters > .multi-select-dropdown > .filter-select {' in css
+    assert '.filter-caret.is-open {' in css
+
+
+def test_facilities_view_uses_facility_pagination_and_persists_view():
+    html = client.get("/prospects?view=facilities&page=2").text
+    pagination = json.loads(re.search(r'<script id="pagination-data" type="application/json">(.*?)</script>', html).group(1))
+    facilities = json.loads(re.search(r'<script id="prospects-data" type="application/json">(.*?)</script>', html).group(1))
+
+    assert pagination["total_count"] == 1120
+    assert pagination["page"] == 2
+    assert len(facilities) == 25
+    assert facilities[0]["facility_id"] == 26
+    assert "get('view') === 'facilities'" in html
+    assert "params.set('view', 'facilities')" in html
+    assert "if (this.pagination) return this.prospects;" in html
+    assert "get prospects()" not in html
+    assert 'this.prospects = this.companies.flatMap' not in html
+
+
+def test_facilities_view_drops_company_only_filters_from_shared_urls():
+    response = client.get(
+        "/prospects?view=facilities&q=steel&outreach=UNCONTACTED&unreviewed=true&structure=MULTI",
+        follow_redirects=False,
+    )
+    assert response.status_code == 302
+    assert response.headers["location"] == "/prospects?view=facilities&q=steel"
+
+
+def test_directory_uses_only_installed_alpine_directives():
+    assert "x-collapse" not in client.get("/prospects").text
+
+
+def test_empty_state_reset_uses_current_filter_state():
+    html = client.get("/prospects?q=missing-prospect").text
+    assert 'class="btn btn-secondary btn-sm"\n              @click="clearAllFilters()"' in html
 
 
 # ============================================================================
