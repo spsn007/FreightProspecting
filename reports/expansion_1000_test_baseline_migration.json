@@ -1,0 +1,85 @@
+{
+  "report_title": "Test Baseline Migration Report",
+  "previous_failures_count": 19,
+  "classification": {
+    "LEGITIMATE_BASELINE_ASSERTIONS": 19,
+    "REAL_FUNCTIONAL_FAILURES": 0
+  },
+  "migrated_test_files": [
+    {
+      "file": "tests/test_audit_remediation_b.py",
+      "tests_updated": [
+        "test_aud011_directory_query_reduction_benchmark",
+        "test_aud011_company_grouped_prospects_query_reduction"
+      ],
+      "reason": "Updated expected facility count from 653 to 1,120 and operating company count from 565 to 1,032. Query budget preserved (<35 and <40)."
+    },
+    {
+      "file": "tests/test_audit_remediation_c.py",
+      "tests_updated": [
+        "test_aud011_api_prospects_pagination"
+      ],
+      "reason": "Updated expected total_count from 653 to 1,120 and total_pages from 66 to 112 for page_size=10."
+    },
+    {
+      "file": "tests/test_broker_first_ui.py",
+      "tests_updated": [
+        "test_universe_metadata_counts",
+        "test_paginated_company_grouped_prospects_metadata",
+        "test_server_side_search_steel_universe_totals",
+        "test_search_relevance_ranking"
+      ],
+      "reason": "Updated universe metadata (1,032 companies, 1,120 facilities, 956 qualified, 47 discovery). Updated search totals (Steel matches 267 companies, 306 facilities). Updated Ameri prefix search to check inclusion of AmeriSteel alongside new Ameri-Kart Corp."
+    },
+    {
+      "file": "tests/test_broker_opportunity.py",
+      "tests_updated": [
+        "test_full_565_universe_distribution",
+        "test_queries_opportunity_tier_filtering",
+        "test_audit_zero_db_mutation_preserved"
+      ],
+      "reason": "Updated full universe distribution test from 565 to 1,032 (Tier B = 956, Tier D = 47). Updated query tier filtering (Tier B = 956 companies, 988 facilities). Updated candidate database freeze SHA assertion to A0BE4645..."
+    },
+    {
+      "file": "tests/test_stage2_5_preview.py",
+      "tests_updated": [
+        "test_unknown_prospect_returns_appropriate_404"
+      ],
+      "reason": "Updated non-existent IDs from [0, 999, 5000] to [0, 9999, 50000] because facility ID 999 now exists in the 1,120-facility database."
+    },
+    {
+      "file": "tests/test_stage3b_company_grouping.py",
+      "tests_updated": [
+        "test_company_and_facility_summary_counts",
+        "test_company_grouped_prospects_structure",
+        "test_broker_access_friction_distribution_and_facts",
+        "test_api_companies_endpoint"
+      ],
+      "reason": "Updated company counts (1,034 total, 1,032 active, 966 single, 66 multi) and facility counts (1,120 total, 989 qualified, 102 discovery). Updated friction counts (UNKNOWN = 982). Updated /api/companies count to 1,032."
+    },
+    {
+      "file": "tests/test_stage3c_crm.py",
+      "tests_updated": [
+        "test_production_db_outreach_invariants"
+      ],
+      "reason": "Updated company count from 567 to 1,034, facility count from 653 to 1,120, and qualified stage count from 522 to 989."
+    },
+    {
+      "file": "tests/test_tier_a_acceleration_phase_b.py",
+      "tests_updated": [
+        "test_1_database_hash_and_integrity",
+        "test_2_exact_three_surface_distribution_parity",
+        "test_5_lifecycle_stages_and_discovery_pool"
+      ],
+      "reason": "Updated candidate freeze hash to A0BE4645..., updated distribution parity to 1,032 operating companies (Tier B = 956), and updated lifecycle stage counts (989 qualified, 102 discovery, 29 shortlisted = 1,120 facilities)."
+    }
+  ],
+  "post_migration_pytest_result": {
+    "collected": 490,
+    "passed": 490,
+    "failed": 0,
+    "errors": 0,
+    "warnings": 1,
+    "status": "100% PASS"
+  }
+}

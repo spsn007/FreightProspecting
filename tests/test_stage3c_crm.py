@@ -80,15 +80,15 @@ def test_production_db_outreach_invariants():
     # 3. Companies and physical facilities (Stage 3E expansion: >= 500 discovery companies)
     comp_count = conn.execute("SELECT COUNT(*) FROM companies").fetchone()[0]
     assert comp_count >= 500, f"Expected >= 500 companies, found {comp_count}"
-    assert comp_count == 567
+    assert comp_count == 1034
     fac_count = conn.execute("SELECT COUNT(*) FROM facilities").fetchone()[0]
-    assert fac_count == 653, f"Expected 653 facilities, found {fac_count}"
+    assert fac_count == 1120, f"Expected 1120 facilities, found {fac_count}"
 
     # 4. Lifecycle stages preserved
     stages = dict(conn.execute("SELECT stage, COUNT(*) FROM prospect_lifecycle GROUP BY stage").fetchall())
     assert stages.get("SHORTLISTED", 0) == 29
     assert stages.get("DISCOVERY", 0) == 102
-    assert stages.get("QUALIFIED", 0) == 522
+    assert stages.get("QUALIFIED", 0) == 989
     assert stages.get("ARCHIVED", 0) == 0
 
     # 5. prospect_engagement_state backfilled for active companies

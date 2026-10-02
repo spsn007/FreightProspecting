@@ -1,0 +1,27 @@
+{
+  "audit_status": "PASS",
+  "newly_added_universe": {
+    "companies_added": 467,
+    "facilities_added": 467,
+    "contacts_added": 467,
+    "claims_added": 1868
+  },
+  "total_operating_universe": 1032,
+  "tier_distribution": {
+    "TIER_A_PRIORITY": 19,
+    "TIER_B_WORTH_CALLING": 489,
+    "TIER_C_SECONDARY": 10,
+    "TIER_D_RESEARCH_NEEDED": 514,
+    "RESTRICTED": 0
+  },
+  "deep_review_targets": {
+    "new_tier_a_count": 0,
+    "new_tier_c_count": 0,
+    "new_restricted_count": 0,
+    "new_tier_a_ids": [],
+    "new_tier_c_ids": [],
+    "new_restricted_ids": []
+  },
+  "findings_count": 0,
+  "findings": []
+}

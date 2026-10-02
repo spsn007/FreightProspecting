@@ -322,7 +322,7 @@ def test_full_565_universe_distribution():
             WHERE id IN (SELECT DISTINCT company_id FROM facilities)
         """).fetchall()
 
-        assert len(comps) == 565
+        assert len(comps) == 1032
 
         counts = {
             TIER_A_PRIORITY: 0,
@@ -337,11 +337,11 @@ def test_full_565_universe_distribution():
             counts[res["opportunity_tier"]] += 1
 
         assert counts[TIER_A_PRIORITY] == 19
-        assert counts[TIER_B_WORTH_CALLING] == 489
+        assert counts[TIER_B_WORTH_CALLING] == 956
         assert counts[TIER_C_SECONDARY] == 10
         assert counts[TIER_D_RESEARCH_NEEDED] == 47
         assert counts[RESTRICTED] == 0
-        assert sum(counts.values()) == 565
+        assert sum(counts.values()) == 1032
     finally:
         conn.close()
 
@@ -360,13 +360,13 @@ def test_queries_opportunity_tier_filtering():
     assert len(tier_a_facs) == 19
     assert all(f["opportunity_tier"] == TIER_A_PRIORITY for f in tier_a_facs)
 
-    # Tier B Worth Calling: 489 companies, 521 facilities
+    # Tier B Worth Calling: 956 companies, 988 facilities
     tier_b_comps = get_company_grouped_prospects(tier="TIER_B_WORTH_CALLING")
-    assert len(tier_b_comps) == 489
+    assert len(tier_b_comps) == 956
     assert all(c["opportunity_tier"] == TIER_B_WORTH_CALLING for c in tier_b_comps)
 
     tier_b_facs = get_prospects_list(tier="TIER_B_WORTH_CALLING")
-    assert len(tier_b_facs) == 521
+    assert len(tier_b_facs) == 988
     assert all(f["opportunity_tier"] == TIER_B_WORTH_CALLING for f in tier_b_facs)
 
     # Tier C Secondary: 10 companies, 10 facilities (with fleet verified, outside carrier unconfirmed)
@@ -647,7 +647,7 @@ def test_audit_zero_db_mutation_preserved():
     db_file = Path("data/prospects.db")
     with open(db_file, "rb") as f:
         h = hashlib.sha256(f.read()).hexdigest().upper()
-    assert h == "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9"
+    assert h == "A0BE4645A2136E2E2F490FB0DBD7D3D7DC395F7E9A89E2A626AC5E8106AEC400"
 
     conn = sqlite3.connect(db_file)
     try:

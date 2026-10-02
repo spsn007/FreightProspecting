@@ -33,7 +33,7 @@ from src.backend.db.queries import (
 )
 
 ACTIVE_DB = Path("data/prospects.db")
-CANDIDATE_SHA256 = "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9"
+CANDIDATE_SHA256 = "A0BE4645A2136E2E2F490FB0DBD7D3D7DC395F7E9A89E2A626AC5E8106AEC400"
 
 
 def test_1_database_hash_and_integrity():
@@ -63,19 +63,19 @@ def test_2_exact_three_surface_distribution_parity():
         engine_counts = {k: len(v) for k, v in engine_tiers.items()}
 
         assert engine_counts[TIER_A_PRIORITY] == 19
-        assert engine_counts[TIER_B_WORTH_CALLING] == 489
+        assert engine_counts[TIER_B_WORTH_CALLING] == 956
         assert engine_counts[TIER_C_SECONDARY] == 10
         assert engine_counts[TIER_D_RESEARCH_NEEDED] == 47
         assert engine_counts[RESTRICTED] == 0
-        assert sum(engine_counts.values()) == 565
+        assert sum(engine_counts.values()) == 1032
 
         # 2. Universe Metadata
         meta = get_universe_metadata(conn)
         meta_counts = meta["opportunity_counts"]
 
-        assert meta_counts["ALL"] == 565
+        assert meta_counts["ALL"] == 1032
         assert meta_counts[TIER_A_PRIORITY] == 19
-        assert meta_counts[TIER_B_WORTH_CALLING] == 489
+        assert meta_counts[TIER_B_WORTH_CALLING] == 956
         assert meta_counts[TIER_C_SECONDARY] == 10
         assert meta_counts[TIER_D_RESEARCH_NEEDED] == 47
         assert meta_counts[RESTRICTED] == 0
@@ -83,12 +83,12 @@ def test_2_exact_three_surface_distribution_parity():
         # 3. Grouped Directory
         for tier_key, expected_count in [
             (TIER_A_PRIORITY, 19),
-            (TIER_B_WORTH_CALLING, 489),
+            (TIER_B_WORTH_CALLING, 956),
             (TIER_C_SECONDARY, 10),
             (TIER_D_RESEARCH_NEEDED, 47),
             (RESTRICTED, 0),
         ]:
-            res = get_company_grouped_prospects(page=1, page_size=600, tier=tier_key, conn=conn)
+            res = get_company_grouped_prospects(page=1, page_size=1200, tier=tier_key, conn=conn)
             assert res["total_count"] == expected_count, f"Directory mismatch for {tier_key}: expected {expected_count}, got {res['total_count']}"
             assert len(res["items"]) == expected_count
     finally:
@@ -167,10 +167,10 @@ def test_5_lifecycle_stages_and_discovery_pool():
     conn = create_connection(ACTIVE_DB)
     try:
         counts = dict(conn.execute("SELECT stage, count(*) FROM prospect_lifecycle GROUP BY stage").fetchall())
-        assert counts.get("QUALIFIED") == 522
+        assert counts.get("QUALIFIED") == 989
         assert counts.get("DISCOVERY") == 102
         assert counts.get("SHORTLISTED") == 29
-        assert sum(counts.values()) == 653
+        assert sum(counts.values()) == 1120
 
         # Exactly 47 operating companies remain in DISCOVERY / Tier D
         ctx = load_opportunity_universe_context(conn)

@@ -50,7 +50,7 @@ def test_aud011_directory_query_reduction_benchmark():
 
     try:
         prospects = get_prospects_list("ALL", conn=conn)
-        assert len(prospects) == 653, f"Expected 653 facilities, got {len(prospects)}"
+        assert len(prospects) == 1120, f"Expected 1120 facilities, got {len(prospects)}"
         assert counter.count < 35, f"Expected < 35 SQL queries, executed {counter.count}"
     finally:
         conn.close()
@@ -67,7 +67,7 @@ def test_aud011_company_grouped_prospects_query_reduction():
 
     try:
         groups = get_company_grouped_prospects("ALL", conn=conn)
-        assert len(groups) == 565, f"Expected 565 operating company groups, got {len(groups)}"
+        assert len(groups) == 1032, f"Expected 1032 operating company groups, got {len(groups)}"
         assert counter.count < 40, f"Expected < 40 SQL queries, executed {counter.count}"
     finally:
         conn.close()

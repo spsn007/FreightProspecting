@@ -1,0 +1,17 @@
+{
+  "remediation_status": "COMPLETED",
+  "contact_classifications_corrected": 467,
+  "facilities_promoted_to_qualified": 467,
+  "companies_removed": 0,
+  "companies_added_supplemental": 0,
+  "final_operating_universe": 1032,
+  "final_opportunity_distribution": {
+    "TIER_A_PRIORITY": 19,
+    "TIER_B_WORTH_CALLING": 956,
+    "TIER_C_SECONDARY": 10,
+    "TIER_D_RESEARCH_NEEDED": 47,
+    "RESTRICTED": 0
+  },
+  "parity_status": "PASS",
+  "timestamp": "2026-10-02T02:24:17Z"
+}

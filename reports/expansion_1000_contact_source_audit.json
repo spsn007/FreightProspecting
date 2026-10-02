@@ -1,0 +1,30 @@
+{
+  "total_records_reviewed": 467,
+  "contact_classifications_correct": 0,
+  "contact_classifications_corrected_needed": 467,
+  "source_defects": 0,
+  "equipment_inference_defects": 0,
+  "identity_defects": 0,
+  "reused_domains": {},
+  "reused_phones": {},
+  "domain_checks": {
+    "passed": 467,
+    "failed": 0,
+    "failures": []
+  },
+  "geo_checks": {
+    "passed": 467,
+    "failed": 0,
+    "failures": []
+  },
+  "taxonomy_checks": {
+    "passed": 467,
+    "failed": 0,
+    "failures": []
+  },
+  "equipment_checks": {
+    "passed": 467,
+    "failed": 0,
+    "failures": []
+  }
+}

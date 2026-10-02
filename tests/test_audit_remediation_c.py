@@ -371,10 +371,10 @@ def test_aud011_api_prospects_pagination():
     assert isinstance(data, dict)
     assert "items" in data
     assert len(data["items"]) == 10
-    assert data["total_count"] == 653
+    assert data["total_count"] == 1120
     assert data["page"] == 1
     assert data["page_size"] == 10
-    assert data["total_pages"] == 66
+    assert data["total_pages"] == 112
 
 
 def test_aud011_api_companies_pagination_and_search():

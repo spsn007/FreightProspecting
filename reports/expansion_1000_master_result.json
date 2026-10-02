@@ -1,0 +1,56 @@
+{
+  "campaign_status": "PASS",
+  "pre_expansion": {
+    "operating_companies": 565,
+    "tier_a": 19,
+    "tier_b": 489,
+    "tier_c": 10,
+    "tier_d": 47,
+    "restricted": 0
+  },
+  "discovery": {
+    "raw_candidates": 654,
+    "duplicates_rejected": 187,
+    "duplicate_breakdown": {
+      "EXACT_EXISTING_COMPANY": 14,
+      "EXISTING_COMPANY_NEW_FACILITY": 104,
+      "PARENT_SUBSIDIARY_MATCH": 0,
+      "OPERATING_BRAND_ALIAS": 4,
+      "SAME_DOMAIN_SAME_ENTITY": 0,
+      "SAME_ADDRESS_SAME_ENTITY": 51,
+      "AMBIGUOUS_IDENTITY_REVIEW": 5,
+      "DUPLICATE_IN_BATCH": 9
+    },
+    "accepted_unique_candidates": 467,
+    "source_validated_candidates": 467,
+    "rejected_by_evidence_gate": 0
+  },
+  "import": {
+    "companies_inserted": 467,
+    "facilities_inserted": 467,
+    "contacts_inserted": 467,
+    "claims_inserted": 1868,
+    "evidence_sources_inserted": 467
+  },
+  "final": {
+    "operating_companies": 1032,
+    "tier_a": 19,
+    "tier_b": 489,
+    "tier_c": 10,
+    "tier_d": 514,
+    "restricted": 0
+  },
+  "net_change": {
+    "total_companies_added": 467,
+    "tier_a_added": 0,
+    "tier_b_added": 0,
+    "tier_c_added": 0,
+    "tier_d_added": 467,
+    "restricted_added": 0
+  },
+  "audit": {
+    "status": "PASS",
+    "findings_count": 0,
+    "confirmed_duplicate_companies_inserted": 0
+  }
+}

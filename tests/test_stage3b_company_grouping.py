@@ -46,23 +46,23 @@ def test_company_and_facility_summary_counts():
     counts = get_summary_counts(DB_PATH)
 
     # Facility counts
-    assert counts["all_prospects_count"] == 653
+    assert counts["all_prospects_count"] == 1120
     assert counts["shortlisted_count"] == 29
     assert counts["discovery_count"] == 102
-    assert counts["qualified_count"] == 522
+    assert counts["qualified_count"] == 989
 
-    # Company counts (Stage 3F.2: 565 operating companies partitioned into 29 shortlisted, 489 qualified, 47 discovery)
-    assert counts["total_companies_count"] == 567  # 565 operating + 2 holding/inactive
-    assert counts["all_companies_count"] == 565
+    # Company counts (565 original + 467 new = 1032 operating companies)
+    assert counts["total_companies_count"] == 1034  # 1032 operating + 2 holding/inactive
+    assert counts["all_companies_count"] == 1032
     assert counts["shortlisted_companies_count"] == 29
     assert counts["discovery_companies_count"] == 47
-    assert counts["qualified_companies_count"] == 489
+    assert counts["qualified_companies_count"] == 956
     assert counts["all_companies_count"] >= 500
 
     # Structure counts
-    assert counts["single_facility_companies_count"] == 499
+    assert counts["single_facility_companies_count"] == 966
     assert counts["multi_facility_companies_count"] == 66
-    assert counts["single_facility_companies_count"] + counts["multi_facility_companies_count"] == 565
+    assert counts["single_facility_companies_count"] + counts["multi_facility_companies_count"] == 1032
 
     # Zero fake records
     assert counts["signals_count"] == 0
@@ -116,16 +116,16 @@ def test_company_grouped_prospects_structure():
     """Verify get_company_grouped_prospects returns 527 groups grouping all 615 facilities."""
     groups = get_company_grouped_prospects(lifecycle_stage="ALL", db_path=DB_PATH)
 
-    assert len(groups) == 565, f"Expected 565 active company groups, got {len(groups)}"
+    assert len(groups) == 1032, f"Expected 1032 active company groups, got {len(groups)}"
 
-    # Total facilities across all groups must be exactly 653
+    # Total facilities across all groups must be exactly 1120
     total_child_facilities = sum(len(g["facilities"]) for g in groups)
-    assert total_child_facilities == 653, f"Expected 653 child facilities, got {total_child_facilities}"
+    assert total_child_facilities == 1120, f"Expected 1120 child facilities, got {total_child_facilities}"
 
     # Verify single vs multi counts
     single_count = sum(1 for g in groups if g["facility_count"] == 1)
     multi_count = sum(1 for g in groups if g["facility_count"] > 1)
-    assert single_count == 499
+    assert single_count == 966
     assert multi_count == 66
 
 
@@ -219,8 +219,8 @@ def test_broker_access_friction_distribution_and_facts():
     assert friction_counts["HIGH"] == 8
     assert friction_counts["MEDIUM"] == 36
     assert friction_counts["LOW"] == 6
-    assert friction_counts["UNKNOWN"] == 515
-    assert sum(friction_counts.values()) == 565
+    assert friction_counts["UNKNOWN"] == 982
+    assert sum(friction_counts.values()) == 1032
 
     # Verify observable facts integrity
     for g in groups:
@@ -318,7 +318,7 @@ def test_api_companies_endpoint():
     res = client.get("/api/companies")
     assert res.status_code == 200
     data = res.json()
-    assert len(data) == 565
+    assert len(data) == 1032
 
     # Check Georgia-Pacific in JSON response
     gp = next((c for c in data if c["operating_brand"] == "Georgia-Pacific"), None)

@@ -1,0 +1,60 @@
+{
+  "campaign_status": "PASS",
+  "timestamp": "2026-10-02T02:34:54Z",
+  "candidate_db_sha256": "A0BE4645A2136E2E2F490FB0DBD7D3D7DC395F7E9A89E2A626AC5E8106AEC400",
+  "pre_expansion_db_sha256": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+  "pre_expansion_backup_path": "D:\\FreightProspecting\\backup\\expansion\\pre_1000_expansion_20261002_071700.db",
+  "git_head_expected": "5180d7a36c74480d8ad66ada8488bd51aad9ae66",
+  "universe_metrics": {
+    "starting_operating_companies": 565,
+    "net_new_companies_added": 467,
+    "final_operating_companies": 1032,
+    "total_companies_in_db": 1034,
+    "total_facilities_in_db": 1120,
+    "target_met": true
+  },
+  "lifecycle_distribution": {
+    "facilities_shortlisted": 29,
+    "facilities_qualified": 989,
+    "facilities_discovery": 102
+  },
+  "opportunity_tier_distribution": {
+    "starting": {
+      "A": 19,
+      "B": 489,
+      "C": 10,
+      "D": 47,
+      "Restricted": 0
+    },
+    "final": {
+      "A": 19,
+      "B": 956,
+      "C": 10,
+      "D": 47,
+      "Restricted": 0
+    },
+    "net_change": {
+      "A": 0,
+      "B": 467,
+      "C": 0,
+      "D": 0,
+      "Restricted": 0
+    }
+  },
+  "contact_quality_remediation": {
+    "contact_classifications_corrected": 467,
+    "reclassification": "DEPARTMENT -> GENERAL_FACILITY (Main Office Switchboard)",
+    "rationale": "Published telephone numbers are corporate/facility main switchboards with gatekeeper navigation rather than dedicated direct shipping desk extensions."
+  },
+  "lifecycle_diagnostic_remediation": {
+    "facilities_promoted_to_qualified": 467,
+    "rationale": "All 467 facilities met 5/5 factual qualification readiness checks (verified physical identity, eligible US Lower 48/Canada geography, approved FTL equipment fit, callable phone route, evidence provenance). Promoted via canonical promote_prospect_stage workflow, moving them deterministically from Tier D to Tier B."
+  },
+  "test_suite_status": {
+    "collected": 490,
+    "passed": 490,
+    "failed": 0,
+    "status": "PASS"
+  },
+  "independent_audit_status": "PASS"
+}

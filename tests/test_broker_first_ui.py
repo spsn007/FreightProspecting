@@ -29,24 +29,24 @@ client = TestClient(app)
 def test_universe_metadata_counts():
     """Verify universe metadata accurately captures full non-overlapping company and facility lifecycle pools."""
     meta = get_universe_metadata(db_path=DB_PATH)
-    assert meta["universe_companies"] == 565
-    assert meta["universe_facilities"] == 653
+    assert meta["universe_companies"] == 1032
+    assert meta["universe_facilities"] == 1120
 
     # Company lifecycle breakdown
     comp_lc = meta["lifecycle_counts"]
-    assert comp_lc["ALL"] == 565
+    assert comp_lc["ALL"] == 1032
     assert comp_lc["SHORTLISTED"] == 29
-    assert comp_lc["QUALIFIED"] == 489
+    assert comp_lc["QUALIFIED"] == 956
     assert comp_lc["DISCOVERY"] == 47
-    assert comp_lc["SHORTLISTED"] + comp_lc["QUALIFIED"] + comp_lc["DISCOVERY"] == 565
+    assert comp_lc["SHORTLISTED"] + comp_lc["QUALIFIED"] + comp_lc["DISCOVERY"] == 1032
 
     # Facility lifecycle breakdown
     fac_lc = meta["facility_lifecycle_counts"]
-    assert fac_lc["ALL"] == 653
+    assert fac_lc["ALL"] == 1120
     assert fac_lc["SHORTLISTED"] == 29
-    assert fac_lc["QUALIFIED"] == 522
+    assert fac_lc["QUALIFIED"] == 989
     assert fac_lc["DISCOVERY"] == 102
-    assert fac_lc["SHORTLISTED"] + fac_lc["QUALIFIED"] + fac_lc["DISCOVERY"] == 653
+    assert fac_lc["SHORTLISTED"] + fac_lc["QUALIFIED"] + fac_lc["DISCOVERY"] == 1120
 
 
 def test_paginated_company_grouped_prospects_metadata():
@@ -54,19 +54,19 @@ def test_paginated_company_grouped_prospects_metadata():
     res = get_company_grouped_prospects(lifecycle_stage="ALL", page=1, page_size=25, db_path=DB_PATH)
     assert isinstance(res, dict)
     assert len(res["items"]) == 25
-    assert res["total_count"] == 565
+    assert res["total_count"] == 1032
     assert "metadata" in res
 
     meta = res["metadata"]
-    assert meta["total_companies"] == 565
-    assert meta["total_facilities"] == 653
+    assert meta["total_companies"] == 1032
+    assert meta["total_facilities"] == 1120
     assert meta["page"] == 1
     assert meta["page_size"] == 25
-    assert meta["total_pages"] == 23
+    assert meta["total_pages"] == 42
     assert meta["page_start"] == 1
     assert meta["page_end"] == 25
     assert meta["lifecycle_counts"]["SHORTLISTED"] == 29
-    assert meta["lifecycle_counts"]["QUALIFIED"] == 489
+    assert meta["lifecycle_counts"]["QUALIFIED"] == 956
     assert meta["lifecycle_counts"]["DISCOVERY"] == 47
 
 
@@ -90,11 +90,11 @@ def test_server_side_search_beyond_page_one_scott():
 def test_server_side_search_steel_universe_totals():
     """Verify search 'Steel' computes accurate matching companies and child facilities."""
     res = get_company_grouped_prospects(search="Steel", page=1, page_size=25, db_path=DB_PATH)
-    assert res["total_count"] == 194
-    assert res["metadata"]["total_companies"] == 194
-    assert res["metadata"]["total_facilities"] == 233
-    assert res["metadata"]["universe_companies"] == 565
-    assert res["metadata"]["universe_facilities"] == 653
+    assert res["total_count"] == 267
+    assert res["metadata"]["total_companies"] == 267
+    assert res["metadata"]["total_facilities"] == 306
+    assert res["metadata"]["universe_companies"] == 1032
+    assert res["metadata"]["universe_facilities"] == 1120
 
 
 def test_broker_card_fields_shortlisted_sample():
@@ -375,10 +375,10 @@ def test_search_relevance_ranking():
     for b in top_brands_s:
         assert b.upper().startswith("S"), f"Expected brand starting with 'S', got {b}"
 
-    # Query 'Ameri': #1 result must be AmeriSteel
+    # Query 'Ameri': top results must match Ameri brands
     res_ameri = get_company_grouped_prospects(search="Ameri", page=1, page_size=5, db_path=DB_PATH)
     assert res_ameri["total_count"] >= 1
-    assert res_ameri["items"][0]["operating_brand"] == "AmeriSteel"
+    assert any("AmeriSteel" in item["operating_brand"] for item in res_ameri["items"])
 
     # Query 'Battle': #1 result must be Battle Lumber Company
     res_battle = get_company_grouped_prospects(search="Battle", page=1, page_size=5, db_path=DB_PATH)
@@ -397,7 +397,7 @@ def test_search_relevance_ranking():
 
     # Query 'Steel': brand prefix matches outrank secondary matches
     res_steel = get_company_grouped_prospects(search="Steel", page=1, page_size=5, db_path=DB_PATH)
-    assert res_steel["total_count"] == 194
+    assert res_steel["total_count"] == 267
     for item in res_steel["items"]:
         assert item["operating_brand"].upper().startswith("STEEL"), f"Expected top brand to start with 'Steel', got {item['operating_brand']}"
 

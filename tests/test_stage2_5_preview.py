@@ -87,7 +87,7 @@ def test_prospect_detail_route_returns_http_200_for_valid_seeds():
 # ============================================================================
 def test_unknown_prospect_returns_appropriate_404():
     """Test 5: Requesting non-existent prospect facility IDs returns HTTP 404."""
-    for bad_id in [0, 999, 5000]:
+    for bad_id in [0, 9999, 50000]:
         response = client.get(f"/prospects/{bad_id}")
         assert response.status_code == 404
         assert "not found" in response.text.lower()

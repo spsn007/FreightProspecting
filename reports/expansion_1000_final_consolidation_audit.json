@@ -1,0 +1,46 @@
+{
+  "audit_role": "Independent Internal Auditor",
+  "audit_status": "PASS",
+  "timestamp": "2026-10-02T02:34:54Z",
+  "database_sha256": "A0BE4645A2136E2E2F490FB0DBD7D3D7DC395F7E9A89E2A626AC5E8106AEC400",
+  "pre_expansion_sha256": "6BD5B8360FA713630477D715C5794906F44CB8814DFAB8EDF47D676C672767D9",
+  "operating_universe_count": 1032,
+  "opportunity_tier_distribution": {
+    "TIER_A_PRIORITY": 19,
+    "TIER_B_WORTH_CALLING": 956,
+    "TIER_C_SECONDARY": 10,
+    "TIER_D_RESEARCH_NEEDED": 47,
+    "RESTRICTED": 0
+  },
+  "three_surface_parity": "PASS",
+  "pragmas": {
+    "integrity_check": "ok",
+    "foreign_key_violations": 0
+  },
+  "relational_integrity": {
+    "orphan_claims": 0,
+    "orphan_claim_evidence": 0,
+    "duplicate_current_claims": 0,
+    "duplicate_company_identities": 0
+  },
+  "quality_metrics_on_467_new": {
+    "total_new_companies": 467,
+    "total_new_facilities": 467,
+    "total_new_contacts": 467,
+    "with_official_website": 467,
+    "with_named_person": 0,
+    "with_freight_department_channel": 0,
+    "with_general_facility_switchboard": 467,
+    "commercial_carrier_use_verified": 0,
+    "broker_friendly_status_verified": 0,
+    "private_fleet_verified": 0,
+    "equipment_usage_verified": 0,
+    "equipment_usage_inferred": 467,
+    "unknown_operational_fields": 1401
+  },
+  "deep_source_sample_reviewed": 117,
+  "systematic_defects_found": 0,
+  "unresolved_high_truth_defects": 0,
+  "audit_findings_count": 0,
+  "audit_findings": []
+}
