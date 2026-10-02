@@ -164,12 +164,14 @@ def test_html_endpoints_render_metadata():
 
 
 def test_html_cockpit_renders():
-    """Verify Cockpit root endpoint / renders cleanly."""
-    response = client.get("/")
-    assert response.status_code == 200
-    html = response.text
-    assert "Daily Shortlist Cockpit" in html
-    assert "hero-banner" in html
+    """Verify Cockpit root endpoint / canonically 302 redirects to Master Directory."""
+    response = client.get("/", follow_redirects=False)
+    assert response.status_code == 302
+    assert response.headers["location"] == "/prospects"
+    # When following redirects, lands on Master Directory
+    res_followed = client.get("/")
+    assert res_followed.status_code == 200
+    assert "Master Directory" in res_followed.text
 
 
 def test_dark_mode_css_tokens():
@@ -293,8 +295,8 @@ def test_live_prospects_routes_and_filters():
 
 
 def test_cockpit_redesigned_broker_card_elements():
-    """Verify redesigned Cockpit root / endpoint contains Phase 2 broker-first layout elements."""
-    response = client.get("/")
+    """Verify Master Directory endpoint /prospects contains Phase 2 broker-first layout elements."""
+    response = client.get("/prospects")
     assert response.status_code == 200
     html = response.text
 
@@ -309,8 +311,7 @@ def test_cockpit_redesigned_broker_card_elements():
 
     # Broker insights & action guidance
     assert "Why Shortlisted" in html
-    assert "Suggested Next Action" in html
-    assert "Review Prospect Details" in html
+    assert "Review Prospect" in html
 
 
 def test_prospect_detail_hero_briefing_and_glance_grid():

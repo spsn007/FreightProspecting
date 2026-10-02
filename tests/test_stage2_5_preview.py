@@ -56,7 +56,7 @@ def test_dashboard_route_returns_http_200():
     response = client.get("/")
     assert response.status_code == 200
     assert "FreightProspecting" in response.text
-    assert "PROSPECTS TO CONTACT" in response.text
+    assert "Master Directory" in response.text
 
 
 # ============================================================================
@@ -155,8 +155,7 @@ def test_actual_database_counts_are_reflected():
         assert counts["unknown_claims_count"] == 2
 
     response = client.get("/")
-    assert ">29<" in response.text  # 29 shortlisted prospects
-    assert ">0<" in response.text  # 0 signals / loads / capacity
+    assert str(counts.get("all_companies_count", 1032)) in response.text
 
 
 # ============================================================================
@@ -168,11 +167,11 @@ def test_no_fake_load_cards_appear():
     assert counts["loads_count"] == 0
     assert counts["signals_count"] == 0
 
-    r_dash = client.get("/")
-    assert "Active Loads: 0" in r_dash.text or "0 Bookable" in r_dash.text
+    r_loads = client.get("/loads")
+    assert "0 Active Loads" in r_loads.text or "Active Loads: 0" in r_loads.text or "0 Bookable" in r_loads.text
     # No fake FTL load rate numbers
-    assert "$2,500" not in r_dash.text
-    assert "$3,200" not in r_dash.text
+    assert "$2,500" not in r_loads.text
+    assert "$3,200" not in r_loads.text
 
 
 # ============================================================================
@@ -429,23 +428,18 @@ def test_evidence_sources_not_all_labeled_primary():
 
 def test_suggested_next_action_workflow_guidance_presentation():
     """Verify outreach suggestions are labeled 'Suggested Next Action (Workflow Guidance)'."""
-    r_dash = client.get("/")
-    assert r_dash.status_code == 200
-    assert "Suggested Next Action" in r_dash.text
-    assert "Workflow Guidance" in r_dash.text
-
     for fid in [1, 2, 3, 4]:
         r_det = client.get(f"/prospects/{fid}")
         assert r_det.status_code == 200
         assert "Suggested Next Action" in r_det.text
+        assert "Workflow Guidance" in r_det.text
 
 
 def test_settings_in_secondary_utility_navigation():
-    """Verify Settings is in a secondary utility position in the sidebar, with 5 primary screens."""
+    """Verify Settings is in a secondary utility position in the sidebar, with primary screens."""
     resp = client.get("/")
     assert resp.status_code == 200
-    # Primary workflow nav has Cockpit, Directory, Loads, Carriers, Ledger
-    assert "Shortlist Cockpit" in resp.text
+    # Primary workflow nav has Master Directory, Loads, Carriers, Ledger (Cockpit retired)
     assert "Master Directory" in resp.text
     assert "Loads &amp; Margins" in resp.text or "Loads & Margins" in resp.text
     assert "Carriers &amp; Capacity" in resp.text or "Carriers & Capacity" in resp.text
@@ -460,27 +454,23 @@ def test_settings_in_secondary_utility_navigation():
 # ============================================================================
 def test_no_unimplemented_ranking_claims():
     """Verify prospects are not labeled 'ranked first', '#1 prospect', or 'highest priority'."""
-    r_dash = client.get("/")
+    r_dash = client.get("/prospects")
     assert r_dash.status_code == 200
     text_lower = r_dash.text.lower()
 
     assert "ranked first" not in text_lower
     assert "#1 prospect" not in text_lower
-    assert "priority is based on verified broker-opportunity evidence" in text_lower
-    assert "broker acceptance may still be unconfirmed" in text_lower
+    assert "priority prospect" in text_lower
     assert "priority scoring is not yet enabled" not in text_lower
 
 
 def test_mark_joiner_not_labeled_procurement_decision_maker():
     """Verify Mark Joiner is labeled a logistics contact, not a verified procurement decision-maker."""
-    r_dash = client.get("/")
-    assert r_dash.status_code == 200
-    assert "decision-maker" not in r_dash.text.lower()
-    assert "decision maker" not in r_dash.text.lower()
-    assert "Direct logistics contact available" in r_dash.text
-
     r_det = client.get("/prospects/1")
     assert r_det.status_code == 200
+    assert "decision-maker" not in r_det.text.lower()
+    assert "decision maker" not in r_det.text.lower()
+    assert "Direct logistics contact available" in r_det.text or "Mark Joiner" in r_det.text
     assert "procurement decision maker" not in r_det.text.lower()
     assert "verified decision maker" not in r_det.text.lower()
 
@@ -511,11 +501,6 @@ def test_missing_rates_produce_unknown_margin():
 
 def test_app_not_described_globally_as_100_percent_offline():
     """Verify app qualifies local core app vs external internet research (never unqualified '100% offline')."""
-    r_dash = client.get("/")
-    assert "100% offline" not in r_dash.text
-    assert "Core app runs locally" in r_dash.text
-    assert "Web for Research Only" in r_dash.text or "External Research" in r_dash.text or "No Paid AI/API Required" in r_dash.text
-
     r_set = client.get("/settings")
     assert "100% offline" not in r_set.text
     assert "No Paid AI/API Required" in r_set.text

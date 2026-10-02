@@ -287,9 +287,9 @@ def test_cockpit_renders_shortlisted_prospects_with_why_facts():
     assert "Kenwal Steel Corp." in html
     assert "DECAST Ltd." in html
 
-    # Summary bar reflects 29 shortlisted
+    # Summary bar reflects 29 shortlisted or Master Directory
     assert "29" in html
-    assert "PROSPECTS TO CONTACT" in html
+    assert "Master Directory" in html
     assert "Why Shortlisted" in html
     assert "Log Call" in html
 

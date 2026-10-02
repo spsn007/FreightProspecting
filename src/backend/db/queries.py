@@ -598,17 +598,60 @@ def promote_prospect_stage(
             conn.close()
 
 
+def _parse_filter_list(val: Any) -> List[str]:
+    """
+    Parses a filter parameter which may be None, 'ALL', a single string,
+    a comma-separated string (e.g. 'FLATBED,STEP_DECK'), or a list/tuple/set of strings.
+    Returns normalized uppercase non-empty tokens with 'ALL' omitted.
+    """
+    if val is None:
+        return []
+    if isinstance(val, (list, tuple, set)):
+        items = []
+        for x in val:
+            if x is not None:
+                for sub in str(x).split(","):
+                    sub_clean = sub.strip().upper()
+                    if sub_clean and sub_clean != "ALL" and sub_clean not in items:
+                        items.append(sub_clean)
+        return items
+    val_str = str(val).strip()
+    if not val_str or val_str.upper() == "ALL":
+        return []
+    items = []
+    for sub in val_str.split(","):
+        sub_clean = sub.strip().upper()
+        if sub_clean and sub_clean != "ALL" and sub_clean not in items:
+            items.append(sub_clean)
+    return items
+
+
+def _canonical_tier(t: str) -> Optional[str]:
+    """Normalizes any user or enum tier token to its canonical TIER constant."""
+    clean = str(t).strip().upper()
+    if clean in ("PRIORITY", "TIER_A", "TIER_A_PRIORITY"):
+        return TIER_A_PRIORITY
+    if clean in ("WORTH_CALLING", "TIER_B", "TIER_B_WORTH_CALLING"):
+        return TIER_B_WORTH_CALLING
+    if clean in ("SECONDARY", "TIER_C", "TIER_C_SECONDARY"):
+        return TIER_C_SECONDARY
+    if clean in ("RESEARCH", "NEEDS_RESEARCH", "TIER_D", "TIER_D_RESEARCH_NEEDED"):
+        return TIER_D_RESEARCH_NEEDED
+    if clean in ("RESTRICTED", "TIER_RESTRICTED"):
+        return RESTRICTED
+    return None
+
 def build_facility_filter_sql(
     lifecycle_stage: Optional[str] = "ALL",
     search: Optional[str] = None,
-    equipment: Optional[str] = None,
-    family: Optional[str] = None,
-    category: Optional[str] = None,
-    seasonality: Optional[str] = None,
-    fleet: Optional[str] = None,
-    carrier: Optional[str] = None,
-    procurement: Optional[str] = None,
-    tier: Optional[str] = None,
+    equipment: Optional[Any] = None,
+    family: Optional[Any] = None,
+    category: Optional[Any] = None,
+    seasonality: Optional[Any] = None,
+    fleet: Optional[Any] = None,
+    carrier: Optional[Any] = None,
+    procurement: Optional[Any] = None,
+    tier: Optional[Any] = None,
 ) -> Tuple[str, List[Any]]:
     """Builds SQL WHERE clause and parameter list for facility filtering."""
     where_clauses = []
@@ -658,106 +701,125 @@ def build_facility_filter_sql(
             )""")
             params.extend([q_contains] * 9)
 
-    if equipment and equipment.upper() != "ALL":
-        where_clauses.append("""
+    equipment_items = _parse_filter_list(equipment)
+    if equipment_items:
+        ph = ",".join("?" for _ in equipment_items)
+        where_clauses.append(f"""
             EXISTS (
                 SELECT 1 FROM facility_commodities fc_e
-                WHERE fc_e.facility_id = f.id AND fc_e.equipment_category = ?
+                WHERE fc_e.facility_id = f.id AND fc_e.equipment_category IN ({ph})
             )
         """)
-        params.append(equipment.upper())
+        params.extend(equipment_items)
 
-    if family and family.upper() != "ALL":
-        where_clauses.append("""(
+    family_items = _parse_filter_list(family)
+    if family_items:
+        ph = ",".join("?" for _ in family_items)
+        where_clauses.append(f"""(
             EXISTS (
                 SELECT 1 FROM facility_commodities fc_f
                 JOIN commodity_categories cc_f ON fc_f.commodity_category_id = cc_f.id
                 JOIN commodity_families cf_f ON cc_f.family_id = cf_f.id
-                WHERE fc_f.facility_id = f.id AND cf_f.family_code = ?
+                WHERE fc_f.facility_id = f.id AND cf_f.family_code IN ({ph})
             ) OR EXISTS (
                 SELECT 1 FROM facility_commodity_mappings fcm_f
                 JOIN commodity_categories ccm_f ON fcm_f.category_id = ccm_f.id
                 JOIN commodity_families cfm_f ON ccm_f.family_id = cfm_f.id
-                WHERE fcm_f.facility_id = f.id AND cfm_f.family_code = ?
+                WHERE fcm_f.facility_id = f.id AND cfm_f.family_code IN ({ph})
             )
         )""")
-        params.extend([family.upper(), family.upper()])
+        params.extend(family_items * 2)
 
-    if category and category.upper() != "ALL":
-        where_clauses.append("""(
+    category_items = _parse_filter_list(category)
+    if category_items:
+        ph = ",".join("?" for _ in category_items)
+        where_clauses.append(f"""(
             EXISTS (
                 SELECT 1 FROM facility_commodities fc_c
                 JOIN commodity_categories cc_c ON fc_c.commodity_category_id = cc_c.id
-                WHERE fc_c.facility_id = f.id AND cc_c.category_code = ?
+                WHERE fc_c.facility_id = f.id AND cc_c.category_code IN ({ph})
             ) OR EXISTS (
                 SELECT 1 FROM facility_commodity_mappings fcm_c
-                JOIN commodity_categories ccm_c ON fcm_c.category_id = ccm_c.id
-                WHERE fcm_c.facility_id = f.id AND ccm_c.category_code = ?
+                JOIN commodity_categories ccm_cat ON fcm_c.category_id = ccm_cat.id
+                WHERE fcm_c.facility_id = f.id AND ccm_cat.category_code IN ({ph})
             )
         )""")
-        params.extend([category.upper(), category.upper()])
+        params.extend(category_items * 2)
 
-    if seasonality and seasonality.upper() != "ALL":
-        where_clauses.append("""(
+    season_items = _parse_filter_list(seasonality)
+    if season_items:
+        ph = ",".join("?" for _ in season_items)
+        where_clauses.append(f"""(
             EXISTS (
                 SELECT 1 FROM facility_commodities fc_sea
                 JOIN commodity_categories cc_sea ON fc_sea.commodity_category_id = cc_sea.id
-                WHERE fc_sea.facility_id = f.id AND cc_sea.seasonality_profile = ?
+                WHERE fc_sea.facility_id = f.id AND cc_sea.seasonality_profile IN ({ph})
             ) OR EXISTS (
                 SELECT 1 FROM facility_commodity_mappings fcm_sea
                 JOIN commodity_categories ccm_sea ON fcm_sea.category_id = ccm_sea.id
-                WHERE fcm_sea.facility_id = f.id AND ccm_sea.seasonality_profile = ?
+                WHERE fcm_sea.facility_id = f.id AND ccm_sea.seasonality_profile IN ({ph})
             )
         )""")
-        params.extend([seasonality.upper(), seasonality.upper()])
+        params.extend(season_items * 2)
 
-    if fleet and fleet.upper() != "ALL":
-        if fleet.upper() == "VERIFIED_PRESENT":
-            where_clauses.append("f.private_fleet_present = 'VERIFIED_PRESENT'")
-        elif fleet.upper() == "NONE_VERIFIED":
-            where_clauses.append("f.private_fleet_present != 'VERIFIED_PRESENT'")
+    fleet_items = _parse_filter_list(fleet)
+    if "VERIFIED_PRESENT" in fleet_items and "NONE_VERIFIED" not in fleet_items:
+        where_clauses.append("f.private_fleet_present = 'VERIFIED_PRESENT'")
+    elif "NONE_VERIFIED" in fleet_items and "VERIFIED_PRESENT" not in fleet_items:
+        where_clauses.append("f.private_fleet_present != 'VERIFIED_PRESENT'")
 
-    if carrier and carrier.upper() != "ALL":
-        if carrier.upper() == "VERIFIED":
-            where_clauses.append("f.commercial_carrier_use = 'VERIFIED'")
-        elif carrier.upper() == "UNKNOWN":
-            where_clauses.append("f.commercial_carrier_use != 'VERIFIED'")
+    carrier_items = _parse_filter_list(carrier)
+    if "VERIFIED" in carrier_items and "UNKNOWN" not in carrier_items:
+        where_clauses.append("f.commercial_carrier_use = 'VERIFIED'")
+    elif "UNKNOWN" in carrier_items and "VERIFIED" not in carrier_items:
+        where_clauses.append("f.commercial_carrier_use != 'VERIFIED'")
 
-    if procurement and procurement.upper() != "ALL":
-        where_clauses.append("f.freight_procurement_level = ?")
-        params.append(procurement.upper())
+    proc_items = _parse_filter_list(procurement)
+    if proc_items:
+        ph = ",".join("?" for _ in proc_items)
+        where_clauses.append(f"f.freight_procurement_level IN ({ph})")
+        params.extend(proc_items)
 
-    if tier and tier.upper() != "ALL":
-        t_clean = tier.upper()
-        if t_clean in ("PRIORITY", "TIER_A", "TIER_A_PRIORITY"):
-            where_clauses.append("""(
-                (f.commercial_carrier_use = 'VERIFIED' OR f.broker_friendly_status = 'VERIFIED_ACCEPTS')
-                AND COALESCE(pl.stage, 'DISCOVERY') IN ('SHORTLISTED', 'QUALIFIED')
-                AND f.broker_friendly_status != 'VERIFIED_DIRECT_ONLY'
-            )""")
-        elif t_clean in ("WORTH_CALLING", "TIER_B", "TIER_B_WORTH_CALLING"):
-            where_clauses.append("""(
-                COALESCE(pl.stage, 'DISCOVERY') IN ('SHORTLISTED', 'QUALIFIED')
-                AND f.commercial_carrier_use != 'VERIFIED'
-                AND f.broker_friendly_status != 'VERIFIED_ACCEPTS'
-                AND f.broker_friendly_status != 'VERIFIED_DIRECT_ONLY'
-                AND f.private_fleet_present != 'VERIFIED_PRESENT'
-            )""")
-        elif t_clean in ("SECONDARY", "TIER_C", "TIER_C_SECONDARY"):
-            where_clauses.append("""(
-                COALESCE(pl.stage, 'DISCOVERY') IN ('SHORTLISTED', 'QUALIFIED')
-                AND f.private_fleet_present = 'VERIFIED_PRESENT'
-                AND f.commercial_carrier_use != 'VERIFIED'
-                AND f.broker_friendly_status != 'VERIFIED_ACCEPTS'
-                AND f.broker_friendly_status != 'VERIFIED_DIRECT_ONLY'
-            )""")
-        elif t_clean in ("RESEARCH", "NEEDS_RESEARCH", "TIER_D", "TIER_D_RESEARCH_NEEDED"):
-            where_clauses.append("""(
-                COALESCE(pl.stage, 'DISCOVERY') NOT IN ('SHORTLISTED', 'QUALIFIED')
-                AND f.broker_friendly_status != 'VERIFIED_DIRECT_ONLY'
-            )""")
-        elif t_clean in ("RESTRICTED", "TIER_RESTRICTED"):
-            where_clauses.append("f.broker_friendly_status = 'VERIFIED_DIRECT_ONLY'")
+    tier_items = _parse_filter_list(tier)
+    if tier_items:
+        target_tiers = {_canonical_tier(t) for t in tier_items} - {None}
+        if target_tiers:
+            t_clauses = []
+            if TIER_A_PRIORITY in target_tiers:
+                t_clauses.append("""(
+                    (f.commercial_carrier_use = 'VERIFIED' OR f.broker_friendly_status = 'VERIFIED_ACCEPTS')
+                    AND COALESCE(pl.stage, 'DISCOVERY') IN ('SHORTLISTED', 'QUALIFIED')
+                    AND f.broker_friendly_status != 'VERIFIED_DIRECT_ONLY'
+                )""")
+            if TIER_B_WORTH_CALLING in target_tiers:
+                t_clauses.append("""(
+                    COALESCE(pl.stage, 'DISCOVERY') IN ('SHORTLISTED', 'QUALIFIED')
+                    AND f.commercial_carrier_use != 'VERIFIED'
+                    AND f.broker_friendly_status != 'VERIFIED_ACCEPTS'
+                    AND f.broker_friendly_status != 'VERIFIED_DIRECT_ONLY'
+                    AND f.private_fleet_present != 'VERIFIED_PRESENT'
+                )""")
+            if TIER_C_SECONDARY in target_tiers:
+                t_clauses.append("""(
+                    COALESCE(pl.stage, 'DISCOVERY') IN ('SHORTLISTED', 'QUALIFIED')
+                    AND f.private_fleet_present = 'VERIFIED_PRESENT'
+                    AND f.commercial_carrier_use != 'VERIFIED'
+                    AND f.broker_friendly_status != 'VERIFIED_ACCEPTS'
+                    AND f.broker_friendly_status != 'VERIFIED_DIRECT_ONLY'
+                )""")
+            if TIER_D_RESEARCH_NEEDED in target_tiers:
+                t_clauses.append("""(
+                    COALESCE(pl.stage, 'DISCOVERY') NOT IN ('SHORTLISTED', 'QUALIFIED')
+                    AND f.broker_friendly_status != 'VERIFIED_DIRECT_ONLY'
+                )""")
+            if RESTRICTED in target_tiers:
+                t_clauses.append("f.broker_friendly_status = 'VERIFIED_DIRECT_ONLY'")
+            if t_clauses:
+                where_clauses.append("(" + " OR ".join(t_clauses) + ")")
+            else:
+                where_clauses.append("1 = 0")
+        else:
+            where_clauses.append("1 = 0")
 
     where_sql = ("WHERE " + " AND ".join(where_clauses)) if where_clauses else ""
     return where_sql, params
@@ -765,19 +827,19 @@ def build_facility_filter_sql(
 
 def build_company_filter_sql(
     lifecycle_stage: Optional[str] = "ALL",
-    outreach_filter: Optional[str] = None,
+    outreach_filter: Optional[Any] = None,
     unreviewed_only: bool = False,
     search: Optional[str] = None,
-    equipment: Optional[str] = None,
-    family: Optional[str] = None,
-    category: Optional[str] = None,
-    seasonality: Optional[str] = None,
-    structure: Optional[str] = None,
-    facility_count: Optional[str] = None,
-    fleet: Optional[str] = None,
-    carrier: Optional[str] = None,
-    procurement: Optional[str] = None,
-    tier: Optional[str] = None,
+    equipment: Optional[Any] = None,
+    family: Optional[Any] = None,
+    category: Optional[Any] = None,
+    seasonality: Optional[Any] = None,
+    structure: Optional[Any] = None,
+    facility_count: Optional[Any] = None,
+    fleet: Optional[Any] = None,
+    carrier: Optional[Any] = None,
+    procurement: Optional[Any] = None,
+    tier: Optional[Any] = None,
     conn: Optional[sqlite3.Connection] = None,
     db_path: Optional[str | Path] = None,
     universe_context: Optional[Dict[str, Any]] = None,
@@ -821,13 +883,19 @@ def build_company_filter_sql(
                 )
             """)
 
-    if outreach_filter and outreach_filter.upper() != "ALL":
-        of = outreach_filter.upper()
-        if of in ("FOLLOW_UP", "FOLLOW_UPS", "FOLLOW-UP", "FOLLOW-UPS"):
-            where_clauses.append("pes.next_follow_up_at IS NOT NULL")
-        else:
-            where_clauses.append("COALESCE(pes.current_outreach_status, 'UNCONTACTED') = ?")
-            filter_params.append(of)
+    outreach_items = _parse_filter_list(outreach_filter)
+    if outreach_items:
+        has_fu = any(x in ("FOLLOW_UP", "FOLLOW_UPS", "FOLLOW-UP", "FOLLOW-UPS") for x in outreach_items)
+        plain_statuses = [x for x in outreach_items if x not in ("FOLLOW_UP", "FOLLOW_UPS", "FOLLOW-UP", "FOLLOW-UPS")]
+        outreach_parts = []
+        if plain_statuses:
+            ph = ",".join("?" for _ in plain_statuses)
+            outreach_parts.append(f"COALESCE(pes.current_outreach_status, 'UNCONTACTED') IN ({ph})")
+            filter_params.extend(plain_statuses)
+        if has_fu:
+            outreach_parts.append("pes.next_follow_up_at IS NOT NULL")
+        if outreach_parts:
+            where_clauses.append("(" + " OR ".join(outreach_parts) + ")")
 
     if unreviewed_only:
         where_clauses.append("COALESCE(pes.is_viewed, 0) = 0")
@@ -914,128 +982,133 @@ def build_company_filter_sql(
             )""")
             filter_params.extend([q_contains] * 20)
 
-    if equipment and equipment.upper() != "ALL":
-        where_clauses.append("""
+    equipment_items = _parse_filter_list(equipment)
+    if equipment_items:
+        ph = ",".join("?" for _ in equipment_items)
+        where_clauses.append(f"""
             EXISTS (
                 SELECT 1 FROM facilities f_eq
                 JOIN facility_commodities fc_eq ON f_eq.id = fc_eq.facility_id
-                WHERE f_eq.company_id = c.id AND fc_eq.equipment_category = ?
+                WHERE f_eq.company_id = c.id AND fc_eq.equipment_category IN ({ph})
             )
         """)
-        filter_params.append(equipment.upper())
+        filter_params.extend(equipment_items)
 
-    if family and family.upper() != "ALL":
-        where_clauses.append("""(
+    family_items = _parse_filter_list(family)
+    if family_items:
+        ph = ",".join("?" for _ in family_items)
+        where_clauses.append(f"""(
             EXISTS (
                 SELECT 1 FROM facilities f_fam
                 JOIN facility_commodities fc_fam ON f_fam.id = fc_fam.facility_id
                 JOIN commodity_categories cc_fam ON fc_fam.commodity_category_id = cc_fam.id
                 JOIN commodity_families cf_fam ON cc_fam.family_id = cf_fam.id
-                WHERE f_fam.company_id = c.id AND cf_fam.family_code = ?
+                WHERE f_fam.company_id = c.id AND cf_fam.family_code IN ({ph})
             ) OR EXISTS (
                 SELECT 1 FROM facilities f_fam2
                 JOIN facility_commodity_mappings fcm_fam ON f_fam2.id = fcm_fam.facility_id
                 JOIN commodity_categories ccm_fam ON fcm_fam.category_id = ccm_fam.id
                 JOIN commodity_families cfm_fam ON ccm_fam.family_id = cfm_fam.id
-                WHERE f_fam2.company_id = c.id AND cfm_fam.family_code = ?
+                WHERE f_fam2.company_id = c.id AND cfm_fam.family_code IN ({ph})
             )
         )""")
-        filter_params.extend([family.upper(), family.upper()])
+        filter_params.extend(family_items * 2)
 
-    if category and category.upper() != "ALL":
-        where_clauses.append("""(
+    category_items = _parse_filter_list(category)
+    if category_items:
+        ph = ",".join("?" for _ in category_items)
+        where_clauses.append(f"""(
             EXISTS (
                 SELECT 1 FROM facilities f_cat
                 JOIN facility_commodities fc_cat ON f_cat.id = fc_cat.facility_id
                 JOIN commodity_categories cc_cat ON fc_cat.commodity_category_id = cc_cat.id
-                WHERE f_cat.company_id = c.id AND cc_cat.category_code = ?
+                WHERE f_cat.company_id = c.id AND cc_cat.category_code IN ({ph})
             ) OR EXISTS (
                 SELECT 1 FROM facilities f_cat2
                 JOIN facility_commodity_mappings fcm_cat ON f_cat2.id = fcm_cat.facility_id
                 JOIN commodity_categories ccm_cat ON fcm_cat.category_id = ccm_cat.id
-                WHERE f_cat2.company_id = c.id AND ccm_cat.category_code = ?
+                WHERE f_cat2.company_id = c.id AND ccm_cat.category_code IN ({ph})
             )
         )""")
-        filter_params.extend([category.upper(), category.upper()])
+        filter_params.extend(category_items * 2)
 
-    if seasonality and seasonality.upper() != "ALL":
-        where_clauses.append("""(
+    season_items = _parse_filter_list(seasonality)
+    if season_items:
+        ph = ",".join("?" for _ in season_items)
+        where_clauses.append(f"""(
             EXISTS (
                 SELECT 1 FROM facilities f_sea
                 JOIN facility_commodities fc_sea ON f_sea.id = fc_sea.facility_id
                 JOIN commodity_categories cc_sea ON fc_sea.commodity_category_id = cc_sea.id
-                WHERE f_sea.company_id = c.id AND cc_sea.seasonality_profile = ?
+                WHERE f_sea.company_id = c.id AND cc_sea.seasonality_profile IN ({ph})
             ) OR EXISTS (
                 SELECT 1 FROM facilities f_sea2
                 JOIN facility_commodity_mappings fcm_sea ON f_sea2.id = fcm_sea.facility_id
                 JOIN commodity_categories ccm_sea ON fcm_sea.category_id = ccm_sea.id
-                WHERE f_sea2.company_id = c.id AND ccm_sea.seasonality_profile = ?
+                WHERE f_sea2.company_id = c.id AND ccm_sea.seasonality_profile IN ({ph})
             )
         )""")
-        filter_params.extend([seasonality.upper(), seasonality.upper()])
+        filter_params.extend(season_items * 2)
 
-    if structure and structure.upper() != "ALL":
-        st_clean = structure.upper()
-        if st_clean == "SINGLE":
-            where_clauses.append("(SELECT count(*) FROM facilities f_cnt WHERE f_cnt.company_id = c.id) = 1")
-        elif st_clean == "MULTI":
-            where_clauses.append("(SELECT count(*) FROM facilities f_cnt WHERE f_cnt.company_id = c.id) >= 2")
+    structure_items = _parse_filter_list(structure)
+    if "SINGLE" in structure_items and "MULTI" not in structure_items:
+        where_clauses.append("(SELECT count(*) FROM facilities f_cnt WHERE f_cnt.company_id = c.id) = 1")
+    elif "MULTI" in structure_items and "SINGLE" not in structure_items:
+        where_clauses.append("(SELECT count(*) FROM facilities f_cnt WHERE f_cnt.company_id = c.id) >= 2")
 
-    if facility_count and facility_count.upper() != "ALL":
-        fc_clean = facility_count.upper()
-        if fc_clean == "1":
-            where_clauses.append("(SELECT count(*) FROM facilities f_cnt WHERE f_cnt.company_id = c.id) = 1")
-        elif fc_clean in ("2_5", "2-5"):
-            where_clauses.append("(SELECT count(*) FROM facilities f_cnt WHERE f_cnt.company_id = c.id) BETWEEN 2 AND 5")
-        elif fc_clean in ("6_20", "6-20"):
-            where_clauses.append("(SELECT count(*) FROM facilities f_cnt WHERE f_cnt.company_id = c.id) BETWEEN 6 AND 20")
-        elif fc_clean in ("20_PLUS", "21_PLUS", "20+"):
-            where_clauses.append("(SELECT count(*) FROM facilities f_cnt WHERE f_cnt.company_id = c.id) >= 21")
+    fc_items = _parse_filter_list(facility_count)
+    if fc_items:
+        fc_clauses = []
+        for fc in fc_items:
+            if fc == "1":
+                fc_clauses.append("(SELECT count(*) FROM facilities f_cnt WHERE f_cnt.company_id = c.id) = 1")
+            elif fc in ("2_5", "2-5"):
+                fc_clauses.append("(SELECT count(*) FROM facilities f_cnt WHERE f_cnt.company_id = c.id) BETWEEN 2 AND 5")
+            elif fc in ("6_20", "6-20"):
+                fc_clauses.append("(SELECT count(*) FROM facilities f_cnt WHERE f_cnt.company_id = c.id) BETWEEN 6 AND 20")
+            elif fc in ("20_PLUS", "21_PLUS", "20+"):
+                fc_clauses.append("(SELECT count(*) FROM facilities f_cnt WHERE f_cnt.company_id = c.id) >= 21")
+        if fc_clauses:
+            where_clauses.append("(" + " OR ".join(fc_clauses) + ")")
 
-    if fleet and fleet.upper() != "ALL":
-        if fleet.upper() == "VERIFIED_PRESENT":
-            where_clauses.append("EXISTS (SELECT 1 FROM facilities f_fl WHERE f_fl.company_id = c.id AND f_fl.private_fleet_present = 'VERIFIED_PRESENT')")
-        elif fleet.upper() == "NONE_VERIFIED":
-            where_clauses.append("NOT EXISTS (SELECT 1 FROM facilities f_fl WHERE f_fl.company_id = c.id AND f_fl.private_fleet_present = 'VERIFIED_PRESENT')")
+    fleet_items = _parse_filter_list(fleet)
+    if "VERIFIED_PRESENT" in fleet_items and "NONE_VERIFIED" not in fleet_items:
+        where_clauses.append("EXISTS (SELECT 1 FROM facilities f_fl WHERE f_fl.company_id = c.id AND f_fl.private_fleet_present = 'VERIFIED_PRESENT')")
+    elif "NONE_VERIFIED" in fleet_items and "VERIFIED_PRESENT" not in fleet_items:
+        where_clauses.append("NOT EXISTS (SELECT 1 FROM facilities f_fl WHERE f_fl.company_id = c.id AND f_fl.private_fleet_present = 'VERIFIED_PRESENT')")
 
-    if carrier and carrier.upper() != "ALL":
-        if carrier.upper() == "VERIFIED":
-            where_clauses.append("EXISTS (SELECT 1 FROM facilities f_cr WHERE f_cr.company_id = c.id AND f_cr.commercial_carrier_use = 'VERIFIED')")
-        elif carrier.upper() == "UNKNOWN":
-            where_clauses.append("NOT EXISTS (SELECT 1 FROM facilities f_cr WHERE f_cr.company_id = c.id AND f_cr.commercial_carrier_use = 'VERIFIED')")
+    carrier_items = _parse_filter_list(carrier)
+    if "VERIFIED" in carrier_items and "UNKNOWN" not in carrier_items:
+        where_clauses.append("EXISTS (SELECT 1 FROM facilities f_cr WHERE f_cr.company_id = c.id AND f_cr.commercial_carrier_use = 'VERIFIED')")
+    elif "UNKNOWN" in carrier_items and "VERIFIED" not in carrier_items:
+        where_clauses.append("NOT EXISTS (SELECT 1 FROM facilities f_cr WHERE f_cr.company_id = c.id AND f_cr.commercial_carrier_use = 'VERIFIED')")
 
-    if procurement and procurement.upper() != "ALL":
-        where_clauses.append("EXISTS (SELECT 1 FROM facilities f_pr WHERE f_pr.company_id = c.id AND f_pr.freight_procurement_level = ?)")
-        filter_params.append(procurement.upper())
+    proc_items = _parse_filter_list(procurement)
+    if proc_items:
+        ph = ",".join("?" for _ in proc_items)
+        where_clauses.append(f"EXISTS (SELECT 1 FROM facilities f_pr WHERE f_pr.company_id = c.id AND f_pr.freight_procurement_level IN ({ph}))")
+        filter_params.extend(proc_items)
 
-    if tier and tier.upper() != "ALL":
-        t_clean = tier.upper()
-        if t_clean in ("PRIORITY", "TIER_A", "TIER_A_PRIORITY"):
-            target_t = TIER_A_PRIORITY
-        elif t_clean in ("WORTH_CALLING", "TIER_B", "TIER_B_WORTH_CALLING"):
-            target_t = TIER_B_WORTH_CALLING
-        elif t_clean in ("SECONDARY", "TIER_C", "TIER_C_SECONDARY"):
-            target_t = TIER_C_SECONDARY
-        elif t_clean in ("RESEARCH", "NEEDS_RESEARCH", "TIER_D", "TIER_D_RESEARCH_NEEDED"):
-            target_t = TIER_D_RESEARCH_NEEDED
-        elif t_clean in ("RESTRICTED", "TIER_RESTRICTED"):
-            target_t = RESTRICTED
-        else:
-            target_t = None
-
-        if target_t:
+    tier_items = _parse_filter_list(tier)
+    if tier_items:
+        target_tiers = {_canonical_tier(t) for t in tier_items} - {None}
+        if target_tiers:
             tier_map = get_opportunity_tier_company_ids(conn=conn, db_path=db_path, universe_context=universe_context)
-            matching_cids = tier_map.get(target_t, [])
+            matching_cids = []
+            for tt in target_tiers:
+                matching_cids.extend(tier_map.get(tt, []))
+            matching_cids = sorted(list(set(matching_cids)))
             if matching_cids:
                 placeholders = ",".join("?" for _ in matching_cids)
                 where_clauses.append(f"c.id IN ({placeholders})")
                 filter_params.extend(matching_cids)
             else:
                 where_clauses.append("1 = 0")
+        else:
+            where_clauses.append("1 = 0")
 
     where_sql = "WHERE " + " AND ".join(where_clauses)
     return where_sql, filter_params
-
 
 def get_prospects_list(
     db_path: Optional[str | Path] = None,
@@ -1838,71 +1911,66 @@ def get_prospects_list(
                 return 9
 
             prospects.sort(key=lambda p: (_rank_prospect(p), (p.get("operating_brand") or "").lower(), p.get("facility_id", 0)))
-
-        if equipment and equipment.upper() != "ALL":
-            eq_clean = equipment.upper()
+        equipment_items = _parse_filter_list(equipment)
+        if equipment_items:
+            eq_set = set(equipment_items)
             prospects = [
                 p for p in prospects
-                if any(c.get("equipment_category") == eq_clean for c in p.get("commodities", []))
+                if any(c.get("equipment_category") in eq_set for c in p.get("commodities", []))
             ]
 
-        if family and family.upper() != "ALL":
-            fam_clean = family.upper()
+        family_items = _parse_filter_list(family)
+        if family_items:
+            fam_set = set(family_items)
             prospects = [
                 p for p in prospects
-                if p.get("commodity_family_code") == fam_clean or
-                   any(m.get("family_code") == fam_clean for m in p.get("taxonomy_mappings", []))
+                if p.get("commodity_family_code") in fam_set or
+                   any(m.get("family_code") in fam_set for m in p.get("taxonomy_mappings", []))
             ]
 
-        if category and category.upper() != "ALL":
-            cat_clean = category.upper()
+        category_items = _parse_filter_list(category)
+        if category_items:
+            cat_set = set(category_items)
             prospects = [
                 p for p in prospects
-                if p.get("commodity_category_code") == cat_clean or
-                   any(m.get("category_code") == cat_clean for m in p.get("taxonomy_mappings", []))
+                if p.get("commodity_category_code") in cat_set or
+                   any(m.get("category_code") in cat_set for m in p.get("taxonomy_mappings", []))
             ]
 
-        if seasonality and seasonality.upper() != "ALL":
-            seas_clean = seasonality.upper()
+        season_items = _parse_filter_list(seasonality)
+        if season_items:
+            seas_set = set(season_items)
             prospects = [
                 p for p in prospects
-                if p.get("category_seasonality") == seas_clean or
-                   any(m.get("cat_seasonality") == seas_clean for m in p.get("taxonomy_mappings", []))
+                if p.get("category_seasonality") in seas_set or
+                   any(m.get("cat_seasonality") in seas_set for m in p.get("taxonomy_mappings", []))
             ]
 
-        if fleet and fleet.upper() != "ALL":
-            fl_clean = fleet.upper()
-            if fl_clean == "VERIFIED_PRESENT":
-                prospects = [p for p in prospects if p.get("private_fleet_present") == "VERIFIED_PRESENT"]
-            elif fl_clean == "NONE_VERIFIED":
-                prospects = [p for p in prospects if p.get("private_fleet_present") != "VERIFIED_PRESENT"]
+        fleet_items = _parse_filter_list(fleet)
+        if "VERIFIED_PRESENT" in fleet_items and "NONE_VERIFIED" not in fleet_items:
+            prospects = [p for p in prospects if p.get("private_fleet_present") == "VERIFIED_PRESENT"]
+        elif "NONE_VERIFIED" in fleet_items and "VERIFIED_PRESENT" not in fleet_items:
+            prospects = [p for p in prospects if p.get("private_fleet_present") != "VERIFIED_PRESENT"]
 
-        if carrier and carrier.upper() != "ALL":
-            c_clean = carrier.upper()
-            if c_clean == "VERIFIED":
-                prospects = [p for p in prospects if p.get("commercial_carrier_use") == "VERIFIED"]
-            elif c_clean == "UNKNOWN":
-                prospects = [p for p in prospects if p.get("commercial_carrier_use") != "VERIFIED"]
+        carrier_items = _parse_filter_list(carrier)
+        if "VERIFIED" in carrier_items and "UNKNOWN" not in carrier_items:
+            prospects = [p for p in prospects if p.get("commercial_carrier_use") == "VERIFIED"]
+        elif "UNKNOWN" in carrier_items and "VERIFIED" not in carrier_items:
+            prospects = [p for p in prospects if p.get("commercial_carrier_use") != "VERIFIED"]
 
-        if procurement and procurement.upper() != "ALL":
-            proc_clean = procurement.upper()
-            prospects = [p for p in prospects if p.get("freight_procurement_level") == proc_clean]
+        proc_items = _parse_filter_list(procurement)
+        if proc_items:
+            proc_set = set(proc_items)
+            prospects = [p for p in prospects if p.get("freight_procurement_level") in proc_set]
 
-        if effective_tier and effective_tier.upper() != "ALL":
-            t_clean = effective_tier.upper()
-            if t_clean in ("PRIORITY", "TIER_A", "TIER_A_PRIORITY"):
-                target_t = TIER_A_PRIORITY
-            elif t_clean in ("WORTH_CALLING", "TIER_B", "TIER_B_WORTH_CALLING"):
-                target_t = TIER_B_WORTH_CALLING
-            elif t_clean in ("SECONDARY", "TIER_C", "TIER_C_SECONDARY"):
-                target_t = TIER_C_SECONDARY
-            elif t_clean in ("RESEARCH", "NEEDS_RESEARCH", "TIER_D", "TIER_D_RESEARCH_NEEDED"):
-                target_t = TIER_D_RESEARCH_NEEDED
-            elif t_clean == "RESTRICTED":
-                target_t = RESTRICTED
+        tier_items = _parse_filter_list(effective_tier)
+        if tier_items:
+            target_tiers = {_canonical_tier(t) for t in tier_items} - {None}
+            if target_tiers:
+                prospects = [p for p in prospects if p.get("opportunity_tier") in target_tiers]
             else:
-                target_t = effective_tier
-            prospects = [p for p in prospects if p.get("opportunity_tier") == target_t]
+                prospects = []
+
 
         if page is not None and page_size is not None:
             if paged_two_phase:
@@ -3012,14 +3080,19 @@ def get_company_grouped_prospects(
                 prospects = get_prospects_list(lifecycle_stage=lifecycle_stage, db_path=db_path, conn=conn)
 
         groups = _assemble_company_groups(prospects, conn=conn, universe_context=universe_context)
-
         # Optional Python-level filtering
-        if outreach_filter and outreach_filter.upper() != "ALL":
-            of = outreach_filter.upper()
-            if of in ("FOLLOW_UP", "FOLLOW_UPS", "FOLLOW-UP", "FOLLOW-UPS"):
-                groups = [g for g in groups if g.get("next_follow_up_at")]
-            else:
-                groups = [g for g in groups if g.get("outreach_status") == of]
+        outreach_items = _parse_filter_list(outreach_filter)
+        if outreach_items:
+            has_fu = any(x in ("FOLLOW_UP", "FOLLOW_UPS", "FOLLOW-UP", "FOLLOW-UPS") for x in outreach_items)
+            plain_statuses = set(x for x in outreach_items if x not in ("FOLLOW_UP", "FOLLOW_UPS", "FOLLOW-UP", "FOLLOW-UPS"))
+            def _match_outreach(g):
+                st = g.get("outreach_status") or "UNCONTACTED"
+                if st in plain_statuses:
+                    return True
+                if has_fu and g.get("next_follow_up_at"):
+                    return True
+                return False
+            groups = [g for g in groups if _match_outreach(g)]
 
         if unreviewed_only:
             groups = [g for g in groups if not g.get("is_viewed")]
@@ -3071,73 +3144,69 @@ def get_company_grouped_prospects(
             fr_clean = friction.upper()
             groups = [g for g in groups if g.get("friction_level") == fr_clean]
 
-        if equipment and equipment.upper() != "ALL":
-            eq_clean = equipment.upper()
-            groups = [g for g in groups if eq_clean in g.get("equipment_categories", [])]
+        equipment_items = _parse_filter_list(equipment)
+        if equipment_items:
+            eq_set = set(equipment_items)
+            groups = [g for g in groups if any(eq in eq_set for eq in g.get("equipment_categories", []))]
 
-        if family and family.upper() != "ALL":
-            fam_clean = family.upper()
-            groups = [g for g in groups if fam_clean in g.get("commodity_family_codes", [])]
+        family_items = _parse_filter_list(family)
+        if family_items:
+            fam_set = set(family_items)
+            groups = [g for g in groups if any(f in fam_set for f in g.get("commodity_family_codes", []))]
 
-        if category and category.upper() != "ALL":
-            cat_clean = category.upper()
-            groups = [g for g in groups if cat_clean in g.get("commodity_category_codes", [])]
+        category_items = _parse_filter_list(category)
+        if category_items:
+            cat_set = set(category_items)
+            groups = [g for g in groups if any(c in cat_set for c in g.get("commodity_category_codes", []))]
 
-        if seasonality and seasonality.upper() != "ALL":
-            seas_clean = seasonality.upper()
-            groups = [g for g in groups if seas_clean in g.get("seasonality_profiles", [])]
+        season_items = _parse_filter_list(seasonality)
+        if season_items:
+            seas_set = set(season_items)
+            groups = [g for g in groups if any(s in seas_set for s in g.get("seasonality_profiles", []))]
 
-        if structure and structure.upper() != "ALL":
-            st_clean = structure.upper()
-            if st_clean == "SINGLE":
-                groups = [g for g in groups if g.get("facility_count") == 1]
-            elif st_clean == "MULTI":
-                groups = [g for g in groups if g.get("facility_count", 0) >= 2]
+        structure_items = _parse_filter_list(structure)
+        if "SINGLE" in structure_items and "MULTI" not in structure_items:
+            groups = [g for g in groups if g.get("facility_count") == 1]
+        elif "MULTI" in structure_items and "SINGLE" not in structure_items:
+            groups = [g for g in groups if g.get("facility_count", 0) >= 2]
 
-        if facility_count and facility_count.upper() != "ALL":
-            fc_clean = facility_count.upper()
-            if fc_clean == "1":
-                groups = [g for g in groups if g.get("facility_count") == 1]
-            elif fc_clean in ("2_5", "2-5"):
-                groups = [g for g in groups if 2 <= g.get("facility_count", 0) <= 5]
-            elif fc_clean in ("6_20", "6-20"):
-                groups = [g for g in groups if 6 <= g.get("facility_count", 0) <= 20]
-            elif fc_clean in ("20_PLUS", "21_PLUS", "20+"):
-                groups = [g for g in groups if g.get("facility_count", 0) >= 21]
+        fc_items = _parse_filter_list(facility_count)
+        if fc_items:
+            def _match_fc(g):
+                cnt = g.get("facility_count", 0)
+                for fc in fc_items:
+                    if fc == "1" and cnt == 1: return True
+                    if fc in ("2_5", "2-5") and 2 <= cnt <= 5: return True
+                    if fc in ("6_20", "6-20") and 6 <= cnt <= 20: return True
+                    if fc in ("20_PLUS", "21_PLUS", "20+") and cnt >= 21: return True
+                return False
+            groups = [g for g in groups if _match_fc(g)]
 
-        if fleet and fleet.upper() != "ALL":
-            fl_clean = fleet.upper()
-            if fl_clean == "VERIFIED_PRESENT":
-                groups = [g for g in groups if g.get("facts", {}).get("private_fleet_present") is True]
-            elif fl_clean == "NONE_VERIFIED":
-                groups = [g for g in groups if not g.get("facts", {}).get("private_fleet_present")]
+        fleet_items = _parse_filter_list(fleet)
+        if "VERIFIED_PRESENT" in fleet_items and "NONE_VERIFIED" not in fleet_items:
+            groups = [g for g in groups if g.get("facts", {}).get("private_fleet_present") is True]
+        elif "NONE_VERIFIED" in fleet_items and "VERIFIED_PRESENT" not in fleet_items:
+            groups = [g for g in groups if not g.get("facts", {}).get("private_fleet_present")]
 
-        if carrier and carrier.upper() != "ALL":
-            c_clean = carrier.upper()
-            if c_clean == "VERIFIED":
-                groups = [g for g in groups if g.get("facts", {}).get("commercial_carrier_use") is True]
-            elif c_clean == "UNKNOWN":
-                groups = [g for g in groups if not g.get("facts", {}).get("commercial_carrier_use")]
+        carrier_items = _parse_filter_list(carrier)
+        if "VERIFIED" in carrier_items and "UNKNOWN" not in carrier_items:
+            groups = [g for g in groups if g.get("facts", {}).get("commercial_carrier_use") is True]
+        elif "UNKNOWN" in carrier_items and "VERIFIED" not in carrier_items:
+            groups = [g for g in groups if not g.get("facts", {}).get("commercial_carrier_use")]
 
-        if procurement and procurement.upper() != "ALL":
-            proc_clean = procurement.upper()
-            groups = [g for g in groups if g.get("facts", {}).get("freight_procurement_level") == proc_clean]
+        proc_items = _parse_filter_list(procurement)
+        if proc_items:
+            proc_set = set(proc_items)
+            groups = [g for g in groups if g.get("facts", {}).get("freight_procurement_level") in proc_set]
 
-        if effective_tier and effective_tier.upper() != "ALL":
-            t_clean = effective_tier.upper()
-            if t_clean in ("PRIORITY", "TIER_A", "TIER_A_PRIORITY"):
-                target_t = TIER_A_PRIORITY
-            elif t_clean in ("WORTH_CALLING", "TIER_B", "TIER_B_WORTH_CALLING"):
-                target_t = TIER_B_WORTH_CALLING
-            elif t_clean in ("SECONDARY", "TIER_C", "TIER_C_SECONDARY"):
-                target_t = TIER_C_SECONDARY
-            elif t_clean in ("RESEARCH", "NEEDS_RESEARCH", "TIER_D", "TIER_D_RESEARCH_NEEDED"):
-                target_t = TIER_D_RESEARCH_NEEDED
-            elif t_clean == "RESTRICTED":
-                target_t = RESTRICTED
+        tier_items = _parse_filter_list(effective_tier)
+        if tier_items:
+            target_tiers = {_canonical_tier(t) for t in tier_items} - {None}
+            if target_tiers:
+                groups = [g for g in groups if g.get("opportunity_tier") in target_tiers]
             else:
-                target_t = effective_tier
-            groups = [g for g in groups if g.get("opportunity_tier") == target_t]
+                groups = []
+
 
         if page is not None and page_size is not None:
             total_count = len(groups)

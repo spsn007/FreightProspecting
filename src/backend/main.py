@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Optional
 import urllib.parse
 
 from fastapi import Depends, FastAPI, HTTPException, Query, Request
-from fastapi.responses import HTMLResponse, JSONResponse, Response
+from fastapi.responses import HTMLResponse, JSONResponse, Response, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, field_validator
@@ -160,31 +160,16 @@ async def favicon():
 @app.get("/", response_class=HTMLResponse)
 async def dashboard_cockpit_page(
     request: Request,
-    tier: Optional[str] = None,
+    tier: Optional[List[str]] = Query(None),
+    opportunity: Optional[List[str]] = Query(None),
 ):
     """
-    Screen 1: Shortlist Cockpit (Hero Dashboard)
-    Renders top metrics and the curated broker priority shortlist (default: Tier A Priority Prospects).
+    Screen 1 / Root: Redirects canonically (HTTP 302) to Master Directory (/prospects).
+    Preserves all incoming query parameters.
     """
-    counts = get_summary_counts()
-    universe_meta = get_universe_metadata()
-    actionable_tiers = {"TIER_A_PRIORITY", "TIER_B_WORTH_CALLING", "TIER_C_SECONDARY"}
-    all_facs = get_prospects_list(lifecycle_stage="ALL")
-    actionable_facs = [f for f in all_facs if f.get("opportunity_tier") in actionable_tiers]
-    default_tier = tier.upper() if tier else "TIER_A_PRIORITY"
-
-    return templates.TemplateResponse(
-        request=request,
-        name="index.html",
-        context={
-            "counts": counts,
-            "prospects": actionable_facs,
-            "active_nav": "cockpit",
-            "active_tier": default_tier,
-            "opportunity_counts": universe_meta.get("opportunity_counts", {}),
-            "facility_opportunity_counts": universe_meta.get("facility_opportunity_counts", {}),
-        },
-    )
+    query_str = request.url.query
+    target_url = f"/prospects?{query_str}" if query_str else "/prospects"
+    return RedirectResponse(url=target_url, status_code=302)
 
 
 @app.get("/prospects", response_class=HTMLResponse)
@@ -194,34 +179,53 @@ async def master_directory_page(
     page_size: Optional[int] = Query(None, ge=1, le=500),
     q: Optional[str] = None,
     stage: Optional[str] = "ALL",
-    tier: Optional[str] = None,
+    tier: Optional[List[str]] = Query(None),
+    opportunity: Optional[List[str]] = Query(None),
     friction: Optional[str] = None,
-    equipment: Optional[str] = None,
-    family: Optional[str] = None,
-    category: Optional[str] = None,
-    seasonality: Optional[str] = None,
-    structure: Optional[str] = None,
-    facility_count: Optional[str] = None,
-    fleet: Optional[str] = None,
-    carrier: Optional[str] = None,
-    procurement: Optional[str] = None,
-    outreach: Optional[str] = None,
+    equipment: Optional[List[str]] = Query(None),
+    family: Optional[List[str]] = Query(None),
+    category: Optional[List[str]] = Query(None),
+    seasonality: Optional[List[str]] = Query(None),
+    structure: Optional[List[str]] = Query(None),
+    facility_count: Optional[List[str]] = Query(None),
+    fleet: Optional[List[str]] = Query(None),
+    carrier: Optional[List[str]] = Query(None),
+    procurement: Optional[List[str]] = Query(None),
+    outreach: Optional[List[str]] = Query(None),
+    sort: Optional[str] = None,
     unreviewed: bool = False,
 ):
     """
     Screen 2: Master Directory (Company-Grouped & Flat Facility Views)
     Renders searchable, filterable directory with Company View (default)
-    and Flat Facility View, supporting Broker Access Friction heuristic.
+    and Flat Facility View, supporting canonical multi-select filters.
     Supports server-side filtering and pagination.
     """
     effective_page = page if page is not None else 1
     effective_page_size = page_size if page_size is not None else 25
+    effective_tier = tier or opportunity
+
+    # Compute active_nav for sidebar highlighting based on outreach filter
+    active_nav = "prospects"
+    if outreach:
+        outreach_raw = outreach if isinstance(outreach, list) else [outreach]
+        outreach_items = []
+        for item in outreach_raw:
+            outreach_items.extend([x.strip().upper() for x in item.split(",")])
+        if "INTERESTED" in outreach_items:
+            active_nav = "crm_interested"
+        elif any(x in ("FOLLOW_UP", "FOLLOW_UPS", "CALLBACK", "CALL_BACK") for x in outreach_items):
+            active_nav = "crm_follow_ups"
+        elif "NO_ANSWER" in outreach_items:
+            active_nav = "crm_no_answer"
+        elif "NOT_INTERESTED" in outreach_items:
+            active_nav = "crm_not_interested"
 
     counts = get_summary_counts()
     universe_meta = get_universe_metadata()
     prospects = get_prospects_list(
         lifecycle_stage=stage,
-        tier=tier,
+        tier=effective_tier,
         page=effective_page,
         page_size=effective_page_size,
         search=q,
@@ -235,7 +239,7 @@ async def master_directory_page(
     )
     company_groups = get_company_grouped_prospects(
         lifecycle_stage=stage,
-        tier=tier,
+        tier=effective_tier,
         outreach_filter=outreach,
         unreviewed_only=unreviewed,
         page=effective_page,
@@ -275,7 +279,7 @@ async def master_directory_page(
             "filters": {
                 "q": q or "",
                 "stage": stage or "ALL",
-                "tier": tier or "ALL",
+                "tier": effective_tier or "ALL",
                 "friction": friction or "ALL",
                 "equipment": equipment or "ALL",
                 "family": family or "ALL",
@@ -287,12 +291,13 @@ async def master_directory_page(
                 "carrier": carrier or "ALL",
                 "procurement": procurement or "ALL",
                 "outreach": outreach or "ALL",
+                "sort": sort or "name_asc",
                 "unreviewed": unreviewed,
             },
             "taxonomy_overview": taxonomy_overview,
             "commodity_families": commodity_families,
             "commodity_categories": commodity_categories,
-            "active_nav": "prospects",
+            "active_nav": active_nav,
         },
     )
 
@@ -424,76 +429,26 @@ async def settings_controls_page(request: Request):
 
 @app.get("/crm/interested", response_class=HTMLResponse)
 async def crm_interested_page(request: Request):
-    """Screen: Interested Prospects (Confirmed interest in freight brokerage)."""
-    counts = get_summary_counts()
-    prospects = get_crm_prospects(status="INTERESTED")
-    return templates.TemplateResponse(
-        request=request,
-        name="crm_workflow.html",
-        context={
-            "counts": counts,
-            "prospects": prospects,
-            "workflow_status": "INTERESTED",
-            "workflow_title": "Interested Prospects",
-            "workflow_desc": "Shippers with confirmed interest in working with freight brokerage.",
-            "active_nav": "crm_interested",
-        },
-    )
+    """Screen shortcut: Interested Prospects in Master Directory."""
+    return RedirectResponse(url="/prospects?outreach=INTERESTED", status_code=302)
 
 
 @app.get("/crm/follow-ups", response_class=HTMLResponse)
 async def crm_follow_ups_page(request: Request, tz: Optional[str] = None):
-    """Screen: Follow-Ups Workflow (Categorized into Overdue, Today, Upcoming)."""
-    counts = get_summary_counts()
-    follow_ups = get_crm_follow_ups(user_timezone=tz)
-    return templates.TemplateResponse(
-        request=request,
-        name="crm_follow_ups.html",
-        context={
-            "counts": counts,
-            "follow_ups": follow_ups,
-            "user_timezone": tz or follow_ups.get("user_timezone", "local"),
-            "active_nav": "crm_follow_ups",
-        },
-    )
+    """Screen shortcut: Follow-Ups Workflow in Master Directory."""
+    return RedirectResponse(url="/prospects?outreach=FOLLOW_UP", status_code=302)
 
 
 @app.get("/crm/no-answer", response_class=HTMLResponse)
 async def crm_no_answer_page(request: Request):
-    """Screen: No Answer Queue (Shows verified attempt count and last attempt date)."""
-    counts = get_summary_counts()
-    prospects = get_crm_prospects(status="NO_ANSWER")
-    return templates.TemplateResponse(
-        request=request,
-        name="crm_workflow.html",
-        context={
-            "counts": counts,
-            "prospects": prospects,
-            "workflow_status": "NO_ANSWER",
-            "workflow_title": "No Answer Queue",
-            "workflow_desc": "Prospects where calls went unanswered or voicemail was left. Shows verified attempt counter.",
-            "active_nav": "crm_no_answer",
-        },
-    )
+    """Screen shortcut: No Answer Queue in Master Directory."""
+    return RedirectResponse(url="/prospects?outreach=NO_ANSWER", status_code=302)
 
 
 @app.get("/crm/not-interested", response_class=HTMLResponse)
 async def crm_not_interested_page(request: Request):
-    """Screen: Not Interested (Preserved for future re-engagement; NOT suppressed / NOT DNC)."""
-    counts = get_summary_counts()
-    prospects = get_crm_prospects(status="NOT_INTERESTED")
-    return templates.TemplateResponse(
-        request=request,
-        name="crm_workflow.html",
-        context={
-            "counts": counts,
-            "prospects": prospects,
-            "workflow_status": "NOT_INTERESTED",
-            "workflow_title": "Not Interested (Active / Not DNC)",
-            "workflow_desc": "Shippers who declined at this time. Preserved for future check-ins; NOT placed on Do-Not-Contact or suppressed.",
-            "active_nav": "crm_not_interested",
-        },
-    )
+    """Screen shortcut: Not Interested in Master Directory."""
+    return RedirectResponse(url="/prospects?outreach=NOT_INTERESTED", status_code=302)
 
 
 # ============================================================================
@@ -626,20 +581,24 @@ async def api_summary_counts():
 @app.get("/api/prospects", response_class=JSONResponse)
 async def api_prospects_list(
     stage: Optional[str] = "SHORTLISTED",
+    tier: Optional[List[str]] = Query(None),
+    opportunity: Optional[List[str]] = Query(None),
     page: Optional[int] = Query(None, ge=1),
     page_size: Optional[int] = Query(None, ge=1, le=500),
     q: Optional[str] = None,
-    equipment: Optional[str] = None,
-    family: Optional[str] = None,
-    category: Optional[str] = None,
-    seasonality: Optional[str] = None,
-    fleet: Optional[str] = None,
-    carrier: Optional[str] = None,
-    procurement: Optional[str] = None,
+    equipment: Optional[List[str]] = Query(None),
+    family: Optional[List[str]] = Query(None),
+    category: Optional[List[str]] = Query(None),
+    seasonality: Optional[List[str]] = Query(None),
+    fleet: Optional[List[str]] = Query(None),
+    carrier: Optional[List[str]] = Query(None),
+    procurement: Optional[List[str]] = Query(None),
 ):
-    """Returns prospect facilities filtered by lifecycle stage (default: SHORTLISTED) with pagination/search/filters."""
+    """Returns prospect facilities filtered by lifecycle stage with pagination/search/filters."""
+    effective_tier = tier or opportunity
     return get_prospects_list(
         lifecycle_stage=stage,
+        tier=effective_tier,
         page=page,
         page_size=page_size,
         search=q,
@@ -656,25 +615,29 @@ async def api_prospects_list(
 @app.get("/api/companies", response_class=JSONResponse)
 async def api_companies_list(
     stage: Optional[str] = "ALL",
-    outreach: Optional[str] = None,
+    tier: Optional[List[str]] = Query(None),
+    opportunity: Optional[List[str]] = Query(None),
+    outreach: Optional[List[str]] = Query(None),
     unreviewed: bool = False,
     page: Optional[int] = Query(None, ge=1),
     page_size: Optional[int] = Query(None, ge=1, le=500),
     q: Optional[str] = None,
     friction: Optional[str] = None,
-    equipment: Optional[str] = None,
-    family: Optional[str] = None,
-    category: Optional[str] = None,
-    seasonality: Optional[str] = None,
-    structure: Optional[str] = None,
-    facility_count: Optional[str] = None,
-    fleet: Optional[str] = None,
-    carrier: Optional[str] = None,
-    procurement: Optional[str] = None,
+    equipment: Optional[List[str]] = Query(None),
+    family: Optional[List[str]] = Query(None),
+    category: Optional[List[str]] = Query(None),
+    seasonality: Optional[List[str]] = Query(None),
+    structure: Optional[List[str]] = Query(None),
+    facility_count: Optional[List[str]] = Query(None),
+    fleet: Optional[List[str]] = Query(None),
+    carrier: Optional[List[str]] = Query(None),
+    procurement: Optional[List[str]] = Query(None),
 ):
-    """Returns company-grouped prospects with child facilities, facts, and broker access friction with pagination/search/filters."""
+    """Returns company-grouped prospects with child facilities, facts, and pagination/search/filters."""
+    effective_tier = tier or opportunity
     return get_company_grouped_prospects(
         lifecycle_stage=stage,
+        tier=effective_tier,
         outreach_filter=outreach,
         unreviewed_only=unreviewed,
         page=page,
