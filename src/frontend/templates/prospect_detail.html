@@ -3,7 +3,7 @@
 {% block title %}{{ prospect.operating_brand }} — FreightProspecting V1{% endblock %}
 
 {% block breadcrumb %}
-<a href="/prospects" style="color:var(--color-primary); text-decoration:none;">Master Directory</a>
+<a href="{{ return_to }}" style="color:var(--color-primary); text-decoration:none;">Master Directory</a>
 <span style="color:#cbd5e1">/</span>
 <span>{{ prospect.operating_brand }}</span>
 <span style="color:#cbd5e1">/</span>
@@ -11,7 +11,24 @@
 {% endblock %}
 
 {% block content %}
+<a href="{{ return_to }}" id="back-to-results" class="btn btn-secondary btn-sm"
+   style="margin-bottom:1rem;"
+   onclick="if (history.length > 1 && document.referrer === this.href) { history.back(); return false; }">
+  ← Back to Results
+</a>
+<script id="profile-workflow-data" type="application/json">{{ {'facilityId': prospect.facility_id, 'companyId': prospect.company_id, 'name': prospect.operating_brand, 'returnTo': return_to}|tojson|safe }}</script>
 <div x-data="{
+  profile: JSON.parse(document.getElementById('profile-workflow-data').textContent),
+  previousProspect: null,
+  nextProspect: null,
+  navigationError: '',
+  async init() {
+    freightWorkflow.remember(this.profile);
+    const neighbors = await freightWorkflow.neighbors(this.profile);
+    this.previousProspect = neighbors.previous || null;
+    this.nextProspect = neighbors.next || null;
+    this.navigationError = neighbors.error || '';
+  },
   claimsDrawerOpen: false,
   techOpen: false,
   copiedPrompt: false,
@@ -22,6 +39,16 @@
   }
 }"
 @outreach-logged.window="window.location.reload()">
+
+  <nav aria-label="Prospect navigation" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem;">
+    <template x-if="previousProspect">
+      <a :href="previousProspect.href" @click="freightWorkflow.store('fp_directory_position', previousProspect.context)" @auxclick="freightWorkflow.store('fp_directory_position', previousProspect.context)" class="btn btn-secondary btn-sm" :title="previousProspect.name">← Previous Prospect</a>
+    </template>
+    <template x-if="nextProspect">
+      <a :href="nextProspect.href" @click="freightWorkflow.store('fp_directory_position', nextProspect.context)" @auxclick="freightWorkflow.store('fp_directory_position', nextProspect.context)" class="btn btn-secondary btn-sm" :title="nextProspect.name">Next Prospect →</a>
+    </template>
+    <p x-show="navigationError" x-text="navigationError" role="status"></p>
+  </nav>
 
   <!-- 1. Header Section: Identity, Badges & Quick Action Toolbar -->
   <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1.25rem; flex-wrap:wrap; gap:1rem;">

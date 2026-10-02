@@ -2349,6 +2349,7 @@ def _assemble_company_groups(
     from collections import OrderedDict
 
     eng_map: Dict[int, Dict[str, Any]] = {}
+    last_call_outcomes: Dict[int, str] = {}
     fac_name_map: Dict[int, str] = {}
     should_close = False
     if conn is None:
@@ -2362,6 +2363,8 @@ def _assemble_company_groups(
         if has_eng:
             for r in conn.execute("SELECT * FROM prospect_engagement_state").fetchall():
                 eng_map[r["company_id"]] = dict(r)
+            for r in conn.execute("SELECT company_id, disposition FROM outreach_logs WHERE id IN (SELECT MAX(id) FROM outreach_logs GROUP BY company_id)"):
+                last_call_outcomes[r["company_id"]] = r["disposition"]
         for r in conn.execute("SELECT id, facility_name, city, state_prov FROM facilities").fetchall():
             fac_name_map[r["id"]] = f"{r['facility_name']} ({r['city']}, {r['state_prov']})"
     except Exception:
@@ -2772,6 +2775,7 @@ def _assemble_company_groups(
             "last_facility_id": last_facility_id,
             "last_facility_name": last_facility_name,
             "last_feedback_notes": last_feedback_notes,
+            "last_call_outcome": last_call_outcomes.get(cid),
             "is_viewed": is_viewed,
             "first_viewed_at": first_viewed_at,
             "last_viewed_at": last_viewed_at,

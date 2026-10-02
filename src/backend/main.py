@@ -213,6 +213,8 @@ async def master_directory_page(
     outreach: Optional[List[str]] = Query(None),
     sort: Optional[str] = None,
     unreviewed: bool = False,
+    follow_up: Optional[Literal["all", "today", "overdue", "upcoming"]] = None,
+    tz: Optional[str] = None,
 ):
     """
     Screen 2: Master Directory (Company-Grouped & Flat Facility Views)
@@ -264,13 +266,18 @@ async def master_directory_page(
         carrier=carrier,
         procurement=procurement,
     )
+    outreach_tokens = [token.strip().upper() for value in (outreach or []) for token in value.split(",")]
+    follow_up_view = view.lower() != "facilities" and (
+        follow_up is not None or bool(outreach_tokens) and all(token in ("FOLLOW_UP", "FOLLOW_UPS") for token in outreach_tokens)
+    )
+    follow_up_counts = {}
     company_groups = get_company_grouped_prospects(
         lifecycle_stage=stage,
         tier=effective_tier,
-        outreach_filter=outreach,
+        outreach_filter=["FOLLOW_UP"] if follow_up_view else outreach,
         unreviewed_only=unreviewed,
-        page=effective_page,
-        page_size=effective_page_size,
+        page=1 if follow_up_view else effective_page,
+        page_size=max(1, universe_meta["universe_companies"]) if follow_up_view else effective_page_size,
         search=q,
         friction=friction,
         equipment=equipment,
@@ -283,6 +290,26 @@ async def master_directory_page(
         carrier=carrier,
         procurement=procurement,
     )
+    if follow_up_view:
+        schedule = get_crm_follow_ups(user_timezone=tz)
+        groups = company_groups["items"]
+        matching_ids = {group["company_id"] for group in groups}
+        buckets = {key: {item["company_id"] for item in schedule[key]} & matching_ids for key in ("today", "overdue", "upcoming")}
+        follow_up_counts = {key: len(ids) for key, ids in buckets.items()}
+        follow_up_counts["all"] = len(groups)
+        if follow_up and follow_up != "all":
+            groups = [group for group in groups if group["company_id"] in buckets[follow_up]]
+        groups.sort(key=lambda group: (group["next_follow_up_at"], group["company_id"]))
+        total = len(groups)
+        total_pages = max(1, (total + effective_page_size - 1) // effective_page_size)
+        effective_page = min(effective_page, total_pages)
+        start = (effective_page - 1) * effective_page_size
+        metadata = company_groups["metadata"].copy()
+        metadata.update(total_companies=total, total_facilities=sum(group["facility_count"] for group in groups),
+                        page=effective_page, page_size=effective_page_size, total_pages=total_pages,
+                        page_start=start + 1 if total else 0, page_end=min(start + effective_page_size, total))
+        company_groups.update(items=groups[start:start + effective_page_size], total_count=total,
+                              page=effective_page, page_size=effective_page_size, total_pages=total_pages, metadata=metadata)
     taxonomy_overview = get_taxonomy_overview()
     commodity_families = get_commodity_families()
     commodity_categories = get_commodity_categories()
@@ -302,6 +329,8 @@ async def master_directory_page(
             "counts": counts,
             "prospects": prospects_data,
             "company_groups": companies_data,
+            "follow_up_counts": follow_up_counts,
+            "follow_up_view": follow_up_view,
             "pagination": pagination_info,
             "metadata": metadata_info,
             "opportunity_counts": universe_meta.get("opportunity_counts", {}),
@@ -357,7 +386,7 @@ async def api_commodity_categories(family_code: Optional[str] = None, include_de
 
 
 @app.get("/prospects/{facility_id}", response_class=HTMLResponse)
-async def prospect_detail_page(request: Request, facility_id: int):
+async def prospect_detail_page(request: Request, facility_id: int, return_to: str = "/prospects"):
     """
     Prospect Detail View (7-Question Structured Inspection)
     Answers Who is this, What do they make, Why care, Who to contact,
@@ -369,6 +398,13 @@ async def prospect_detail_page(request: Request, facility_id: int):
         raise HTTPException(status_code=404, detail=f"Prospect facility {facility_id} not found")
 
     counts = get_summary_counts()
+    try:
+        return_parts = urllib.parse.urlsplit(return_to)
+    except ValueError:
+        return_to = "/prospects"
+        return_parts = urllib.parse.urlsplit(return_to)
+    if return_parts.scheme or return_parts.netloc or return_parts.path != "/prospects" or "\\" in return_to:
+        return_to = "/prospects"
 
     return templates.TemplateResponse(
         request=request,
@@ -376,6 +412,7 @@ async def prospect_detail_page(request: Request, facility_id: int):
         context={
             "counts": counts,
             "prospect": prospect,
+            "return_to": return_to,
             "active_nav": "prospects",
         },
     )

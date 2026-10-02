@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/static/css/app.css">
   <link rel="stylesheet" href="/static/css/components.css?v=20261002-ui3">
   <!-- Local Vendored Alpine.js v3.14.8 -->
+  <script src="/static/js/workflow.js?v=20261002-workflow1"></script>
   <script defer src="/static/js/vendor/alpine.min.js"></script>
 </head>
 <body>
@@ -197,11 +198,24 @@
 
       <!-- Page Body Area -->
       <main class="workspace-content">
+        <div x-data="{ message: '', timer: null, show(text) { this.message = text; clearTimeout(this.timer); this.timer = setTimeout(() => this.message = '', 7000); }, init() { const saved = freightWorkflow.read('fp_saved_call'); try { sessionStorage.removeItem('fp_saved_call'); } catch (_) {} if (saved) this.show(saved); } }"
+             @workflow-notice.window="show($event.detail)" x-show="message" x-cloak
+             role="status" aria-live="polite" class="card" style="padding:0.75rem; margin-bottom:0.75rem;">
+          <span x-text="message"></span>
+        </div>
+        <div x-data="{ recent: freightWorkflow.recentProfiles() }" @recent-profiles-changed.window="recent = freightWorkflow.recentProfiles()"
+             x-show="recent.length" x-cloak style="display:flex; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+          <span style="font-size:0.75rem; color:var(--color-text-muted);">Recently opened:</span>
+          <template x-for="item in recent" :key="item.facilityId">
+            <a :href="'/prospects/' + item.facilityId" class="btn btn-secondary btn-sm" x-text="item.name"></a>
+          </template>
+        </div>
         {% block content %}{% endblock %}
       </main>
     </div>
   </div>
 
+  <script id="outreach-labels-global" type="application/json">{{ outreach_labels|tojson|safe }}</script>
   <!-- Reusable Stage 3C Log Call Modal -->
   {% include "partials/log_call_modal.html" %}
 

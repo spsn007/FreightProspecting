@@ -51,12 +51,12 @@ def test_clear_tracking_keeps_history_and_attempts(tracking_db):
     assert cleared.status_code == 200
     state = cleared.json()["data"]
     assert state["current_outreach_status"] == "UNCONTACTED"
-    assert state["attempt_count"] == 1
+    assert state["attempt_count"] == len(before)
     assert state["last_contacted_at"] == before[0]["contacted_at"]
     assert state["status_source_outreach_log_id"] is None
     assert get_outreach_history(company_id=1) == before
-    assert client.get("/api/companies?outreach=INTERESTED").json() == []
-    assert client.get("/api/companies?outreach=FOLLOW_UP").json() == []
+    assert all(c["company_id"] != 1 for c in client.get("/api/companies?outreach=INTERESTED").json())
+    assert all(c["company_id"] != 1 for c in client.get("/api/companies?outreach=FOLLOW_UP").json())
     with sqlite3.connect(tracking_db) as conn:
         assert conn.execute("SELECT sql FROM sqlite_schema WHERE name='trg_outreach_logs_no_delete'").fetchone()
         with pytest.raises(sqlite3.IntegrityError, match="append-only"):

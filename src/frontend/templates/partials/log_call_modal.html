@@ -4,6 +4,9 @@ function logCallModalComponent() {
   return {
     open: false,
     saving: false,
+    saved: false,
+    initialSnapshot: '',
+    confirmDiscard: false,
     copied: false,
     clientRequestId: '',
     companyId: null,
@@ -51,9 +54,24 @@ function logCallModalComponent() {
       return false;
     },
 
+    formSnapshot() {
+      return JSON.stringify([
+        this.selectedFacilityId, this.contactName, this.phoneNumber, this.disposition,
+        this.feedbackNotes, this.followUpDate, this.followUpTime, this.originStateProv, this.destStateProv,
+        this.hasVerifiedFacts, this.factCarrierUse, this.factBrokerStatus, this.factPrivateFleet, this.factProcurementLevel,
+        this.factEquipmentFlatbed, this.factEquipmentStepDeck, this.factEquipmentDryVan,
+        this.sourcePersonName, this.sourcePersonRole, this.sourceRoleOther, this.callEvidenceNote, this.userConfirmedAccuracy
+      ]);
+    },
+    hasUnsavedChanges() {
+      return !this.saved && this.formSnapshot() !== this.initialSnapshot;
+    },
+
     resetForm() {
       this.clientRequestId = 'req_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
       this.saving = false;
+      this.saved = false;
+      this.confirmDiscard = false;
       this.errorMessage = '';
       this.successMessage = '';
       this.feedbackNotes = '';
@@ -77,6 +95,11 @@ function logCallModalComponent() {
     },
 
     init() {
+      window.addEventListener('beforeunload', (event) => {
+        if (this.open && this.hasUnsavedChanges()) {
+          event.preventDefault(); event.returnValue = '';
+        }
+      });
       window.addEventListener('open-log-call', (e) => {
         this.resetForm();
         const d = e.detail || {};
@@ -100,6 +123,7 @@ function logCallModalComponent() {
         this.suppressionMessage = d.suppressionMessage || '';
         this.sourcePersonName = this.contactName || '';
         this.previousActiveElement = document.activeElement;
+        this.initialSnapshot = this.formSnapshot();
         this.open = true;
         this.checkLaneSuppression();
         this.$nextTick(() => {
@@ -138,8 +162,13 @@ function logCallModalComponent() {
       }
     },
 
-    closeModal() {
+    closeModal(force = false) {
       if (this.saving) return;
+      if (force !== true && this.hasUnsavedChanges()) {
+        this.confirmDiscard = true;
+        this.$nextTick(() => document.getElementById('keep-call-editing').focus());
+        return;
+      }
       this.open = false;
       this.resetForm();
       if (this.previousActiveElement && typeof this.previousActiveElement.focus === 'function') {
@@ -147,11 +176,16 @@ function logCallModalComponent() {
       }
     },
 
+    keepEditing() {
+      this.confirmDiscard = false;
+      this.$nextTick(() => document.getElementById('call-contact-name').focus());
+    },
     handleKeyDown(e) {
       if (e.key === 'Escape' && !this.saving) {
-        this.closeModal();
+        if (this.confirmDiscard) this.keepEditing();
+        else this.closeModal();
       } else if (e.key === 'Tab') {
-        const modalEl = document.getElementById('log-call-modal-content');
+        const modalEl = document.getElementById(this.confirmDiscard ? 'discard-call-dialog' : 'log-call-modal-content');
         if (!modalEl) return;
         const focusable = Array.from(modalEl.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter(el => el.offsetWidth > 0 || el.offsetHeight > 0 || el.classList.contains('sr-only'));
         if (!focusable.length) return;
@@ -293,10 +327,16 @@ function logCallModalComponent() {
         } else {
           this.successMessage = 'Call logged successfully!';
         }
+        this.saved = true;
+        const labels = JSON.parse(document.getElementById('outreach-labels-global').textContent);
+        const outcome = data.data ? data.data.disposition : this.disposition;
+        const followUp = data.data ? data.data.follow_up_at : followUpIso;
+        freightWorkflow.store('fp_saved_call', 'Saved — ' + this.companyName + ': ' + (labels[outcome] || outcome) +
+          (followUp ? '. Next call: ' + freightWorkflow.date(followUp) : '. No follow-up scheduled.'));
         window.dispatchEvent(new CustomEvent('outreach-logged', { detail: data.data }));
 
         setTimeout(() => {
-          this.closeModal();
+          this.closeModal(true);
           if (window.location.pathname.startsWith('/crm/') || window.location.pathname.startsWith('/prospects') || window.location.pathname === '/') {
             window.location.reload();
           }
@@ -321,6 +361,17 @@ function logCallModalComponent() {
      style="position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px);"
      @keydown="handleKeyDown($event)">
 
+  <div x-show="confirmDiscard" x-cloak style="position:fixed; inset:0; z-index:11000; display:flex; align-items:center; justify-content:center; background:rgba(15,23,42,0.65);">
+    <div id="discard-call-dialog" role="alertdialog" aria-modal="true" aria-labelledby="discard-call-title" class="card" style="padding:1.25rem; max-width:400px; margin:1rem;">
+      <h3 id="discard-call-title">Discard unsaved call changes?</h3>
+      <p>Your notes and changes have not been saved.</p>
+      <div style="display:flex; gap:0.75rem; margin-top:1rem;">
+        <button id="keep-call-editing" type="button" class="btn btn-primary" @click="keepEditing()">Keep Editing</button>
+        <button type="button" class="btn btn-secondary" @click="closeModal(true)">Discard Changes</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal Box -->
   <div id="log-call-modal-content" class="card"
     @click.stop
@@ -337,7 +388,7 @@ function logCallModalComponent() {
         </div>
         <div style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.25rem; font-weight: 500;" x-text="companyName"></div>
       </div>
-      <button type="button" @click="closeModal" :disabled="saving" aria-label="Close dialog" class="modal-close-btn btn btn-secondary btn-sm" style="padding: 0.2rem 0.5rem; line-height: 1;">&times;</button>
+      <button type="button" @click="closeModal()" :disabled="saving" aria-label="Close dialog" class="modal-close-btn btn btn-secondary btn-sm" style="padding: 0.2rem 0.5rem; line-height: 1;">&times;</button>
     </div>
 
     <!-- DNC / Active Suppression Warning Banner -->
@@ -651,7 +702,7 @@ function logCallModalComponent() {
 
       <!-- Action Buttons -->
       <div style="display: flex; justify-content: flex-end; gap: 0.75rem; border-top: 1px solid var(--color-border); padding-top: 1rem;">
-        <button type="button" @click="closeModal" :disabled="saving" class="btn btn-secondary" style="font-size: 0.875rem;">
+        <button type="button" @click="closeModal()" :disabled="saving" class="btn btn-secondary" style="font-size: 0.875rem;">
           Cancel
         </button>
         <button type="submit" :disabled="saving || isSuppressed" class="btn btn-primary" style="font-size: 0.875rem; display: inline-flex; align-items: center; gap: 0.4rem;">
