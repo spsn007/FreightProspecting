@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ prospect.operating_brand }} — FreightProspecting V1{% endblock %}
+{% block title %}{{ prospect.operating_brand }} — Shipper IQ{% endblock %}
 
 {% block breadcrumb %}
 <a href="{{ return_to }}" style="color:var(--color-primary); text-decoration:none;">Master Directory</a>
@@ -100,6 +100,7 @@
 
       <p style="color:var(--color-text-muted); font-size:0.875rem; margin-top:0.35rem;">
         {{ prospect.facility_name }} • 📍 {{ prospect.location_str }}
+        <span class="calling-indicator" x-text="$store.calling.info({{ calling_zone(prospect)|tojson|forceescape }}).text"></span>
       </p>
     </div>
 
@@ -124,6 +125,7 @@
                   name: '{{ prospect.facility_name }}',
                   city: '{{ prospect.city }}',
                   state: '{{ prospect.state_prov }}',
+                  calling_zone: {{ calling_zone(prospect)|tojson|forceescape }},
                   phone: '{{ top_callable.phone_number if top_callable else '' }}',
                   contact: '{{ top_callable.person_name if (top_callable and top_callable.person_name) else (top_callable.exact_published_title if top_callable else '') }}'
                 }],
@@ -254,6 +256,7 @@
                     name: '{{ prospect.facility_name }}',
                     city: '{{ prospect.city }}',
                     state: '{{ prospect.state_prov }}',
+                  calling_zone: {{ calling_zone(prospect)|tojson|forceescape }},
                     phone: '{{ top_callable.phone_number if top_callable else '' }}',
                     contact: '{{ top_callable.person_name if (top_callable and top_callable.person_name) else (top_callable.exact_published_title if top_callable else '') }}'
                   }],
@@ -669,6 +672,7 @@
                         name: '{{ prospect.facility_name }}',
                         city: '{{ prospect.city }}',
                         state: '{{ prospect.state_prov }}',
+                  calling_zone: {{ calling_zone(prospect)|tojson|forceescape }},
                         phone: '{{ contact.phone_number if (contact.phone_number and contact.phone_number != 'UNKNOWN') else '' }}',
                         contact: '{{ contact.person_name if (contact.person_name and contact.person_name != 'UNKNOWN') else (contact.exact_published_title if contact.exact_published_title else '') }}'
                       }],
@@ -707,6 +711,7 @@
                       name: '{{ prospect.facility_name }}',
                       city: '{{ prospect.city }}',
                       state: '{{ prospect.state_prov }}',
+                  calling_zone: {{ calling_zone(prospect)|tojson|forceescape }},
                       phone: '{{ top_callable.phone_number if top_callable else '' }}',
                       contact: '{{ top_callable.person_name if (top_callable and top_callable.person_name) else (top_callable.exact_published_title if top_callable else '') }}'
                     }],

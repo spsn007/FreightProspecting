@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% block title %}Load Matches — Load #{{ load.id }} — Shipper IQ{% endblock %}
+
+{% block breadcrumb %}
+<a href="/loads" style="color:var(--color-primary); text-decoration:none;">Loads &amp; Discrete Opportunities</a>
+<span style="color:#cbd5e1">/</span>
+<span style="font-weight:400; color:var(--color-text-muted);">Load #{{ load.id }} Matches</span>
+{% endblock %}
+
+{% block content %}
+<div x-data="loadMatchesApp()" x-init="init()" class="load-matches-container">
+  <!-- Load Summary Card -->
+  <div class="card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; margin-bottom:1.5rem;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+          <span class="badge badge-verified" style="font-weight:700;">{{ load.equipment_required or 'EQUIPMENT UNKNOWN' }}</span>
+          <h1 style="font-size:1.375rem; font-weight:800; color:var(--color-text-main); margin:0;">
+            {{ load.origin_city or 'Unknown Origin' }}, {{ load.origin_state_prov or '' }}
+            →
+            {{ load.dest_city or 'Unknown Dest' }}, {{ load.dest_state_prov or '' }}
+          </h1>
+          <span class="badge {% if load.load_status == 'COVERED' %}badge-verified{% elif load.load_status == 'CONFIRMED_AVAILABLE_NOW' %}badge-inferred{% else %}badge-unknown{% endif %}">
+            {{ load.load_status }}
+          </span>
+        </div>
+
+        <div style="display:flex; gap:1.25rem; margin-top:0.5rem; font-size:0.875rem; color:var(--color-text-muted); flex-wrap:wrap;">
+          <span><strong>Pickup Window:</strong> {{ load.pickup_date_earliest }}{% if load.pickup_date_latest %} to {{ load.pickup_date_latest }}{% endif %}</span>
+          {% if load.weight_lbs %}<span><strong>Weight:</strong> {{ load.weight_lbs }} lbs</span>{% endif %}
+          {% if load.shipper_target_rate %}<span><strong>Shipper Target Rate:</strong> ${{ "%.2f"|format(load.shipper_target_rate) }}</span>{% endif %}
+          {% if load.carrier_target_cost %}<span><strong>Target Carrier Cost:</strong> ${{ "%.2f"|format(load.carrier_target_cost) }}</span>{% endif %}
+          {% if load.gross_margin is not none %}<span><strong>Gross Margin:</strong> <strong style="color:#15803d;">${{ "%.2f"|format(load.gross_margin) }} ({{ "%.1f"|format(load.margin_pct) }}%)</strong></span>{% endif %}
+        </div>
+      </div>
+
+      <div>
+        <a href="/loads" class="btn btn-secondary btn-sm">← Back to Loads</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Matching Results Header -->
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+    <div>
+      <h2 style="font-size:1.125rem; font-weight:700; color:var(--color-text-main); margin:0;">
+        Ranked Carrier Capacity (<span x-text="matches.length"></span> candidates)
+      </h2>
+      <p style="font-size:0.8125rem; color:var(--color-text-muted); margin:0.25rem 0 0 0;">
+        Deterministic compatibility ranking based on equipment fit, location proximity, lane preference, timing, and authority.
+      </p>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div x-show="loading" style="text-align:center; padding:3rem; color:var(--color-text-muted);">
+    <div class="spinner" style="margin:0 auto 0.5rem auto;"></div>
+    <span>Evaluating deterministic matching rules...</span>
+  </div>
+
+  <!-- Empty State -->
+  <div x-show="!loading && matches.length === 0" class="empty-state-card">
+    <div class="empty-state-icon-box">
+      <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+    </div>
+    <h2 class="empty-state-title">No Compatible Capacity Found</h2>
+    <p class="empty-state-desc">
+      All available capacity postings were eliminated by hard exclusion filters (e.g. equipment mismatch, expired availability, or unverified authority). You can post new carrier capacity in Available Trucks.
+    </p>
+    <div style="margin-top:1rem;">
+      <a href="/capacity" class="btn btn-primary btn-sm">Search Available Trucks →</a>
+    </div>
+  </div>
+
+  <!-- Matches Ranked List -->
+  <div x-show="!loading && matches.length > 0" style="display:flex; flex-direction:column; gap:1rem;">
+    <template x-for="m in matches" :key="m.capacity_posting_id">
+      <div class="match-card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; display:flex; flex-direction:column; gap:0.75rem;">
+        <!-- Top Row -->
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.75rem;">
+          <div>
+            <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+              <!-- Score Badge -->
+              <span class="badge" style="font-size:0.875rem; font-weight:800; padding:0.35rem 0.6rem;"
+                    :class="m.match_score >= 80 ? 'badge-verified' : (m.match_score >= 50 ? 'badge-inferred' : 'badge-unknown')"
+                    x-text="m.match_score + '% MATCH'"></span>
+              
+              <a :href="'/carriers/' + m.carrier_id" style="font-size:1.125rem; font-weight:700; color:var(--color-primary); text-decoration:none;" x-text="m.carrier_name"></a>
+              <span class="badge badge-unknown" x-text="m.equipment_type"></span>
+              <span class="badge" :class="m.operating_status === 'VERIFIED_AUTHORIZED' ? 'badge-verified' : 'badge-unknown'" x-text="m.operating_status === 'VERIFIED_AUTHORIZED' ? '✓ Authority Active' : '? Authority Unknown'"></span>
+            </div>
+
+            <div style="display:flex; gap:1.25rem; margin-top:0.4rem; font-size:0.8125rem; color:var(--color-text-muted); flex-wrap:wrap;">
+              <span x-show="m.usdot_number">USDOT: <strong x-text="m.usdot_number"></strong></span>
+              <span>Available Location: <strong style="color:var(--color-text-main);" x-text="m.available_city + ', ' + m.available_state_prov"></strong></span>
+              <span>Dates: <strong x-text="m.available_date_start + ' to ' + (m.available_date_end || m.available_date_start)"></strong></span>
+              <span x-show="m.desired_rate">Target Rate: <strong style="color:#15803d;" x-text="'$' + m.desired_rate + ' ' + (m.rate_currency || 'USD')"></strong></span>
+              <span x-show="m.business_phone">Phone: <strong x-text="m.business_phone"></strong></span>
+            </div>
+          </div>
+
+          <!-- Match Workflow Status -->
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span class="badge" style="font-weight:700;"
+                  :class="m.match_status === 'BOOKED' ? 'badge-verified' : (m.match_status === 'QUOTED' ? 'badge-inferred' : 'badge-unknown')"
+                  x-text="'Status: ' + m.match_status"></span>
+          </div>
+        </div>
+
+        <!-- Explainable Breakdown -->
+        <div style="background:var(--color-surface-inset); border-radius:6px; padding:0.75rem; font-size:0.8125rem;">
+          <div style="font-weight:700; color:var(--color-text-muted); margin-bottom:0.35rem; text-transform:uppercase; font-size:0.6875rem; letter-spacing:0.05em;">Why It Matched:</div>
+          <div style="display:flex; flex-direction:column; gap:0.25rem;">
+            <template x-for="exp in m.explanations" :key="exp.text">
+              <div style="display:flex; align-items:center; gap:0.4rem;">
+                <span x-show="exp.type === 'positive'" style="color:#15803d; font-weight:700;">✓</span>
+                <span x-show="exp.type === 'neutral'" style="color:#64748b; font-weight:700;">?</span>
+                <span x-show="exp.type === 'negative'" style="color:#b91c1c; font-weight:700;">✕</span>
+                <span :style="exp.type === 'positive' ? 'color:var(--color-text-main); font-weight:600;' : 'color:var(--color-text-muted);'" x-text="exp.text"></span>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <!-- Actions Bar -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-top:0.25rem;">
+          <div style="font-size:0.8125rem; color:var(--color-text-muted);" x-show="m.latest_quote">
+            Latest Quote: <strong style="color:#15803d;" x-text="m.latest_quote ? ('$' + m.latest_quote.quoted_amount) : ''"></strong> (<span x-text="m.latest_quote ? m.latest_quote.quoted_at : ''"></span>)
+          </div>
+          <div style="display:flex; gap:0.5rem; margin-left:auto;">
+            <button class="btn btn-secondary btn-sm" @click="openQuoteModal(m)">
+              Enter Quote
+            </button>
+            <button class="btn btn-secondary btn-sm" :disabled="m.match_status === 'BOOKED'" @click="updateStatus(m, 'CONTACTED')">
+              Mark Contacted
+            </button>
+            <button class="btn btn-primary btn-sm" :disabled="m.match_status === 'BOOKED'" @click="bookLoad(m)" style="background:#15803d; border-color:#15803d;">
+              <span x-show="m.match_status !== 'BOOKED'">Book Load</span>
+              <span x-show="m.match_status === 'BOOKED'">✓ Booked</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <!-- Modal: Enter Quote -->
+  <div x-show="showQuoteModal" class="modal-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:100;" x-cloak>
+    <div class="modal-dialog" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; width:100%; max-width:450px; padding:1.5rem;" @click.away="showQuoteModal = false">
+      <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem; color:var(--color-text-main);">Record Carrier Quote</h2>
+      <p style="font-size:0.8125rem; color:var(--color-text-muted); margin-bottom:1rem;" x-text="'Carrier: ' + (activeMatch ? activeMatch.carrier_name : '')"></p>
+      
+      <form @submit.prevent="submitQuote()">
+        <div style="margin-bottom:0.75rem;">
+          <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Quoted Amount ($) *</label>
+          <input type="number" step="0.01" x-model="quoteForm.amount" required class="form-control" style="width:100%;" placeholder="e.g. 2400.00" />
+        </div>
+
+        <div style="margin-bottom:0.75rem;">
+          <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Currency</label>
+          <select x-model="quoteForm.currency" class="form-control" style="width:100%;">
+            <option value="USD">USD</option>
+            <option value="CAD">CAD</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Notes</label>
+          <textarea x-model="quoteForm.notes" rows="3" class="form-control" style="width:100%;" placeholder="e.g. Driver available 8am sharp, tarps included"></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+          <button type="button" class="btn btn-secondary" @click="showQuoteModal = false">Cancel</button>
+          <button type="submit" class="btn btn-primary" :disabled="submitting">Save Quote</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+function loadMatchesApp() {
+  const loadId = {{ load.id }};
+  return {
+    loadId: loadId,
+    matches: [],
+    loading: false,
+    submitting: false,
+    showQuoteModal: false,
+    activeMatch: null,
+    quoteForm: {
+      amount: null,
+      currency: 'USD',
+      notes: ''
+    },
+    init() {
+      this.fetchMatches();
+    },
+    async fetchMatches() {
+      this.loading = true;
+      try {
+        const res = await fetch(`/api/loads/${this.loadId}/matches`);
+        if (res.ok) {
+          const data = await res.json();
+          this.matches = data.matches || [];
+        }
+      } catch (e) {
+        console.error('Failed to load matches:', e);
+      } finally {
+        this.loading = false;
+      }
+    },
+    openQuoteModal(m) {
+      this.activeMatch = m;
+      this.quoteForm = {
+        amount: m.desired_rate || '',
+        currency: 'USD',
+        notes: ''
+      };
+      this.showQuoteModal = true;
+    },
+    async submitQuote() {
+      if (!this.activeMatch) return;
+      this.submitting = true;
+      try {
+        const res = await fetch(`/api/loads/${this.loadId}/matches/${this.activeMatch.capacity_posting_id}/status`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            status: 'QUOTED',
+            quoted_amount: parseFloat(this.quoteForm.amount),
+            notes: this.quoteForm.notes
+          })
+        });
+        if (res.ok) {
+          this.showQuoteModal = false;
+          this.fetchMatches();
+        } else {
+          const err = await res.json();
+          alert(err.detail || 'Failed to record quote.');
+        }
+      } catch (e) {
+        alert('Network error saving quote.');
+      } finally {
+        this.submitting = false;
+      }
+    },
+    async updateStatus(m, newStatus) {
+      try {
+        const res = await fetch(`/api/loads/${this.loadId}/matches/${m.capacity_posting_id}/status`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({status: newStatus})
+        });
+        if (res.ok) {
+          this.fetchMatches();
+        }
+      } catch (e) {
+        alert('Error updating match status.');
+      }
+    },
+    async bookLoad(m) {
+      if (!confirm(`Confirm booking load with carrier ${m.carrier_name}? This will mark this load as COVERED.`)) return;
+      try {
+        const res = await fetch(`/api/loads/${this.loadId}/matches/${m.capacity_posting_id}/status`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            status: 'BOOKED',
+            quoted_amount: m.desired_rate || null,
+            notes: 'Booked via Load-Capacity Matching Workspace'
+          })
+        });
+        if (res.ok) {
+          window.location.reload();
+        } else {
+          const err = await res.json();
+          alert(err.detail || 'Could not book load.');
+        }
+      } catch (e) {
+        alert('Network error booking load.');
+      }
+    }
+  };
+}
+</script>
+{% endblock %}

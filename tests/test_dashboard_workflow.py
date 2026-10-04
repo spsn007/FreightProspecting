@@ -12,6 +12,53 @@ from src.backend.main import app
 from src.backend.db.queries import log_outreach_call
 
 
+def test_shared_theme_restores_and_persists_choice():
+    """The same theme controller restores login and dashboard appearance before paint."""
+    theme = Path(__file__).resolve().parents[1] / "src/frontend/static/js/theme.js"
+    script = r'''
+const assert = require('node:assert/strict'), vm = require('node:vm');
+const source = THEME_SOURCE;
+for (const saved of ['light', 'dark', null]) {
+  let value = saved, applied;
+  const toggle = {setAttribute(k,v) { this[k] = v; }};
+  const context = {
+    localStorage: {getItem: () => value, setItem: (k,v) => {value=v;}},
+    document: {documentElement: {setAttribute: (k,v) => {applied=v;}, getAttribute: () => applied},
+      getElementById: () => null, querySelectorAll: () => [toggle], addEventListener: () => {}}
+  };
+  vm.createContext(context); vm.runInContext(source, context);
+  assert.equal(applied, saved === 'dark' ? 'dark' : 'light');
+  context.toggleTheme();
+  assert.equal(value, saved === 'dark' ? 'light' : 'dark');
+  assert.equal(toggle['aria-pressed'], String(value === 'dark'));
+  vm.runInContext(source, context); assert.equal(applied, value);
+}
+'''.replace("THEME_SOURCE", json.dumps(theme.read_text(encoding="utf-8")))
+    node = shutil.which("node") or r"C:\Program Files\nodejs\node.exe"
+    result = subprocess.run([node, "-"], input=script, encoding="utf-8", capture_output=True)
+    assert result.returncode == 0, result.stderr
+
+
+def test_evidence_search_classification_and_paging():
+    client = TestClient(app)
+    first = client.get('/research')
+    assert first.status_code == 200
+    assert len(first.context['sources']) <= 50
+    primary = client.get('/research?source_filter=primary')
+    assert all(s['is_primary_source'] for s in primary.context['sources'])
+    secondary = client.get('/research?source_filter=secondary')
+    assert all(not s['is_primary_source'] for s in secondary.context['sources'])
+    query = client.get('/research?q=Beasley')
+    assert query.context['matched'] > 0
+    assert all('beasley' in ' '.join(str(s.get(k) or '') for k in
+               ('source_title_publisher','source_url','source_type')).lower() for s in query.context['sources'])
+    second = client.get('/research?page=2')
+    assert not {s['id'] for s in first.context['sources']} & {s['id'] for s in second.context['sources']}
+    empty = client.get('/research?q=no-such-source-xyz')
+    assert empty.context['matched'] == 0 and empty.context['pages'] == 1
+    assert client.get('/research?page=0').status_code == 422
+
+
 def test_follow_up_windows_sort_before_pagination(tmp_path, monkeypatch, session_test_db):
     database = tmp_path / "workflow.db"
     shutil.copy2(session_test_db, database)
@@ -138,6 +185,7 @@ vm.runInContext(MODAL, context);
   assert.equal(restoredY,123);
   const modal=context.logCallModalComponent();
   modal.$nextTick = callback=>callback();
+  modal.$watch = () => {};
   modal.init();
   listeners['open-log-call']({detail:{companyId:1,companyName:'First'}});
   assert.equal(modal.hasUnsavedChanges(),false);
@@ -154,6 +202,12 @@ vm.runInContext(MODAL, context);
   modal.closeModal(true);
   assert.equal(modal.open,false);
   listeners['open-log-call']({detail:{companyId:1,companyName:'First'}});
+  modal.disposition='CALL_BACK';
+  const beforeMissingDate=fetched;
+  await modal.submitCall();
+  assert.match(modal.errorMessage,/Choose a follow-up date/);
+  assert.equal(modal.saving,false);
+  assert.equal(fetched,beforeMissingDate);
   modal.disposition='INTERESTED';
   await modal.submitCall();
   assert.equal(modal.saved,true);
@@ -162,6 +216,50 @@ vm.runInContext(MODAL, context);
   assert.equal(events.at(-1).type,'outreach-logged');
 })().catch(error=>{console.error(error);process.exitCode=1;});
 '''.replace("WORKFLOW", json.dumps(workflow)).replace("MODAL", json.dumps(modal_script)).replace("DIRECTORY", json.dumps(parser.component))
+    node = shutil.which("node") or r"C:\Program Files\nodejs\node.exe"
+    result = subprocess.run([node, "-"], input=script, encoding="utf-8", capture_output=True)
+    assert result.returncode == 0, result.stderr
+
+
+def test_status_pages_focus_on_the_selected_call_status():
+    client = TestClient(app)
+    directory = client.get("/prospects")
+    assert directory.status_code == 200
+    assert 'aria-label="Directory overview"' in directory.text
+    assert 'aria-label="Opportunity Categories"' in directory.text
+    for status, title in [("INTERESTED", "Interested"), ("FOLLOW_UP", "Follow-Ups"),
+                          ("NO_ANSWER", "No Answer"), ("NOT_INTERESTED", "Not Interested")]:
+        page = client.get("/prospects", params={"outreach": status})
+        assert page.status_code == 200
+        assert f"<title>{title} — Shipper IQ</title>" in page.text
+        assert f'<h1 class="section-title" style="margin:0;">{title}</h1>' in page.text
+        assert 'aria-label="Directory overview"' not in page.text
+        assert 'aria-label="Opportunity Categories"' not in page.text
+        assert 'class="view-toggle-group"' not in page.text
+        assert 'id="master-search-input"' in page.text
+        if status == "FOLLOW_UP":
+            assert 'aria-label="Follow-up due dates"' in page.text
+
+
+def test_sidebar_status_counts_follow_current_broker_ownership():
+    source = (Path(__file__).resolve().parents[1] / "src/frontend/static/js/team.js").read_text(encoding="utf-8")
+    script = r"""
+const assert=require('node:assert/strict'),vm=require('node:vm');
+let store; const callbacks={};
+const records={1:{owner_id:1,outreach_status:'INTERESTED',next_follow_up_at:'2030-01-02'},
+  2:{owner_id:2,outreach_status:'INTERESTED',next_follow_up_at:'2030-01-02'},
+  3:{owner_id:1,outreach_status:'NO_ANSWER'},4:{owner_id:2,outreach_status:'NO_ANSWER'},
+  5:{owner_id:2,outreach_status:'NOT_INTERESTED'}};
+const context={document:{addEventListener:(name,fn)=>callbacks[name]=fn,
+  getElementById:id=>({textContent:JSON.stringify(id==='team-user-data'?{id:1,role:'BROKER'}:records)})},
+  Alpine:{store:(name,value)=>store=value}};
+vm.createContext(context);vm.runInContext(SOURCE,context);callbacks['alpine:init']();
+assert.equal(store.count('INTERESTED'),1);assert.equal(store.count('FOLLOW_UP'),1);
+assert.equal(store.count('NO_ANSWER'),1);assert.equal(store.count('NOT_INTERESTED'),1);
+store.user.id=2;assert.equal(store.count('INTERESTED'),1);
+store.state[1].owner_id=2;assert.equal(store.count('INTERESTED'),2);
+store.user.role='ADMIN';assert.equal(store.count('NO_ANSWER'),2);
+""".replace("SOURCE", json.dumps(source))
     node = shutil.which("node") or r"C:\Program Files\nodejs\node.exe"
     result = subprocess.run([node, "-"], input=script, encoding="utf-8", capture_output=True)
     assert result.returncode == 0, result.stderr

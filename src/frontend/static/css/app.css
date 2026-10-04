@@ -12,13 +12,14 @@
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 
 :root {
+  color-scheme: light;
   /* Brand & Shell Colors */
-  --sidebar-bg: #0f172a;           /* Dark Slate/Navy */
-  --sidebar-border: #1e293b;
-  --sidebar-text: #94a3b8;
-  --sidebar-text-hover: #f8fafc;
-  --sidebar-active-bg: #1e293b;
-  --sidebar-active-text: #38bdf8;  /* Sky/Teal Accent */
+  --sidebar-bg: #ffffff;
+  --sidebar-border: #e2e8f0;
+  --sidebar-text: #52647b;
+  --sidebar-text-hover: #0f172a;
+  --sidebar-active-bg: #e8f5fc;
+  --sidebar-active-text: #0369a1;
   --sidebar-width: 250px;
 
   /* Workspace Colors */
@@ -160,7 +161,7 @@ body {
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: #f8fafc;
+  color: var(--color-text-main);
 }
 
 .brand-tagline {
@@ -214,7 +215,7 @@ body {
 }
 
 .sidebar-link:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--sidebar-active-bg);
   color: var(--sidebar-text-hover);
 }
 
@@ -251,7 +252,7 @@ body {
 }
 
 .sidebar-accordion-header:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--sidebar-active-bg);
 }
 
 .sidebar-accordion-header .nav-section-title {
@@ -261,7 +262,7 @@ body {
 }
 
 .sidebar-accordion-header:hover .nav-section-title {
-  color: #e2e8f0;
+  color: var(--sidebar-text-hover);
 }
 
 .sidebar-chevron {
@@ -273,7 +274,7 @@ body {
 }
 
 .sidebar-accordion-header:hover .sidebar-chevron {
-  stroke: #cbd5e1;
+  stroke: var(--sidebar-text-hover);
 }
 
 .sidebar-chevron.is-open {
@@ -287,7 +288,7 @@ body {
   margin-top: 0.2rem;
   margin-bottom: 0.75rem;
   gap: 0.2rem;
-  border-left: 1px solid rgba(51, 65, 85, 0.5);
+  border-left: 1px solid var(--sidebar-border);
   margin-left: 0.85rem;
 }
 
@@ -311,18 +312,18 @@ body {
   font-size: 0.75rem;
   font-weight: 500;
   padding: 0.38rem 0.65rem;
-  background-color: #1e293b;
-  color: #94a3b8;
-  border: 1px solid #334155;
+  background-color: var(--color-surface-inset);
+  color: var(--sidebar-text);
+  border: 1px solid var(--sidebar-border);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .theme-toggle-btn:hover {
-  background-color: #27354f;
-  color: #f8fafc;
-  border-color: #475569;
+  background-color: var(--sidebar-active-bg);
+  color: var(--sidebar-text-hover);
+  border-color: var(--color-primary);
 }
 
 .theme-toggle-left {
@@ -360,14 +361,14 @@ body {
 }
 
 .theme-badge.light {
-  background-color: #334155;
-  color: #f8fafc;
+  background-color: #e0f2fe;
+  color: #075985;
 }
 
 .sidebar-footer {
   padding: 1rem 1.25rem;
   border-top: 1px solid var(--sidebar-border);
-  background-color: rgba(15, 23, 42, 0.6);
+  background-color: var(--color-surface-inset);
 }
 
 .system-status-indicator {
@@ -625,6 +626,13 @@ body {
    Dark Theme Tokens & Component Overrides (Restrained Slate/Navy Theme)
    ========================================================================== */
 [data-theme="dark"] {
+  color-scheme: dark;
+  --sidebar-bg: #101b2d;
+  --sidebar-border: #27364c;
+  --sidebar-text: #a3b4ca;
+  --sidebar-text-hover: #f8fafc;
+  --sidebar-active-bg: #13324a;
+  --sidebar-active-text: #5dd5ff;
   /* Workspace & Surfaces */
   --bg-workspace: #0b1329;        /* Deep navy / slate (#0b1329 / #0f172a), not pure black */
   --color-surface: #1e293b;       /* Crisp distinct card surface */

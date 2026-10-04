@@ -362,9 +362,13 @@ def test_dark_mode_tokens_phase2():
     assert '[data-theme="dark"] .tech-research-card' in comp_css
     assert '[data-theme="dark"] .disposition-pill.selected-interested' in comp_css
 
+    team_css = Path("src/frontend/static/css/team.css").read_text(encoding="utf-8")
+    assert "var(--color-surface-inset)" in team_css
+    assert ".settings-card" in team_css
+
     settings_html = Path("src/frontend/templates/settings.html").read_text(encoding="utf-8")
     assert "#f8fafc" not in settings_html
-    assert "var(--color-surface-inset)" in settings_html
+    assert "toggleTheme()" in settings_html or "data-theme-toggle" in settings_html
 
 
 def test_search_relevance_ranking():

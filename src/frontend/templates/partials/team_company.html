@@ -1,6 +1,14 @@
-<section class="team-company" x-data="teamCompany({{ team_company_id }})" @click.stop aria-label="Company assignment" x-cloak>
-  <div class="team-owner"><strong x-text="state.owner_name ? 'Working with: ' + state.owner_name : 'Unassigned — available to the team'"></strong></div>
-  <p x-show="state.owner_id && !mine" class="team-muted" x-cloak>Review history here. Only the assigned broker can log calls or change call status.</p>
+<section class="team-company{% if team_compact %} team-company-compact{% endif %}" x-data="teamCompany({{ team_company_id }}, {{ team_calling_zone if team_calling_zone is defined else (calling_zone(prospect)|tojson|forceescape if prospect is defined else 'null') }})" @click.stop aria-label="Company assignment" x-cloak>
+  {% if team_compact %}
+  <div class="team-compact-heading">
+    <details class="team-ownership-details">
+      <summary><span class="team-owner-badge" :class="state.owner_id ? (mine ? 'owner-mine' : 'owner-assigned') : 'owner-available'" x-text="state.owner_name ? 'Working with: ' + state.owner_name : 'Available to the team'"></span><span class="team-muted">Team details</span></summary>
+      <div class="team-ownership-body">
+  {% endif %}
+  {% if not team_compact %}
+  <div class="team-owner"><strong class="team-owner-badge" :class="state.owner_id ? (mine ? 'owner-mine' : 'owner-assigned') : 'owner-available'" x-text="state.owner_name ? 'Working with: ' + state.owner_name : 'Unassigned — available to the team'"></strong></div>
+  {% endif %}
+  <p x-show="state.owner_id && !mine" class="team-muted" x-cloak x-text="$store.team.callAccessMessage(companyId)"></p>
   <p x-show="state.outreach_status === 'NOT_INTERESTED'" class="team-warning" x-cloak>Previously Not Interested — review the shared history before contacting.</p>
   <p x-show="state.is_suppressed" class="team-error" x-cloak>Outreach restricted — check the company’s suppression policy.</p>
   <p class="team-muted"><span x-text="teamLabel(state.outreach_status)"></span><span x-show="state.attempt_count"> · <span x-text="state.attempt_count"></span> call attempts</span></p>
@@ -9,15 +17,32 @@
   <p class="team-muted" x-show="state.last_feedback_notes" x-cloak>Latest call note: <span x-text="state.last_feedback_notes" style="white-space:pre-wrap"></span></p>
   <p class="team-muted" x-show="state.handoff_note" x-cloak>Handoff note: <span x-text="state.handoff_note" style="white-space:pre-wrap"></span></p>
   <div class="team-actions">
-    <button type="button" class="btn btn-primary btn-sm" x-show="!state.owner_id" :disabled="busy" @click="act('claim')">Start Working</button>
+    {% if not team_compact %}<button type="button" class="btn btn-primary btn-sm team-start-working" x-show="!state.owner_id" :disabled="busy" @click="act('claim')">Start Working</button>{% endif %}
     <span x-show="mine" class="badge badge-interested" x-cloak>Assigned to you</span>
     <button type="button" class="btn btn-secondary btn-sm" x-show="state.owner_id && canManage" :disabled="busy" @click="act('release')" x-cloak>Release Company</button>
     <button type="button" class="btn btn-secondary btn-sm" x-show="canManage" :disabled="busy" @click="transferring = !transferring" x-cloak>Transfer Company</button>
   </div>
+  {% if request and request.state.user.role == 'ADMIN' %}
+  <div class="team-actions" x-show="state.owner_id && state.next_follow_up_at" x-cloak>
+    <button type="button" class="btn btn-secondary btn-sm" @click="beginReschedule()" :disabled="busy">Reschedule Follow-Up</button>
+  </div>
+  <form x-show="rescheduling" @submit.prevent="reschedule()" class="team-transfer" x-cloak>
+    <label>New follow-up time<input type="datetime-local" aria-label="New follow-up time" x-model="newFollowUp" @input.debounce.250ms="previewReschedule()" required class="form-input"></label>
+    <p class="team-muted">Uses your local time. The assigned broker will receive an alert.</p>
+    <p class="team-muted" role="status" x-text="timePreview"></p>
+    <div class="team-actions"><button class="btn btn-primary btn-sm" :disabled="busy">Save New Time</button><button type="button" class="btn btn-secondary btn-sm" @click="rescheduling=false">Cancel</button></div>
+  </form>
+  {% endif %}
   <form x-show="transferring" @submit.prevent="act('transfer')" class="team-transfer" x-cloak>
     <label>Transfer to<select aria-label="Transfer to" x-model="targetId" required class="form-input"><option value="">Choose broker</option><template x-for="u in $store.team.users.filter(u => u.role === 'BROKER' && u.id !== state.owner_id)" :key="u.id"><option :value="u.id" x-text="u.username"></option></template></select></label>
     <label>Handoff note (optional)<textarea x-model="note" maxlength="2000" rows="2" class="form-input" placeholder="What should the next broker know?"></textarea></label>
     <div class="team-actions"><button class="btn btn-primary btn-sm" :disabled="busy || !targetId">Confirm Transfer</button><button type="button" class="btn btn-secondary btn-sm" @click="transferring=false">Cancel</button></div>
   </form>
+  {% if team_compact %}
+      </div>
+    </details>
+    <button type="button" class="btn btn-primary btn-sm team-start-working" x-show="!state.owner_id" :disabled="busy" @click="act('claim')">Start Working</button>
+  </div>
+  {% endif %}
   <p x-show="error" x-text="error" class="team-error" role="alert" x-cloak></p>
 </section>

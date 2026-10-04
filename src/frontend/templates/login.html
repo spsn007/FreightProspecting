@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Login — FreightProspecting</title><link rel="stylesheet" href="/static/css/app.css"><link rel="stylesheet" href="/static/css/team.css?v=20261002-team-final2"></head>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sign In — Shipper IQ</title><script src="/static/js/theme.js?v=20261003-call-status"></script><link rel="stylesheet" href="/static/css/app.css?v=20261003-call-status"><link rel="stylesheet" href="/static/css/team.css?v=20261003-call-status"><link rel="stylesheet" href="/static/css/refined.css?v=20261003-route5"></head>
 <body class="team-login"><main class="team-login-card">
-  <div class="brand-icon">FP</div><h1>Welcome to FreightProspecting</h1><p>Sign in to work with your team.</p>
+  <div class="brand-badge">{% include "partials/brand.html" %}</div><div class="login-intro"><h1>Welcome back</h1><p>Sign in to find your next shipper opportunity.</p></div>
   {% if error %}<p class="team-error" role="alert">{{ error }}</p>{% endif %}
   <form method="post" action="/login">
     <label>Profile name<input class="form-input" name="username" value="{{ username|default('') }}" autocomplete="username" maxlength="50" required autofocus></label>
     <label>Password<input class="form-input" type="password" name="password" autocomplete="current-password" maxlength="128" required></label>
-    <button class="btn btn-primary" type="submit">Sign In</button>
+    <button class="btn btn-primary login-submit" type="submit">Sign In <span aria-hidden="true">→</span></button>
   </form>
+  <div class="login-footer"><span>Your work. Your team. One workspace.</span><button type="button" class="login-theme" data-theme-toggle onclick="toggleTheme()">Switch theme</button></div>
 </main></body></html>

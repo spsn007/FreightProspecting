@@ -1,25 +1,64 @@
 {% extends "base.html" %}
 
-{% block title %}Loads & Margins — FreightProspecting V1{% endblock %}
+{% block title %}Loads &amp; Margins — Shipper IQ{% endblock %}
 
 {% block breadcrumb %}
-<span>Loads & Margins</span>
+<span>Carriers &amp; Capacity</span>
 <span style="color:#cbd5e1">/</span>
-<span style="font-weight:400; color:var(--color-text-muted);">Discrete FTL Opportunities</span>
+<span style="font-weight:400; color:var(--color-text-muted);">Loads &amp; Discrete Opportunities</span>
 {% endblock %}
 
 {% block content %}
-<div>
-  <div class="section-header">
+<div x-data="loadsApp()" x-init="init()">
+  <div class="section-header" style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1.25rem;">
     <div>
-      <h1 class="section-title">Discrete Loads & Gross Margin Analysis</h1>
+      <h1 class="section-title">Discrete Loads &amp; Gross Margin Analysis</h1>
       <p class="section-subtitle">Real-world bookable freight opportunities separated strictly from historical demand signals.</p>
     </div>
-    <span class="badge badge-unknown">0 Active Loads</span>
+    <div style="display:flex; gap:0.5rem; align-items:center;">
+      <span class="badge badge-unknown" x-text="(loads.length || 0) + ' Active Loads'">0 Active Loads</span>
+      <button class="btn btn-primary" @click="showAddModal = true" style="font-size:0.875rem;">+ Create Load</button>
+    </div>
   </div>
 
-  <!-- Intentional, Honest Empty State -->
-  <div class="empty-state-card">
+  <!-- Loading State -->
+  <div x-show="loading" style="text-align:center; padding:3rem; color:var(--color-text-muted);">
+    <div class="spinner" style="margin:0 auto 0.5rem auto;"></div>
+    <span>Loading discrete loads...</span>
+  </div>
+
+  <!-- Loads List -->
+  <div x-show="!loading && loads.length > 0" style="display:flex; flex-direction:column; gap:1rem; margin-bottom:2rem;">
+    <template x-for="l in loads" :key="l.id">
+      <div class="card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+            <span class="badge badge-verified" style="font-weight:700;" x-text="l.equipment_required || 'FLATBED'"></span>
+            <strong style="font-size:1.125rem; color:var(--color-text-main);" x-text="(l.origin_city || 'Origin') + ', ' + (l.origin_state_prov || '') + ' → ' + (l.dest_city || 'Destination') + ', ' + (l.dest_state_prov || '')"></strong>
+            <span class="badge" :class="l.load_status === 'COVERED' ? 'badge-verified' : (l.load_status === 'CONFIRMED_AVAILABLE_NOW' ? 'badge-inferred' : 'badge-unknown')" x-text="l.load_status"></span>
+          </div>
+
+          <div style="display:flex; gap:1.25rem; margin-top:0.4rem; font-size:0.8125rem; color:var(--color-text-muted); flex-wrap:wrap;">
+            <span>Pickup: <strong style="color:var(--color-text-main);" x-text="l.pickup_date_earliest + (l.pickup_date_latest ? ' to ' + l.pickup_date_latest : '')"></strong></span>
+            <span x-show="l.weight_lbs">Weight: <strong x-text="l.weight_lbs + ' lbs'"></strong></span>
+            <span x-show="l.shipper_target_rate">Shipper Rate: <strong x-text="'$' + l.shipper_target_rate"></strong></span>
+            <span x-show="l.carrier_target_cost">Target Cost: <strong x-text="'$' + l.carrier_target_cost"></strong></span>
+            <span x-show="l.gross_margin !== null && l.gross_margin !== undefined">Gross Margin: <strong style="color:#15803d;" x-text="'$' + l.gross_margin + ' (' + l.margin_pct + '%)'"></strong></span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <a :href="'/loads/' + l.id + '/matches'" class="btn btn-primary" style="display:inline-flex; align-items:center; gap:0.35rem;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <span>Find Capacity</span>
+          </a>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <!-- Intentional, Honest Empty State Guide (Shown when zero loads exist) -->
+  <div x-show="!loading && loads.length === 0" class="empty-state-card">
     <div class="empty-state-icon-box">
       <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
     </div>
@@ -31,9 +70,9 @@
 
     <div class="empty-state-guide">
       <div style="font-weight:700; color:var(--color-text-main); margin-bottom:0.5rem; font-size:0.875rem;">
-        How Freight Progresses in V1 (Entity Separation):
+        Deterministic Margin Model &amp; Freight Lifecycle:
       </div>
-      <ol style="margin-left:1.25rem; display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;">
+      <ol style="margin-left:1.25rem; display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem; font-size:0.875rem;">
         <li>
           <strong>1. Shipper Prospect:</strong> A physical shipping facility (recorded in <code>facilities</code>) that exists independently of active loads.
         </li>
@@ -44,44 +83,132 @@
           <strong>3. Discrete Load:</strong> An actual transportation requirement (recorded in <code>load_opportunities</code>) separated strictly into core shipment requirements vs commercial pricing details.
         </li>
       </ol>
-
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem; padding-top:1rem; border-top:1px dashed var(--color-border);">
-        <div style="background:var(--color-border-subtle); border:1px solid var(--color-border); border-radius:6px; padding:0.875rem;">
-          <div style="font-size:0.75rem; font-weight:700; color:#0284c7; text-transform:uppercase; margin-bottom:0.35rem;">
-            Core Shipment Details
-          </div>
-          <div style="font-size:0.75rem; color:var(--color-text-muted); line-height:1.4;">
-            Required to confirm load availability:
-            <ul style="margin-left:1rem; margin-top:0.25rem; list-style-type:disc;">
-              <li>Verified Origin (City & State/Province)</li>
-              <li>Verified Destination (City & State/Province)</li>
-              <li>Equipment Category (Flatbed, Step Deck, Dry Van)</li>
-              <li>Pickup / Availability Window</li>
-            </ul>
-          </div>
-        </div>
-
-        <div style="background:var(--color-border-subtle); border:1px solid var(--color-border); border-radius:6px; padding:0.875rem;">
-          <div style="font-size:0.75rem; font-weight:700; color:var(--color-text-main); text-transform:uppercase; margin-bottom:0.35rem;">
-            Commercial Pricing Details (Rate-Dependent)
-          </div>
-          <div style="font-size:0.75rem; color:#475569; line-height:1.4;">
-            Rates are optional: A load legitimately exists even if pricing is incomplete.
-            <ul style="margin-left:1rem; margin-top:0.25rem; list-style-type:disc;">
-              <li>Shipper Target Rate (recorded when known)</li>
-              <li>Carrier Target Cost (recorded when known)</li>
-              <li><strong>Deterministic Margin Model:</strong> Gross margin is calculated deterministically when both rates are known. If either is missing, Margin is strictly <code>UNKNOWN</code>. Missing rates never invalidate a load.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <p style="font-size:0.8125rem; color:var(--color-text-muted); margin:0;">
+        <strong>Deterministic Margin Model:</strong> Calculated only when both shipper target rate and carrier target cost are known. Missing rates remain neutral (UNKNOWN), never zero.
+      </p>
     </div>
 
-    <div style="margin-top:1.5rem;">
-      <a href="/prospects" class="btn btn-primary">
-        Browse Prospect Directory to Discover Freight →
-      </a>
+    <div style="margin-top:1.5rem; display:flex; gap:0.75rem; justify-content:center;">
+      <button class="btn btn-primary" @click="showAddModal = true">+ Create Discrete Load</button>
+      <a href="/prospects" class="btn btn-secondary">Browse Shipper Directory →</a>
+    </div>
+  </div>
+
+  <!-- Modal: Create Load -->
+  <div x-show="showAddModal" class="modal-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:100;" x-cloak>
+    <div class="modal-dialog" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; width:100%; max-width:540px; padding:1.5rem; max-height:90vh; overflow-y:auto;" @click.away="showAddModal = false">
+      <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:1rem; color:var(--color-text-main);">Create Discrete Load</h2>
+      <form @submit.prevent="submitCreateLoad()">
+        <h3 style="font-size:0.9375rem; font-weight:700; margin-bottom:0.5rem; color:var(--color-text-main);">Core Shipment Details</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:0.75rem;">
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Origin City *</label>
+            <input type="text" x-model="newLoad.origin_city" required class="form-control" style="width:100%;" placeholder="e.g. Dallas" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Origin State/Prov *</label>
+            <input type="text" x-model="newLoad.origin_state_prov" required class="form-control" style="width:100%;" placeholder="e.g. TX" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Destination City *</label>
+            <input type="text" x-model="newLoad.dest_city" required class="form-control" style="width:100%;" placeholder="e.g. Denver" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Dest State/Prov *</label>
+            <input type="text" x-model="newLoad.dest_state_prov" required class="form-control" style="width:100%;" placeholder="e.g. CO" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Pickup Date *</label>
+            <input type="date" x-model="newLoad.pickup_date_earliest" required class="form-control" style="width:100%;" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Equipment Required *</label>
+            <select x-model="newLoad.equipment_required" class="form-control" style="width:100%;" required>
+              <option value="FLATBED">Flatbed</option>
+              <option value="STEP_DECK">Step Deck</option>
+              <option value="DRY_VAN">Dry Van</option>
+            </select>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.9375rem; font-weight:700; margin:1rem 0 0.25rem 0; color:var(--color-text-main);">Commercial Pricing Details</h3>
+        <p style="font-size:0.75rem; color:var(--color-text-muted); margin-bottom:0.5rem;">Rates are optional. Missing rates never invalidate a load; margin is calculated only when both rates are known.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:0.75rem;">
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Shipper Target Rate ($)</label>
+            <input type="number" step="0.01" x-model="newLoad.shipper_target_rate" class="form-control" style="width:100%;" placeholder="e.g. 3000.00" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Carrier Target Cost ($)</label>
+            <input type="number" step="0.01" x-model="newLoad.carrier_target_cost" class="form-control" style="width:100%;" placeholder="e.g. 2500.00" />
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1.25rem;">
+          <button type="button" class="btn btn-secondary" @click="showAddModal = false">Cancel</button>
+          <button type="submit" class="btn btn-primary" :disabled="submitting">Save Load</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
+
+<script>
+function loadsApp() {
+  return {
+    loads: [],
+    loading: false,
+    submitting: false,
+    showAddModal: false,
+    newLoad: {
+      origin_city: '',
+      origin_state_prov: '',
+      dest_city: '',
+      dest_state_prov: '',
+      pickup_date_earliest: new Date().toISOString().substring(0, 10),
+      equipment_required: 'FLATBED',
+      shipper_target_rate: null,
+      carrier_target_cost: null
+    },
+    init() {
+      this.fetchLoads();
+    },
+    async fetchLoads() {
+      this.loading = true;
+      try {
+        const res = await fetch('/api/loads');
+        if (res.ok) {
+          const data = await res.json();
+          this.loads = data.items || [];
+        }
+      } catch (e) {
+        console.error('Failed to load discrete loads:', e);
+      } finally {
+        this.loading = false;
+      }
+    },
+    async submitCreateLoad() {
+      this.submitting = true;
+      try {
+        const res = await fetch('/api/loads', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(this.newLoad)
+        });
+        if (res.ok) {
+          this.showAddModal = false;
+          this.fetchLoads();
+        } else {
+          const err = await res.json();
+          alert(err.detail || 'Failed to create load.');
+        }
+      } catch (e) {
+        alert('Network error creating load.');
+      } finally {
+        this.submitting = false;
+      }
+    }
+  };
+}
+</script>
 {% endblock %}

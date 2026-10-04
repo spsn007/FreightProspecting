@@ -300,20 +300,14 @@ def test_master_directory_renders_lifecycle_guide_and_why_details():
     assert resp.status_code == 200
     html = resp.text
 
-    # Lifecycle Guide banner elements
-    assert "Lifecycle Guide" in html
-    assert "DISCOVERY" in html
-    assert "QUALIFIED" in html
-    assert "SHORTLISTED" in html
+    # The visible guide follows broker priorities, not lifecycle stages.
+    assert "Priority Guide" in html
+    assert "Which companies should I call first?" in html
+    for label in ("Priority Prospect", "Worth Calling", "Secondary Prospect", "Needs More Research"):
+        assert label in html
+    assert "Prospect Readiness Lifecycle Standards" not in html
+    assert "Lifecycle Guide" not in html
 
-    # Company group tabs with updated numbers
-    assert "All Companies (565)" in html or "565" in html
-    assert "Shortlist (29)" in html or "29" in html
-    assert "Qualified (91)" in html or "91" in html
-    assert "Discovery (445)" in html or "445" in html
-
-    # Why details present
-    assert "Why Shortlisted" in html or "Why Qualified" in html
 
 
 # ============================================================================

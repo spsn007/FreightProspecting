@@ -1,0 +1,33 @@
+<div class="notifications" x-data="notificationPanel()" @click.outside="open=false" @keydown.escape.stop="open=false; $refs.bell.focus()">
+  <button type="button" class="notification-bell" x-ref="bell" @click="toggle()" :aria-expanded="open" aria-controls="notification-panel"
+          :aria-label="'Notifications, ' + $store.team.notifications.unread_count + ' unread'" title="Notifications">
+    <svg aria-hidden="true" width="21" height="21" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+    <span class="notification-count" x-show="$store.team.notifications.unread_count" x-cloak x-text="$store.team.notifications.unread_count > 99 ? '99+' : $store.team.notifications.unread_count"></span>
+  </button>
+  <section id="notification-panel" class="notification-panel" x-show="open" x-cloak style="display:none" aria-label="Notifications">
+    <div class="notification-heading"><div><h2>Notifications</h2><p>Your company handovers, follow-ups and team announcements.</p></div><button type="button" class="btn btn-secondary btn-sm" @click="open=false; $refs.bell.focus()" aria-label="Close notifications">×</button></div>
+    <div class="notification-toolbar"><span x-text="$store.team.notifications.unread_count + ' unread'"></span><button type="button" class="notification-text-button" @click="read()" :disabled="!$store.team.notifications.unread_count">Mark all as read</button></div>
+    <p class="team-error" role="status" x-show="error || $store.team.notificationError" x-text="error || $store.team.notificationError"></p>
+    <p class="notification-empty" x-show="!$store.team.notifications.items.length">You're all caught up. New handovers, scheduled follow-ups and announcements will appear here.</p>
+    <div class="notification-list">
+      <template x-for="item in $store.team.notifications.items" :key="item.key">
+        <article class="notification-item" :class="{'is-unread':!item.read_at}">
+          <div class="notification-item-heading"><span class="notification-kind" :class="item.kind.toLowerCase()" x-text="item.title"></span><span class="notification-read-label" x-text="item.read_at ? 'Read' : 'New'"></span></div>
+          <p class="notification-message" x-text="item.message"></p>
+          <p class="notification-date" x-text="(item.due_at ? 'Scheduled: ' : 'Received: ') + freightWorkflow.date(item.due_at || item.created_at)"></p>
+          <p class="notification-date" x-show="item.previous_due_at" x-text="item.previous_due_at ? 'Previously: ' + freightWorkflow.date(item.previous_due_at) : ''"></p>
+          <div class="notification-item-actions"><a x-show="item.url" :href="item.url" @click.prevent="visit(item)" class="notification-text-button">Open company →</a><button type="button" class="notification-text-button" x-show="!item.read_at" @click="read(item)">Mark as read</button></div>
+        </article>
+      </template>
+    </div>
+    <p class="notification-date" x-show="$store.team.notifications.items.length === 100">Showing up to 100 alerts. Mark all as read also includes alerts outside this list.</p>
+    {% if team_user.role == 'ADMIN' %}
+    <details class="notification-compose"><summary>Send a team announcement</summary><form @submit.prevent="send()">
+      <p>Send information to all currently active broker profiles.</p>
+      <label for="announcement-title">Title</label><input id="announcement-title" class="form-input" x-model="title" maxlength="100" required>
+      <label for="announcement-message">Message</label><textarea id="announcement-message" class="form-input" x-model="message" maxlength="2000" rows="3" required></textarea>
+      <button type="submit" class="btn btn-primary btn-sm" :disabled="busy" x-text="busy ? 'Sending…' : 'Send to all brokers'"></button>
+    </form></details>
+    {% endif %}
+  </section>
+</div>

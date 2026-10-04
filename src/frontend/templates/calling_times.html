@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Regions & Calling Times — Shipper IQ{% endblock %}
+{% block breadcrumb %}<span>Regions & Calling Times</span>{% endblock %}
+{% block content %}
+<section x-data="{search:'',country:'all',index:{{ zone_search|tojson|forceescape }}, groups:{{ country_zones|tojson|forceescape }}, matches(zone){return callingTimes.matches(this.index[zone],this.search)}, hasMatches(code){return this.groups[code].some(zone=>this.matches(zone))}, anyMatches(){return Object.keys(this.groups).some(code=>(this.country==='all'||this.country===code)&&this.hasMatches(code))}}">
+  <div class="calling-page-heading"><div><h1>Regions & Calling Times</h1><p>Choose a country, find the company's region, then check its local time before calling.</p></div>
+    <div class="calling-format" role="group" aria-label="Time display format">
+      <button class="btn btn-secondary btn-sm" :class="{'active':$store.calling.format==='12'}" :aria-pressed="$store.calling.format==='12'" @click="$store.calling.setFormat('12')">12-hour</button>
+      <button class="btn btn-secondary btn-sm" :class="{'active':$store.calling.format==='24'}" :aria-pressed="$store.calling.format==='24'" @click="$store.calling.setFormat('24')">24-hour</button>
+    </div>
+  </div>
+  <div class="india-time-banner"><div><span class="calling-eyebrow">Your base · India</span><strong x-text="$store.calling.indiaNow()"></strong></div><span class="calling-live-label" x-text="$store.calling.fresh ? 'Live · clocks update every second' : 'Syncing live clocks…'"></span></div>
+  <div class="calling-guide-controls">
+    <label>Search a state, province or city<input type="search" class="filter-select" aria-label="Search a state, province or city" x-model="search" placeholder="Try Windsor, Ontario, ON, Texas or TX"><button class="calling-search-clear" x-show="search" @click="search=''" type="button">Clear search</button></label>
+    <div><strong>Estimated office hours · company local time</strong><div class="calling-hours-inputs">
+      <select class="filter-select" aria-label="Calling window opens" x-model="$store.calling.start" @change="$store.calling.saveWindow()">{% for hour in range(24) %}<option value="{{ hour }}" x-text="$store.calling.hourLabel({{ hour }})"></option>{% endfor %}</select>
+      <span>to</span><select class="filter-select" aria-label="Calling window closes" x-model="$store.calling.end" @change="$store.calling.saveWindow()">{% for hour in range(1,25) %}<option value="{{ hour }}" x-text="$store.calling.hourLabel({{ hour }})"></option>{% endfor %}</select>
+    </div><small class="calling-note">Monday–Friday. Adjust this guide for your calling routine.</small></div>
+  </div>
+  <p role="alert" class="team-error" x-show="$store.calling.windowError" x-text="$store.calling.windowError"></p>
+  <div class="calling-navigation"><div class="calling-country-tabs" role="group" aria-label="Choose country">
+    <button class="btn btn-secondary btn-sm" :class="{'active':country==='all'}" :aria-pressed="country==='all'" @click="country='all'">All countries</button>
+    <button class="btn btn-secondary btn-sm" :class="{'active':country==='US'}" :aria-pressed="country==='US'" @click="country='US'">United States</button>
+    <button class="btn btn-secondary btn-sm" :class="{'active':country==='CA'}" :aria-pressed="country==='CA'" @click="country='CA'">Canada</button>
+  </div><div class="calling-status-legend" aria-label="Calling status legend">
+    <span><i class="calling-status-dot open" aria-hidden="true"></i>Within calling hours</span>
+    <span><i class="calling-status-dot closing" aria-hidden="true"></i>Closing soon · last 30 minutes</span>
+    <span><i class="calling-status-dot outside" aria-hidden="true"></i>Outside calling hours</span>
+  </div></div>
+  <div class="calling-sync-warning" role="status" x-show="!$store.calling.fresh"><span x-text="$store.calling.error || 'Connecting to live time. Calling status will appear after clocks sync.'"></span><button class="btn btn-secondary btn-sm" :disabled="$store.calling.refreshing" @click="$store.calling.refresh()">Retry clock sync</button></div>
+  <p class="calling-note" x-show="!anyMatches()">No matching location in this country selection. Try another state/province or choose All countries. Some split-zone cities need confirmation.</p>
+  {% for code,zones in country_zones.items() %}
+  <section class="calling-country-section" aria-label="{{ 'United States' if code=='US' else 'Canada' }} time zones" x-show="(country==='all'||country==='{{ code }}') && hasMatches('{{ code }}')">
+    <header class="calling-country-heading"><h2>{{ 'United States' if code=='US' else 'Canada' }}</h2><span>{{ 'US local times · states and regions' if code=='US' else 'Canadian local times · provinces and territories' }}</span></header>
+    <div class="calling-grid">
+    {% for zone in zones %}
+      <article class="calling-zone-card" x-show="matches('{{ zone }}')">
+        <h3>{{ zone_labels[zone]|replace(' · US','')|replace(' · Canada','') }}</h3>
+        <span class="calling-eyebrow">{{ 'US local time' if code=='US' else 'Canadian local time' }} · {{ zone.split('/')[-1]|replace('_',' ') }}</span>
+        <p class="calling-local-clock" x-text="$store.calling.info('{{ zone }}').clock"></p>
+        <p class="calling-zone-status"><i class="calling-status-dot" :class="$store.calling.info('{{ zone }}').kind" aria-hidden="true"></i><span x-text="$store.calling.info('{{ zone }}').status"></span></p>
+        <div class="calling-window-comparison"><p><strong>{{ 'US' if code=='US' else 'Canada' }} office window:</strong> <span x-text="$store.calling.hourLabel($store.calling.start) + '–' + $store.calling.hourLabel($store.calling.end)"></span> local</p><p><strong>Same window in India:</strong> <span x-text="$store.calling.indiaWindow('{{ zone }}')"></span></p></div>
+        <details><summary>{{ 'States & regions' if code=='US' else 'Provinces & territories' }}</summary><p>{{ regions[zone] }}</p></details>
+        <a class="btn btn-secondary btn-sm" :href="$store.calling.link('{{ zone }}')">View Available Companies →</a>
+      </article>
+    {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+  <p class="calling-note">Office hours are estimates, not confirmed company opening times. Holidays, breaks and individual contact hours may differ. Email can be sent outside these hours.</p>
+  <details class="calling-guide-explanation"><summary>How to use this guide</summary><p>1. Choose United States or Canada. 2. Search the company's state/province or city. 3. Check its local clock and the coloured status dot. The India line translates that office window into your time.</p><p>Some states and provinces span different time zones, so check the city in the region details. Unknown split-zone cities are labelled “Time zone needs confirmation” on company cards. A company can appear when one of its facilities matches; check the facility you are calling.</p><p>Clocks tick every second and sync with the server every minute. Returning to this tab refreshes them immediately. If a clock loses sync, its calling status is hidden until it reconnects. Future follow-up conversions use the rules for the selected date.</p><p><a href="https://www.iana.org/time-zones" target="_blank" rel="noopener">IANA time-zone rules</a> · <a href="https://www.transportation.gov/regulations/daylight-saving-time" target="_blank" rel="noopener">US clock rules</a> · <a href="https://nrc.canada.ca/en/certifications-evaluations-standards/canadas-official-time" target="_blank" rel="noopener">Canada's official time</a></p></details>
+</section>
+{% endblock %}

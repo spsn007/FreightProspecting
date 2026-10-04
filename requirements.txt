@@ -10,3 +10,5 @@ jinja2==3.1.6
 python-multipart==0.0.32
 httpx==0.28.1
 pytest==9.1.1
+# IANA data for ZoneInfo on Windows (also used by calling-time guidance).
+tzdata==2026.4

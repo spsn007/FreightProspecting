@@ -1239,7 +1239,8 @@ def test_dark_mode_ui_structure_and_persistence_hook():
     assert 'onclick="toggleTheme()"' in html
     assert 'id="themeIconSun"' in html
     assert 'id="themeIconMoon"' in html
-    assert 'localStorage.getItem(\'fp_theme\')' in html
+    assert '/static/js/theme.js' in html
+    assert "localStorage.getItem('fp_theme')" in client.get('/static/js/theme.js').text
 
     # CSS token verification via static stylesheet
     css_resp = client.get("/static/css/app.css")

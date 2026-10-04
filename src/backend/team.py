@@ -9,6 +9,7 @@ import time
 from contextlib import closing
 from datetime import datetime, timezone
 from threading import Lock
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from fastapi import HTTPException
 
@@ -46,6 +47,24 @@ CREATE TABLE IF NOT EXISTS assignment_history (
 CREATE TABLE IF NOT EXISTS outreach_authors (
  outreach_log_id INTEGER PRIMARY KEY REFERENCES outreach_logs(id) ON DELETE CASCADE, user_id INTEGER NOT NULL REFERENCES team_users(id)
 );
+CREATE TABLE IF NOT EXISTS team_notifications (
+ id INTEGER PRIMARY KEY, recipient_id INTEGER NOT NULL REFERENCES team_users(id),
+ actor_id INTEGER NOT NULL REFERENCES team_users(id), company_id INTEGER REFERENCES companies(id),
+ kind TEXT NOT NULL CHECK(kind IN ('TRANSFER','ANNOUNCEMENT')),
+ title TEXT NOT NULL, message TEXT NOT NULL, created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_notifications_recipient ON team_notifications(recipient_id,id);
+CREATE TABLE IF NOT EXISTS team_company_alerts (
+ id INTEGER PRIMARY KEY, recipient_id INTEGER NOT NULL REFERENCES team_users(id),
+ actor_id INTEGER NOT NULL REFERENCES team_users(id), company_id INTEGER NOT NULL REFERENCES companies(id),
+ kind TEXT NOT NULL CHECK(kind IN ('REASSIGNED','RESCHEDULED')),
+ target_id INTEGER REFERENCES team_users(id), previous_due_at TEXT, due_at TEXT, created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_company_alerts_recipient ON team_company_alerts(recipient_id,id);
+CREATE TABLE IF NOT EXISTS team_notification_reads (
+ user_id INTEGER NOT NULL REFERENCES team_users(id), notification_key TEXT NOT NULL,
+ read_at TEXT NOT NULL, PRIMARY KEY(user_id,notification_key)
+);
 CREATE INDEX IF NOT EXISTS idx_assignment_history_company ON assignment_history(company_id,id);
 """
 
@@ -74,8 +93,10 @@ def initialize(db_path=None):
             return
         with closing(create_connection(path)) as conn:
             exists = conn.execute("SELECT 1 FROM sqlite_master WHERE name='team_users'").fetchone()
-            if not exists and path == DEFAULT_DB_PATH.resolve():
-                backup = path.parent / "backups" / ("prospects_pre_team_" + datetime.now().strftime("%Y%m%d_%H%M%S") + ".db")
+            notifications_exist = conn.execute("SELECT 1 FROM sqlite_master WHERE name='team_notifications'").fetchone()
+            alerts_exist = conn.execute("SELECT 1 FROM sqlite_master WHERE name='team_company_alerts'").fetchone()
+            if (not exists or not notifications_exist or not alerts_exist) and path == DEFAULT_DB_PATH.resolve():
+                backup = path.parent / "backups" / (("prospects_pre_notifications_" if exists else "prospects_pre_team_") + datetime.now().strftime("%Y%m%d_%H%M%S") + ".db")
                 backup.parent.mkdir(exist_ok=True)
                 with closing(sqlite3.connect(backup)) as dest:
                     conn.backup(dest)
@@ -138,10 +159,15 @@ def users(active_only=False):
         return [dict(row) for row in conn.execute(sql + " ORDER BY username")]
 
 
-def create_user(username, password):
+def validate_username(username):
     username = username.strip()
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9 ._-]{0,49}", username):
         raise HTTPException(400, "Use a name of 1–50 letters, numbers, spaces, dots, underscores or hyphens.")
+    return username
+
+
+def create_user(username, password):
+    username = validate_username(username)
     if not 5 <= len(password) <= 128:
         raise HTTPException(400, "Password must contain 5–128 characters.")
     with closing(create_connection()) as conn, conn:
@@ -152,16 +178,22 @@ def create_user(username, password):
             raise HTTPException(409, "That profile name already exists, including disabled profiles.")
 
 
-def update_user(actor, user_id, action, password=None, target_id=None):
+def update_user(actor, user_id, action, password=None, target_id=None, username=None):
     require_admin(actor)
     with closing(create_connection()) as conn, conn:
         conn.execute("BEGIN IMMEDIATE")
         row = conn.execute("SELECT * FROM team_users WHERE id=?", (user_id,)).fetchone()
         if not row:
             raise HTTPException(404, "Profile not found.")
-        if row["role"] == "ADMIN" and action != "password":
+        if row["role"] == "ADMIN" and action in ("disable", "enable"):
             raise HTTPException(400, "The Admin account cannot be disabled.")
-        if action == "password":
+        if action == "rename":
+            name = validate_username(username or "")
+            try:
+                conn.execute("UPDATE team_users SET username=? WHERE id=?", (name, user_id))
+            except sqlite3.IntegrityError:
+                raise HTTPException(409, "That profile name already exists, including disabled profiles.")
+        elif action == "password":
             if not password or not 5 <= len(password) <= 128:
                 raise HTTPException(400, "Password must contain 5–128 characters.")
             conn.execute("UPDATE team_users SET password_hash=? WHERE id=?", (password_hash(password), user_id))
@@ -175,7 +207,10 @@ def update_user(actor, user_id, action, password=None, target_id=None):
             conn.execute("UPDATE team_users SET active=0 WHERE id=?", (user_id,))
         elif action == "enable":
             conn.execute("UPDATE team_users SET active=1 WHERE id=?", (user_id,))
-        conn.execute("DELETE FROM team_sessions WHERE user_id=?", (user_id,))
+        else:
+            raise HTTPException(400, "Unknown profile action.")
+        if action != "rename":
+            conn.execute("DELETE FROM team_sessions WHERE user_id=?", (user_id,))
 
 
 def check_target(conn, user_id):
@@ -198,6 +233,14 @@ def set_owner(conn, company_id, actor_id, previous_id, target_id, action, note):
         conn.execute("DELETE FROM company_assignments WHERE company_id=?", (company_id,))
     conn.execute("INSERT INTO assignment_history(company_id,actor_id,from_user_id,to_user_id,action,note,created_at) VALUES(?,?,?,?,?,?,?)",
                  (company_id, actor_id, previous_id, target_id, action, note, now()))
+    if action in {"TRANSFER", "ACCOUNT_DISABLED"} and target_id and target_id != previous_id and target_id != actor_id:
+        conn.execute("""INSERT INTO team_notifications(recipient_id,actor_id,company_id,kind,title,message,created_at)
+                        VALUES(?,?,?,'TRANSFER','Company transferred to you',?,?)""",
+                     (target_id, actor_id, company_id, note, now()))
+
+    if previous_id and target_id != previous_id and actor_id != previous_id:
+        conn.execute("""INSERT INTO team_company_alerts(recipient_id,actor_id,company_id,kind,target_id,created_at)
+                        VALUES(?,?,?,'REASSIGNED',?,?)""", (previous_id, actor_id, company_id, target_id, now()))
 
 
 def assign(user, company_id, action, target_id=None, note=""):
@@ -264,3 +307,134 @@ def assignment_history(company_id):
                  FROM assignment_history h JOIN team_users actor ON actor.id=h.actor_id
                  LEFT JOIN team_users old ON old.id=h.from_user_id LEFT JOIN team_users new ON new.id=h.to_user_id
                  WHERE h.company_id=? ORDER BY h.id DESC""", (company_id,))]
+
+
+def notifications(user, tz="UTC"):
+    """Personal transfers/announcements plus reminders from current ownership and due dates."""
+    try:
+        zone = ZoneInfo(tz)
+    except (ZoneInfoNotFoundError, ValueError):
+        raise HTTPException(400, "Choose a valid timezone.")
+    today = datetime.now(timezone.utc).astimezone(zone).date()
+    with closing(create_connection()) as conn:
+        reads = {r[0]: r[1] for r in conn.execute(
+            "SELECT notification_key,read_at FROM team_notification_reads WHERE user_id=?", (user["id"],))}
+        items = []
+        rows = conn.execute("""SELECT n.*,u.username actor_name,COALESCE(c.operating_brand,c.legal_name) company_name,
+                (SELECT MIN(f.id) FROM facilities f WHERE f.company_id=n.company_id) facility_id
+                FROM team_notifications n JOIN team_users u ON u.id=n.actor_id
+                LEFT JOIN companies c ON c.id=n.company_id WHERE n.recipient_id=?""", (user["id"],))
+        for row in rows:
+            r = dict(row)
+            key = "message:" + str(r["id"])
+            message = r["message"]
+            if r["kind"] == "TRANSFER":
+                message = r["actor_name"] + " transferred " + r["company_name"] + " to you." + (" Handoff: " + message if message else "")
+            items.append({"key": key, "kind": r["kind"], "title": r["title"], "message": message,
+                          "created_at": r["created_at"], "due_at": None, "actor_name": r["actor_name"],
+                          "company_name": r["company_name"], "url": "/prospects/" + str(r["facility_id"]) if r["facility_id"] else None,
+                          "read_at": reads.get(key)})
+        rows = conn.execute("""SELECT n.*,u.username actor_name,t.username target_name,
+                COALESCE(c.operating_brand,c.legal_name) company_name,
+                (SELECT MIN(f.id) FROM facilities f WHERE f.company_id=n.company_id) facility_id
+                FROM team_company_alerts n JOIN team_users u ON u.id=n.actor_id
+                JOIN companies c ON c.id=n.company_id LEFT JOIN team_users t ON t.id=n.target_id
+                WHERE n.recipient_id=?""", (user["id"],))
+        for row in rows:
+            r = dict(row)
+            key = "alert:" + str(r["id"])
+            if r["kind"] == "REASSIGNED":
+                title = "Company reassigned away from you"
+                message = r["actor_name"] + " reassigned " + r["company_name"] + (" to " + r["target_name"] if r["target_name"] else " to the available team pool") + "."
+            else:
+                title = "Admin rescheduled a follow-up"
+                message = r["actor_name"] + " changed the follow-up for " + r["company_name"].rstrip(".") + "."
+            items.append({"key":key, "kind":r["kind"], "title":title, "message":message,
+                          "created_at":r["created_at"], "due_at":r["due_at"], "previous_due_at":r["previous_due_at"],
+                          "actor_name":r["actor_name"], "company_name":r["company_name"],
+                          "url":"/prospects/" + str(r["facility_id"]) if r["facility_id"] else None, "read_at":reads.get(key)})
+        unanswered = conn.execute("""SELECT a.company_id,COALESCE(c.operating_brand,c.legal_name) company_name,
+                (SELECT MIN(f.id) FROM facilities f WHERE f.company_id=a.company_id) facility_id
+                FROM company_assignments a JOIN companies c ON c.id=a.company_id
+                JOIN prospect_engagement_state p ON p.company_id=a.company_id
+                WHERE a.owner_id=? AND p.current_outreach_status='NO_ANSWER'""", (user["id"],))
+        for company in unanswered:
+            streak = conn.execute("""SELECT COUNT(*) count,MIN(id) first_id,MAX(contacted_at) latest_at FROM outreach_logs
+                    WHERE company_id=? AND outreach_channel='PHONE' AND id>COALESCE(
+                    (SELECT MAX(id) FROM outreach_logs WHERE company_id=? AND outreach_channel='PHONE'
+                     AND COALESCE(disposition,outcome)!='NO_ANSWER'),0)""", (company["company_id"], company["company_id"])).fetchone()
+            if streak["count"] < 3:
+                continue
+            key = f"unanswered:{company['company_id']}:{streak['first_id']}"
+            items.append({"key":key, "kind":"NO_ANSWER_STREAK", "title":str(streak["count"]) + " unanswered calls in a row",
+                          "message":company["company_name"].rstrip(".") + " has not answered. Try a different time or review the contact details.",
+                          "created_at":streak["latest_at"], "due_at":None, "actor_name":None, "company_name":company["company_name"],
+                          "url":"/prospects/" + str(company["facility_id"]) if company["facility_id"] else None, "read_at":reads.get(key)})
+        rows = conn.execute("""SELECT a.company_id,p.next_follow_up_at,COALESCE(c.operating_brand,c.legal_name) company_name,
+                (SELECT MIN(f.id) FROM facilities f WHERE f.company_id=a.company_id) facility_id
+                FROM company_assignments a JOIN companies c ON c.id=a.company_id
+                JOIN prospect_engagement_state p ON p.company_id=a.company_id
+                WHERE a.owner_id=? AND p.next_follow_up_at IS NOT NULL""", (user["id"],))
+        for row in rows:
+            try:
+                due = datetime.fromisoformat(row["next_follow_up_at"].replace("Z", "+00:00"))
+                if due.tzinfo is None:
+                    due = due.replace(tzinfo=timezone.utc)
+            except ValueError:
+                continue
+            due_day = due.astimezone(zone).date()
+            phase = "OVERDUE" if due_day < today else "TODAY" if due_day == today else "UPCOMING"
+            key = f"followup:{row['company_id']}:{row['next_follow_up_at']}:{phase}"
+            items.append({"key": key, "kind": phase, "title": {"OVERDUE":"Overdue follow-up", "TODAY":"Follow-up today", "UPCOMING":"Upcoming follow-up"}[phase],
+                          "message": "Follow up with " + row["company_name"].rstrip(".") + ".", "created_at": row["next_follow_up_at"],
+                          "due_at": row["next_follow_up_at"], "actor_name": None, "company_name": row["company_name"],
+                          "url": "/prospects/" + str(row["facility_id"]) if row["facility_id"] else None, "read_at": reads.get(key)})
+    priority = {"TODAY":0, "OVERDUE":1, "TRANSFER":2, "ANNOUNCEMENT":2, "UPCOMING":3, "REASSIGNED":2, "RESCHEDULED":2, "NO_ANSWER_STREAK":2}
+    def sort_key(item):
+        recorded = datetime.fromisoformat(item["created_at"].replace("Z", "+00:00"))
+        if recorded.tzinfo is None:
+            recorded = recorded.replace(tzinfo=timezone.utc)
+        return (bool(item["read_at"]), priority[item["kind"]], recorded.timestamp() * (1 if item["kind"] in {"TODAY","OVERDUE","UPCOMING"} else -1))
+    items.sort(key=sort_key)
+    return {"items": items, "unread_count": sum(not i["read_at"] for i in items)}
+
+
+def read_notifications(user, keys=None, tz="UTC"):
+    accessible = {i["key"] for i in notifications(user, tz)["items"]}
+    selected = accessible if keys is None else accessible.intersection(keys)
+    with closing(create_connection()) as conn, conn:
+        conn.executemany("INSERT OR IGNORE INTO team_notification_reads VALUES(?,?,?)",
+                         [(user["id"], key, now()) for key in selected])
+
+
+def announce(user, title, message):
+    require_admin(user)
+    with closing(create_connection()) as conn, conn:
+        recipients = conn.execute("SELECT id FROM team_users WHERE active=1 AND role='BROKER'").fetchall()
+        conn.executemany("""INSERT INTO team_notifications(recipient_id,actor_id,kind,title,message,created_at)
+                            VALUES(?,?,'ANNOUNCEMENT',?,?,?)""",
+                         [(r[0], user["id"], title, message, now()) for r in recipients])
+    return len(recipients)
+
+
+def reschedule_follow_up(user, company_id, follow_up_at):
+    require_admin(user)
+    from src.backend.db.validators import normalize_to_utc_iso
+    try:
+        due = datetime.fromisoformat(follow_up_at.replace("Z", "+00:00"))
+        if due.tzinfo is None or due <= datetime.now(timezone.utc):
+            raise ValueError()
+        normalized = normalize_to_utc_iso(follow_up_at)
+    except ValueError:
+        raise HTTPException(400, "Choose a future follow-up date and time with a timezone.")
+    with closing(create_connection()) as conn, conn:
+        conn.execute("BEGIN IMMEDIATE")
+        row = conn.execute("""SELECT a.owner_id,p.next_follow_up_at FROM company_assignments a
+                              JOIN prospect_engagement_state p ON p.company_id=a.company_id WHERE a.company_id=?""", (company_id,)).fetchone()
+        if not row or not row["next_follow_up_at"]:
+            raise HTTPException(409, "This company needs an assigned broker and an existing follow-up to reschedule.")
+        if row["next_follow_up_at"] == normalized:
+            return
+        conn.execute("UPDATE prospect_engagement_state SET next_follow_up_at=?,updated_at=? WHERE company_id=?", (normalized, now(), company_id))
+        conn.execute("""INSERT INTO team_company_alerts(recipient_id,actor_id,company_id,kind,previous_due_at,due_at,created_at)
+                        VALUES(?,?,?,'RESCHEDULED',?,?,?)""", (row["owner_id"], user["id"], company_id, row["next_follow_up_at"], normalized, now()))

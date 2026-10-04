@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Master Directory — FreightProspecting V1{% endblock %}
+{% set status_titles = {'crm_interested':'Interested', 'crm_follow_ups':'Follow-Ups', 'crm_no_answer':'No Answer', 'crm_not_interested':'Not Interested'} %}
+{% set status_view = active_nav in status_titles %}
+{% set directory_title = status_titles.get(active_nav, 'Master Directory') %}
+{% block title %}{{ directory_title }} — Shipper IQ{% endblock %}
 
 {% block breadcrumb %}
-<span>Master Directory</span>
+<span>{{ directory_title }}</span>
 <span style="color:#cbd5e1">/</span>
 <span style="font-weight:400; color:var(--color-text-muted);">Shipper Prospects</span>
 {% endblock %}
@@ -28,6 +31,8 @@
   viewMode: new URLSearchParams(window.location.search).get('view') === 'facilities' ? 'FACILITIES' : 'COMPANIES',
   searchQuery: '',
   followUpWindow: new URLSearchParams(window.location.search).get('follow_up') || 'all',
+  callingNow: new URLSearchParams(window.location.search).get('calling_now') === 'true',
+  callingZone: new URLSearchParams(window.location.search).get('calling_zone') || '',
   selectedTiers: [],
   selectedOutreach: [],
   selectedEquipment: [],
@@ -42,7 +47,7 @@
   phoneFilter: 'ALL',
   unreviewedOnly: false,
   showMoreFilters: false,
-  showLifecycleGuide: false,
+  showPriorityGuide: false,
   showOpportunityModal: false,
   sortOption: (new URLSearchParams(window.location.search).get('sort') || ((new URLSearchParams(window.location.search).get('q') || '').trim() ? 'relevance' : 'name_asc')),
   currentPage: 1,
@@ -240,6 +245,13 @@
     const params = new URLSearchParams();
     const teamView = new URLSearchParams(window.location.search).get('team_view');
     if (teamView) params.set('team_view', teamView);
+    if (this.callingNow) params.set('calling_now', 'true');
+    if (this.callingZone) params.set('calling_zone', this.callingZone);
+    if (this.callingNow || this.callingZone) {
+      params.set('calling_start', Alpine.store('calling').start);
+      params.set('calling_end', Alpine.store('calling').end);
+      params.set('view', 'companies');
+    }
     if (this.viewMode === 'COMPANIES' && this.selectedOutreach.length === 1 && ['FOLLOW_UP', 'FOLLOW_UPS'].includes(this.selectedOutreach[0])) {
       params.set('follow_up', this.followUpWindow);
       params.set('tz', Intl.DateTimeFormat().resolvedOptions().timeZone);
@@ -371,6 +383,8 @@
   },
 
   clearAllFilters() {
+    this.callingNow = false;
+    this.callingZone = '';
     this.searchQuery = '';
     this.selectedTiers = [];
     this.selectedOutreach = [];
@@ -391,6 +405,7 @@
 
   hasActiveFilters() {
     return (
+      this.callingNow || !!this.callingZone ||
       (this.searchQuery && this.searchQuery.trim().length > 0) ||
       this.selectedTiers.length > 0 ||
       this.selectedOutreach.length > 0 ||
@@ -424,7 +439,7 @@
     const message = action === 'cancel_follow_up'
       ? 'Cancel the next call for ' + c.operating_brand + '? Its call status and history will stay saved.'
       : 'Clear the active call status and next call for ' + c.operating_brand + '? Its call history will stay saved.';
-    if (!window.confirm(message)) return;
+    if (!await freightWorkflow.confirm(message, action === 'cancel_follow_up' ? 'Cancel follow-up?' : 'Clear call status?', action === 'cancel_follow_up' ? 'Cancel follow-up' : 'Clear status')) return;
     this.clearingCompanyId = c.company_id;
     this.trackingError = '';
     try {
@@ -494,12 +509,13 @@
   },
 
   openLogCall(c, f = null) {
-    if (!Alpine.store('team').mine(c.company_id)) { freightWorkflow.notice('Start Working first, or choose an available company.'); return; }
+    if (!Alpine.store('team').mine(c.company_id)) { freightWorkflow.notice(Alpine.store('team').callAccessMessage(c.company_id)); return; }
     const childFacs = (c.facilities || []).map(fac => ({
       id: fac.facility_id,
       name: fac.facility_name,
       city: fac.city,
       state: fac.state_prov,
+      calling_zone: fac.calling_zone,
       phone: (fac.contacts && fac.contacts.length > 0 && fac.contacts[0].phone_number) ? fac.contacts[0].phone_number : '',
       contact: (fac.contacts && fac.contacts.length > 0 && fac.contacts[0].person_name) ? fac.contacts[0].person_name : ''
     }));
@@ -779,62 +795,21 @@
   }
 }">
 
-  <!-- Master Directory Summary Metrics Grid (3 Dynamic Cards) -->
-  <div class="metrics-grid" style="margin-bottom:1.25rem;">
-    <!-- Metric 1: Operating Companies -->
-    <div class="metric-card">
-      <div class="metric-header">
-        <span class="metric-label">Operating Companies</span>
-        <span class="badge badge-facility-count">{{ (counts.all_companies_count if counts else 0) or 0 }} Active</span>
-      </div>
-      <div class="metric-value">{{ (counts.all_companies_count if counts else 0) or 0 }}</div>
-      <div class="metric-subtext">
-        <strong>{{ (opportunity_counts.TIER_A_PRIORITY if opportunity_counts else 19) or 19 }}</strong> Priority &bull;
-        <strong>{{ (opportunity_counts.TIER_B_WORTH_CALLING if opportunity_counts else 956) or 956 }}</strong> Worth Calling &bull;
-        <strong>{{ (opportunity_counts.TIER_C_SECONDARY if opportunity_counts else 10) or 10 }}</strong> Secondary &bull;
-        <strong>{{ (opportunity_counts.TIER_D_RESEARCH_NEEDED if opportunity_counts else 47) or 47 }}</strong> Needs Research
-      </div>
-    </div>
-
-    <!-- Metric 2: Physical Facilities -->
-    <div class="metric-card">
-      <div class="metric-header">
-        <span class="metric-label">Physical Shipping Facilities</span>
-        <span class="badge badge-multi-plant">{{ (counts.all_prospects_count if counts else 0) or 0 }} Total</span>
-      </div>
-      <div class="metric-value">{{ (counts.all_prospects_count if counts else 0) or 0 }}</div>
-      <div class="metric-subtext">
-        <strong>{{ (facility_opportunity_counts.TIER_A_PRIORITY if facility_opportunity_counts else 19) or 19 }}</strong> Priority &bull;
-        <strong>{{ (facility_opportunity_counts.TIER_B_WORTH_CALLING if facility_opportunity_counts else 956) or 956 }}</strong> Worth Calling &bull;
-        <strong>{{ (facility_opportunity_counts.TIER_C_SECONDARY if facility_opportunity_counts else 10) or 10 }}</strong> Secondary &bull;
-        <strong>{{ (facility_opportunity_counts.TIER_D_RESEARCH_NEEDED if facility_opportunity_counts else 47) or 47 }}</strong> Needs Research
-      </div>
-    </div>
-
-    <!-- Metric 3: Company Network Structure -->
-    <div class="metric-card">
-      <div class="metric-header">
-        <span class="metric-label">Company Structure</span>
-        <span class="badge badge-dept">Network Spread</span>
-      </div>
-      <div class="metric-value" style="font-size:1.5rem;">
-        {{ counts.single_facility_companies_count }} <span style="font-size:0.875rem; font-weight:500; color:var(--color-text-muted);">Single</span> &bull;
-        {{ counts.multi_facility_companies_count }} <span style="font-size:0.875rem; font-weight:500; color:var(--color-text-muted);">Multi-Plant</span>
-      </div>
-      <div class="metric-subtext">
-        Multi: West Fraser (7), Canfor (5), GP (4), Interfor (4)
-      </div>
-    </div>
-    <!-- Retired metric card: Broker Access Friction -->
-  </div>
+  {% if not status_view %}
+  <section class="directory-summary" aria-label="Directory overview">
+    <div><span>Operating Companies</span><strong>{{ counts.all_companies_count }}</strong><small>Companies in the directory</small></div>
+    <div><span>Physical Shipping Facilities</span><strong>{{ counts.all_prospects_count }}</strong><small>Shipping locations</small></div>
+    <div><span>Company Structure</span><strong>{{ counts.single_facility_companies_count }} <small>single</small> · {{ counts.multi_facility_companies_count }} <small>multi-plant</small></strong><small>Single-location and multi-location companies</small></div>
+  </section>
+  {% endif %}
 
   <!-- Section Header & View Mode Switcher -->
   <div class="section-header" style="align-items:center; flex-wrap:wrap; gap:1rem;">
     <div>
       <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
-        <h1 class="section-title" style="margin:0;">Master Directory</h1>
+        <h1 class="section-title" style="margin:0;">{{ directory_title }}</h1>
         <span class="badge badge-dept" style="font-size:0.8125rem; padding:0.25rem 0.65rem; font-weight:700;">
-          <span x-text="(meta.total_companies != null ? meta.total_companies : {{ counts.all_companies_count }})"></span> Companies &bull; <span x-text="(meta.total_facilities != null ? meta.total_facilities : {{ counts.all_prospects_count }})"></span> Facilities
+          <span x-text="(meta.total_companies != null ? meta.total_companies : {{ counts.all_companies_count }})"></span> <span x-text="meta.total_companies === 1 ? 'Company' : 'Companies'"></span>{% if not status_view %} &bull; <span x-text="(meta.total_facilities != null ? meta.total_facilities : {{ counts.all_prospects_count }})"></span> Facilities{% endif %}
         </span>
       </div>
       <p class="section-subtitle" style="margin-top:0.25rem;">
@@ -851,21 +826,22 @@
     </div>
 
     <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+      {% if not status_view %}
       <!-- View Mode Toggle -->
       <div class="view-toggle-group">
         <button type="button" class="view-toggle-btn" :class="viewMode === 'COMPANIES' ? 'active' : ''" @click="viewMode = 'COMPANIES'; navigateWithFilters(1)">
           🏢 Companies (<span x-text="meta.total_companies != null ? meta.total_companies : companies.length"></span>)
         </button>
-        <button type="button" class="view-toggle-btn" :class="viewMode === 'FACILITIES' ? 'active' : ''" @click="viewMode = 'FACILITIES'; navigateWithFilters(1)">
+        <button type="button" class="view-toggle-btn" :class="viewMode === 'FACILITIES' ? 'active' : ''" :disabled="callingNow || !!callingZone" title="Clear calling-time filters to use the facility view" @click="viewMode = 'FACILITIES'; navigateWithFilters(1)">
           📍 Facilities (<span x-text="meta.total_facilities != null ? meta.total_facilities : prospects.length"></span>)
         </button>
       </div>
 
-      <!-- Lifecycle Guide Toggle Button -->
+      <!-- Prospect Priority Guide Toggle Button -->
       <button type="button" class="btn btn-secondary btn-sm"
-              @click="showLifecycleGuide = !showLifecycleGuide"
+              @click="showPriorityGuide = !showPriorityGuide"
               style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:600; font-size:0.75rem;">
-        <span x-text="showLifecycleGuide ? 'Hide Lifecycle Guide ▴' : '📖 Lifecycle Guide ▾'"></span>
+        <span x-text="showPriorityGuide ? 'Hide Priority Guide ▴' : '📖 Priority Guide ▾'"></span>
       </button>
 
       <!-- Opportunity Categories Toggle Button -->
@@ -874,6 +850,7 @@
               style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:600; font-size:0.75rem;">
         <span x-text="showOpportunityModal ? 'Hide Categories ▴' : '🌱 Opportunity Categories ▾'"></span>
       </button>
+      {% endif %}
     </div>
   </div>
 
@@ -891,120 +868,35 @@
   </nav>
   {% endif %}
 
-  <!-- Lifecycle Guide Expandable Banner -->
-  <div x-show="showLifecycleGuide" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.125rem 1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-sm);">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
-      <h3 style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin:0; display:flex; align-items:center; gap:0.5rem;">
-        <span>📖 Prospect Readiness Lifecycle Standards</span>
-      </h3>
-      <span style="font-size:0.75rem; color:var(--color-text-muted); font-weight:500;">Deterministic Factual Readiness • Zero Hallucination • Internal Broker Workflow</span>
+  {% if not status_view %}
+  <!-- Prospect priority guide; the underlying lifecycle records remain unchanged. -->
+  <section x-show="showPriorityGuide" x-cloak class="directory-guide" aria-label="Prospect Priority Guide">
+    <div class="guide-heading"><div><h2>Which companies should I call first?</h2><p>Use these four priority levels to plan your calls.</p></div><button type="button" class="btn btn-secondary btn-sm" @click="showPriorityGuide=false">Close guide</button></div>
+    <div class="priority-guide-grid">
+      <section><span class="badge badge-priority">Priority Prospect</span><h3>Start here</h3><p>Strong evidence of outside transportation capacity and a usable contact route. Review the company details, then call.</p></section>
+      <section><span class="badge badge-worth-calling">Worth Calling</span><h3>A good next call</h3><p>A suitable freight profile and a callable contact. Outside carrier use still needs confirmation.</p></section>
+      <section><span class="badge badge-secondary">Secondary Prospect</span><h3>Keep on your radar</h3><p>Own trucks are confirmed, but outside carrier use is not. Check whether extra transportation support is needed.</p></section>
+      <section><span class="badge badge-research">Needs More Research</span><h3>Check the missing details</h3><p>Confirm contact information or freight fit before outreach. The company's card shows what is still being checked.</p></section>
     </div>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; font-size:0.8125rem;">
-      <!-- DISCOVERY -->
-      <div style="padding:0.875rem 1rem; border-radius:6px; background:rgba(59, 130, 246, 0.05); border:1px solid rgba(59, 130, 246, 0.2);">
-        <div style="font-weight:700; color:#2563eb; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem;">
-          <span>🔍 DISCOVERY</span>
-          <span class="badge" style="font-size:0.6875rem; padding:0.1rem 0.4rem; background:rgba(59, 130, 246, 0.1); color:#2563eb;">Universe Intake</span>
-        </div>
-        <p style="margin:0; color:var(--color-text-main); line-height:1.45;">
-          <strong>Relevant prospect worth retaining and investigating.</strong> Basic operating, commodity, and contact evidence is present. Full readiness review has not yet passed.
-        </p>
-        <div style="margin-top:0.4rem; font-size:0.75rem; color:var(--color-text-muted);">
-          Does not require named logistics manager, verified private fleet, or live freight today.
-        </div>
-      </div>
-      <!-- QUALIFIED -->
-      <div style="padding:0.875rem 1rem; border-radius:6px; background:rgba(16, 185, 129, 0.05); border:1px solid rgba(16, 185, 129, 0.2);">
-        <div style="font-weight:700; color:#059669; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem;">
-          <span>✓ QUALIFIED</span>
-          <span class="badge" style="font-size:0.6875rem; padding:0.1rem 0.4rem; background:rgba(16, 185, 129, 0.1); color:#059669;">Ready to Pursue</span>
-        </div>
-        <p style="margin:0; color:var(--color-text-main); line-height:1.45;">
-          <strong>Factual readiness checks passed.</strong> Verified operating facility, approved heavy FTL equipment profile, eligible territory, callable phone route, and primary source evidence provenance.
-        </p>
-        <div style="margin-top:0.4rem; font-size:0.75rem; color:var(--color-text-muted);">
-          Suitable for serious outreach. Does not imply broker acceptance or guaranteed loads today.
-        </div>
-      </div>
-      <!-- SHORTLISTED -->
-      <div style="padding:0.875rem 1rem; border-radius:6px; background:rgba(245, 158, 11, 0.05); border:1px solid rgba(245, 158, 11, 0.2);">
-        <div style="font-weight:700; color:#d97706; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem;">
-          <span>⭐ SHORTLISTED</span>
-          <span class="badge" style="font-size:0.6875rem; padding:0.1rem 0.4rem; background:rgba(245, 158, 11, 0.1); color:#d97706;">Active Broker Priority</span>
-        </div>
-        <p style="margin:0; color:var(--color-text-main); line-height:1.45;">
-          <strong>Priority prospect selected for active broker pursuit now.</strong> Strong practical access (callable facility phone or logistics desk), manageable scale (single or 2-3 regional plants), Low/Med friction.
-        </p>
-        <div style="margin-top:0.4rem; font-size:0.75rem; color:var(--color-text-muted);">
-          Curated active calling pool. Does not imply guaranteed profitability or awarded contract.
-        </div>
-      </div>
-    </div>
-  </div>
+    <p class="settings-note">Priority is a research-based calling order. It does not mean the company has agreed to use a broker or has loads available today.</p>
+  </section>
 
-  <!-- Opportunity Categories Expandable Banner -->
-  <div x-show="showOpportunityModal" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; margin-bottom:1.25rem; box-shadow:var(--shadow-sm);">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.875rem; flex-wrap:wrap; gap:0.5rem;">
-      <div>
-        <h3 style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin:0; display:flex; align-items:center; gap:0.5rem;">
-          <span>🌱 Seasonal & Opportunity Freight Taxonomy</span>
-        </h3>
-        <p style="margin:0.2rem 0 0 0; font-size:0.75rem; color:var(--color-text-muted);">
-          Curated commodity families, non-binding equipment suitability, and seasonal cycle guidance. Numbers represent live verified prospect companies.
-        </p>
-      </div>
-      <div style="display:flex; align-items:center; gap:0.5rem;">
-        <span class="badge badge-dept" style="font-size:0.6875rem;">10 Families • 32 Categories</span>
-        <button type="button" class="btn btn-ghost btn-sm" @click="showOpportunityModal = false" style="font-size:0.75rem; padding:0.2rem 0.5rem;">✕ Close</button>
-      </div>
-    </div>
-
-    <!-- Families Grid -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1rem;">
+  <section x-show="showOpportunityModal" x-cloak class="directory-guide" aria-label="Opportunity Categories Guide">
+    <div class="guide-heading"><div><h2>Find shippers by what they ship</h2><p>Choose an industry group, then select a product category to filter the company list.</p></div><button type="button" class="btn btn-secondary btn-sm" @click="showOpportunityModal=false">Close categories</button></div>
+    <div class="category-explainer"><span x-text="taxonomyOverview.length + ' industry groups · ' + taxonomyOverview.reduce((n, f) => n + f.categories.length, 0) + ' product categories'"></span><span>Company counts show research coverage, not available loads. Equipment and seasons are typical guidance.</span></div>
+    <div class="category-family-list">
       <template x-for="fam in taxonomyOverview" :key="fam.family_code">
-        <div style="border:1px solid var(--color-border); border-radius:6px; padding:0.875rem; background:rgba(255,255,255,0.02); display:flex; flex-direction:column;">
-          <!-- Family Header -->
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem;">
-            <div>
-              <span style="font-weight:700; font-size:0.875rem; color:var(--color-text-main);" x-text="fam.display_name"></span>
-              <template x-if="!fam.is_active">
-                <span class="badge" style="font-size:0.625rem; background:rgba(239, 68, 68, 0.1); color:#dc2626; margin-left:0.35rem;">DEFERRED</span>
-              </template>
-            </div>
-            <span class="badge" style="font-size:0.6875rem; background:rgba(59, 130, 246, 0.1); color:#2563eb;" x-text="fam.total_companies + ' Co (' + fam.total_facilities + ' Plants)'"></span>
+        <details class="category-family">
+          <summary><span class="category-family-title" x-text="fam.display_name"></span><span class="category-family-count" x-text="fam.total_companies + (fam.total_companies === 1 ? ' company · ' : ' companies · ') + fam.categories.length + (fam.categories.length === 1 ? ' category' : ' categories')"></span></summary>
+          <div class="category-family-content"><p class="settings-note" x-text="fam.description"></p><p class="settings-note" x-show="!fam.is_active">Not currently included in active research.</p>
+            <div class="category-product-list"><template x-for="cat in fam.categories" :key="cat.category_code">
+              <div class="category-product"><div><button type="button" class="category-select" @click="selectedCategories=[cat.category_code];selectedFamilies=[fam.family_code];showOpportunityModal=false;navigateWithFilters(1)" :aria-label="'Show companies for ' + cat.display_name"><span x-text="cat.display_name"></span><span aria-hidden="true">→</span></button><p class="category-product-meta"><span><strong>Typical equipment:</strong> <span x-text="(cat.typical_equipment_fit || 'Not specified').replaceAll('_',' ').replaceAll('/',' / ').replaceAll('FLATBED','Flatbed').replaceAll('STEP DECK','Step Deck').replaceAll('DRY VAN','Dry Van')"></span></span><span><strong>Season:</strong> <span x-text="cat.peak_months || (cat.seasonality_profile || 'YEAR_ROUND').replaceAll('_',' ').toLowerCase()"></span></span></p><p class="settings-note" x-show="cat.deferred_status_note" x-text="cat.deferred_status_note"></p></div><span class="category-count" x-text="cat.company_count + (cat.company_count === 1 ? ' company' : ' companies')"></span></div>
+            </template></div>
           </div>
-          <p style="font-size:0.6875rem; color:var(--color-text-muted); margin:0 0 0.6rem 0; line-height:1.35;" x-text="fam.description"></p>
-
-          <!-- Categories List -->
-          <div style="display:flex; flex-direction:column; gap:0.35rem; margin-top:auto;">
-            <template x-for="cat in fam.categories" :key="cat.category_code">
-              <div style="display:flex; justify-content:space-between; align-items:center; padding:0.3rem 0.45rem; border-radius:4px; background:rgba(0,0,0,0.02); border:1px solid var(--color-border-subtle); font-size:0.75rem;">
-                <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap;">
-                  <button type="button" @click="selectedCategories = [cat.category_code]; selectedFamilies = [fam.family_code]; showOpportunityModal = false; navigateWithFilters(1);"
-                          style="background:none; border:none; padding:0; cursor:pointer; font-weight:600; text-align:left; color:var(--color-primary); text-decoration:underline;">
-                    <span x-text="cat.display_name"></span>
-                  </button>
-                  <template x-if="cat.seasonality_profile && cat.seasonality_profile !== 'YEAR_ROUND'">
-                    <span class="badge" style="font-size:0.625rem; padding:0.05rem 0.3rem; background:rgba(217, 119, 6, 0.1); color:#b45309;" x-text="cat.seasonality_profile.replace('_', ' ')"></span>
-                  </template>
-                  <template x-if="cat.peak_months">
-                    <span style="font-size:0.625rem; color:var(--color-text-muted);" x-text="'(' + cat.peak_months + ')'"></span>
-                  </template>
-                  <template x-if="cat.deferred_status_note">
-                    <span style="font-size:0.625rem; color:#dc2626; font-style:italic;" x-text="cat.deferred_status_note"></span>
-                  </template>
-                </div>
-                <div style="display:flex; align-items:center; gap:0.35rem;">
-                  <span class="badge badge-equipment" style="font-size:0.625rem; padding:0.05rem 0.3rem;" x-text="cat.typical_equipment_fit"></span>
-                  <span style="font-size:0.6875rem; font-weight:700;" :style="cat.company_count > 0 ? 'color:var(--color-primary);' : 'color:#94a3b8;'" x-text="cat.company_count + ' Co'"></span>
-                </div>
-              </div>
-            </template>
-          </div>
-        </div>
+        </details>
       </template>
     </div>
-  </div>
+  </section>
 
   <!-- Broker Opportunity Categories Strip (Multi-Select Filter: OR within group) -->
   <div style="margin-bottom:0.5rem; font-size:0.8125rem; color:var(--color-text-muted);">
@@ -1030,6 +922,8 @@
     </button>
   </div>
 
+  {% endif %}
+
   <!-- Filter & Search Toolbar -->
   <div class="table-card master-filter-card" style="margin-bottom:1.25rem;">
     <!-- Primary Toolbar Row -->
@@ -1051,6 +945,9 @@
 
       <!-- Primary Filters Row -->
       <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+        <label class="filter-select" title="Estimated weekday hours; results are checked when loaded. Use Refresh calling-hours results to check again."><input type="checkbox" x-model="callingNow" @change="viewMode='COMPANIES'; navigateWithFilters(1)"> Within calling hours now</label>
+        <button type="button" class="btn btn-secondary btn-sm" x-show="callingNow" aria-label="Refresh calling-hours results" title="Refresh calling-hours results" @click="navigateWithFilters(currentPage)">↻</button>
+        <template x-if="callingZone"><button class="btn btn-secondary btn-sm" @click="callingZone=''; navigateWithFilters(1)" x-text="callingZone.split('/').pop().replaceAll('_',' ') + ' ×'"></button></template>
         <!-- Outreach Status Multi-Select Filter (Company Mode) -->
         <template x-if="viewMode === 'COMPANIES'">
           <div class="multi-select-dropdown" x-data="{ open: false }" @click.outside="open = false" style="position:relative;">
@@ -1159,6 +1056,7 @@
     <!-- Active Filter Removable Chips Bar (Task 15) -->
     <div x-show="hasActiveFilters()" style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; padding:0.5rem 1.25rem; background:rgba(2, 132, 199, 0.04); border-top:1px solid var(--color-border); font-size:0.75rem;">
       <span style="font-size:0.6875rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.04em;">Active:</span>
+      <template x-if="callingNow"><span class="active-chip">Within calling hours now<button @click="callingNow=false; navigateWithFilters(1)" title="Remove calling-hours filter">×</button></span></template>
 
       <!-- Search Chip -->
       <template x-if="searchQuery && searchQuery.trim()">
@@ -1445,14 +1343,15 @@
   <div x-show="viewMode === 'COMPANIES'">
     <template x-for="c in paginatedCompanies()" :key="c.company_id">
       <div class="company-card" :data-company-id="c.company_id">
-        {% set team_company_id = 'c.company_id' %}{% include 'partials/team_company.html' %}
         <!-- Company Card Header (Broker-First Simplified Layout) -->
         <div class="company-card-header" @click="toggleCompany(c.company_id)">
           <!-- 1. FULL-WIDTH HEADER ZONE -->
           <div class="broker-card-header-zone">
+            <div class="company-heading-row">
+            <div class="company-heading-main">
             <!-- Row 1: Brand & Status Badges -->
             <div class="broker-card-header-top">
-              <span style="font-weight:700; color:var(--color-text-main); font-size:1.125rem;" x-text="c.operating_brand"></span>
+              <span class="company-calling-name" style="font-weight:700; color:var(--color-text-main); font-size:1.125rem;"><span class="calling-status-dot" :class="$store.calling.info(c.calling_zone).kind" role="img" :aria-label="$store.calling.info(c.calling_zone).shortText" :title="$store.calling.info(c.calling_zone).shortText + ' · Estimated hours for the primary facility; check the location you are calling.'"></span><span x-text="c.operating_brand"></span></span>
 
               <!-- Broker Opportunity Status Badge -->
               <span class="badge"
@@ -1512,6 +1411,8 @@
               <span style="font-weight:600; color:var(--color-text-main);">
                 📍 <span x-text="c.best_location || 'US/Canada'"></span>
               </span>
+              <span class="calling-indicator" :class="{'calling-good':$store.calling.info(c.calling_zone).good}" :title="'Estimated weekday hours. For the primary facility; check individual locations below.'" x-text="$store.calling.info(c.calling_zone).shortText"></span>
+              <template x-if="c.calling_matches && !c.calling_matches.includes(c.primary_facility_id)"><button type="button" class="btn btn-secondary btn-xs" @click="expandedCompanies[c.company_id]=true">Another facility matches · See Details ↓</button></template>
               <span>•</span>
               <span style="color:var(--color-text-main);" x-text="c.primary_family_name || 'Industrial Freight'"></span>
               <template x-if="c.equipment_categories && c.equipment_categories.length > 0">
@@ -1527,11 +1428,8 @@
               </template>
             </div>
 
-            <div style="font-size:0.8125rem; line-height:1.5; margin:0.5rem 0;">
-              <template x-if="c.last_contacted_at"><div><strong>Last call:</strong> <span x-text="freightWorkflow.date(c.last_contacted_at)"></span><template x-if="c.last_call_outcome"><span> · <span x-text="outreachLabel(c.last_call_outcome)"></span></span></template></div></template>
-              <template x-if="c.last_contacted_at"><div><strong>Logged by:</strong> <span x-text="c.last_broker_name"></span></div></template>
-              <template x-if="c.last_feedback_notes"><div style="white-space:pre-wrap; overflow-wrap:anywhere;"><strong>Latest note:</strong> <span x-text="c.last_feedback_notes"></span></div></template>
-              <template x-if="c.next_follow_up_at"><div><strong>Next follow-up:</strong> <span x-text="freightWorkflow.date(c.next_follow_up_at)"></span></div></template>
+            </div>
+            {% with team_company_id = 'c.company_id', team_compact = true, team_calling_zone = 'c.calling_zone' %}{% include 'partials/team_company.html' %}{% endwith %}
             </div>
 
             <!-- Row 3: UI Truth Panel (Deterministic Real-World Evidence Breakdown) -->
@@ -1628,11 +1526,23 @@
                   📞 Call Now
                 </a>
               </template>
-              <button type="button" class="btn btn-primary btn-sm" @click.stop="openLogCall(c, null)" :disabled="!$store.team.mine(c.company_id)" style="width:100%; justify-content:center;">
-                📝 Log Call
-              </button>
+              <div class="call-action-help" :tabindex="$store.team.mine(c.company_id) ? -1 : 0" @click.stop
+                   :aria-label="$store.team.mine(c.company_id) ? 'Log Call / Update Status' : $store.team.callAccessMessage(c.company_id)">
+                <button type="button" class="btn btn-primary btn-sm" @click.stop="openLogCall(c, null)" :disabled="!$store.team.mine(c.company_id)"
+                        :aria-describedby="'call-help-' + c.company_id">
+                  📝 Log Call / Update Status
+                </button>
+                <span class="call-action-tooltip" role="tooltip" :id="'call-help-' + c.company_id"
+                      x-text="$store.team.mine(c.company_id) ? 'Choose a new call result or schedule a follow-up.' : $store.team.callAccessMessage(c.company_id)"></span>
+              </div>
               <template x-if="c.outreach_status && c.outreach_status !== 'UNCONTACTED'">
-                <button type="button" class="btn btn-secondary btn-sm" @click.stop="clearTracking(c, 'clear_status')" :disabled="clearingCompanyId !== null || !$store.team.mine(c.company_id)" style="width:100%; justify-content:center;">Clear Call Status</button>
+                <div class="call-action-help" :tabindex="$store.team.mine(c.company_id) ? -1 : 0" @click.stop
+                     :aria-label="$store.team.mine(c.company_id) ? 'Clear Call Status' : $store.team.callAccessMessage(c.company_id)">
+                  <button type="button" class="btn btn-secondary btn-sm" @click.stop="clearTracking(c, 'clear_status')" :disabled="clearingCompanyId !== null || !$store.team.mine(c.company_id)"
+                          :aria-describedby="'clear-help-' + c.company_id">Clear Call Status</button>
+                  <span class="call-action-tooltip" role="tooltip" :id="'clear-help-' + c.company_id"
+                        x-text="$store.team.mine(c.company_id) ? 'Remove the current call status. Saved call history is kept.' : $store.team.callAccessMessage(c.company_id)"></span>
+                </div>
               </template>
               <template x-if="c.next_follow_up_at">
                 <button type="button" class="btn btn-secondary btn-sm" @click.stop="clearTracking(c, 'cancel_follow_up')" :disabled="clearingCompanyId !== null || !$store.team.mine(c.company_id)" style="width:100%; justify-content:center;">Cancel Follow-Up</button>
@@ -1708,6 +1618,8 @@
                     <!-- Location & Physical Address -->
                     <td>
                       <div style="font-weight:600;" x-text="f.location_str"></div>
+                      <small class="calling-indicator" x-text="$store.calling.info(f.calling_zone).text"></small>
+                      <small class="calling-good" x-show="c.calling_matches && c.calling_matches.includes(f.facility_id)">Matches calling-time filter</small>
                       <div style="font-size:0.6875rem; color:var(--color-text-muted);" x-text="f.physical_address"></div>
                     </td>
 
@@ -1842,7 +1754,7 @@
               <tr :data-company-id="p.company_id">
                 <!-- Company & Facility -->
                 <td>
-                  <div style="font-weight:700; color:var(--color-text-main); font-size:0.875rem;" x-text="p.operating_brand"></div>
+                  <div class="company-calling-name" style="font-weight:700; color:var(--color-text-main); font-size:0.875rem;"><span class="calling-status-dot" :class="$store.calling.info(p.calling_zone).kind" role="img" :aria-label="$store.calling.info(p.calling_zone).shortText" :title="$store.calling.info(p.calling_zone).shortText + ' · Estimated hours for this facility.'"></span><span x-text="p.operating_brand"></span></div>
                   <div style="font-size:0.75rem; color:var(--color-text-muted);" x-text="p.facility_name"></div>
                   <div class="team-muted" x-text="$store.team.state[p.company_id]?.owner_name ? 'Working with: ' + $store.team.state[p.company_id].owner_name : 'Unassigned — open profile to Start Working'"></div>
                   <div style="font-size:0.6875rem; color:#0284c7;" x-show="p.parent_info"
@@ -1880,6 +1792,7 @@
                 <!-- Location -->
                 <td>
                   <div style="font-weight:600;" x-text="p.location_str"></div>
+                  <small class="calling-indicator" x-text="$store.calling.info(p.calling_zone).text"></small>
                   <div style="font-size:0.75rem; color:var(--color-text-muted);" x-text="p.physical_address"></div>
                 </td>
 

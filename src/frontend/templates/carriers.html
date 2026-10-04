@@ -1,59 +1,517 @@
 {% extends "base.html" %}
 
-{% block title %}Carriers & Capacity — FreightProspecting V1{% endblock %}
+{% block title %}Carrier Directory — Shipper IQ{% endblock %}
 
 {% block breadcrumb %}
-<span>Carriers & Capacity</span>
+<span>Carriers &amp; Capacity</span>
 <span style="color:#cbd5e1">/</span>
-<span style="font-weight:400; color:var(--color-text-muted);">Carrier Fleet & Capacity Postings</span>
+<span style="font-weight:400; color:var(--color-text-muted);">Carrier Directory</span>
 {% endblock %}
 
 {% block content %}
-<div>
-  <div class="section-header">
+<div x-data="carrierDirectoryApp()" x-init="init()" class="carrier-directory-container">
+  <!-- Top Section Header -->
+  <div class="section-header" style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1.25rem;">
     <div>
-      <h1 class="section-title">Carriers & Available Equipment Capacity</h1>
-      <p class="section-subtitle">Targeted motor carriers and verified equipment capacity matching.</p>
+      <h1 class="section-title">Carrier Directory</h1>
+      <p class="section-subtitle">Verified motor carriers, operating authorities, equipment fleets, and capacity.</p>
     </div>
-    <span class="badge badge-unknown">0 Active Postings</span>
+    <div style="display:flex; gap:0.75rem; align-items:center;">
+      <button class="btn btn-primary" @click="showAddModal = true" style="display:inline-flex; align-items:center; gap:0.4rem;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+        <span>Add Carrier</span>
+      </button>
+    </div>
   </div>
 
-  <!-- Intentional, Honest Empty State -->
-  <div class="empty-state-card">
-    <div class="empty-state-icon-box">
-      <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+  <!-- Summary Metric Cards -->
+  <div class="stats-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:1.5rem;">
+    <div class="stat-card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1rem;">
+      <div style="font-size:0.75rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase;">Total Carriers</div>
+      <div style="font-size:1.75rem; font-weight:800; color:var(--color-text-main); margin-top:0.25rem;" x-text="summaryCounts.total_carriers || 0">0</div>
+      <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top:0.25rem;">Registered network entities</div>
     </div>
+    <div class="stat-card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1rem;">
+      <div style="font-size:0.75rem; font-weight:700; color:#15803d; text-transform:uppercase;">Verified Active</div>
+      <div style="font-size:1.75rem; font-weight:800; color:#15803d; margin-top:0.25rem;" x-text="summaryCounts.verified_carriers || 0">0</div>
+      <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top:0.25rem;">FMCSA active authority</div>
+    </div>
+    <div class="stat-card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1rem;">
+      <div style="font-size:0.75rem; font-weight:700; color:#0284c7; text-transform:uppercase;">Available Capacity</div>
+      <div style="font-size:1.75rem; font-weight:800; color:#0284c7; margin-top:0.25rem;" x-text="summaryCounts.available_capacity || 0">0</div>
+      <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top:0.25rem;">Live trucks ready to load</div>
+    </div>
+    <div class="stat-card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1rem;">
+      <div style="font-size:0.75rem; font-weight:700; color:#8b5cf6; text-transform:uppercase;">My Carriers</div>
+      <div style="font-size:1.75rem; font-weight:800; color:#8b5cf6; margin-top:0.25rem;" x-text="summaryCounts.my_carriers || 0">0</div>
+      <div style="font-size:0.75rem; color:var(--color-text-muted); margin-top:0.25rem;">Currently assigned to you</div>
+    </div>
+  </div>
 
-    <h2 class="empty-state-title">No Current Capacity Postings Yet</h2>
-    <p class="empty-state-desc">
-      In accordance with our zero-hallucination standard, the database contains zero fake or hypothetical truck postings. In freight brokerage prospecting, shippers and freight demand come first.
-    </p>
-
-    <div class="empty-state-guide">
-      <div style="font-weight:700; color:var(--color-text-main); margin-bottom:0.5rem; font-size:0.875rem;">
-        Core Real-World Entity Distinctions:
+  <!-- Search & Filter Controls -->
+  <div class="filter-panel" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; margin-bottom:1.5rem;">
+    <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+      <div style="flex:1; min-width:280px; position:relative;">
+        <input type="text" x-model="searchQuery" @input.debounce.300ms="fetchCarriers()"
+               placeholder="Search by carrier name, USDOT, MC, phone, city, state..."
+               class="form-control" style="width:100%; padding-left:2.25rem; font-size:0.875rem;" />
+        <svg style="position:absolute; left:0.75rem; top:50%; transform:translateY(-50%); width:16px; height:16px; color:var(--color-text-muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
       </div>
-      <ul style="margin-left:1.25rem; display:flex; flex-direction:column; gap:0.5rem;">
-        <li>
-          <strong>Carrier Directory ≠ Historical Lane Activity ≠ Capacity Posting:</strong>
-          A registered trucking company profile in <code>carriers</code> is distinct from historical route patterns in <code>carrier_lane_activity</code>, and both are distinct from a specific truck available on a confirmed date in <code>capacity_postings</code>.
-        </li>
-        <li>
-          <strong>Specific Match Invariant:</strong>
-          A valid match exists <em>only</em> between an actual confirmed <code>load_opportunity</code> and an actual <code>capacity_posting</code>. The application never matches a vague prospect to a general carrier directory entry.
-        </li>
-        <li>
-          <strong>Cross-Border Capability:</strong>
-          Carriers are classified as <code>US_ONLY</code>, <code>CANADA_ONLY</code>, or <code>US_CANADA_CAPABLE</code>. A domestic-only carrier is never matched to a cross-border load.
-        </li>
-      </ul>
+      <div style="display:flex; gap:0.5rem; align-items:center;">
+        <span style="font-size:0.8125rem; font-weight:600; color:var(--color-text-muted);">Ownership:</span>
+        <button type="button" class="btn btn-sm" :class="ownershipFilter === 'all' ? 'btn-primary' : 'btn-secondary'" @click="setOwnership('all')">All</button>
+        <button type="button" class="btn btn-sm" :class="ownershipFilter === 'mine' ? 'btn-primary' : 'btn-secondary'" @click="setOwnership('mine')">Mine</button>
+        <button type="button" class="btn btn-sm" :class="ownershipFilter === 'available' ? 'btn-primary' : 'btn-secondary'" @click="setOwnership('available')">Available</button>
+      </div>
     </div>
 
-    <div style="margin-top:1.5rem;">
-      <a href="/" class="btn btn-primary">
-        Return to Shortlist Cockpit →
-      </a>
+    <!-- Multi-group filter pills -->
+    <div style="display:flex; flex-wrap:wrap; gap:1.25rem; font-size:0.8125rem; border-top:1px solid var(--color-border); padding-top:0.75rem;">
+      <!-- Equipment Filter -->
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-weight:700; color:var(--color-text-muted);">Equipment:</span>
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.25rem;">
+          <input type="checkbox" value="FLATBED" x-model="selectedEquipment" @change="fetchCarriers()" /> Flatbed
+        </label>
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.25rem;">
+          <input type="checkbox" value="STEP_DECK" x-model="selectedEquipment" @change="fetchCarriers()" /> Step Deck
+        </label>
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.25rem;">
+          <input type="checkbox" value="DRY_VAN" x-model="selectedEquipment" @change="fetchCarriers()" /> Dry Van
+        </label>
+      </div>
+
+      <!-- Authority Filter -->
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-weight:700; color:var(--color-text-muted);">Authority:</span>
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.25rem;">
+          <input type="checkbox" value="VERIFIED_ACTIVE" x-model="selectedAuthority" @change="fetchCarriers()" /> Active
+        </label>
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.25rem;">
+          <input type="checkbox" value="UNKNOWN" x-model="selectedAuthority" @change="fetchCarriers()" /> Unknown
+        </label>
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.25rem;">
+          <input type="checkbox" value="INACTIVE" x-model="selectedAuthority" @change="fetchCarriers()" /> Inactive
+        </label>
+      </div>
+
+      <!-- Country Filter -->
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-weight:700; color:var(--color-text-muted);">Country:</span>
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.25rem;">
+          <input type="checkbox" value="US" x-model="selectedCountry" @change="fetchCarriers()" /> US
+        </label>
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.25rem;">
+          <input type="checkbox" value="CA" x-model="selectedCountry" @change="fetchCarriers()" /> Canada
+        </label>
+      </div>
+
+      <!-- Capacity Filter -->
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <span style="font-weight:700; color:var(--color-text-muted);">Capacity:</span>
+        <select class="form-control" style="padding:0.25rem 0.5rem; font-size:0.8125rem;" x-model="capacityFilter" @change="fetchCarriers()">
+          <option value="">Any Capacity</option>
+          <option value="available_now">Available Now</option>
+          <option value="upcoming">Upcoming</option>
+          <option value="none">No Postings</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div x-show="loading" style="text-align:center; padding:2rem; color:var(--color-text-muted);">
+    <div class="spinner" style="margin:0 auto 0.5rem auto;"></div>
+    <span>Loading carriers...</span>
+  </div>
+
+  <!-- Empty State -->
+  <div x-show="!loading && carriers.length === 0" class="empty-state-card">
+    <div class="empty-state-icon-box">
+      <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+    </div>
+    <h2 class="empty-state-title">No Carriers Matching Filter / No Current Capacity Postings Yet</h2>
+    <p class="empty-state-desc">
+      In accordance with our zero-hallucination standard, the database contains zero fake carriers or speculative capacity postings.
+      Core distinction: Carrier Directory ≠ Historical Lane Activity ≠ Capacity Posting.
+    </p>
+    <button class="btn btn-secondary" @click="resetFilters()" style="margin-top:1rem;">Clear All Filters</button>
+  </div>
+
+  <!-- Carrier Cards Grid -->
+  <div x-show="!loading && carriers.length > 0" style="display:flex; flex-direction:column; gap:1rem;">
+    <template x-for="c in carriers" :key="c.id">
+      <div class="carrier-card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; display:flex; flex-direction:column; gap:0.75rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem;">
+          <div>
+            <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+              <a :href="'/carriers/' + c.id" style="font-size:1.125rem; font-weight:700; color:var(--color-primary); text-decoration:none;" x-text="c.legal_name"></a>
+              <span x-show="c.dba_name" style="font-size:0.875rem; color:var(--color-text-muted);" x-text="'DBA: ' + c.dba_name"></span>
+              
+              <!-- Authority Status Badge -->
+              <span class="badge" :class="c.operating_status === 'VERIFIED_AUTHORIZED' ? 'badge-verified' : (c.operating_status === 'UNKNOWN' ? 'badge-unknown' : 'badge-danger')"
+                    x-text="c.operating_status === 'VERIFIED_AUTHORIZED' ? '✓ Authority Active' : (c.operating_status === 'UNKNOWN' ? '? Authority Unknown' : '✕ Out of Service')"></span>
+
+              <!-- Country Badge -->
+              <span class="badge badge-unknown" x-text="c.country"></span>
+            </div>
+            
+            <div style="display:flex; gap:1rem; margin-top:0.35rem; font-size:0.8125rem; color:var(--color-text-muted); flex-wrap:wrap;">
+              <span x-show="c.usdot_number"><strong>USDOT:</strong> <span x-text="c.usdot_number"></span></span>
+              <span x-show="c.mc_number"><strong>MC:</strong> <span x-text="c.mc_number"></span></span>
+              <span x-show="c.physical_city || c.physical_state_prov">
+                <strong>Base:</strong> <span x-text="(c.physical_city ? c.physical_city + ', ' : '') + (c.physical_state_prov || '')"></span>
+              </span>
+              <span x-show="c.fleet_power_units"><strong>Power Units:</strong> <span x-text="c.fleet_power_units"></span></span>
+            </div>
+          </div>
+
+          <!-- Ownership & Relationship Badge -->
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span class="badge" :class="c.owner_username ? 'badge-inferred' : 'badge-unknown'"
+                  x-text="c.owner_username ? ('Assigned: ' + c.owner_username) : 'Unassigned'"></span>
+            <span class="badge" :class="c.current_relationship_status === 'INTERESTED' ? 'badge-verified' : (c.current_relationship_status === 'CALL_BACK' ? 'badge-inferred' : 'badge-unknown')"
+                  x-text="c.current_relationship_status || 'UNCONTACTED'"></span>
+          </div>
+        </div>
+
+        <!-- Equipment & Capacity Summary Row -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; background:var(--color-surface-inset); padding:0.6rem 0.85rem; border-radius:6px; font-size:0.8125rem;">
+          <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+            <strong style="color:var(--color-text-main);">Equipment:</strong>
+            <template x-for="eq in (c.equipment_types_list || [])" :key="eq">
+              <span class="badge badge-unknown" style="font-size:0.75rem;" x-text="eq"></span>
+            </template>
+            <span x-show="!c.equipment_types_list || c.equipment_types_list.length === 0" style="color:var(--color-text-muted);">Unspecified</span>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <span x-show="c.active_capacity_count > 0" style="color:#0284c7; font-weight:600;">
+              🚚 <span x-text="c.active_capacity_count + ' active posting(s)'"></span>
+            </span>
+            <span x-show="!c.active_capacity_count || c.active_capacity_count === 0" style="color:var(--color-text-muted);">
+              No active postings
+            </span>
+            <span x-show="c.business_phone" style="color:var(--color-text-main);">
+              📞 <span x-text="c.business_phone"></span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:0.25rem;">
+          <button x-show="!c.owner_id" class="btn btn-secondary btn-sm" @click="startWorking(c.id)" title="Start Working on Carrier">
+            Start Working
+          </button>
+          <button class="btn btn-secondary btn-sm" @click="openCallModal(c)" title="Log Carrier Call">
+            Log Call
+          </button>
+          <a :href="'/capacity?carrier_id=' + c.id" class="btn btn-secondary btn-sm">
+            View Capacity
+          </a>
+          <a :href="'/carriers/' + c.id" class="btn btn-primary btn-sm">
+            Full Profile →
+          </a>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div x-show="!loading && totalPages > 1" style="display:flex; justify-content:space-between; align-items:center; margin-top:1.5rem; font-size:0.875rem;">
+    <div style="color:var(--color-text-muted);">
+      Showing page <strong x-text="page"></strong> of <strong x-text="totalPages"></strong> (<span x-text="totalCarriers"></span> carriers)
+    </div>
+    <div style="display:flex; gap:0.5rem;">
+      <button class="btn btn-secondary btn-sm" :disabled="page <= 1" @click="page--; fetchCarriers()">Previous</button>
+      <button class="btn btn-secondary btn-sm" :disabled="page >= totalPages" @click="page++; fetchCarriers()">Next</button>
+    </div>
+  </div>
+
+  <!-- Modal: Add Carrier -->
+  <div x-show="showAddModal" class="modal-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:100;" x-cloak>
+    <div class="modal-dialog" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; width:100%; max-width:540px; padding:1.5rem; max-height:90vh; overflow-y:auto;" @click.away="showAddModal = false">
+      <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:1rem; color:var(--color-text-main);">Add New Carrier</h2>
+      <form @submit.prevent="submitAddCarrier()">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:0.75rem;">
+          <div style="grid-column: span 2;">
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Legal Name *</label>
+            <input type="text" x-model="newCarrier.legal_name" required class="form-control" style="width:100%;" placeholder="e.g. Apex Freight LLC" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">USDOT Number</label>
+            <input type="text" x-model="newCarrier.usdot_number" class="form-control" style="width:100%;" placeholder="e.g. 1234567" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">MC Number</label>
+            <input type="text" x-model="newCarrier.mc_number" class="form-control" style="width:100%;" placeholder="e.g. 987654" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">City</label>
+            <input type="text" x-model="newCarrier.physical_city" class="form-control" style="width:100%;" placeholder="e.g. Dallas" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">State / Prov *</label>
+            <input type="text" x-model="newCarrier.physical_state_prov" required class="form-control" style="width:100%;" placeholder="e.g. TX or ON" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Country *</label>
+            <select x-model="newCarrier.country" class="form-control" style="width:100%;">
+              <option value="US">United States</option>
+              <option value="CA">Canada</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Business Phone</label>
+            <input type="text" x-model="newCarrier.business_phone" class="form-control" style="width:100%;" placeholder="e.g. 555-123-4567" />
+          </div>
+        </div>
+
+        <div style="margin-bottom:0.75rem;">
+          <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Primary Equipment Types</label>
+          <div style="display:flex; gap:1rem; font-size:0.875rem;">
+            <label style="cursor:pointer;"><input type="checkbox" value="FLATBED" x-model="newCarrier.equipment" /> Flatbed</label>
+            <label style="cursor:pointer;"><input type="checkbox" value="STEP_DECK" x-model="newCarrier.equipment" /> Step Deck</label>
+            <label style="cursor:pointer;"><input type="checkbox" value="DRY_VAN" x-model="newCarrier.equipment" /> Dry Van</label>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1.25rem;">
+          <button type="button" class="btn btn-secondary" @click="showAddModal = false">Cancel</button>
+          <button type="submit" class="btn btn-primary" :disabled="submitting">Save Carrier</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Log Carrier Call -->
+  <div x-show="showCallModal" class="modal-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:100;" x-cloak>
+    <div class="modal-dialog" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; width:100%; max-width:500px; padding:1.5rem;" @click.away="showCallModal = false">
+      <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem; color:var(--color-text-main);">Log Carrier Outreach</h2>
+      <p style="font-size:0.8125rem; color:var(--color-text-muted); margin-bottom:1rem;" x-text="'Carrier: ' + (activeCarrier ? activeCarrier.legal_name : '')"></p>
+      
+      <form @submit.prevent="submitCallLog()">
+        <div style="margin-bottom:0.75rem;">
+          <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Call Disposition *</label>
+          <select x-model="callForm.disposition" class="form-control" style="width:100%;" required>
+            <option value="INTERESTED">Interested in Loads</option>
+            <option value="CALL_BACK">Call Back Required</option>
+            <option value="NO_ANSWER">No Answer / Left Voicemail</option>
+            <option value="NOT_INTERESTED">Not Interested</option>
+            <option value="CONNECTED_DISPATCH">Connected with Dispatch</option>
+            <option value="WRONG_CONTACT">Wrong Contact</option>
+          </select>
+        </div>
+
+        <div x-show="callForm.disposition === 'CALL_BACK'" style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-bottom:0.75rem;">
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Callback Date *</label>
+            <input type="date" x-model="callForm.callback_date" :required="callForm.disposition === 'CALL_BACK'" class="form-control" style="width:100%;" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Callback Time</label>
+            <input type="time" x-model="callForm.callback_time" class="form-control" style="width:100%;" />
+          </div>
+        </div>
+
+        <div style="margin-bottom:0.75rem;">
+          <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Quoted Rate (Optional)</label>
+          <input type="number" step="0.01" x-model="callForm.quoted_rate" class="form-control" style="width:100%;" placeholder="e.g. 2400.00" />
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Notes &amp; Equipment Discussed</label>
+          <textarea x-model="callForm.notes" rows="3" class="form-control" style="width:100%;" placeholder="Document lane preferences, rate requirements, truck availability..."></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+          <button type="button" class="btn btn-secondary" @click="showCallModal = false">Cancel</button>
+          <button type="submit" class="btn btn-primary" :disabled="submitting">Save Outreach Record</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
+
+<script>
+function carrierDirectoryApp() {
+  return {
+    carriers: [],
+    summaryCounts: {},
+    searchQuery: '',
+    ownershipFilter: 'all',
+    selectedEquipment: [],
+    selectedAuthority: [],
+    selectedCountry: [],
+    capacityFilter: '',
+    page: 1,
+    totalPages: 1,
+    totalCarriers: 0,
+    loading: false,
+    submitting: false,
+    showAddModal: false,
+    showCallModal: false,
+    activeCarrier: null,
+    newCarrier: {
+      legal_name: '',
+      usdot_number: '',
+      mc_number: '',
+      physical_city: '',
+      physical_state_prov: '',
+      country: 'US',
+      business_phone: '',
+      equipment: []
+    },
+    callForm: {
+      disposition: 'INTERESTED',
+      callback_date: '',
+      callback_time: '09:00',
+      quoted_rate: null,
+      notes: ''
+    },
+    init() {
+      this.fetchSummaryCounts();
+      this.fetchCarriers();
+    },
+    setOwnership(val) {
+      this.ownershipFilter = val;
+      this.page = 1;
+      this.fetchCarriers();
+    },
+    resetFilters() {
+      this.searchQuery = '';
+      this.ownershipFilter = 'all';
+      this.selectedEquipment = [];
+      this.selectedAuthority = [];
+      this.selectedCountry = [];
+      this.capacityFilter = '';
+      this.page = 1;
+      this.fetchCarriers();
+    },
+    async fetchSummaryCounts() {
+      try {
+        const res = await fetch('/api/carriers/summary');
+        if (res.ok) {
+          this.summaryCounts = await res.json();
+        }
+      } catch (e) {
+        console.error('Failed to load carrier summary:', e);
+      }
+    },
+    async fetchCarriers() {
+      this.loading = true;
+      try {
+        const params = new URLSearchParams();
+        if (this.searchQuery) params.set('q', this.searchQuery);
+        if (this.ownershipFilter !== 'all') params.set('ownership', this.ownershipFilter);
+        if (this.capacityFilter) params.set('capacity', this.capacityFilter);
+        this.selectedEquipment.forEach(eq => params.append('equipment', eq));
+        this.selectedAuthority.forEach(a => params.append('authority', a));
+        this.selectedCountry.forEach(c => params.append('country', c));
+        params.set('page', this.page);
+        params.set('page_size', 25);
+
+        const res = await fetch('/api/carriers?' + params.toString());
+        if (res.ok) {
+          const data = await res.json();
+          this.carriers = data.items || [];
+          this.totalPages = data.total_pages || 1;
+          this.totalCarriers = data.total || 0;
+        }
+      } catch (e) {
+        console.error('Failed to load carriers:', e);
+      } finally {
+        this.loading = false;
+      }
+    },
+    async startWorking(carrierId) {
+      try {
+        const res = await fetch(`/api/carriers/${carrierId}/assign`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({action: 'claim'})
+        });
+        if (res.ok) {
+          this.fetchCarriers();
+          this.fetchSummaryCounts();
+        } else {
+          const err = await res.json();
+          alert(err.detail || 'Could not claim carrier.');
+        }
+      } catch (e) {
+        alert('Network error claiming carrier.');
+      }
+    },
+    openCallModal(c) {
+      this.activeCarrier = c;
+      this.callForm = {
+        disposition: 'INTERESTED',
+        callback_date: '',
+        callback_time: '09:00',
+        quoted_rate: null,
+        notes: ''
+      };
+      this.showCallModal = true;
+    },
+    async submitAddCarrier() {
+      this.submitting = true;
+      try {
+        const res = await fetch('/api/carriers', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            legal_name: this.newCarrier.legal_name,
+            usdot_number: this.newCarrier.usdot_number || null,
+            mc_number: this.newCarrier.mc_number || null,
+            physical_city: this.newCarrier.physical_city || null,
+            physical_state_prov: this.newCarrier.physical_state_prov,
+            country: this.newCarrier.country,
+            business_phone: this.newCarrier.business_phone || null,
+            primary_equipment_types: this.newCarrier.equipment
+          })
+        });
+        if (res.ok) {
+          this.showAddModal = false;
+          this.newCarrier = {
+            legal_name: '', usdot_number: '', mc_number: '',
+            physical_city: '', physical_state_prov: '', country: 'US',
+            business_phone: '', equipment: []
+          };
+          this.fetchCarriers();
+          this.fetchSummaryCounts();
+        } else {
+          const err = await res.json();
+          alert(err.detail || 'Failed to add carrier.');
+        }
+      } catch (e) {
+        alert('Network error saving carrier.');
+      } finally {
+        this.submitting = false;
+      }
+    },
+    async submitCallLog() {
+      if (!this.activeCarrier) return;
+      this.submitting = true;
+      try {
+        const res = await fetch(`/api/carriers/${this.activeCarrier.id}/outreach`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(this.callForm)
+        });
+        if (res.ok) {
+          this.showCallModal = false;
+          this.fetchCarriers();
+        } else {
+          const err = await res.json();
+          alert(err.detail || 'Failed to record call.');
+        }
+      } catch (e) {
+        alert('Network error recording call.');
+      } finally {
+        this.submitting = false;
+      }
+    }
+  };
+}
+</script>
 {% endblock %}

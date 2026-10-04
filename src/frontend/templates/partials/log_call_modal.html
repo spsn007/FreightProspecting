@@ -19,6 +19,17 @@ function logCallModalComponent() {
     feedbackNotes: '',
     followUpDate: '',
     followUpTime: '09:00',
+    followUpPreview: '',
+    previewVersion: 0,
+    async updateTimePreview() {
+      const version = ++this.previewVersion;
+      const facility = this.facilities.find(f => String(f.id) === String(this.selectedFacilityId)) || (this.facilities.length === 1 ? this.facilities[0] : null);
+      this.followUpPreview = this.followUpDate ? 'Checking company time…' : '';
+      try {
+        const text = await callingTimes.preview(facility && facility.calling_zone, this.followUpDate, this.followUpTime);
+        if (version === this.previewVersion) this.followUpPreview = text;
+      } catch (error) { if (version === this.previewVersion) this.followUpPreview = error.message; }
+    },
     originStateProv: '',
     destStateProv: '',
     errorMessage: '',
@@ -95,6 +106,7 @@ function logCallModalComponent() {
     },
 
     init() {
+      ['followUpDate', 'followUpTime', 'selectedFacilityId'].forEach(field => this.$watch(field, () => this.updateTimePreview()));
       window.addEventListener('beforeunload', (event) => {
         if (this.open && this.hasUnsavedChanges()) {
           event.preventDefault(); event.returnValue = '';
@@ -103,7 +115,7 @@ function logCallModalComponent() {
       window.addEventListener('open-log-call', (e) => {
         const d = e.detail || {};
         const companyId = d.companyId || (d.company ? d.company.company_id : null);
-        if (!Alpine.store('team').mine(companyId)) { freightWorkflow.notice('Start Working on this company first. Another broker may already be handling it.'); return; }
+        if (!Alpine.store('team').mine(companyId)) { freightWorkflow.notice(Alpine.store('team').callAccessMessage(companyId)); return; }
         this.resetForm();
         this.companyId = d.companyId || (d.company ? d.company.company_id : null);
         this.companyName = d.companyName || (d.company ? (d.company.operating_brand || d.company.company_name) : 'Prospect Company');
@@ -112,6 +124,7 @@ function logCallModalComponent() {
           name: f.facility_name || f.name,
           city: f.city,
           state: f.state_prov || f.state,
+          calling_zone: f.calling_zone,
           phone: f.phone || (f.best_contact ? f.best_contact.phone_number : ''),
           contact: f.contact || (f.best_contact ? f.best_contact.contact_name : '')
         })) : []);
@@ -238,6 +251,10 @@ function logCallModalComponent() {
       }
       if (this.isSuppressed) {
         this.errorMessage = this.suppressionMessage || 'Outreach blocked: active suppression / Do Not Contact in effect.';
+        return;
+      }
+      if (this.disposition === 'CALL_BACK' && !this.followUpDate) {
+        this.errorMessage = 'Choose a follow-up date so this company appears in Follow-Ups.';
         return;
       }
       if (this.hasVerifiedFacts) {
@@ -482,7 +499,7 @@ function logCallModalComponent() {
         {% set outcome_groups = [
           ('Main Call Results', [
             ('INTERESTED', 'interested', 'Wants rates or broker information'),
-            ('CALL_BACK', 'callback', 'Asked you to call again'),
+            ('CALL_BACK', 'callback', 'Asked you to call again — select a follow-up date'),
             ('NO_ANSWER', 'no-answer', 'Nobody answered or the line was busy'),
             ('NOT_INTERESTED', 'not-interested', 'Declined your offer')
           ]),
@@ -520,7 +537,7 @@ function logCallModalComponent() {
       <div style="background: var(--color-border-subtle); border: 1px dashed var(--color-border); border-radius: var(--radius-md); padding: 0.75rem; margin-bottom: 1.25rem;">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
           <label style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); margin: 0;">
-            Schedule Your Next Call (Optional)
+            Schedule Your Next Call <span x-text="disposition === 'CALL_BACK' ? '(Required for Call Back)' : '(Optional)'"></span>
           </label>
           <div style="display: flex; gap: 0.35rem;">
             <button type="button" @click="setQuickFollowUp(1)" class="btn btn-secondary btn-sm" style="font-size: 0.7rem; padding: 0.15rem 0.45rem;">Tomorrow</button>
@@ -531,12 +548,14 @@ function logCallModalComponent() {
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;">
           <div>
-            <input type="date" id="call-follow-up-date" aria-label="Follow-up date" x-model="followUpDate" class="filter-select" style="width: 100%; font-size: 0.8125rem; padding: 0.35rem 0.5rem;">
+            <input type="date" id="call-follow-up-date" aria-label="Follow-up date" x-model="followUpDate" :required="disposition === 'CALL_BACK'" class="filter-select" style="width: 100%; font-size: 0.8125rem; padding: 0.35rem 0.5rem;">
           </div>
           <div>
             <input type="time" id="call-follow-up-time" aria-label="Follow-up time" x-model="followUpTime" class="filter-select" style="width: 100%; font-size: 0.8125rem; padding: 0.35rem 0.5rem;">
           </div>
         </div>
+        <p class="calling-note">Enter the date and time in your device's local time. Company time and India time are shown below.</p>
+        <p class="calling-note" role="status" x-show="followUpPreview" x-text="followUpPreview"></p>
       </div>
 
       <!-- Optional Verified Telephone Evidence Intake Section (Phase C) -->

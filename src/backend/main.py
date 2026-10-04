@@ -15,9 +15,9 @@ from fastapi import Depends, FastAPI, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse, JSONResponse, Response, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, Field, field_validator
 
-from src.backend import team
+from src.backend import team, calling_times
 from src.backend.db.connection import check_database_health, create_connection
 from src.backend.db.validators import normalize_to_utc_iso, validate_date_string, sanitize_url, validate_iso_timestamp
 from src.backend.db.queries import (
@@ -53,7 +53,7 @@ TEMPLATES_DIR = PROJECT_ROOT / "src" / "frontend" / "templates"
 
 # Initialize FastAPI Application
 app = FastAPI(
-    title="FreightProspecting V1",
+    title="Shipper IQ",
     description="Local Browser Application for Freight Brokerage Prospecting & Evidence Tracking",
     version="1.0.0",
 )
@@ -64,6 +64,7 @@ app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 # Mount Jinja2 Templates & Register Filters
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 templates.env.filters["safe_url"] = lambda u: sanitize_url(u) or ""
+templates.env.globals['calling_zone'] = calling_times.zone_for
 
 # Shared display names for the existing outreach outcomes.
 OUTREACH_LABELS = {
@@ -81,6 +82,11 @@ OUTREACH_LABELS = {
 }
 templates.env.globals["outreach_labels"] = OUTREACH_LABELS
 templates.env.globals["team_snapshot"] = team.snapshot
+app.state.templates = templates
+
+from src.backend.db import carrier_schema
+from src.backend.carrier_routes import carrier_router
+app.include_router(carrier_router)
 
 
 
@@ -99,7 +105,7 @@ async def file_not_found_exception_handler(request: Request, exc: FileNotFoundEr
             content=f"""
             <!DOCTYPE html>
             <html>
-            <head><title>503 Service Unavailable — FreightProspecting</title></head>
+            <head><title>503 Service Unavailable — Shipper IQ</title></head>
             <body style="font-family:sans-serif; padding:40px; text-align:center; background:#f8fafc; color:#1e293b;">
                 <h1>503 Service Unavailable</h1>
                 <p><strong>{err_msg}</strong></p>
@@ -132,6 +138,7 @@ async def team_security(request: Request, call_next):
         return await call_next(request)
     try:
         team.initialize()
+        carrier_schema.initialize()
         user = team.session_user(request.cookies.get(team.COOKIE))
     except FileNotFoundError as exc:
         return JSONResponse({"detail": str(exc), "healthy": False}, status_code=503)
@@ -203,9 +210,10 @@ class CreateBrokerRequest(BaseModel):
 
 
 class UpdateBrokerRequest(BaseModel):
-    action: Literal["disable", "enable", "password"]
+    action: Literal["disable", "enable", "password", "rename"]
     password: Optional[str] = None
     target_id: Optional[int] = None
+    username: Optional[str] = None
 
 
 @app.post("/api/admin/users", status_code=201)
@@ -216,7 +224,7 @@ async def create_broker(req: CreateBrokerRequest):
 
 @app.post("/api/admin/users/{user_id}")
 async def update_broker(request: Request, user_id: int, req: UpdateBrokerRequest):
-    team.update_user(request.state.user, user_id, req.action, req.password, req.target_id)
+    team.update_user(request.state.user, user_id, req.action, req.password, req.target_id, req.username)
     return {"status": "success"}
 
 
@@ -247,6 +255,51 @@ async def team_state():
 @app.get("/api/team/users")
 async def team_users():
     return team.users(active_only=True)
+
+
+class RescheduleFollowUpRequest(BaseModel):
+    follow_up_at: str = Field(min_length=1, max_length=100)
+
+
+@app.post("/api/admin/companies/{company_id}/follow-up")
+async def admin_reschedule_follow_up(request: Request, company_id: int, req: RescheduleFollowUpRequest):
+    team.reschedule_follow_up(request.state.user, company_id, req.follow_up_at)
+    return team.snapshot()[company_id]
+
+
+class ReadNotificationsRequest(BaseModel):
+    keys: Optional[List[str]] = Field(default=None, max_length=1000)
+    tz: str = Field(default="UTC", max_length=100)
+
+
+class AnnouncementRequest(BaseModel):
+    title: str = Field(min_length=1, max_length=100)
+    message: str = Field(min_length=1, max_length=2000)
+
+    @field_validator("title", "message")
+    @classmethod
+    def nonblank(cls, value):
+        if not value.strip():
+            raise ValueError("Enter a title and message.")
+        return value.strip()
+
+
+@app.get("/api/notifications")
+async def notification_list(request: Request, tz: str = Query("UTC", max_length=100)):
+    result = team.notifications(request.state.user, tz)
+    result["items"] = result["items"][:100]
+    return result
+
+
+@app.post("/api/notifications/read")
+async def notification_read(request: Request, req: ReadNotificationsRequest):
+    team.read_notifications(request.state.user, req.keys, req.tz)
+    return {"status": "success"}
+
+
+@app.post("/api/admin/announcements", status_code=201)
+async def announcement_create(request: Request, req: AnnouncementRequest):
+    return {"status": "success", "recipients": team.announce(request.state.user, req.title, req.message)}
 
 
 # ============================================================================
@@ -299,6 +352,10 @@ async def master_directory_page(
     team_view: Literal["all", "mine", "available"] = "all",
     follow_up: Optional[Literal["all", "today", "overdue", "upcoming"]] = None,
     tz: Optional[str] = None,
+    calling_zone: Optional[str] = None,
+    calling_now: bool = False,
+    calling_start: int = Query(9, ge=0, le=23),
+    calling_end: int = Query(17, ge=1, le=24),
 ):
     """
     Screen 2: Master Directory (Company-Grouped & Flat Facility Views)
@@ -334,10 +391,21 @@ async def master_directory_page(
         elif "NOT_INTERESTED" in outreach_items:
             active_nav = "crm_not_interested"
 
+    if (request.state.user["role"] == "BROKER"
+            and active_nav in {"prospects", "crm_interested", "crm_follow_ups", "crm_no_answer"}
+            and "team_view" not in request.query_params):
+        default_team_view = "available" if active_nav == "prospects" else "mine"
+        return RedirectResponse(str(request.url.include_query_params(team_view=default_team_view)), status_code=302)
+
     counts = get_summary_counts()
     universe_meta = get_universe_metadata()
     team_data = team.snapshot()
     allowed_ids = team.allowed_company_ids(request.state.user, team_view, team_data)
+    if calling_zone and calling_zone not in calling_times.REGIONS:
+        raise HTTPException(400, 'Choose a recognized time zone.')
+    if calling_end <= calling_start:
+        raise HTTPException(400, 'Closing time must be after opening time.')
+    allowed_ids = calling_times.matching_companies(allowed_ids, calling_zone, calling_now, calling_start, calling_end)
     prospects = get_prospects_list(
         allowed_company_ids=allowed_ids,
         lifecycle_stage=stage,
@@ -380,6 +448,7 @@ async def master_directory_page(
     )
     for group in company_groups["items"]:
         group.update(team_data.get(group["company_id"], {}))
+        calling_times.annotate(group, calling_zone, calling_now, calling_start, calling_end)
     if follow_up_view:
         schedule = get_crm_follow_ups(user_timezone=tz)
         groups = company_groups["items"]
@@ -400,11 +469,16 @@ async def master_directory_page(
                         page_start=start + 1 if total else 0, page_end=min(start + effective_page_size, total))
         company_groups.update(items=groups[start:start + effective_page_size], total_count=total,
                               page=effective_page, page_size=effective_page_size, total_pages=total_pages, metadata=metadata)
+    if view.lower() == 'facilities' and (calling_now or calling_zone):
+        # Facility view would otherwise include other locations of a matching company.
+        return RedirectResponse(str(request.url.include_query_params(view='companies')), status_code=302)
     taxonomy_overview = get_taxonomy_overview()
     commodity_families = get_commodity_families()
     commodity_categories = get_commodity_categories()
 
     prospects_data = prospects.get("items", prospects) if isinstance(prospects, dict) else prospects
+    for facility in prospects_data:
+        facility['calling_zone'] = calling_times.zone_for(facility)
     companies_data = company_groups.get("items", company_groups) if isinstance(company_groups, dict) else company_groups
     active_results = prospects if view.lower() == "facilities" else company_groups
     pagination_info = active_results if isinstance(active_results, dict) else None
@@ -513,54 +587,58 @@ async def prospect_detail_page(request: Request, facility_id: int, return_to: st
     )
 
 
-@app.get("/loads", response_class=HTMLResponse)
-async def loads_margins_page(request: Request):
-    """
-    Screen 3: Loads & Margins (Discrete Opportunities)
-    Renders truthful, honest empty state with zero fake loads.
-    """
-    counts = get_summary_counts()
-    return templates.TemplateResponse(
-        request=request,
-        name="loads.html",
-        context={
-            "counts": counts,
-            "active_nav": "loads",
-        },
-    )
+@app.get('/calling-times', response_class=HTMLResponse)
+async def calling_times_page(request: Request):
+    return templates.TemplateResponse(request=request, name='calling_times.html',
+        context={'active_nav': 'calling_times', 'regions': calling_times.REGIONS, 'zone_labels': calling_times.LABELS,
+                 'country_zones': calling_times.COUNTRY_ZONES,
+                 'zone_search': {zone: ('United States USA ' if zone in calling_times.US_ZONES else 'Canada Canadian ') + calling_times.LABELS[zone] + ' ' + regions + ' ' + ' '.join(city for (state, city), value in calling_times.CITIES.items() if value == zone)
+                                 for zone, regions in calling_times.REGIONS.items()}})
 
 
-@app.get("/carriers", response_class=HTMLResponse)
-async def carriers_capacity_page(request: Request):
-    """
-    Screen 4: Carriers & Capacity Postings
-    Renders truthful, honest empty state with zero fake trucks.
-    """
-    counts = get_summary_counts()
-    return templates.TemplateResponse(
-        request=request,
-        name="carriers.html",
-        context={
-            "counts": counts,
-            "active_nav": "carriers",
-        },
-    )
+@app.get('/api/calling-times')
+async def calling_times_clock(at: Optional[str] = None):
+    from datetime import datetime
+    instant = None
+    if at:
+        try:
+            instant = datetime.fromisoformat(at.replace('Z', '+00:00'))
+            if instant.tzinfo is None:
+                raise ValueError('Timezone required')
+        except ValueError:
+            raise HTTPException(400, 'Choose a valid date with a timezone.')
+    try:
+        return JSONResponse(calling_times.clock_data(instant), headers={'Cache-Control': 'no-store'})
+    except (ValueError, OverflowError):
+        raise HTTPException(400, 'Choose a date within the supported calendar range.')
+
 
 
 @app.get("/research", response_class=HTMLResponse)
-async def research_evidence_ledger_page(request: Request):
-    """
-    Screen 5/Research: Evidence Sources & Provenance Ledger
-    Displays all 10 verified primary evidence records.
-    """
+async def research_evidence_ledger_page(request: Request, q: str = Query('', max_length=200),
+                                        source_filter: Literal['all', 'primary', 'secondary'] = 'all',
+                                        page: int = Query(1, ge=1)):
+    """Search the recorded source library without changing research data."""
     counts = get_summary_counts()
     sources = get_evidence_sources_list()
+    source_total = len(sources)
+    needle = q.strip().casefold()
+    sources = [s for s in sources if
+               (source_filter == 'all' or bool(s['is_primary_source']) == (source_filter == 'primary')) and
+               (not needle or needle in ' '.join(str(s.get(k) or '') for k in
+                ('source_title_publisher', 'source_url', 'source_type')).casefold())]
+    matched = len(sources)
+    pages = max(1, (matched + 49) // 50)
+    page = min(page, pages)
     return templates.TemplateResponse(
         request=request,
         name="research.html",
         context={
             "counts": counts,
-            "sources": sources,
+            "sources": sources[(page - 1) * 50:page * 50],
+            "source_total": source_total, "matched": matched, "page": page, "pages": pages,
+            "q": q, "source_filter": source_filter,
+            "page_query": urllib.parse.urlencode({'q': q, 'source_filter': source_filter}),
             "active_nav": "research",
         },
     )
@@ -800,12 +878,21 @@ async def api_companies_list(
     fleet: Optional[List[str]] = Query(None),
     carrier: Optional[List[str]] = Query(None),
     procurement: Optional[List[str]] = Query(None),
+    calling_zone: Optional[str] = None,
+    calling_now: bool = False,
+    calling_start: int = Query(9, ge=0, le=23),
+    calling_end: int = Query(17, ge=1, le=24),
 ):
     """Returns company-grouped prospects with child facilities, facts, and pagination/search/filters."""
     effective_tier = tier or opportunity
     state = team.snapshot()
+    if calling_zone and calling_zone not in calling_times.REGIONS:
+        raise HTTPException(400, 'Choose a recognized time zone.')
+    if calling_end <= calling_start:
+        raise HTTPException(400, 'Closing time must be after opening time.')
     result = get_company_grouped_prospects(
-        allowed_company_ids=team.allowed_company_ids(request.state.user, team_view, state),
+        allowed_company_ids=calling_times.matching_companies(
+            team.allowed_company_ids(request.state.user, team_view, state), calling_zone, calling_now, calling_start, calling_end),
         lifecycle_stage=stage,
         tier=effective_tier,
         outreach_filter=outreach,
@@ -827,6 +914,7 @@ async def api_companies_list(
 
     for group in result["items"] if isinstance(result, dict) else result:
         group.update(state.get(group["company_id"], {}))
+        calling_times.annotate(group, calling_zone, calling_now, calling_start, calling_end)
     return result
 
 

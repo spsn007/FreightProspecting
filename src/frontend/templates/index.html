@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Cockpit — FreightProspecting V1{% endblock %}
+{% block title %}Cockpit — Shipper IQ{% endblock %}
 
 {% block breadcrumb %}
 <span>Shortlist Cockpit</span>
@@ -432,7 +432,7 @@
                  x-text="'Research shipping operations for ' + activeProspect?.operating_brand + ' located in ' + activeProspect?.city + ', ' + activeProspect?.state_prov + '. What commodities do they ship, do they use flatbed or dry van freight, and who manages shipping/traffic procurement?'">
             </div>
             <button class="btn btn-secondary btn-sm"
-                    @click="navigator.clipboard.writeText('Research shipping operations for ' + activeProspect?.operating_brand + ' located in ' + activeProspect?.city + ', ' + activeProspect?.state_prov + '. What commodities do they ship, do they use flatbed or dry van freight, and who manages shipping/traffic procurement?'); alert('Copied research prompt to clipboard!');">
+                    @click="freightWorkflow.copy('Research shipping operations for ' + activeProspect?.operating_brand + ' located in ' + activeProspect?.city + ', ' + activeProspect?.state_prov + '. What commodities do they ship, do they use flatbed or dry van freight, and who manages shipping/traffic procurement?', 'Research prompt')">
               📋 Copy Prompt to Clipboard
             </button>
           </div>

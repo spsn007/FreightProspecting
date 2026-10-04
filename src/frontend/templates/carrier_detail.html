@@ -1,0 +1,628 @@
+{% extends "base.html" %}
+
+{% block title %}{{ carrier.legal_name }} — Carrier Profile — Shipper IQ{% endblock %}
+
+{% block breadcrumb %}
+<a href="/carriers" style="color:var(--color-primary); text-decoration:none;">Carrier Directory</a>
+<span style="color:#cbd5e1">/</span>
+<span style="font-weight:400; color:var(--color-text-muted);">{{ carrier.legal_name }}</span>
+{% endblock %}
+
+{% block content %}
+<div x-data="carrierDetailApp()" x-init="init()" class="carrier-detail-container">
+  <!-- Carrier Header Card -->
+  <div class="prospect-hero" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.5rem; margin-bottom:1.5rem;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <h1 style="font-size:1.5rem; font-weight:800; color:var(--color-text-main); margin:0;">{{ carrier.legal_name }}</h1>
+          {% if carrier.dba_name %}
+          <span style="font-size:1rem; color:var(--color-text-muted);">({{ carrier.dba_name }})</span>
+          {% endif %}
+          <span class="badge {% if carrier.operating_status == 'VERIFIED_AUTHORIZED' %}badge-verified{% elif carrier.operating_status == 'UNKNOWN' %}badge-unknown{% else %}badge-danger{% endif %}">
+            {% if carrier.operating_status == 'VERIFIED_AUTHORIZED' %}✓ Active Operating Authority{% elif carrier.operating_status == 'UNKNOWN' %}? Authority Unverified{% else %}✕ Out of Service{% endif %}
+          </span>
+          <span class="badge badge-unknown">{{ carrier.country }}</span>
+        </div>
+
+        <div style="display:flex; gap:1.25rem; margin-top:0.5rem; font-size:0.875rem; color:var(--color-text-muted); flex-wrap:wrap;">
+          {% if carrier.usdot_number %}
+          <span><strong>USDOT:</strong> {{ carrier.usdot_number }}</span>
+          {% endif %}
+          {% if carrier.mc_number %}
+          <span><strong>MC:</strong> {{ carrier.mc_number }}</span>
+          {% endif %}
+          {% if carrier.physical_city or carrier.physical_state_prov %}
+          <span><strong>Headquarters:</strong> {{ carrier.physical_city }}, {{ carrier.physical_state_prov }} {{ carrier.postal_code or '' }}</span>
+          {% endif %}
+          {% if carrier.business_phone %}
+          <span><strong>Phone:</strong> {{ carrier.business_phone }}</span>
+          {% endif %}
+          {% if carrier.fleet_power_units %}
+          <span><strong>Power Units:</strong> {{ carrier.fleet_power_units }}</span>
+          {% endif %}
+          <span><strong>Cross-Border:</strong> {{ carrier.cross_border_capability }}</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+        <button class="btn btn-secondary" @click="showCallModal = true" style="display:inline-flex; align-items:center; gap:0.35rem;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+          <span>Log Carrier Call</span>
+        </button>
+
+        <button class="btn btn-secondary" @click="showCapacityModal = true" style="display:inline-flex; align-items:center; gap:0.35rem;">
+          <span>+ Add Capacity</span>
+        </button>
+
+        {% if not carrier.owner_id %}
+        <button class="btn btn-primary" @click="startWorking()" style="display:inline-flex; align-items:center; gap:0.35rem;">
+          <span>Start Working</span>
+        </button>
+        {% elif carrier.owner_id == request.state.user.id or request.state.user.role == 'ADMIN' %}
+        <button class="btn btn-secondary" @click="releaseWorking()" style="color:var(--danger-color);">
+          Release Carrier
+        </button>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Quick Status Bar -->
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-top:1.25rem; padding-top:1rem; border-top:1px solid var(--color-border); font-size:0.8125rem;">
+      <div style="display:flex; align-items:center; gap:1.25rem;">
+        <div>
+          <span style="color:var(--color-text-muted);">Assigned Broker:</span>
+          <strong style="color:var(--color-text-main); margin-left:0.25rem;">{{ carrier.owner_username or 'Unassigned' }}</strong>
+        </div>
+        <div>
+          <span style="color:var(--color-text-muted);">Relationship:</span>
+          <span class="badge" style="margin-left:0.25rem;" :class="relationshipStatus === 'INTERESTED' ? 'badge-verified' : (relationshipStatus === 'CALL_BACK' ? 'badge-inferred' : 'badge-unknown')" x-text="relationshipStatus"></span>
+        </div>
+        {% if carrier.next_callback_at %}
+        <div>
+          <span style="color:var(--color-text-muted);">Next Callback:</span>
+          <strong style="color:#0284c7; margin-left:0.25rem;">{{ carrier.next_callback_at }}</strong>
+        </div>
+        {% endif %}
+      </div>
+
+      <div>
+        <a href="https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=USDOT&query_string={{ carrier.usdot_number or carrier.legal_name }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="font-size:0.75rem;">
+          Verify with FMCSA SAFER ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabbed Detail Workspace -->
+  <div style="display:grid; grid-template-columns:2fr 1fr; gap:1.5rem; align-items:flex-start;">
+    <!-- Main Left Column -->
+    <div style="display:flex; flex-direction:column; gap:1.5rem;">
+      <!-- Available Capacity Postings -->
+      <div class="card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+          <h2 style="font-size:1.125rem; font-weight:700; color:var(--color-text-main); margin:0;">Active &amp; Upcoming Capacity</h2>
+          <button class="btn btn-secondary btn-sm" @click="showCapacityModal = true">+ Post Truck</button>
+        </div>
+
+        <div x-show="capacityPostings.length === 0" style="padding:1.5rem; text-align:center; color:var(--color-text-muted); background:var(--color-surface-inset); border-radius:6px; font-size:0.875rem;">
+          No live capacity postings for this carrier. Click "+ Post Truck" to record an available truck.
+        </div>
+
+        <div x-show="capacityPostings.length > 0" style="display:flex; flex-direction:column; gap:0.75rem;">
+          <template x-for="cp in capacityPostings" :key="cp.id">
+            <div style="border:1px solid var(--color-border); border-radius:6px; padding:0.875rem; background:var(--color-surface-inset); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <span class="badge badge-verified" x-text="cp.equipment_type"></span>
+                  <strong style="color:var(--color-text-main);" x-text="cp.available_city + ', ' + cp.available_state_prov"></strong>
+                  <span style="color:var(--color-text-muted);" x-show="cp.destination_city || cp.destination_state_prov" x-text="'→ ' + (cp.destination_city ? cp.destination_city + ', ' : '') + (cp.destination_state_prov || '')"></span>
+                </div>
+                <div style="font-size:0.8125rem; color:var(--color-text-muted); margin-top:0.35rem;">
+                  <span>Available: <strong x-text="cp.available_date_start + ' to ' + (cp.available_date_end || cp.available_date_start)"></strong></span>
+                  <span style="margin-left:0.75rem;" x-show="cp.desired_rate">Rate: <strong style="color:#15803d;" x-text="'$' + cp.desired_rate + ' ' + (cp.rate_currency || 'USD')"></strong></span>
+                  <span style="margin-left:0.75rem;" x-show="cp.available_truck_count">Trucks: <strong x-text="cp.available_truck_count"></strong></span>
+                </div>
+              </div>
+              <div>
+                <a href="/loads" class="btn btn-primary btn-sm">Find Loads</a>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Append-Only Outreach History -->
+      <div class="card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+          <div>
+            <h2 style="font-size:1.125rem; font-weight:700; color:var(--color-text-main); margin:0;">Carrier Outreach Log</h2>
+            <div style="font-size:0.75rem; color:var(--color-text-muted);">Database-enforced append-only activity timeline</div>
+          </div>
+          <button class="btn btn-secondary btn-sm" @click="showCallModal = true">Log New Call</button>
+        </div>
+
+        <div x-show="outreachHistory.length === 0" style="padding:1.5rem; text-align:center; color:var(--color-text-muted); background:var(--color-surface-inset); border-radius:6px; font-size:0.875rem;">
+          No outreach calls logged yet. Click "Log New Call" to record outreach.
+        </div>
+
+        <div x-show="outreachHistory.length > 0" style="display:flex; flex-direction:column; gap:0.75rem;">
+          <template x-for="item in outreachHistory" :key="item.id">
+            <div style="border-left:3px solid var(--color-primary); background:var(--color-surface-inset); border-radius:0 6px 6px 0; padding:0.875rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.8125rem; margin-bottom:0.35rem;">
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <span class="badge" :class="item.disposition === 'INTERESTED' ? 'badge-verified' : (item.disposition === 'CALL_BACK' ? 'badge-inferred' : 'badge-unknown')" x-text="item.disposition"></span>
+                  <span style="font-weight:600; color:var(--color-text-main);" x-text="item.author_username || 'Broker'"></span>
+                  <span x-show="item.contact_person_name" style="color:var(--color-text-muted);" x-text="'spoke with ' + item.contact_person_name"></span>
+                </div>
+                <span style="color:var(--color-text-muted);" x-text="item.call_timestamp"></span>
+              </div>
+              <p style="font-size:0.875rem; color:var(--color-text-main); margin:0.35rem 0;" x-text="item.notes || 'No call notes recorded.'"></p>
+              <div style="display:flex; gap:1rem; font-size:0.75rem; color:var(--color-text-muted);" x-show="item.quoted_rate || item.callback_date">
+                <span x-show="item.quoted_rate">Quoted Rate: <strong style="color:#15803d;" x-text="'$' + item.quoted_rate"></strong></span>
+                <span x-show="item.callback_date">Callback Scheduled: <strong style="color:#0284c7;" x-text="item.callback_date"></strong></span>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Preserved Quotes History -->
+      <div class="card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem;">
+        <h2 style="font-size:1.125rem; font-weight:700; color:var(--color-text-main); margin:0 0 1rem 0;">Rate &amp; Quote History</h2>
+        
+        <div x-show="quotes.length === 0" style="padding:1.5rem; text-align:center; color:var(--color-text-muted); background:var(--color-surface-inset); border-radius:6px; font-size:0.875rem;">
+          No quotes recorded for discrete loads yet.
+        </div>
+
+        <div x-show="quotes.length > 0" style="display:flex; flex-direction:column; gap:0.5rem;">
+          <template x-for="q in quotes" :key="q.id">
+            <div style="display:flex; justify-content:space-between; align-items:center; background:var(--color-surface-inset); border-radius:6px; padding:0.75rem; font-size:0.875rem;">
+              <div>
+                <span style="font-weight:700; color:#15803d;" x-text="'$' + q.quoted_amount + ' ' + (q.currency || 'USD')"></span>
+                <span style="color:var(--color-text-muted); margin-left:0.5rem;" x-text="'(Load #' + q.load_opportunity_id + ')'"></span>
+                <div style="font-size:0.75rem; color:var(--color-text-muted);" x-text="q.notes || ''"></div>
+              </div>
+              <div style="text-align:right; font-size:0.75rem; color:var(--color-text-muted);">
+                <div x-text="q.author_username"></div>
+                <div x-text="q.quoted_at"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Sidebar Column -->
+    <div style="display:flex; flex-direction:column; gap:1.5rem;">
+      <!-- Business Contacts -->
+      <div class="card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+          <h2 style="font-size:1rem; font-weight:700; color:var(--color-text-main); margin:0;">Business Contacts</h2>
+          <button class="btn btn-secondary btn-sm" @click="showContactModal = true">+ Contact</button>
+        </div>
+
+        <div x-show="contacts.length === 0" style="font-size:0.8125rem; color:var(--color-text-muted); padding:1rem; text-align:center;">
+          No direct contacts recorded. Main line: {{ carrier.business_phone or 'Unknown' }}
+        </div>
+
+        <div x-show="contacts.length > 0" style="display:flex; flex-direction:column; gap:0.75rem;">
+          <template x-for="cnt in contacts" :key="cnt.id">
+            <div style="background:var(--color-surface-inset); border:1px solid var(--color-border); border-radius:6px; padding:0.75rem;">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <strong style="color:var(--color-text-main); font-size:0.875rem;" x-text="cnt.person_name || cnt.department || 'Contact'"></strong>
+                  <div style="font-size:0.75rem; color:var(--color-text-muted);" x-text="cnt.exact_published_title || cnt.department"></div>
+                </div>
+                <span x-show="cnt.is_primary_contact" class="badge badge-verified" style="font-size:0.6875rem;">Primary</span>
+              </div>
+              <div style="margin-top:0.5rem; font-size:0.8125rem; color:var(--color-text-main);">
+                <div x-show="cnt.phone_number">📞 <span x-text="cnt.phone_number"></span></div>
+                <div x-show="cnt.email_address">✉️ <span x-text="cnt.email_address"></span></div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Preferred & Recurring Lanes -->
+      <div class="card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+          <h2 style="font-size:1rem; font-weight:700; color:var(--color-text-main); margin:0;">Preferred Lanes</h2>
+          <button class="btn btn-secondary btn-sm" @click="showLaneModal = true">+ Lane</button>
+        </div>
+
+        <div x-show="lanes.length === 0" style="font-size:0.8125rem; color:var(--color-text-muted); padding:1rem; text-align:center;">
+          No explicit recurring or preferred lanes on file.
+        </div>
+
+        <div x-show="lanes.length > 0" style="display:flex; flex-direction:column; gap:0.5rem;">
+          <template x-for="l in lanes" :key="l.id">
+            <div style="background:var(--color-surface-inset); border-radius:6px; padding:0.6rem 0.8rem; font-size:0.8125rem;">
+              <div style="display:flex; justify-content:space-between;">
+                <strong style="color:var(--color-text-main);" x-text="l.origin_region + ' → ' + l.dest_region"></strong>
+                <span class="badge badge-unknown" style="font-size:0.6875rem;" x-text="l.preference_level"></span>
+              </div>
+              <div x-show="l.notes" style="font-size:0.75rem; color:var(--color-text-muted); margin-top:0.25rem;" x-text="l.notes"></div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Compliance & Authority Details -->
+      <div class="card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; font-size:0.8125rem;">
+        <h2 style="font-size:1rem; font-weight:700; color:var(--color-text-main); margin:0 0 0.75rem 0;">Authority &amp; Verification</h2>
+        <div style="display:flex; flex-direction:column; gap:0.5rem; color:var(--color-text-muted);">
+          <div><strong>Safety Rating:</strong> <span style="color:var(--color-text-main);">{{ carrier.safety_rating }}</span></div>
+          <div><strong>Operating Status:</strong> <span style="color:var(--color-text-main);">{{ carrier.operating_status }}</span></div>
+          <div><strong>Verified Source:</strong> <span style="color:var(--color-text-main);">{{ carrier.source_name or 'Manual Intake' }}</span></div>
+          <div><strong>Observed At:</strong> <span style="color:var(--color-text-main);">{{ carrier.observed_at or carrier.created_at }}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Post Capacity -->
+  <div x-show="showCapacityModal" class="modal-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:100;" x-cloak>
+    <div class="modal-dialog" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; width:100%; max-width:500px; padding:1.5rem;" @click.away="showCapacityModal = false">
+      <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:1rem; color:var(--color-text-main);">Add Available Truck Capacity</h2>
+      <form @submit.prevent="submitCapacity()">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:0.75rem;">
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Available City *</label>
+            <input type="text" x-model="capacityForm.available_city" required class="form-control" style="width:100%;" placeholder="e.g. Dallas" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">State / Prov *</label>
+            <input type="text" x-model="capacityForm.available_state_prov" required class="form-control" style="width:100%;" placeholder="e.g. TX" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Available From *</label>
+            <input type="date" x-model="capacityForm.available_date_start" required class="form-control" style="width:100%;" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Available Until</label>
+            <input type="date" x-model="capacityForm.available_date_end" class="form-control" style="width:100%;" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Equipment *</label>
+            <select x-model="capacityForm.equipment_type" class="form-control" style="width:100%;" required>
+              <option value="FLATBED">Flatbed</option>
+              <option value="STEP_DECK">Step Deck</option>
+              <option value="DRY_VAN">Dry Van</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Desired Rate ($)</label>
+            <input type="number" step="0.01" x-model="capacityForm.desired_rate" class="form-control" style="width:100%;" placeholder="e.g. 2400.00" />
+          </div>
+          <div style="grid-column: span 2;">
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Destination Preference (Optional)</label>
+            <input type="text" x-model="capacityForm.destination_city" class="form-control" style="width:100%;" placeholder="e.g. Denver, CO or Midwest open" />
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1rem;">
+          <button type="button" class="btn btn-secondary" @click="showCapacityModal = false">Cancel</button>
+          <button type="submit" class="btn btn-primary" :disabled="submitting">Save Capacity Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Contact -->
+  <div x-show="showContactModal" class="modal-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:100;" x-cloak>
+    <div class="modal-dialog" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; width:100%; max-width:450px; padding:1.5rem;" @click.away="showContactModal = false">
+      <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:1rem; color:var(--color-text-main);">Add Business Contact</h2>
+      <form @submit.prevent="submitContact()">
+        <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:1rem;">
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Contact Name</label>
+            <input type="text" x-model="contactForm.person_name" class="form-control" style="width:100%;" placeholder="e.g. Sarah Miller" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Role / Department</label>
+            <select x-model="contactForm.department" class="form-control" style="width:100%;">
+              <option value="DISPATCH">Dispatch</option>
+              <option value="OWNER">Owner / Owner-Operator</option>
+              <option value="OPERATIONS">Operations</option>
+              <option value="FLEET">Fleet Management</option>
+              <option value="ACCOUNTING">Accounting / Billing</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Business Phone</label>
+            <input type="text" x-model="contactForm.phone_number" class="form-control" style="width:100%;" placeholder="e.g. 555-123-4567" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Business Email</label>
+            <input type="email" x-model="contactForm.email_address" class="form-control" style="width:100%;" placeholder="e.g. dispatch@carrier.com" />
+          </div>
+          <div>
+            <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.4rem; font-size:0.875rem;">
+              <input type="checkbox" x-model="contactForm.is_primary_contact" /> Mark as Primary Contact
+            </label>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+          <button type="button" class="btn btn-secondary" @click="showContactModal = false">Cancel</button>
+          <button type="submit" class="btn btn-primary" :disabled="submitting">Save Contact</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Lane -->
+  <div x-show="showLaneModal" class="modal-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:100;" x-cloak>
+    <div class="modal-dialog" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; width:100%; max-width:450px; padding:1.5rem;" @click.away="showLaneModal = false">
+      <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:1rem; color:var(--color-text-main);">Add Preferred Lane</h2>
+      <form @submit.prevent="submitLane()">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:1rem;">
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Origin State/Prov *</label>
+            <input type="text" x-model="laneForm.origin_region" required class="form-control" style="width:100%;" placeholder="e.g. TX" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Destination State/Prov *</label>
+            <input type="text" x-model="laneForm.dest_region" required class="form-control" style="width:100%;" placeholder="e.g. CO" />
+          </div>
+          <div style="grid-column: span 2;">
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Preference Level</label>
+            <select x-model="laneForm.preference_level" class="form-control" style="width:100%;">
+              <option value="PREFERRED">Preferred</option>
+              <option value="RECURRING">Recurring Regular Run</option>
+              <option value="ONE_TIME">One-Time / Seasonal</option>
+              <option value="AVOID">Avoid Lane</option>
+            </select>
+          </div>
+          <div style="grid-column: span 2;">
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Notes</label>
+            <input type="text" x-model="laneForm.notes" class="form-control" style="width:100%;" placeholder="e.g. Regular backhaul run on Fridays" />
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+          <button type="button" class="btn btn-secondary" @click="showLaneModal = false">Cancel</button>
+          <button type="submit" class="btn btn-primary" :disabled="submitting">Save Lane</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Log Carrier Call -->
+  <div x-show="showCallModal" class="modal-backdrop" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:100;" x-cloak>
+    <div class="modal-dialog" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; width:100%; max-width:500px; padding:1.5rem;" @click.away="showCallModal = false">
+      <h2 style="font-size:1.25rem; font-weight:700; margin-bottom:1rem; color:var(--color-text-main);">Log Carrier Outreach</h2>
+      
+      <form @submit.prevent="submitCallLog()">
+        <div style="margin-bottom:0.75rem;">
+          <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Call Disposition *</label>
+          <select x-model="callForm.disposition" class="form-control" style="width:100%;" required>
+            <option value="INTERESTED">Interested in Loads</option>
+            <option value="CALL_BACK">Call Back Required</option>
+            <option value="NO_ANSWER">No Answer / Left Voicemail</option>
+            <option value="NOT_INTERESTED">Not Interested</option>
+            <option value="CONNECTED_DISPATCH">Connected with Dispatch</option>
+            <option value="WRONG_CONTACT">Wrong Contact</option>
+          </select>
+        </div>
+
+        <div x-show="callForm.disposition === 'CALL_BACK'" style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-bottom:0.75rem;">
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Callback Date *</label>
+            <input type="date" x-model="callForm.callback_date" :required="callForm.disposition === 'CALL_BACK'" class="form-control" style="width:100%;" />
+          </div>
+          <div>
+            <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Callback Time</label>
+            <input type="time" x-model="callForm.callback_time" class="form-control" style="width:100%;" />
+          </div>
+        </div>
+
+        <div style="margin-bottom:0.75rem;">
+          <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Quoted Rate (Optional)</label>
+          <input type="number" step="0.01" x-model="callForm.quoted_rate" class="form-control" style="width:100%;" placeholder="e.g. 2400.00" />
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.8125rem; font-weight:600; display:block; margin-bottom:0.25rem;">Notes &amp; Equipment Discussed</label>
+          <textarea x-model="callForm.notes" rows="3" class="form-control" style="width:100%;" placeholder="Document discussion, rates, trucks..."></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+          <button type="button" class="btn btn-secondary" @click="showCallModal = false">Cancel</button>
+          <button type="submit" class="btn btn-primary" :disabled="submitting">Save Outreach</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+function carrierDetailApp() {
+  const carrierId = {{ carrier.id }};
+  return {
+    carrierId: carrierId,
+    relationshipStatus: '{{ carrier.current_relationship_status or "UNCONTACTED" }}',
+    capacityPostings: [],
+    outreachHistory: [],
+    contacts: [],
+    lanes: [],
+    quotes: [],
+    showCapacityModal: false,
+    showContactModal: false,
+    showLaneModal: false,
+    showCallModal: false,
+    submitting: false,
+    capacityForm: {
+      available_city: '{{ carrier.physical_city or "" }}',
+      available_state_prov: '{{ carrier.physical_state_prov or "" }}',
+      available_date_start: new Date().toISOString().substring(0, 10),
+      available_date_end: '',
+      equipment_type: 'FLATBED',
+      desired_rate: null,
+      destination_city: ''
+    },
+    contactForm: {
+      person_name: '',
+      department: 'DISPATCH',
+      phone_number: '',
+      email_address: '',
+      is_primary_contact: false
+    },
+    laneForm: {
+      origin_region: '{{ carrier.physical_state_prov or "" }}',
+      dest_region: '',
+      preference_level: 'PREFERRED',
+      notes: ''
+    },
+    callForm: {
+      disposition: 'INTERESTED',
+      callback_date: '',
+      callback_time: '09:00',
+      quoted_rate: null,
+      notes: ''
+    },
+    init() {
+      this.refreshData();
+    },
+    async refreshData() {
+      try {
+        const res = await fetch(`/api/carriers/${this.carrierId}`);
+        if (res.ok) {
+          const d = await res.json();
+          this.capacityPostings = d.capacity_postings || [];
+          this.outreachHistory = d.outreach_history || [];
+          this.contacts = d.contacts || [];
+          this.lanes = d.lanes || [];
+          this.quotes = d.quotes || [];
+          this.relationshipStatus = d.carrier.current_relationship_status || 'UNCONTACTED';
+        }
+      } catch (e) {
+        console.error('Failed to load carrier details:', e);
+      }
+    },
+    async startWorking() {
+      try {
+        const res = await fetch(`/api/carriers/${this.carrierId}/assign`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({action: 'claim'})
+        });
+        if (res.ok) {
+          window.location.reload();
+        } else {
+          const err = await res.json();
+          alert(err.detail || 'Could not claim carrier.');
+        }
+      } catch (e) {
+        alert('Error claiming carrier.');
+      }
+    },
+    async releaseWorking() {
+      if (!confirm('Release this carrier back to the shared unassigned pool?')) return;
+      try {
+        const res = await fetch(`/api/carriers/${this.carrierId}/assign`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({action: 'release'})
+        });
+        if (res.ok) {
+          window.location.reload();
+        } else {
+          const err = await res.json();
+          alert(err.detail || 'Could not release carrier.');
+        }
+      } catch (e) {
+        alert('Error releasing carrier.');
+      }
+    },
+    async submitCapacity() {
+      this.submitting = true;
+      try {
+        const res = await fetch(`/api/carriers/${this.carrierId}/capacity`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(this.capacityForm)
+        });
+        if (res.ok) {
+          this.showCapacityModal = false;
+          this.refreshData();
+        } else {
+          const err = await res.json();
+          alert(err.detail || 'Failed to save capacity.');
+        }
+      } catch (e) {
+        alert('Network error saving capacity.');
+      } finally {
+        this.submitting = false;
+      }
+    },
+    async submitContact() {
+      this.submitting = true;
+      try {
+        const res = await fetch(`/api/carriers/${this.carrierId}/contacts`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(this.contactForm)
+        });
+        if (res.ok) {
+          this.showContactModal = false;
+          this.refreshData();
+        } else {
+          const err = await res.json();
+          alert(err.detail || 'Failed to save contact.');
+        }
+      } catch (e) {
+        alert('Network error saving contact.');
+      } finally {
+        this.submitting = false;
+      }
+    },
+    async submitLane() {
+      this.submitting = true;
+      try {
+        const res = await fetch(`/api/carriers/${this.carrierId}/lanes`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(this.laneForm)
+        });
+        if (res.ok) {
+          this.showLaneModal = false;
+          this.refreshData();
+        } else {
+          const err = await res.json();
+          alert(err.detail || 'Failed to save lane.');
+        }
+      } catch (e) {
+        alert('Network error saving lane.');
+      } finally {
+        this.submitting = false;
+      }
+    },
+    async submitCallLog() {
+      this.submitting = true;
+      try {
+        const res = await fetch(`/api/carriers/${this.carrierId}/outreach`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(this.callForm)
+        });
+        if (res.ok) {
+          this.showCallModal = false;
+          this.refreshData();
+        } else {
+          const err = await res.json();
+          alert(err.detail || 'Failed to record outreach.');
+        }
+      } catch (e) {
+        alert('Network error recording outreach.');
+      } finally {
+        this.submitting = false;
+      }
+    }
+  };
+}
+</script>
+{% endblock %}

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}Team Management — FreightProspecting{% endblock %}
+{% block title %}Team Management — Shipper IQ{% endblock %}
 {% block breadcrumb %}Team Management{% endblock %}
 {% block content %}
-<div x-data="teamAdmin()">
-  <h1>Team Management</h1><p>Create broker profiles and manage access. Disabling a profile preserves all of its call history.</p>
+<div x-data="teamAdmin()" class="settings-page">
+  <h1 class="section-title">Team Management</h1><p class="section-subtitle">Create broker profiles and manage access. Disabling a profile preserves all of its call history.</p>
   <p x-show="error" x-text="error" role="alert" class="team-error" x-cloak></p>
   <section class="team-panel"><h2>Create Broker</h2>
     <form @submit.prevent="save('/api/admin/users', {username, password})" class="team-create">
@@ -14,6 +14,7 @@
   </section>
   <section class="team-panel"><h2>Profiles</h2><div style="overflow-x:auto"><table class="team-table"><thead><tr><th>Name</th><th>Role</th><th>Access</th><th>Assigned companies</th><th>Actions</th></tr></thead><tbody>
     {% for u in users %}<tr><td>{{ u.username }}</td><td>{{ u.role|title }}</td><td>{{ 'Active' if u.active else 'Disabled' }}</td><td>{{ u.company_count }}</td><td>
+      <button type="button" class="btn btn-secondary btn-sm" @click="selectedUser={{ u.id }};selectedName={{ u.username|tojson|forceescape }};operation='rename';newName=selectedName;$nextTick(() => $refs.profileEditor.scrollIntoView({block:'nearest'}))">Edit Profile</button>
       <button type="button" class="btn btn-secondary btn-sm" @click="selectedUser={{ u.id }};selectedName={{ u.username|tojson|forceescape }};operation='password';newPassword=''">Reset Password</button>
       {% if u.role != 'ADMIN' %}
       {% if u.active %}<button type="button" class="btn btn-secondary btn-sm" @click="selectedUser={{ u.id }};selectedName={{ u.username|tojson|forceescape }};operation='disable';transferTo=''">Disable Profile</button>
@@ -21,9 +22,10 @@
       {% endif %}
     </td></tr>{% endfor %}
   </tbody></table></div></section>
-  <section class="team-panel" x-show="selectedUser" x-cloak><h2 x-text="(operation === 'password' ? 'Reset Password: ' : 'Disable Profile: ') + selectedName"></h2>
-    <form @submit.prevent="save('/api/admin/users/' + selectedUser, {action:operation, password:newPassword, target_id:transferTo ? Number(transferTo) : null})">
-      <label x-show="operation === 'password'">New password<input type="password" x-model="newPassword" :required="operation === 'password'" minlength="5" maxlength="128" class="form-input" autocomplete="new-password"></label>
+  <section class="team-panel" x-ref="profileEditor" x-show="selectedUser" x-cloak><h2 x-text="(operation === 'rename' ? 'Edit Profile: ' : operation === 'password' ? 'Reset Password: ' : 'Disable Profile: ') + selectedName"></h2>
+    <form @submit.prevent="save('/api/admin/users/' + selectedUser, {action:operation, username:newName, password:newPassword, target_id:transferTo ? Number(transferTo) : null})">
+      <div x-show="operation === 'rename'"><p class="team-muted">Update the profile name and sign-in name. Assigned companies, password, and history stay saved.</p><label>Profile name<input x-model="newName" :required="operation === 'rename'" :disabled="operation !== 'rename'" maxlength="50" class="form-input" autocomplete="off"></label></div>
+      <label x-show="operation === 'password'">New password<input type="password" x-model="newPassword" :required="operation === 'password'" :disabled="operation !== 'password'" minlength="5" maxlength="128" class="form-input" autocomplete="new-password"></label>
       <div x-show="operation === 'disable'"><p>This removes login access and revokes active sessions. History stays saved.</p><label>Assigned companies<select x-model="transferTo" class="form-input"><option value="">Release to Available Companies</option><template x-for="u in $store.team.users.filter(u => u.role === 'BROKER' && u.id !== selectedUser)" :key="u.id"><option :value="u.id" x-text="'Transfer to ' + u.username"></option></template></select></label></div>
       <div class="team-actions"><button class="btn btn-primary" :disabled="busy">Confirm</button><button type="button" class="btn btn-secondary" @click="selectedUser=null">Cancel</button></div>
     </form>

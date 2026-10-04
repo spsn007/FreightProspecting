@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block title %}Available Trucks &amp; Capacity — Shipper IQ{% endblock %}
+
+{% block breadcrumb %}
+<span>Carriers &amp; Capacity</span>
+<span style="color:#cbd5e1">/</span>
+<span style="font-weight:400; color:var(--color-text-muted);">Available Trucks</span>
+{% endblock %}
+
+{% block content %}
+<div x-data="availableTrucksApp()" x-init="init()" class="capacity-screen-container">
+  <!-- Top Section Header -->
+  <div class="section-header" style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1.25rem;">
+    <div>
+      <h1 class="section-title">Available Trucks &amp; Equipment Capacity</h1>
+      <p class="section-subtitle">Real-time carrier capacity posts, equipment availability, and target rates.</p>
+    </div>
+    <div style="display:flex; gap:0.5rem;">
+      <a href="/carriers" class="btn btn-secondary" style="font-size:0.875rem;">← Carrier Directory</a>
+    </div>
+  </div>
+
+  <!-- Search & Filter Controls -->
+  <div class="filter-panel" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; margin-bottom:1.5rem;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.75rem; margin-bottom:1rem;">
+      <div>
+        <label style="font-size:0.75rem; font-weight:700; color:var(--color-text-muted); display:block; margin-bottom:0.25rem; text-transform:uppercase;">Origin (City/State)</label>
+        <input type="text" x-model="originFilter" @input.debounce.300ms="fetchCapacity()" placeholder="e.g. Dallas or TX" class="form-control" style="width:100%; font-size:0.875rem;" />
+      </div>
+
+      <div>
+        <label style="font-size:0.75rem; font-weight:700; color:var(--color-text-muted); display:block; margin-bottom:0.25rem; text-transform:uppercase;">Destination</label>
+        <input type="text" x-model="destFilter" @input.debounce.300ms="fetchCapacity()" placeholder="e.g. Denver or CO" class="form-control" style="width:100%; font-size:0.875rem;" />
+      </div>
+
+      <div>
+        <label style="font-size:0.75rem; font-weight:700; color:var(--color-text-muted); display:block; margin-bottom:0.25rem; text-transform:uppercase;">Available Date</label>
+        <input type="date" x-model="dateFilter" @change="fetchCapacity()" class="form-control" style="width:100%; font-size:0.875rem;" />
+      </div>
+
+      <div>
+        <label style="font-size:0.75rem; font-weight:700; color:var(--color-text-muted); display:block; margin-bottom:0.25rem; text-transform:uppercase;">Country</label>
+        <select x-model="countryFilter" @change="fetchCapacity()" class="form-control" style="width:100%; font-size:0.875rem;">
+          <option value="">US &amp; Canada</option>
+          <option value="US">US Lower 48</option>
+          <option value="CA">Canada</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Equipment Checkboxes -->
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; border-top:1px solid var(--color-border); padding-top:0.75rem; font-size:0.8125rem;">
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <span style="font-weight:700; color:var(--color-text-muted);">Equipment:</span>
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.25rem;">
+          <input type="checkbox" value="FLATBED" x-model="selectedEquipment" @change="fetchCapacity()" /> Flatbed
+        </label>
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.25rem;">
+          <input type="checkbox" value="STEP_DECK" x-model="selectedEquipment" @change="fetchCapacity()" /> Step Deck
+        </label>
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.25rem;">
+          <input type="checkbox" value="DRY_VAN" x-model="selectedEquipment" @change="fetchCapacity()" /> Dry Van
+        </label>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:0.35rem; color:var(--color-text-muted);">
+          <input type="checkbox" x-model="activeOnly" @change="fetchCapacity()" /> Hide Expired / Stale Capacity
+        </label>
+        <button class="btn btn-secondary btn-sm" @click="resetFilters()">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div x-show="loading" style="text-align:center; padding:2rem; color:var(--color-text-muted);">
+    <div class="spinner" style="margin:0 auto 0.5rem auto;"></div>
+    <span>Searching available capacity...</span>
+  </div>
+
+  <!-- Empty State -->
+  <div x-show="!loading && postings.length === 0" class="empty-state-card">
+    <div class="empty-state-icon-box">
+      <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path></svg>
+    </div>
+    <h2 class="empty-state-title">No Trucks Matching Search</h2>
+    <p class="empty-state-desc">No live capacity postings match your selected origin, destination, equipment, and date parameters.</p>
+  </div>
+
+  <!-- Postings Cards List -->
+  <div x-show="!loading && postings.length > 0" style="display:flex; flex-direction:column; gap:0.875rem;">
+    <template x-for="p in postings" :key="p.id">
+      <div class="capacity-card" style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+            <span class="badge badge-verified" style="font-weight:700;" x-text="p.equipment_type"></span>
+            <span style="font-size:1.125rem; font-weight:700; color:var(--color-text-main);" x-text="p.available_city + ', ' + p.available_state_prov"></span>
+            <span x-show="p.destination_city || p.destination_state_prov" style="font-size:1rem; color:var(--color-text-muted);" x-text="'→ ' + (p.destination_city ? p.destination_city + ', ' : '') + (p.destination_state_prov || '')"></span>
+            <span class="badge" :class="p.operating_status === 'VERIFIED_AUTHORIZED' ? 'badge-verified' : 'badge-unknown'" x-text="p.operating_status === 'VERIFIED_AUTHORIZED' ? '✓ Authority Active' : '? Authority Unknown'"></span>
+          </div>
+
+          <div style="display:flex; gap:1.25rem; margin-top:0.4rem; font-size:0.8125rem; color:var(--color-text-muted); flex-wrap:wrap;">
+            <span>Carrier: <a :href="'/carriers/' + p.carrier_id" style="font-weight:600; color:var(--color-primary); text-decoration:none;" x-text="p.carrier_name"></a></span>
+            <span x-show="p.usdot_number">USDOT: <strong x-text="p.usdot_number"></strong></span>
+            <span>Available Window: <strong style="color:var(--color-text-main);" x-text="p.available_date_start + ' to ' + (p.available_date_end || p.available_date_start)"></strong></span>
+            <span x-show="p.desired_rate">Target Rate: <strong style="color:#15803d;" x-text="'$' + p.desired_rate + ' ' + (p.rate_currency || 'USD')"></strong></span>
+            <span x-show="p.business_phone">Direct: <strong x-text="p.business_phone"></strong></span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <a :href="'/carriers/' + p.carrier_id" class="btn btn-secondary btn-sm">Carrier Profile</a>
+          <a :href="'/loads'" class="btn btn-primary btn-sm">Match With Load →</a>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div x-show="!loading && totalPages > 1" style="display:flex; justify-content:space-between; align-items:center; margin-top:1.5rem; font-size:0.875rem;">
+    <div style="color:var(--color-text-muted);">
+      Showing page <strong x-text="page"></strong> of <strong x-text="totalPages"></strong> (<span x-text="totalPostings"></span> capacity postings)
+    </div>
+    <div style="display:flex; gap:0.5rem;">
+      <button class="btn btn-secondary btn-sm" :disabled="page <= 1" @click="page--; fetchCapacity()">Previous</button>
+      <button class="btn btn-secondary btn-sm" :disabled="page >= totalPages" @click="page++; fetchCapacity()">Next</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function availableTrucksApp() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return {
+    postings: [],
+    originFilter: urlParams.get('origin') || '',
+    destFilter: urlParams.get('destination') || '',
+    dateFilter: urlParams.get('date') || '',
+    countryFilter: urlParams.get('country') || '',
+    carrierIdFilter: urlParams.get('carrier_id') || '',
+    selectedEquipment: [],
+    activeOnly: true,
+    page: 1,
+    totalPages: 1,
+    totalPostings: 0,
+    loading: false,
+    init() {
+      this.fetchCapacity();
+    },
+    resetFilters() {
+      this.originFilter = '';
+      this.destFilter = '';
+      this.dateFilter = '';
+      this.countryFilter = '';
+      this.carrierIdFilter = '';
+      this.selectedEquipment = [];
+      this.activeOnly = true;
+      this.page = 1;
+      this.fetchCapacity();
+    },
+    async fetchCapacity() {
+      this.loading = true;
+      try {
+        const params = new URLSearchParams();
+        if (this.originFilter) params.set('origin', this.originFilter);
+        if (this.destFilter) params.set('destination', this.destFilter);
+        if (this.dateFilter) params.set('available_date', this.dateFilter);
+        if (this.countryFilter) params.append('country', this.countryFilter);
+        if (this.carrierIdFilter) params.set('carrier_id', this.carrierIdFilter);
+        this.selectedEquipment.forEach(eq => params.append('equipment', eq));
+        if (this.activeOnly) params.set('active_only', 'true');
+        params.set('page', this.page);
+        params.set('page_size', 25);
+
+        const res = await fetch('/api/capacity?' + params.toString());
+        if (res.ok) {
+          const data = await res.json();
+          this.postings = data.items || [];
+          this.totalPages = data.total_pages || 1;
+          this.totalPostings = data.total || 0;
+        }
+      } catch (e) {
+        console.error('Failed to load capacity:', e);
+      } finally {
+        this.loading = false;
+      }
+    }
+  };
+}
+</script>
+{% endblock %}

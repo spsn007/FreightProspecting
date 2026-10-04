@@ -1,114 +1,28 @@
 {% extends "base.html" %}
-
-{% block title %}Evidence Ledger — FreightProspecting V1{% endblock %}
-
-{% block breadcrumb %}
-<span>Evidence Ledger</span>
-<span style="color:#cbd5e1">/</span>
-<span style="font-weight:400; color:var(--color-text-muted);">Evidence Sources & Provenance</span>
-{% endblock %}
-
+{% block title %}Evidence Ledger — Shipper IQ{% endblock %}
+{% block breadcrumb %}<span>Evidence Ledger</span>{% endblock %}
 {% block content %}
-<div>
-  <div class="section-header">
-    <div>
-      <h1 class="section-title">Evidence Sources & Provenance Ledger</h1>
-      <p class="section-subtitle">Field-level traceability for all business assertions. Zero fabrication, audited primary and secondary evidence sources.</p>
-    </div>
-    <div style="display:flex; gap:0.5rem;">
-      <span class="badge badge-verified">{{ counts.verified_claims_count }} Verified Claims</span>
-      <span class="badge badge-inferred">{{ counts.inferred_claims_count }} Inferred</span>
-      <span class="badge badge-unknown">{{ counts.unknown_claims_count }} Unknown</span>
-    </div>
+<div class="research-page">
+  <div class="section-header"><div><span class="settings-eyebrow">COMPANY RESEARCH</span><h1 class="section-title">Evidence Ledger</h1><p class="section-subtitle">See where company information came from and when it was checked.</p></div></div>
+  <div class="research-intro"><h2>What is the Evidence Ledger?</h2><p>This is your research reference library: company websites, directories, public records, and other sources used to support company details. Open a source to check the original information before you call.</p><p class="settings-note">A source is a reference, not proof of every company detail. For the evidence behind a specific fact, open the company's Review Prospect page.</p></div>
+  <div class="research-guide">
+    <section><span class="settings-eyebrow">PRIMARY SOURCE</span><h3>From the original organization</h3><p>For example, a company's own website or an official record. It still needs to support the specific fact being checked.</p></section>
+    <section><span class="settings-eyebrow">SECONDARY SOURCE</span><h3>From another publisher</h3><p>For example, a directory or industry article. Use it as a lead and confirm important details where possible.</p></section>
+    <section><span class="settings-eyebrow">RECORDED FACTS</span><div class="research-counts"><span class="badge badge-verified">{{ counts.verified_claims_count }} Verified</span><span class="badge badge-inferred">{{ counts.inferred_claims_count }} Inferred</span><span class="badge badge-unknown">{{ counts.unknown_claims_count }} Unknown</span></div><p>Verified: supported by evidence. Inferred: a reasoned assumption. Unknown: not confirmed.</p></section>
   </div>
-
-  <!-- Three-Dimensional Time Model Banner -->
-  <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:8px; padding:1.25rem 1.5rem; margin-bottom:1.5rem; box-shadow:var(--shadow-sm);">
-    <h3 style="font-size:0.9375rem; font-weight:700; color:var(--color-text-main); margin-bottom:0.35rem;">
-      Three-Dimensional Time Model
-    </h3>
-    <p style="font-size:0.8125rem; color:var(--color-text-muted); margin-bottom:0.75rem;">
-      FreightProspecting enforces three non-negotiable temporal dimensions across all evidence records:
-    </p>
-    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; font-size:0.8125rem;">
-      <div style="background:var(--color-border-subtle); border:1px solid var(--color-border); border-radius:6px; padding:0.75rem;">
-        <div style="font-weight:700; color:#0284c7; margin-bottom:0.2rem;">1. source_published_at</div>
-        <div style="color:var(--color-text-muted); font-size:0.75rem;">Timestamp when source document/article was officially published by the company or authority.</div>
-      </div>
-      <div style="background:var(--color-border-subtle); border:1px solid var(--color-border); border-radius:6px; padding:0.75rem;">
-        <div style="font-weight:700; color:#0284c7; margin-bottom:0.2rem;">2. event_at</div>
-        <div style="color:var(--color-text-muted); font-size:0.75rem;">Timestamp when the real-world event occurred. Nullable for persistent facts (addresses, phone numbers). No text strings like 'Active'.</div>
-      </div>
-      <div style="background:var(--color-border-subtle); border:1px solid var(--color-border); border-radius:6px; padding:0.75rem;">
-        <div style="font-weight:700; color:#0284c7; margin-bottom:0.2rem;">3. observed_at</div>
-        <div style="color:var(--color-text-muted); font-size:0.75rem;">Timestamp when the researcher or system retrieved and recorded the evidence.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Evidence Sources Table -->
-  <div class="table-card">
-    <div class="table-toolbar">
-      <div style="font-weight:700; color:var(--color-text-main); font-size:0.9375rem;">
-        Audited Evidence Sources ({{ sources|length }} Records)
-      </div>
-      <span class="badge badge-verified">✓ Field-Level Provenance Backed</span>
-    </div>
-
-    <div style="overflow-x:auto;">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Source Type</th>
-            <th>Publisher / Title</th>
-            <th>URL / Access Location</th>
-            <th>Observed At</th>
-            <th>Event Timestamp</th>
-            <th>Classification</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for s in sources %}
-          <tr>
-            <td style="font-family:var(--font-mono); font-weight:700; color:var(--color-text-muted);">
-              #{{ s.id }}
-            </td>
-            <td>
-              <span class="badge badge-equipment" style="font-size:0.6875rem;">
-                {{ s.source_type }}
-              </span>
-            </td>
-            <td style="font-weight:600; color:var(--color-text-main);">
-              {{ s.source_title_publisher }}
-            </td>
-            <td style="max-width:280px;">
-              {% if s.source_url %}
-              <a href="{{ s.source_url | safe_url }}" target="_blank" rel="noopener" style="color:#0284c7; text-decoration:none; font-family:var(--font-mono); font-size:0.75rem; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="{{ s.source_url }}">
-                {{ s.source_url }} ↗
-              </a>
-              {% else %}
-              <span style="color:#94a3b8; font-style:italic;">Direct verification record / No URL</span>
-              {% endif %}
-            </td>
-            <td style="font-family:var(--font-mono); font-size:0.75rem; color:#475569;">
-              {{ s.observed_at }}
-            </td>
-            <td style="font-family:var(--font-mono); font-size:0.75rem; color:#475569;">
-              {{ s.event_at if s.event_at else 'NULL (Persistent)' }}
-            </td>
-            <td>
-              {% if s.is_primary_source %}
-              <span class="badge badge-verified" style="font-size:0.6875rem;">Primary Source</span>
-              {% else %}
-              <span class="badge badge-unknown" style="font-size:0.6875rem;">Secondary / {{ s.source_type }}</span>
-              {% endif %}
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <details class="research-date-guide"><summary>What do the dates mean?</summary><div class="research-guide"><section><h3>Published</h3><p>When the page or document was published, if known.</p></section><section><h3>Event date</h3><p>When the event happened. General company details may have no event date.</p></section><section><h3>Checked</h3><p>When the researcher recorded this source. It may have changed since then.</p></section></div></details>
+  <section class="table-card research-library">
+    <div class="table-toolbar"><div><h2>Evidence Sources</h2><p class="settings-note">{{ matched }} matching sources · {{ source_total }} in the library</p></div></div>
+    <form method="get" action="/research" class="research-filters"><label>Find a source<input class="form-input" type="search" name="q" value="{{ q }}" maxlength="200" placeholder="Company, title, or website"></label><label>Source classification<select class="form-input" name="source_filter"><option value="all" {{ 'selected' if source_filter == 'all' }}>All sources</option><option value="primary" {{ 'selected' if source_filter == 'primary' }}>Primary sources</option><option value="secondary" {{ 'selected' if source_filter == 'secondary' }}>Secondary sources</option></select></label><button type="submit" class="btn btn-primary">Search</button>{% if q or source_filter != 'all' %}<a href="/research" class="btn btn-secondary">Clear</a>{% endif %}</form>
+    <div class="research-table-scroll"><table class="data-table research-table"><thead><tr><th>Source</th><th>Reference</th><th>Checked</th><th>Classification</th></tr></thead><tbody>
+      {% for s in sources %}<tr>
+        <td><strong>{{ s.source_title_publisher }}</strong><span class="research-source-kind">{{ s.source_type|replace('_',' ')|title }} · #{{ s.id }}</span><details class="research-record"><summary>Record details</summary><dl><dt>Published</dt><dd>{{ s.source_published_at or 'Not recorded' }}</dd><dt>Event date</dt><dd>{{ s.event_at or 'No dated event recorded' }}</dd><dt>Checked</dt><dd>{{ s.observed_at or 'Not recorded' }}</dd>{% if s.notes %}<dt>Research note</dt><dd>{{ s.notes }}</dd>{% endif %}</dl></details></td>
+        <td>{% if s.source_url %}<a href="{{ s.source_url|safe_url }}" target="_blank" rel="noopener noreferrer" title="{{ s.source_url }}">Open source ↗</a><span class="research-url">{{ s.source_url }}</span>{% else %}<span class="settings-note">No website link recorded</span>{% endif %}</td>
+        <td>{{ s.observed_at[:10] if s.observed_at else 'Not recorded' }}</td>
+        <td><span class="badge {{ 'badge-dept' if s.is_primary_source else 'badge-unknown' }}">{{ 'Primary Source' if s.is_primary_source else 'Secondary Source' }}</span></td>
+      </tr>{% else %}<tr><td colspan="4" class="research-empty">No sources match this search. Try a company name or clear the filters.</td></tr>{% endfor %}
+    </tbody></table></div>
+    <nav class="research-pagination" aria-label="Evidence source pages"><span class="settings-note">Page {{ page }} of {{ pages }} · Up to 50 sources per page</span><div>{% if page > 1 %}<a class="btn btn-secondary btn-sm" href="/research?{{ page_query }}&page={{ page - 1 }}">← Previous</a>{% endif %}{% if page < pages %}<a class="btn btn-secondary btn-sm" href="/research?{{ page_query }}&page={{ page + 1 }}">Next →</a>{% endif %}</div></nav>
+  </section>
 </div>
 {% endblock %}

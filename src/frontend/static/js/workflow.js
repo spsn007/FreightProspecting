@@ -1,4 +1,21 @@
 window.freightWorkflow = {
+  confirm(message, title = 'Confirm change', action = 'Confirm') {
+    // Native dialog supplies focus containment, Escape and inert background.
+    if (document.querySelector('.workflow-confirm[open]')) return Promise.resolve(false);
+    const dialog = document.createElement('dialog');
+    dialog.className = 'workflow-confirm';
+    dialog.setAttribute('aria-labelledby', 'workflow-confirm-title');
+    dialog.setAttribute('aria-describedby', 'workflow-confirm-description');
+    dialog.innerHTML = '<form method="dialog"><div class="workflow-confirm-heading"><span class="workflow-confirm-icon" aria-hidden="true">!</span><h2 id="workflow-confirm-title"></h2></div><p id="workflow-confirm-description"></p><div class="workflow-confirm-actions"><button class="btn btn-secondary" value="cancel" autofocus>Cancel</button><button class="btn btn-primary" value="confirm"></button></div></form>';
+    dialog.querySelector('h2').textContent = title;
+    dialog.querySelector('p').textContent = message;
+    dialog.querySelector('[value="confirm"]').textContent = action;
+    document.body.appendChild(dialog);
+    return new Promise(resolve => {
+      dialog.addEventListener('close', () => { const confirmed = dialog.returnValue === 'confirm'; dialog.remove(); resolve(confirmed); }, {once:true});
+      dialog.showModal();
+    });
+  },
   read(key, fallback = null) {
     try { return JSON.parse(sessionStorage.getItem(key)) ?? fallback; }
     catch (_) { return fallback; }

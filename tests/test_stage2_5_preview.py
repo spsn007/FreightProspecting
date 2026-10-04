@@ -44,7 +44,7 @@ client = TestClient(app)
 def test_application_imports_successfully():
     """Test 1: FastAPI app instance exists, has title and version."""
     assert app is not None
-    assert app.title == "FreightProspecting V1"
+    assert app.title == "Shipper IQ"
     assert app.version == "1.0.0"
 
 
@@ -55,7 +55,7 @@ def test_dashboard_route_returns_http_200():
     """Test 2: Dashboard Cockpit route (/) responds with HTTP 200."""
     response = client.get("/")
     assert response.status_code == 200
-    assert "FreightProspecting" in response.text
+    assert "Shipper" in response.text and "IQ" in response.text
     assert "Master Directory" in response.text
 
 
@@ -335,21 +335,25 @@ def test_project_stage2_invariants_remain_intact():
     tables = {name for name, t in objs.items() if t == "table"}
     views = {name for name, t in objs.items() if t == "view"}
 
-    assert len(tables) in (17, 19, 20, 23, 29), f"Expected 17 (Stage 2), 19 (Stage 3A), 20 (Stage 3C), 23 (Stage 3G), or 29 (team workflow) tables, got {len(tables)}: {tables}"
+    assert len(tables) in (17, 19, 20, 23, 29, 38), f"Expected 17 (Stage 2), 19 (Stage 3A), 20 (Stage 3C), 23 (Stage 3G), 29 (team workflow), or 38 (carrier & capacity) tables, got {len(tables)}: {tables}"
     assert len(views) == 0, f"Expected 0 views, got {len(views)}: {views}"
     assert "suppressions" in tables
     assert "suppression_status_records" not in tables
-    if len(tables) in (19, 20, 23, 29):
+    if len(tables) in (19, 20, 23, 29, 38):
         assert "prospect_lifecycle" in tables
         assert "discovery_intake_audit" in tables
-    if len(tables) in (20, 23, 29):
+    if len(tables) in (20, 23, 29, 38):
         assert "prospect_engagement_state" in tables
-    if len(tables) in (23, 29):
+    if len(tables) in (23, 29, 38):
         assert "commodity_families" in tables
         assert "commodity_categories" in tables
         assert "facility_commodity_mappings" in tables
+    if len(tables) >= 38:
+        assert "carriers" in tables
+        assert "carrier_outreach_logs" in tables
+        assert "capacity_postings" in tables
 
-    if len(tables) in (19, 20, 23, 29):
+    if len(tables) in (19, 20, 23, 29, 38):
         # In Stage 3A with Batch #1 (39 discovery candidates imported), verify seed claims remain exactly 20
         seed_claims_cnt = conn.execute("SELECT count(*) FROM claims WHERE id <= 20").fetchone()[0]
         assert seed_claims_cnt == 20
@@ -378,13 +382,15 @@ def test_research_and_settings_routes_work_locally():
     r_res = client.get("/research")
     assert r_res.status_code == 200
     assert "Evidence Sources" in r_res.text
-    assert "Three-Dimensional Time Model" in r_res.text
+    assert "What is the Evidence Ledger?" in r_res.text
+    assert "What do the dates mean?" in r_res.text
 
     r_set = client.get("/settings")
     assert r_set.status_code == 200
-    assert "Decision A: Geographic Scope" in r_set.text
-    assert "Decision B: Outreach Priority" in r_set.text
-    assert "Decision H: Zero-Paid-AI Architecture" in r_set.text
+    assert "Prospecting preferences" in r_set.text
+    assert "United States & Canada" in r_set.text
+    assert "Phone-first prospecting" in r_set.text
+    assert "Workspace defaults" in r_set.text
 
 
 # ============================================================================
@@ -420,7 +426,7 @@ def test_evidence_sources_not_all_labeled_primary():
     r_res = client.get("/research")
     assert r_res.status_code == 200
     assert "Audited Primary Sources" not in r_res.text
-    assert "Audited Evidence Sources" in r_res.text
+    assert "Evidence Sources" in r_res.text
     # Individual sources must show secondary classification for job posting and directory
     assert "Secondary" in r_res.text
     assert "Primary Source" in r_res.text
@@ -439,14 +445,14 @@ def test_settings_in_secondary_utility_navigation():
     """Verify Settings is in a secondary utility position in the sidebar, with primary screens."""
     resp = client.get("/")
     assert resp.status_code == 200
-    # Primary workflow nav has Master Directory, Loads, Carriers, Ledger (Cockpit retired)
+    # Primary broker and Carrier & Capacity navigation are shown.
     assert "Master Directory" in resp.text
-    assert "Loads &amp; Margins" in resp.text or "Loads & Margins" in resp.text
-    assert "Carriers &amp; Capacity" in resp.text or "Carriers & Capacity" in resp.text
+    assert 'href="/loads"' in resp.text
+    assert 'href="/carriers"' in resp.text
     assert "Evidence Ledger" in resp.text
-    # Settings is placed in sidebar-utility under Configuration
+    # Settings remains in the secondary Workspace utility section.
     assert "sidebar-utility" in resp.text
-    assert "Configuration" in resp.text
+    assert "Workspace" in resp.text
 
 
 # ============================================================================
@@ -503,7 +509,8 @@ def test_app_not_described_globally_as_100_percent_offline():
     """Verify app qualifies local core app vs external internet research (never unqualified '100% offline')."""
     r_set = client.get("/settings")
     assert "100% offline" not in r_set.text
-    assert "No Paid AI/API Required" in r_set.text
+    assert "Shipper IQ Workspace" in r_set.text
+    assert "Local Core Application" not in r_set.text
 
 
 def test_evidence_wording_distinguishes_primary_and_secondary():
@@ -512,8 +519,8 @@ def test_evidence_wording_distinguishes_primary_and_secondary():
     assert r_res.status_code == 200
     assert "100% primary" not in r_res.text.lower()
     assert "Offline record / Phone interview" not in r_res.text
-    assert "Direct verification record / No URL" in r_res.text
-    assert "Field-Level Provenance Backed" in r_res.text
+    assert "No website link recorded" in r_res.text
+    assert "A source is a reference, not proof of every company detail" in r_res.text
 
 
 def test_suggested_next_action_styling_distinct_from_verified():
